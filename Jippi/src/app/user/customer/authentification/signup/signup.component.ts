@@ -18,7 +18,7 @@ export class SignupComponent {
   ngOnInit(): void {
     // console.log('forms');
   }
-  // baseUrl = 'http://localhost:4200/';
+  // baseUrl = 'http://localhost:3008';
   // register() {
   //   this.httpClient.post(
   //     this.baseUrl + '/api/register/customer/signup',
