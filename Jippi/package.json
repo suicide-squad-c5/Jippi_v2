@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "server-start": "nodemon server.js"
   },
   "private": true,
   "dependencies": {
@@ -20,10 +21,13 @@
     "@angular/platform-browser-dynamic": "~10.1.5",
     "@angular/router": "~10.1.5",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
     "nodemon": "^2.0.5",
     "rxjs": "~6.6.0",
     "sequelize": "^6.3.5",
+    "sqlite3": "^5.0.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

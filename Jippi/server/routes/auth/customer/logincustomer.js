@@ -1,5 +1,5 @@
 const loginCustomerRouter = require("express").Router();
-const Customer = require("../../../database/customerShema.js");
+const Customer = require("../../../../database/customerSchema.js");
 const jwt = require("jsonwebtoken");
 
 loginCustomerRouter.post("/login", async (req, res) => {
