@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const path = require("path");
 const PORT = process.env.PORT || 3008;
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,10 +18,10 @@ const customerProfileRouter = require("./server/routes/customerProfile.js");
 const itemsRouter = require("./server/routes/items.js");
 
 const db = require("./database/models");
-db.sequelize
-  .sync({
-    force: true,
-  })
+db.sequelize.sync({
+  force: false,
+  alter: true
+})
   .then(() => {
     console.log("Drop and re-sync db.");
   });
@@ -39,9 +38,6 @@ app.use("/api/profile/customer", customerProfileRouter);
 // items
 app.use("/api/items", itemsRouter);
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../Jippi/dist/Jippi/index.html"));
-});
 
 app.listen(PORT, () => {
   console.log(`Main Server is lestening on port ${PORT}...`);
