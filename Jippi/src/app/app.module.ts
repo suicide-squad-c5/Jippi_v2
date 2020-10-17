@@ -25,7 +25,8 @@ import { MyShopComponent } from './user/company/my-shop/my-shop.component';
 import { CompProfileComponent } from './user/company/comp-profile/comp-profile.component';
 import { AuthentiCompComponent } from './user/company/authenti-comp/authenti-comp.component';
 import { AddItemComponent } from './user/company/my-shop/add-item/add-item.component';
-
+import { CompLoginComponent } from './user/company/authenti-comp/comp-login/comp-login.component';
+import { CompSignupComponent } from './user/company/authenti-comp/comp-signup/comp-signup.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,9 @@ import { AddItemComponent } from './user/company/my-shop/add-item/add-item.compo
     MyShopComponent,
     CompProfileComponent,
     AuthentiCompComponent,
-    AddItemComponent
+    AddItemComponent,
+    CompLoginComponent,
+    CompSignupComponent
   ],
   imports: [
     BrowserModule,
