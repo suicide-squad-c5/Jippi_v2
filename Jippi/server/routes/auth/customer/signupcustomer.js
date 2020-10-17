@@ -1,7 +1,7 @@
 const signupCustomerRouter = require("express").Router();
 // const Customer = require("../../../database/");
 
-const db = require("../../../database/models");
+const db = require("../../../../database/models");
 const Customer = db.customers;
 
 signupCustomerRouter.post("/signup", (req, res) => {

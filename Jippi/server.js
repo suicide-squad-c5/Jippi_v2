@@ -8,15 +8,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Routes
 // CompanyRoutes
-const signupCompanyRouter = require("./routes/auth/company/signupcompany.js");
-const loginCompanyRouter = require("./routes/auth/company/logincompany.js");
-const companyProfileRouter = require("./routes/companyprofile.js");
+const signupCompanyRouter = require("./server/routes/auth/compnay/signupcompany.js");
+const loginCompanyRouter = require("./server/routes/auth/compnay/logincompany.js");
+const companyProfileRouter = require("./server/routes/companyprofile");
 //CustomerRoutes
-const loginCustomerRouter = require("./routes/auth/customer/logincustomer.js");
-const signupCustomerRouter = require("./routes/auth/customer/signupcustomer.js");
-const customerProfileRouter = require("./routes/customerProfile.js");
+const loginCustomerRouter = require("./server/routes/auth/customer/logincustomer.js");
+const signupCustomerRouter = require("./server/routes/auth/customer/signupcustomer.js");
+const customerProfileRouter = require("./server/routes/customerProfile.js");
 // items & products
-const itemsRouter = require("./routes/items.js");
+const itemsRouter = require("./server/routes/items.js");
 
 const db = require("./database/models");
 db.sequelize
