@@ -1,0 +1,19 @@
+a {
+  cursor: pointer;
+}
+
+.navbar-brand {
+  font-family: 'Sansita Swashed',
+    cursive;
+  font-size: 30px;
+}
+
+.dropdown {
+  position: absolute;
+  left: 85%;
+}
+
+#searchBar {
+  position: relative;
+  left: 20%;
+}

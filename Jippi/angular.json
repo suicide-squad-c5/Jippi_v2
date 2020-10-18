@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Jippi"
+    }
+  },
+  "defaultProject": "Jippi",
+  "cli": {
+    "analytics": false
+  }
 }

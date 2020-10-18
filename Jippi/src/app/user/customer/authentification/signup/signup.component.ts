@@ -1,29 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css', './signup.component.scss'],
 })
-export class SignupComponent {
-  data: any = {
-    email: '',
-    password: '',
-  };
+export class SignupComponent implements OnInit {
+ 
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    // private httpClient: HttpClient
+    ) {}
 
   ngOnInit(): void {
-    // console.log('forms');
+    
   }
-  // baseUrl = 'http://localhost:4200/';
-  // register() {
-  //   this.httpClient.post(
-  //     this.baseUrl + '/api/register/customer/signup',
-  //     this.data,
-  //     { headers: { 'content-type': 'application/json' } }
-  //   );
-  // }
+  // baseUrl = 'http://localhost:3008';
+  register() {
+    // this.httpClient.post(
+    //   this.baseUrl + '/api/register/customer/signup',
+    //   this.data,
+    //   { headers: { 'content-type': 'application/json' } }
+    // );
+  }
+  
 }

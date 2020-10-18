@@ -8,5 +8,6 @@ module.exports = (sequelize, Sequelize) => {
     address: Sequelize.STRING,
     phone_number: Sequelize.INTEGER,
   });
+  
   return Customer;
 };
