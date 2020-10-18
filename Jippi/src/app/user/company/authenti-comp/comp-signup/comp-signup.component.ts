@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../../../../http.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,7 @@ export class CompSignupComponent implements OnInit {
   companyPassword: string = '';
   companyConfirmPassword: string = '';
 
-  constructor() {}
+  constructor(private _http: HttpService) {}
 
   ngOnInit(): void {}
 
@@ -44,6 +45,15 @@ export class CompSignupComponent implements OnInit {
       // check ! (passed fine)
       console.log(Data);
       // send request to the server with all the information from the inputs.
+      this._http
+        .postSignUpComapany(
+          this.companyName,
+          this.companyPassword,
+          this.companyEmail
+        )
+        .subscribe((data) => {
+          alert('signup sucssefuly');
+        });
     }
   }
 }

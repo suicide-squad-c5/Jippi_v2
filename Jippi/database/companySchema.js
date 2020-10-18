@@ -6,11 +6,11 @@ const comapny = sequelize.define(
   "company",
   {
     companyName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
+    companyEmail: DataTypes.STRING,
+    companyPassword: DataTypes.STRING,
     avatar: DataTypes.STRING,
     location: DataTypes.STRING,
-    phone_number: DataTypes.INTEGER,
+    phoneNumber: DataTypes.INTEGER,
   },
   {
     tableName: "company",
