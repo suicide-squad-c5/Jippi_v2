@@ -8,6 +8,7 @@ import { LoginComponent } from './user/customer/authentification/login/login.com
 import { SignupComponent } from './user/customer/authentification/signup/signup.component';
 import { CompSignupComponent } from './user/company/authenti-comp/comp-signup/comp-signup.component';
 import { CompLoginComponent } from './user/company/authenti-comp/comp-login/comp-login.component';
+import { EditProfileComponent } from './user/customer/cust-profile/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'comapny/signup', component: CompSignupComponent },
   { path: 'company/login', component: CompLoginComponent },
+  { path: 'profile/edit', component: EditProfileComponent },
 ];
 
 @NgModule({
