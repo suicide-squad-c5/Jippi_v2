@@ -1,10 +1,8 @@
 const db = require("../models");
-const comapny = db.company;
+const company = db.company;
 
 exporte.create = (req, res) => {
-  const company = {};
-
-  Tutorial.create(tutorial)
+  Tutorial.create(company)
     .then((data) => {
       res.send(data);
     })
