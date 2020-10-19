@@ -6,7 +6,7 @@ const companyLog = db.companies;
 signupCompanyRouter.post("/comapny/signup", (req, res) => {
   console.log(req.body);
 
-  // create the object taht will take the values from the request.
+  // create the object that will take the values from the request.
   const company = {
     companyName: req.body.companyName,
     companyEmail: req.body.companyEmail,
