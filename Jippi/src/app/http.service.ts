@@ -28,4 +28,11 @@ export class HttpService {
       }
     );
   }
+
+  loginCustomer(email, password) {
+    return this.http.post(this.ROOT_URL + `/api/login/customer/login`, {
+      email,
+      password,
+    });
+  }
 }
