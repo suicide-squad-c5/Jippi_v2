@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../../../../http.service';
 
 @Component({
   selector: 'app-comp-login',
@@ -10,7 +11,7 @@ export class CompLoginComponent implements OnInit {
   companyEmailLog: string = '';
   companyPasswordLog: string = '';
 
-  constructor() {}
+  constructor(private _http: HttpService) {}
 
   ngOnInit(): void {}
 
@@ -27,5 +28,11 @@ export class CompLoginComponent implements OnInit {
 
     // check ! (passed fine)
     console.log(LogCdata);
+    // send request to check if this user exist in the database.
+    this._http.postLoginCompany(LogCdata).subscribe((res) => {
+      console.log('yo', res);
+      localStorage.setItem('companyToken', res['token']);
+      localStorage.setItem('comapnyId', res['id']);
+    });
   }
 }
