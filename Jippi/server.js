@@ -2,9 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 3008;
+const cors = require("cors");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 // Routes
 // CompanyRoutes
 const signupCompanyRouter = require("./server/routes/auth/compnay/signupcompany.js");
@@ -18,10 +20,11 @@ const customerProfileRouter = require("./server/routes/customerProfile.js");
 const itemsRouter = require("./server/routes/items.js");
 
 const db = require("./database/models");
-db.sequelize.sync({
-  force: false,
-  alter: true
-})
+db.sequelize
+  .sync({
+    force: false,
+    alter: true,
+  })
   .then(() => {
     console.log("Drop and re-sync db.");
   });
@@ -37,7 +40,6 @@ app.use("/api/login/customer", loginCustomerRouter);
 app.use("/api/profile/customer", customerProfileRouter);
 // items
 app.use("/api/items", itemsRouter);
-
 
 app.listen(PORT, () => {
   console.log(`Main Server is lestening on port ${PORT}...`);

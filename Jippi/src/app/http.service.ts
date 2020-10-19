@@ -6,10 +6,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class HttpService {
   constructor(private http: HttpClient) {}
-  ROOT_URL = 'http://localhost:3008';
+  ROOT_URL = 'http://127.0.0.1:3008';
 
   postSignupCustomer(first_name, last_name, email, password, phone_number) {
-    return this.http.post(this.ROOT_URL + `/signup`, {
+    return this.http.post(this.ROOT_URL + '/api/register/customer/signup', {
       first_name: first_name,
       last_name: last_name,
       email: email,
