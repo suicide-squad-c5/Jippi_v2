@@ -1,1 +1,45 @@
-<p>signup works!</p>
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+                <div class="row">
+                    <div class="col text-center">
+                        <h1>Register</h1>
+                        <p class="text-h3"> Join JIPPI now and create your own shop to start sell your items, all JIPPI
+                            members hope for you success. </p>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col mt-4">
+                        <input type="text" class="form-control" placeholder="Company Name" [(ngModel)]="companyName">
+                    </div>
+                </div>
+                <div class="row align-items-center mt-4">
+                    <div class="col">
+                        <input type="email" class="form-control" placeholder="Email" [(ngModel)]="companyEmail">
+                    </div>
+                </div>
+                <div class="row align-items-center mt-4">
+                    <div class="col">
+                        <input type="password" class="form-control" placeholder="Password"
+                            [(ngModel)]="companyPassword">
+                    </div>
+                    <div class="col">
+                        <input type="password" class="form-control" placeholder="Confirm Password"
+                            [(ngModel)]=companyConfirmPassword>
+                    </div>
+                </div>
+                <div class="row justify-content-start mt-4">
+                    <div class="col">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                you already have account <a href="#">Log in</a>
+                            </label>
+                        </div>
+                        <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="companyData()">Sign in</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

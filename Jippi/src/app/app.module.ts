@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http'; 
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +29,7 @@ import { CompProfileComponent } from './user/company/comp-profile/comp-profile.c
 import { AuthentiCompComponent } from './user/company/authenti-comp/authenti-comp.component';
 import { AddItemComponent } from './user/company/my-shop/add-item/add-item.component';
 import { CompLoginComponent } from './user/company/authenti-comp/comp-login/comp-login.component';
-import { CompSignupComponent } from './user/company/authenti-comp/comp-signup/comp-signup.component'
+import { CompSignupComponent } from './user/company/authenti-comp/comp-signup/comp-signup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,15 +54,17 @@ import { CompSignupComponent } from './user/company/authenti-comp/comp-signup/co
     AuthentiCompComponent,
     AddItemComponent,
     CompLoginComponent,
-    CompSignupComponent
+    CompSignupComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule,
+    MDBBootstrapModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
