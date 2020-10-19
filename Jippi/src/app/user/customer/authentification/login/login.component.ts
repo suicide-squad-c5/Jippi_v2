@@ -3,21 +3,18 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css', 'login.component.scss']
+  styleUrls: ['./login.component.css', 'login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-   data: any = {
+  data: any = {
     email: '',
     password: '',
   };
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void {}
+  ngDoCheck() {
+    console.log('forms', this.data);
   }
-  ngDoCheck(){
-console.log('forms', this.data);
-  }
-
 }
