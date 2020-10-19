@@ -14,7 +14,7 @@ exports.create = (req, res) => {
   const customer = {};
 
   // Save Tutorial in the database
-  Tutorial.create(tutorial)
+  Customer.create(customer)
     .then((data) => {
       res.send(data);
     })

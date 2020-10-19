@@ -5,7 +5,7 @@ const db = require("../../../../database/models");
 const Customer = db.customers;
 
 signupCustomerRouter.post("/signup", (req, res) => {
-  console.log(req.body);
+  console.log("req.body", req.body);
 
   // Validate request
   if (!req.body.firstName) {
