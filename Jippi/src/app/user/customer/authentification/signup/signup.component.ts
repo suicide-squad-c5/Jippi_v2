@@ -14,6 +14,7 @@ export class SignupComponent implements OnInit {
  email: any = '';
  password: string = '';
  phoneNumber: string = '';
+ newUser: any =[];
 
   constructor(
     private _http: HttpService
@@ -22,18 +23,14 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     
   }
-  // baseUrl = 'http://localhost:3008';
+  
   register() {
-    // this.httpClient.post(
-    //   this.baseUrl + '/api/register/customer/signup',
-    //   this.data,
-    //   { headers: { 'content-type': 'application/json' } }
-    // );
-    console.log("data",this.firstName,this.lastName,this.email,this.password,this.phoneNumber);
+   console.log("data",this.firstName,this.lastName,this.email,this.password,this.phoneNumber);
   }
   postSignup() {
    return this._http.postSignupCustomer(this.firstName, this.lastName, this.email, this.password, this.phoneNumber)
    .subscribe((data) =>{  
+     this.newUser = data;
    console.log(data)
    })
   }
