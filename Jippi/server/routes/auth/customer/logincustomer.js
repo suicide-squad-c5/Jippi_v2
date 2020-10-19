@@ -4,7 +4,6 @@ const Customer = db.customers;
 const jwt = require("jsonwebtoken");
 
 loginCustomerRouter.post("/login", (req, res) => {
-
   console.log(req.body);
 
   console.log(Customer);
