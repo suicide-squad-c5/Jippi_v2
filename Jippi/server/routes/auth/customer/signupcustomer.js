@@ -5,10 +5,11 @@ const db = require("../../../../database/models");
 const Customer = db.customers;
 
 signupCustomerRouter.post("/signup", (req, res) => {
+  console.log("here");
   console.log(req.body);
 
   // Validate request
-  if (!req.body.firstName) {
+  if (!req.body.first_name) {
     res.status(400).send({
       message: "Name cannot be empty!",
     });
@@ -18,13 +19,13 @@ signupCustomerRouter.post("/signup", (req, res) => {
   // Create a Customer
 
   const customer = {
-    first_name: req.body.firstName,
-    last_name: req.body.lastName,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
     email: req.body.email,
-    password: req.body.pasword,
+    password: req.body.password,
     avatar: req.body.avatar,
     address: req.body.address,
-    phone_number: req.body.phoneNumber,
+    phone_number: req.body.phone_number,
   };
 
   // Save Customer in the database
