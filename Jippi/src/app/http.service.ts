@@ -18,6 +18,7 @@ export class HttpService {
     });
   }
 
+  // create post request for the comapny signup.
   postSignUpComapany(companyName, companyPassword, companyEmail) {
     return this.http.post(
       this.ROOT_URL + `/api/register/company/comapny/signup`,
@@ -27,5 +28,13 @@ export class HttpService {
         companyEmail: companyEmail,
       }
     );
+  }
+
+  // craete post request for the comapny login.
+  postLoginCompany(comapnyLoginObj) {
+    return this.http.post(this.ROOT_URL + `/api/login/company/company/login`, {
+      companyEmail: comapnyLoginObj.companyEmail,
+      companyPassword: comapnyLoginObj.companyPassword,
+    });
   }
 }
