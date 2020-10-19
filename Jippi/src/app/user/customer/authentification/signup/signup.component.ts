@@ -9,33 +9,39 @@ import { HttpService } from '../../../../http.service';
   styleUrls: ['./signup.component.css', './signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
- firstName: string = '';
- lastName: string = '';
- email: any = '';
- password: string = '';
- phoneNumber: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  email: string = '';
+  password: string = '';
+  phoneNumber: string = '';
+  newUser: any = [];
 
-  constructor(
-    private _http: HttpService
-    ) {}
+  constructor(private _http: HttpService) {}
 
-  ngOnInit(): void {
-    
-  }
-  // baseUrl = 'http://localhost:3008';
+  ngOnInit(): void {}
+
   register() {
-    // this.httpClient.post(
-    //   this.baseUrl + '/api/register/customer/signup',
-    //   this.data,
-    //   { headers: { 'content-type': 'application/json' } }
-    // );
-    console.log("data",this.firstName,this.lastName,this.email,this.password,this.phoneNumber);
+    console.log(
+      'data',
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.password,
+      this.phoneNumber
+    );
   }
   postSignup() {
-   return this._http.postSignupCustomer(this.firstName, this.lastName, this.email, this.password, this.phoneNumber)
-   .subscribe((data) =>{  
-   console.log(data)
-   })
+    return this._http
+      .postSignupCustomer(
+        this.firstName,
+        this.lastName,
+        this.email,
+        this.password,
+        this.phoneNumber
+      )
+      .subscribe((data) => {
+        this.newUser = data;
+        console.log(data);
+      });
   }
-  
 }
