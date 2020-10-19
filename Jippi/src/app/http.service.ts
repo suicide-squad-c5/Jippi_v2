@@ -14,16 +14,18 @@ export class HttpService {
       last_name: last_name,
       email: email,
       password: password,
-      phone_number: phone_number
+      phone_number: phone_number,
     });
   }
 
   postSignUpComapany(companyName, companyPassword, companyEmail) {
-    return this.http.post(this.ROOT_URL + `/company/signup`, {
-      companyName: companyName,
-      companyPassword: companyPassword,
-      companyEmail: companyEmail,
-    });
+    return this.http.post(
+      this.ROOT_URL + `/api/register/company/comapny/signup`,
+      {
+        companyName: companyName,
+        companyPassword: companyPassword,
+        companyEmail: companyEmail,
+      }
+    );
   }
-
 }

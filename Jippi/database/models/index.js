@@ -3,7 +3,7 @@
 const dbConfig = require("../config/db.config.js");
 const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize("", dbConfig.USER, dbConfig.PASSWORD, {
+const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
   operatorsAliases: false,
@@ -16,9 +16,10 @@ const sequelize = new Sequelize("", dbConfig.USER, dbConfig.PASSWORD, {
   },
 });
 
-sequelize.query(`CREATE DATABASE ${dbConfig.DB};`)
-  .then(data => console.log("Dataase created successfully", data))
-  .catch(err => console.log(err))
+sequelize
+  .query(`CREATE DATABASE ${dbConfig.DB};`)
+  .then((data) => console.log("Dataase created successfully", data))
+  .catch((err) => console.log(err));
 
 const db = {};
 
@@ -26,5 +27,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.customers = require("./customer.model.js")(sequelize, Sequelize);
+db.companies = require("../companySchema")(sequelize, Sequelize);
 
 module.exports = db;
