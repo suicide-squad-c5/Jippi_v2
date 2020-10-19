@@ -1,8 +1,9 @@
-const db = require("../models");
-const company = db.company;
+const db = require("../../database/companySchema.js");
+const Comapny = db.companies;
 
 exporte.create = (req, res) => {
-  Tutorial.create(company)
+  console.log(req.body);
+  Comapny.create(company)
     .then((data) => {
       res.send(data);
     })

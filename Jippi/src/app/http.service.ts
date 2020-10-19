@@ -6,12 +6,26 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class HttpService {
   constructor(private http: HttpClient) {}
-  ROOT_URL = 'http://localhost:3008';
-  postSignUpComapany(companyName, companyPassword, companyEmail) {
-    return this.http.post(this.ROOT_URL + `/api/register/company`, {
-      companyName: companyName,
-      companyPassword: companyPassword,
-      companyEmail: companyEmail,
+  ROOT_URL = 'http://127.0.0.1:3008';
+
+  postSignupCustomer(first_name, last_name, email, password, phone_number) {
+    return this.http.post(this.ROOT_URL + '/api/register/customer/signup', {
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      password: password,
+      phone_number: phone_number,
     });
+  }
+
+  postSignUpComapany(companyName, companyPassword, companyEmail) {
+    return this.http.post(
+      this.ROOT_URL + `/api/register/company/comapny/signup`,
+      {
+        companyName: companyName,
+        companyPassword: companyPassword,
+        companyEmail: companyEmail,
+      }
+    );
   }
 }
