@@ -4,6 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 3008;
 const cors = require("cors");
 
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -28,7 +29,6 @@ db.sequelize
   .then(() => {
     console.log("Drop and re-sync db.");
   });
-
 // Using those routes
 // Company
 app.use("/api/register/company", signupCompanyRouter);
