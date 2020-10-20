@@ -35,8 +35,8 @@ export class HttpService {
     return this.http.post(this.ROOT_URL + `/api/login/company/company/login`, {
       companyEmail: comapnyLoginObj.companyEmail,
       companyPassword: comapnyLoginObj.companyPassword,
-
-
+    });
+  }
   postAddItem(
     itemName,
     itemPrice,
@@ -44,7 +44,7 @@ export class HttpService {
     itemImage,
     itemRating,
     companyID
-  ){
+  ) {
     return this.http.post(this.ROOT_URL + '/api/items', {
       itemName: itemName,
       itemPrice: itemPrice,
@@ -58,8 +58,17 @@ export class HttpService {
     return this.http.post(this.ROOT_URL + `/api/login/customer/login`, {
       email,
       password,
-
+    });
+  }
+  // that's for updating the company  Data
+  editCompanyProfileData(email, src, phoneNumber, location, name, CId) {
+    return this.http.put(this.ROOT_URL + `/api/profile/company/update/:id`, {
+      email,
+      src,
+      phoneNumber,
+      location,
+      name,
+      CId,
     });
   }
 }
-  
