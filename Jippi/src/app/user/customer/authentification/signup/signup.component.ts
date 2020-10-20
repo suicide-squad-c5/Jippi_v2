@@ -11,7 +11,9 @@ import { HttpService } from '../../../../http.service';
 export class SignupComponent implements OnInit {
   firstName: string = '';
   lastName: string = '';
-  email: any = '';
+
+  email: string = '';
+
   password: string = '';
   phoneNumber: string = '';
   newUser: any = [];
