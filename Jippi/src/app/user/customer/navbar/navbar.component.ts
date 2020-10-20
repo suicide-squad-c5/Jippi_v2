@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { LocalService } from '../../../local.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -8,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   // TO SWITCH BETTWEN NAVBAR IF USER LOGED IN OR NOT.
   // TI WORK TELL WE CHANGE IT WITH THE REAL LOGID IN.
-  visiter: boolean = true;
-  customer: boolean = false;
+  userType: string = 'visiteur';
+  // customer: boolean = false;
+  constructor(private local: LocalService) {}
 
-  constructor() {}
+  ngOnInit(): void {
+    console.log('===>', this.userType)
+    this.local.userTy.subscribe( type => this.userType = type)
+  }
 
-  ngOnInit(): void {}
 }
