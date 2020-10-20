@@ -71,4 +71,7 @@ export class HttpService {
       CId,
     });
   }
+  getAllCompanyData() {
+    return this.http.get(this.ROOT_URL + `/api/profile/company/get`);
+  }
 }
