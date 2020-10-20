@@ -28,7 +28,6 @@ db.sequelize
   .then(() => {
     console.log("Drop and re-sync db.");
   });
-
 // Using those routes
 // Company
 app.use("/api/register/company", signupCompanyRouter);

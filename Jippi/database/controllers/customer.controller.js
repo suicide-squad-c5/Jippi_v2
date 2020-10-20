@@ -3,7 +3,7 @@ const Customer = db.customers;
 
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.first_name) {
+  if (!req.body.firsName) {
     res.status(400).send({
       message: "Name cannot be empty!",
     });
@@ -14,7 +14,7 @@ exports.create = (req, res) => {
   const customer = {};
 
   // Save Tutorial in the database
-  Tutorial.create(tutorial)
+  Customer.create(Customer)
     .then((data) => {
       res.send(data);
     })
