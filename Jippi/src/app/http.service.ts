@@ -45,7 +45,8 @@ export class HttpService {
     itemImage,
     itemRating,
     companyID
-  ){
+){
+
     return this.http.post(this.ROOT_URL + '/api/items', {
       itemName: itemName,
       itemPrice: itemPrice,
@@ -60,6 +61,7 @@ export class HttpService {
       email,
       password,
 
+
     });
   }
 
@@ -68,6 +70,9 @@ export class HttpService {
   return this.http.get(this.ROOT_URL + `/api/profile/customer/${user_id}` )
 }
 
+updateCusInfo(user_id,user){
+  return this.http.post(this.ROOT_URL + `/api/profile/customer/update/${user_id}`,user )
+}
+
 
 }
-  
