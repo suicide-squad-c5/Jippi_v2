@@ -41,5 +41,5 @@ app.use("/api/profile/customer", customerProfileRouter);
 app.use("/api/items", itemsRouter);
 
 app.listen(PORT, () => {
-  console.log(`Main Server is lestening on port ${PORT}...`);
+  console.log(`Main Server is listening on port ${PORT}...`);
 });

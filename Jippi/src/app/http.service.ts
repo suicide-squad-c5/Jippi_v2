@@ -35,7 +35,8 @@ export class HttpService {
     return this.http.post(this.ROOT_URL + `/api/login/company/company/login`, {
       companyEmail: comapnyLoginObj.companyEmail,
       companyPassword: comapnyLoginObj.companyPassword,
-
+    });
+  }
 
   postAddItem(
     itemName,
@@ -43,8 +44,10 @@ export class HttpService {
     itemDescription,
     itemImage,
     itemRating,
-    companyID
-  ){
+    companyID,
+    selectedCategory,
+    selectedKind
+  ) {
     return this.http.post(this.ROOT_URL + '/api/items', {
       itemName: itemName,
       itemPrice: itemPrice,
@@ -52,14 +55,15 @@ export class HttpService {
       itemImage: itemImage,
       itemRating: itemRating,
       companyID: companyID,
+      category: selectedCategory,
+      kind: selectedKind,
     });
   }
+
   loginCustomer(email, password) {
     return this.http.post(this.ROOT_URL + `/api/login/customer/login`, {
       email,
       password,
-
     });
   }
 }
-  
