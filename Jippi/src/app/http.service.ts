@@ -61,5 +61,29 @@ export class HttpService {
 
     });
   }
+
+  postAddItem(
+    itemName,
+    itemPrice,
+    itemDescription,
+    itemImage,
+    itemRating,
+    companyID
+  ) {
+    return this.http.post(this.ROOT_URL + '/api/items', {
+      itemName: itemName,
+      itemPrice: itemPrice,
+      itemDescription: itemDescription,
+      itemImage: itemImage,
+      itemRating: itemRating,
+      companyID: companyID,
+    });
+  }
+  loginCustomer(email, password) {
+    return this.http.post(this.ROOT_URL + `/api/login/customer/login`, {
+      email,
+      password,
+    });
+  }
 }
   

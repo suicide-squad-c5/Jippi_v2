@@ -49,10 +49,10 @@ loginCustomerRouter.post("/login", (req, res) => {
     return res.status(200).json({
       succ: "Authentication successful",
       token: token,
-      id: data.id
+      id: data.id,
     });
+  });
 
-  })
 });
 
 module.exports = loginCustomerRouter;

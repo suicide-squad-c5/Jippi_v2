@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 loginCompanyRouter.post("/company/login", (req, res) => {
   console.log("heeeey", req.body);
 
+  // check if this user exist in the database.
   Company.findOne({
     where: {
       companyEmail: req.body.companyEmail,
@@ -13,6 +14,7 @@ loginCompanyRouter.post("/company/login", (req, res) => {
   }).then((company) => {
     console.log("hey then", company);
 
+    // check if we have request or not.
     if (!req.body) {
       res.status(500).json({
         title: "error in login company",
@@ -25,10 +27,7 @@ loginCompanyRouter.post("/company/login", (req, res) => {
       });
     }
 
-    console.log("tets 1", company);
-    console.log(req.body.companyPassword);
-    console.log("ghgh", company.companyPassword);
-
+    // check if the password correct or not.
     if (req.body.companyPassword !== company.companyPassword) {
       return res.status(401).json({
         title: "log failed",
@@ -37,6 +36,7 @@ loginCompanyRouter.post("/company/login", (req, res) => {
       });
     }
 
+    // create token and send it with the user id to the front end.
     let token = jwt.sign(
       {
         companyId: company.id,
