@@ -33,10 +33,37 @@
     [(ngModel)]="itemDescription"
   />
 
+  <!-- category -->
+
+  <label for="sel1">Choose a category :</label>
+  <select
+    class="form-control"
+    id="sel1"
+    (change)="selectCategoryHandler($event); show()"
+  >
+    <option value="clothing">clothing</option>
+    <option value="electronics">electronics</option>
+    <option value="Outdoor">Outdoor</option>
+    <option value="Toys">Toys</option>
+  </select>
+
+  <!-- kind -->
+
+  <label for="sel1">Choose a kind :</label>
+  <select
+    class="form-control"
+    id="sel1"
+    (change)="selectKindHandler($event); show()"
+  >
+    <option *ngFor="let kind of listKind" value="{{ kind }}">
+      {{ kind }}
+    </option>
+  </select>
+  <br />
   <!-- Item image -->
   <input
     name="itemImage"
-    type="url"
+    type="file"
     id="defaultSubscriptionFormEmail"
     class="form-control mb-4"
     placeholder="Item image"
@@ -54,7 +81,11 @@
   />
 
   <!-- Add button -->
-  <button class="btn btn-info btn-block" type="submit" (click)="show()">
+  <button
+    class="btn btn-info btn-block"
+    type="submit"
+    (click)="saveItem(); show()"
+  >
     Add to my shop
   </button>
 </form>

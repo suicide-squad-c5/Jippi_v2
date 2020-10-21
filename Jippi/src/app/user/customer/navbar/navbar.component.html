@@ -1,8 +1,6 @@
 <!-- after user login if he is visiture (didin't have account) it will show him this navbar -->
 <!-- Navbar -->
-
 <nav class="navbar navbar-expand-md navbar-light" *ngIf="userType === 'visiteur'">
-
 
   <a class="navbar-brand">
     <label id="navbar-brand"><a class="nav-link" [routerLink]="['/']"> Jippi </a></label>
@@ -14,6 +12,7 @@
 
     <span class="navbar-toggler-icon"></span>
   </button>
+
 
   <!-- Breadcrumbs -->
   <ol class="navbar-nav ml-auto">
@@ -79,7 +78,7 @@
       </li>
       <li class="nav-item" [routerLink]="['/login']">
         <a class=" nav-link waves-effect">
-          Sign in
+          Login
         </a>
       </li>
       <li class="nav-item pl-2 mb-2 mb-md-0" [routerLink]="['/signup']">
@@ -97,9 +96,7 @@
 <!-- after user login i fhe is customer (has account) it will show him this navbar -->
 
 <!-- Navbar -->
-
 <nav class="navbar navbar-expand-md navbar-light" *ngIf="userType === 'customer'">
-
 
   <a class="navbar-brand">
     <label id="navbar-brand"><a class="nav-link" [routerLink]="['/']"> Jippi </a></label>
@@ -159,7 +156,6 @@
         <a class=" nav-link waves-effect">
           Profile
         </a>
-
       </li>
       <li class="nav-item pl-2 mb-2 mb-md-0" >
         <a type=" button" class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light" (click)="logout()">Log
