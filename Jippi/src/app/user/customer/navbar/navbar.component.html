@@ -1,8 +1,6 @@
-
-
 <!-- after user login if he is visiture (didin't have account) it will show him this navbar -->
 <!-- Navbar -->
-<nav class="navbar navbar-expand-md navbar-light" *ngIf="visiter">
+<nav class="navbar navbar-expand-md navbar-light" *ngIf="userType">
 
   <a class="navbar-brand">
     <label id="navbar-brand"><a class="nav-link" [routerLink]="['/']"> Jippi </a></label>
@@ -16,30 +14,23 @@
   </button>
 
   <!-- Breadcrumbs -->
-  <ol class="collapse navbar-collapse">
-    <li class="nav-link"><a class="nav-link" [routerLink]="['/']">Home</a></li>
-    <li class="nav-link"><a class="nav-link" [routerLink]="['/contact']">Contact</a></li>
-    <li class="nav-link"><a class="nav-link">E-commerce</a></li>
-    <li class="nav-item pl-2 mb-2 mb-md-0">
-      <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
-        <div class="input-group">
-          <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon1"
-            class="form-control border-0 bg-light">
-          <div class="input-group-append">
-            <button id="button-addon1" type="submit" class="btn btn-link text-primary">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
-                <path fill-rule="evenodd"
-                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
-              </svg>
-            </button>
-          </div>
+  <ol class="navbar-nav ml-auto">
+    <form>
+      <div class="input-group">
+        <input type="text" class="form-control outline-primary" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light" type="submit">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+              <path fill-rule="evenodd"
+                d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+            </svg>
+          </button>
         </div>
       </div>
-
-    </li>
+    </form>
   </ol>
   <!-- Breadcrumbs -->
   <ul class="navbar-nav ml-auto">
@@ -77,6 +68,8 @@
           <a class="dropdown-item" [routerLink]="['comapny/signup']">Signup us a comapny</a>
         </div>
       </li>
+      <li class="nav-item"><a class="nav-link" [routerLink]="['/']">Home</a></li>
+      <li class="nav-item"><a class="nav-link" [routerLink]="['/contact']">Contact</a></li>
       <li class="nav-item">
         <a href="#!" class="nav-link waves-effect">
           Help
@@ -102,7 +95,7 @@
 <!-- after user login i fhe is customer (has account) it will show him this navbar -->
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-md navbar-light" *ngIf="customer">
+<nav class="navbar navbar-expand-md navbar-light" *ngIf="!userType">
 
   <a class="navbar-brand">
     <label id="navbar-brand"><a class="nav-link" [routerLink]="['/']"> Jippi </a></label>
@@ -116,10 +109,23 @@
   </button>
 
   <!-- Breadcrumbs -->
-  <ol class="collapse navbar-collapse">
-    <li class="nav-link"><a class="nav-link" [routerLink]="['/']">Home</a></li>
-    <li class="nav-link"><a class="nav-link" [routerLink]="['/contact']">Contact</a></li>
-    <li class="nav-link"><a class="nav-link">E-commerce</a></li>
+  <ol class="navbar-nav ml-auto">
+    <form>
+      <div class="input-group">
+        <input type="text" class="form-control outline-primary" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light" type="submit">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+              <path fill-rule="evenodd"
+                d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </form>
   </ol>
   <!-- Breadcrumbs -->
 
@@ -138,6 +144,8 @@
           </svg>
         </a>
       </li>
+      <li class="nav-item"><a class="nav-link" [routerLink]="['/']">Home</a></li>
+      <li class="nav-item"><a class="nav-link" [routerLink]="['/contact']">Contact</a></li>
       <li class="nav-item">
         <a href="#!" class="nav-link waves-effect">
           Help
