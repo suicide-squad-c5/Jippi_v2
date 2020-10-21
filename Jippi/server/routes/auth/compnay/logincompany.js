@@ -2,9 +2,11 @@ const loginCompanyRouter = require("express").Router();
 const db = require("../../../../database/models");
 const Company = db.companies;
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
 
 loginCompanyRouter.post("/company/login", (req, res) => {
   console.log("heeeey", req.body);
+  console.log("Company", Company);
 
   Company.findOne({
     where: {
@@ -32,13 +34,11 @@ loginCompanyRouter.post("/company/login", (req, res) => {
     if (req.body.companyPassword !== company.companyPassword) {
       return res.status(401).json({
         title: "log failed",
-        error: "invalid password",
-        password: req.body.companyPassword,
+        error: "invalid password"
       });
     }
 
-    let token = jwt.sign(
-      {
+    let token = jwt.sign({
         companyId: company.id,
       },
       "check"

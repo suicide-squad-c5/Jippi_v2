@@ -61,17 +61,27 @@ export class HttpService {
     });
   }
   // that's for updating the company  Data
-  editCompanyProfileData(email, src, phoneNumber, location, name, CId) {
-    return this.http.put(this.ROOT_URL + `/api/profile/company/update/:id`, {
-      email,
-      src,
-      phoneNumber,
-      location,
+  editCompanyProfileData(name, email, location, phoneNumber, CId) {
+    return this.http.put(this.ROOT_URL + `/api/profile/company/update/${CId}`, {
       name,
+      email,
+      location,
+      phoneNumber,
       CId,
     });
   }
-  getAllCompanyData() {
-    return this.http.get(this.ROOT_URL + `/api/profile/company/get`);
+  // that's for receiving  the company  Data
+  getCompanyData(CId) {
+    console.log('Cid ===> ', CId);
+    return this.http.post(this.ROOT_URL + `/api/profile/company/get/${CId}`, {
+      CId,
+    });
+  }
+  updateCompanyAvatar(src, CId) {
+    console.log('src ===>', src, +'//' + CId);
+    return this.http.put(this.ROOT_URL + `/api/profile/company/avatar/${CId}`, {
+      CId,
+      src,
+    });
   }
 }

@@ -1,4 +1,4 @@
-<div class="main-content">
+<div *ngFor="let elm of company_Data; index as i" class="main-content">
   <!-- Top navbar -->
   <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
     <div class="container-fluid">
@@ -43,7 +43,9 @@
                 />
               </span>
               <div class="media-body ml-2 d-none d-lg-block">
-                <span class="mb-0 text-sm font-weight-bold">Name_Display</span>
+                <span class="mb-0 text-sm font-weight-bold"
+                  >{{elm.companyName}}</span
+                >
               </div>
             </div>
           </a>
@@ -98,7 +100,7 @@
             This is your profile page. You can see the progress you've made with
             your work and manage your projects or assigned tasks
           </p>
-          <button (click)="editProfile()" class="btn btn-info">
+          <button (click)="editProfile()" type="submit" class="btn btn-info">
             Edit profile
           </button>
         </div>
@@ -115,7 +117,7 @@
               <div class="card-profile-image">
                 <a href="#">
                   <img
-                    [src]="src ? src : 'https://placehold.it/'"
+                    [src]="src ? src : 'https://tipsmake.com/data/thumbs/how-to-hide-facebook-profile-picture-thumb-EhRnrBzAY.jpg'"
                     class="rounded-circle"
                   />
                 </a>
@@ -127,6 +129,7 @@
           >
             <div class="d-flex justify-content-between">
               <input
+                [(ngModel)]="src"
                 type="file"
                 (click)="updateAvatar($event)"
                 class="btn btn-sm btn-info mr-4"
@@ -159,13 +162,14 @@
               </div>
             </div>
             <div class="text-center">
-              <h3>Name_Display<span class="font-weight-light">, 27</span></h3>
+              <h3>
+                {{elm.companyName}}<span class="font-weight-light">, 27</span>
+              </h3>
               <div class="h5 font-weight-300">
-                <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                <i class="ni location_pin mr-2"></i>{{elm.location}}
               </div>
               <div class="h5 mt-4">
-                <i class="ni business_briefcase-24 mr-2"></i>Solution Manager -
-                Creative Tim Officer
+                <i class="ni business_briefcase-24 mr-2"></i>{{elm.email}}
               </div>
               <div>
                 <i class="ni education_hat mr-2"></i>University of Computer
@@ -195,16 +199,17 @@
           </div>
           <div class="card-body">
             <form>
-              <h6 class="heading-small text-muted mb-4">User information</h6>
+              <h6 class="heading-small text-muted mb-4">Company information</h6>
               <div class="pl-lg-4">
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group focused">
                       <label class="form-control-label" for="input-name"
-                        >name</label
+                        >{{elm.companyName}}</label
                       >
                       <input
                         [(ngModel)]="name"
+                        [ngModelOptions]="{standalone: true}"
                         type="text"
                         id="input-name"
                         class="form-control form-control-alternative"
@@ -220,10 +225,11 @@
                       >
                       <input
                         [(ngModel)]="email"
+                        [ngModelOptions]="{standalone: true}"
                         type="email"
                         id="input-email"
                         class="form-control form-control-alternative"
-                        placeholder="jesse@example.com"
+                        placeholder="exp@example.com"
                       />
                     </div>
                   </div>
@@ -236,6 +242,7 @@
                       >
                       <input
                         [(ngModel)]="location"
+                        [ngModelOptions]="{standalone: true}"
                         type="text"
                         id="input-first-name"
                         class="form-control form-control-alternative"
@@ -258,10 +265,11 @@
                       >
                       <input
                         [(ngModel)]="phoneNumber"
+                        [ngModelOptions]="{standalone: true}"
                         id="input-PhoneNumber"
                         class="form-control form-control-alternative"
-                        placeholder="Home PhoneNumber"
-                        value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                        placeholder=" PhoneNumber"
+                        value="Number"
                         type="text"
                       />
                     </div>
@@ -292,7 +300,7 @@
                         id="input-country"
                         class="form-control form-control-alternative"
                         placeholder="Country"
-                        value="United States"
+                        value="Any"
                       />
                     </div>
                   </div>
@@ -313,16 +321,16 @@
               </div>
               <hr class="my-4" />
               <!-- Description -->
-              <h6 class="heading-small text-muted mb-4">About me</h6>
+              <h6 class="heading-small text-muted mb-4">About Us</h6>
               <div class="pl-lg-4">
                 <div class="form-group focused">
-                  <label>About Me</label>
+                  <label>About Us</label>
                   <textarea
                     rows="4"
                     class="form-control form-control-alternative"
                     placeholder="A few words about you ..."
                   >
-A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea
+A Description</textarea
                   >
                 </div>
               </div>
