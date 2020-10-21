@@ -45,7 +45,8 @@ export class HttpService {
     itemImage,
     itemRating,
     companyID
-  ){
+){
+
     return this.http.post(this.ROOT_URL + '/api/items', {
       itemName: itemName,
       itemPrice: itemPrice,
@@ -60,6 +61,7 @@ export class HttpService {
       email,
       password,
 
+
     });
   }
 
@@ -69,5 +71,5 @@ export class HttpService {
 }
 
 
+
 }
-  
