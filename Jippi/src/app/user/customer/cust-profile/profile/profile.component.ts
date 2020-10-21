@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   }
 /// function for get the customer information from db
   getUserInfo(){
-    this._http.custProfile(this.userid).subscribe((data) => {
+    this._http.custProfile(parseInt(localStorage.Id)).subscribe((data) => {
       this.userInfo = data;
       console.log('<==>', this.userInfo)
     });
