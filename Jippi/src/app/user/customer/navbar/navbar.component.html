@@ -1,4 +1,5 @@
 
+
 <!-- after user login if he is visiture (didin't have account) it will show him this navbar -->
 <!-- Navbar -->
 <nav class="navbar navbar-expand-md navbar-light" *ngIf="visiter">
@@ -10,6 +11,7 @@
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav1"
     aria-controls="basicExampleNav1" aria-expanded="false" aria-label="Toggle navigation">
+
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -96,6 +98,7 @@
 
 
 
+
 <!-- after user login i fhe is customer (has account) it will show him this navbar -->
 
 <!-- Navbar -->
@@ -108,6 +111,7 @@
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav1"
     aria-controls="basicExampleNav1" aria-expanded="false" aria-label="Toggle navigation">
+
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -143,10 +147,12 @@
         <a class=" nav-link waves-effect">
           Profile
         </a>
+
       </li>
       <li class="nav-item pl-2 mb-2 mb-md-0" [routerLink]="['/signup']">
         <a type=" button" class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light">Log
           out</a>
+
       </li>
     </ul>
 
