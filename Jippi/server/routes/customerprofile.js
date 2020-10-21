@@ -15,5 +15,15 @@ customerProfileRouter.get("/:userid", (req, res) => {
       res.send(customer);
     });
 });
+//////////////
+customerProfileRouter.post("/update/:userid", (req, res) => {
+  console.log("++++>", req.body);
+  customer.findOne({ where: { id: req.body.userid } }).then((customer) => {
+    console.log("customer", customer.dataValues);
+    customer.update(req.body).then((data) => {
+      res.send(data);
+    });
+  });
+});
 
 module.exports = customerProfileRouter;
