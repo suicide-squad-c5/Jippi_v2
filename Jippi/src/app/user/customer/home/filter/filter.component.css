@@ -1,0 +1,46 @@
+.loader-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  z-index: 998;
+}
+
+.loader-overlay .preloader-wrapper {
+  position: fixed;
+  top: 50%;
+}
+
+.card{
+    margin-top:3%;
+    margin-left: 3%;
+    padding: 25px;
+    
+}
+
+#shopBy{
+    text-align: center;
+}
+
+ul.rating li {
+  display: inline;
+  margin-left: 2%;
+}
+
+.form-check{
+    margin-top:4%;
+    
+}
+
+li{
+    list-style-type: none;
+}
+
+.list{
+    text-align: left;
+}
