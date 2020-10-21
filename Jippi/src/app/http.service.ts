@@ -18,6 +18,7 @@ export class HttpService {
     });
   }
 
+  // create post request for the comapny signup.
   postSignUpComapany(companyName, companyPassword, companyEmail) {
     return this.http.post(
       this.ROOT_URL + `/api/register/company/comapny/signup`,
@@ -29,6 +30,13 @@ export class HttpService {
     );
   }
 
+  // craete post request for the comapny login.
+  postLoginCompany(comapnyLoginObj) {
+    return this.http.post(this.ROOT_URL + `/api/login/company/company/login`, {
+      companyEmail: comapnyLoginObj.companyEmail,
+      companyPassword: comapnyLoginObj.companyPassword,
+    });
+  }
 
   postAddItem(
     itemName,
@@ -36,7 +44,9 @@ export class HttpService {
     itemDescription,
     itemImage,
     itemRating,
-    companyID
+    companyID,
+    selectedCategory,
+    selectedKind
   ) {
     return this.http.post(this.ROOT_URL + '/api/items', {
       itemName: itemName,
@@ -45,12 +55,15 @@ export class HttpService {
       itemImage: itemImage,
       itemRating: itemRating,
       companyID: companyID,
+      category: selectedCategory,
+      kind: selectedKind,
+    });
+  }
 
   loginCustomer(email, password) {
     return this.http.post(this.ROOT_URL + `/api/login/customer/login`, {
       email,
       password,
-
     });
   }
 }

@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 var DataTypes = require("sequelize/lib/data-types");
+const { customers } = require("./models");
 const sequelize = new Sequelize("sqlite::memory");
 
 const Customer = sequelize.define(
@@ -18,4 +19,11 @@ const Customer = sequelize.define(
   }
 );
 
-module.exports = Customer;
+// const user = await customers.findByid(id);
+// if(user === null) {
+//   console.log('Not found!');
+// }else{
+//   console.log(user instanceof customers)
+// }
+
+module.exports = { Customer, user };
