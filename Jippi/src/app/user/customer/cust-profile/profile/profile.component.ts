@@ -10,18 +10,16 @@ import { LocalService } from '../../../../local.service';
 export class ProfileComponent implements OnInit {
 
   userInfo: any = {};
-  userid: number = null;
+
 
   constructor(private local: LocalService, private _http: HttpService) { }
 
   ngOnInit(): void {
-     this.local.user_id.subscribe( id => this.userid = id);
-     console.log('====>', this.userid);
      this.getUserInfo();
   }
 /// function for get the customer information from db
   getUserInfo(){
-    this._http.custProfile(this.userid).subscribe((data) => {
+    this._http.custProfile(parseInt(localStorage.Id)).subscribe((data) => {
       this.userInfo = data;
       console.log('<==>', this.userInfo)
     });
