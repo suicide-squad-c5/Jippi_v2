@@ -9,6 +9,8 @@ private userType = new BehaviorSubject('visiteur');
 userTy = this.userType.asObservable();
 private userid = new BehaviorSubject(null);
 user_id = this.userid.asObservable();
+private userInfo = new BehaviorSubject({});
+user_info = this.userInfo.asObservable();
 
   constructor() { }
 
@@ -18,6 +20,10 @@ changeType(type: string){
 
 getUserId(id: number){
 this.userid.next(id);
+}
+
+getUserInfo(info: any){
+  this.userInfo.next(info);
 }
 
 }
