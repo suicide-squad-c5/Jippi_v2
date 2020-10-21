@@ -37,7 +37,7 @@ export class HttpService {
       companyPassword: comapnyLoginObj.companyPassword,
     });
   }
-
+  
   postAddItem(
     itemName,
     itemPrice,
@@ -63,30 +63,6 @@ export class HttpService {
     });
   }
 
-
-  postAddItem(
-    itemName,
-    itemPrice,
-    itemDescription,
-    itemImage,
-    itemRating,
-    companyID
-  ) {
-    return this.http.post(this.ROOT_URL + '/api/items', {
-      itemName: itemName,
-      itemPrice: itemPrice,
-      itemDescription: itemDescription,
-      itemImage: itemImage,
-      itemRating: itemRating,
-      companyID: companyID,
-    });
-  }
-  loginCustomer(email, password) {
-    return this.http.post(this.ROOT_URL + `/api/login/customer/login`, {
-      email,
-      password,
-    });
-  }
 
   custProfile(user_id){
   return this.http.get(this.ROOT_URL + `/api/profile/customer/${user_id}` )
