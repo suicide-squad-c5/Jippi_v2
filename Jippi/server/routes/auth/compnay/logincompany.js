@@ -2,7 +2,7 @@ const loginCompanyRouter = require("express").Router();
 const db = require("../../../../database/models");
 const Company = db.companies;
 const jwt = require("jsonwebtoken");
-const multer = require("multer");
+
 
 loginCompanyRouter.post("/company/login", (req, res) => {
   console.log("heeeey", req.body);
