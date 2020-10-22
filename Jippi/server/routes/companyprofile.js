@@ -1,17 +1,29 @@
+const express = require("express");
 const companyProfileRouter = require("express").Router();
 const db = require("../../database/models");
 const multer = require("multer");
-const Company = db.companies
+const path = require("path")
+var cloudinary = require('cloudinary').v2;
+// companyProfileRouter.use(express.static(path.join(__dirname + './upload')));
 
-// that's a multer method that store the file in the upload folder
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'upload');
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  }
+const Company = db.companies
+cloudinary.config({
+  cloud_name: 'jipi',
+  api_key: '895721462325433',
+  api_secret: 'jwt587tJi2fPSuNYmcgq-w4svHU'
 });
+// that's a multer method that store the file in the upload folder
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, './upload');
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.originalname);
+//   }
+// });
+const uploads = multer({
+  dest: 'upload'
+})
 
 // that's to reject a none image  files
 const fileFileter = (req, res, cb) => {
@@ -22,15 +34,13 @@ const fileFileter = (req, res, cb) => {
   }
 }
 /* that contains everything from above funciton .it wil be invoked in the updating avatart function to ru every thing we seted up  */
-const uploads = multer({
-  storage: storage,
-  limits: {
-    fileSize: 1024 * 1024 * 10
-  },
-  fileFileter: fileFileter
-});
-
-
+// const uploads = multer({
+//   storage: storage,
+//   limits: {
+//     fileSize: 1024 * 1024 * 10
+//   },
+//   fileFileter: fileFileter
+// });
 // updating company Data 
 companyProfileRouter.put("/update/:id", (req, res) => {
   console.log("req.body =====>", req.body);
@@ -69,7 +79,7 @@ companyProfileRouter.put("/update/:id", (req, res) => {
 (the one that it is logged in now ) */
 
 companyProfileRouter.post('/get/:id', async (req, res) => {
-  // console.log(" req.params get ", req.params)
+  console.log(" req.params get ", req.params)
 
   Company.findOne({
       where: {
@@ -77,7 +87,7 @@ companyProfileRouter.post('/get/:id', async (req, res) => {
       }
     }).then(record => {
       if (!record) {
-        throw new Error("No Company found");
+        throw new Error("No Company found get");
       } else {
         // console.log("record", record);
         res.send(record)
@@ -90,33 +100,38 @@ companyProfileRouter.post('/get/:id', async (req, res) => {
     })
 });
 // to update to company avatar profile
-companyProfileRouter.put('/avatar/:id', uploads.single('src'), (req, res) => {
-  console.log(" req.file", req.file);
-  console.log("req.body =======>", req.body);
-  console.log("req.params ====> ", req.params);
+companyProfileRouter.put('/avatar/:id', uploads.any(0), (req, res) => {
+  console.log(__dirname)
+  console.log("req.body", req.body.cId)
+  console.log("req", req.files[0].path)
   Company.findOne({
     where: {
       id: req.params.id
     }
   }).then((company) => {
 
-    if (!company) {
-      throw new Error("company not found");
-    }
+    var theImg = req.files[0].path;
 
-    let avatar = {
-      avatar: req.file.path
-    }
-    // res.send(company)
-    company.update(avatar).then(updatedAvatar => {
-      console.log("updated successfully");
-      res.status(200).send(updatedAvatar);
+    cloudinary.uploader.upload(theImg, (error, result) => {
+      error && console.log("&&&&&", error);
+      console.log("jsut res", result);
+      if (!company) {
+        throw new Error("company not found");
+      }
+      let avatar = {
+        avatar: result.url
+      }
+      res.send(company)
+      company.update(avatar).then(updatedAvatar => {
+        console.log("updated successfully");
+        res.status(200).send(updatedAvatar);
+      });
     }).catch(err => {
-      res.status(500).send(err);
+      res.status(400).send(err);
     })
 
   }).catch((err) => {
-    res.status(501).send(err)
+    res.status(400).send(err)
   })
 
 });
