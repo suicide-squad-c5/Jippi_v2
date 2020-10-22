@@ -7,15 +7,15 @@ import { HttpService } from '../../../../http.service';
 })
 export class AddItemComponent implements OnInit {
   itemName: string = '';
-  itemPrice: number = null;
+  itemPrice;
   itemDescription: string = '';
   itemImage: string = '';
-  itemRating: number = null;
-  companyID: number = parseInt(localStorage.comapnyId) ;
+  itemRating;
+  companyID: any = parseInt(localStorage.comapnyId);
   selectedCategory: string = 'clothing';
   selectedKind: string = 'Male';
   listKind = ['Male', 'Female', 'Kids'];
-
+  url: any;
   kind = {
     clothing: [] = ['Male', 'Female', 'Kids'],
     electronics: [] = [
@@ -36,7 +36,9 @@ export class AddItemComponent implements OnInit {
 
   constructor(private _http: HttpService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('companyID', this.companyID);
+  }
 
   show() {
     console.log('AddItemComponent -> itemName', this.itemName);
@@ -68,22 +70,36 @@ export class AddItemComponent implements OnInit {
     this.selectedKind = event.target.value;
   }
 
-  saveItem() {
-    if(this.companyID){ 
-    return this._http
-      .postAddItem(
-        this.itemName,
-        this.itemPrice,
-        this.itemDescription,
-        this.itemImage,
-        this.itemRating,
-        this.companyID,
-        this.selectedCategory,
-        this.selectedKind
-      )
-      .subscribe((res) => {
-        console.log(res);
-      });
+  chooseAnImage(event: any) {
+    this.itemImage = event.target.files[0];
   }
+
+  saveItem() {
+    const file = new FormData();
+    file.append('itemName', this.itemName);
+    file.append('itemPrice', this.itemPrice);
+    file.append('itemDescription', this.itemDescription);
+    file.append('itemImage', this.itemImage);
+    file.append('itemRating', this.itemRating);
+    file.append('companyID', this.companyID);
+    file.append('selectedCategory', this.selectedCategory);
+    file.append('selectedKind', this.selectedKind);
+    if (this.companyID) {
+      return this._http
+        .postAddItem(
+          this.itemName,
+          this.itemPrice,
+          this.itemDescription,
+          file,
+          this.itemRating,
+          this.companyID,
+          this.selectedCategory,
+          this.selectedKind
+        )
+        .subscribe((res) => {
+          this.url = res['itemImage'];
+          console.log(res);
+        });
+    }
   }
 }

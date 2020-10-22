@@ -37,25 +37,24 @@ export class HttpService {
       companyPassword: comapnyLoginObj.companyPassword,
     });
   }
-
+  //  to add a new item
   postAddItem(
     itemName,
     itemPrice,
     itemDescription,
-    itemImage,
+    file,
     itemRating,
-
     companyID,
     selectedCategory,
     selectedKind
   ) {
     return this.http.post(this.ROOT_URL + '/api/items', {
-      itemName: itemName,
-      itemPrice: itemPrice,
-      itemDescription: itemDescription,
-      itemImage: itemImage,
-      itemRating: itemRating,
-      companyID: companyID,
+      itemName,
+      itemPrice,
+      itemDescription,
+      file,
+      itemRating,
+      companyID,
       category: selectedCategory,
       kind: selectedKind,
     });
