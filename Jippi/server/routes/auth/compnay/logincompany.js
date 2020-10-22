@@ -53,42 +53,52 @@ loginCompanyRouter.post("/company/login", (req, res) => {
 });
 
 // sending an email to the company to verify 
-loginCompanyRouter.post('/sendmail', (req, res) => {
-  console.log(req.body)
-  let transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-      user: "jipp.pi.17@gmail.com",
-      pass: "jippi1199"
-    },
-    tls: {
-      rejectUnauthorized: false
+loginCompanyRouter.post('/sendmail/:id', (req, res) => {
+  console.log("req.body", req.body)
+  console.log("req.params", req.params)
+  Company.findOne({
+    where: {
+      id: req.params.id,
     }
-  });
-  console.log("transporter.auth", transporter.options)
+  }).then((company) => {
 
-  const getRandomString = () => {
-    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var result = '';
-    for (var i = 0; i < 6; i++) {
-      result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+
+    let transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: "jipp.pi.17@gmail.com",
+        pass: "jippi1199"
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+    console.log("transporter.auth", transporter.options)
+
+    const getRandomString = () => {
+      var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      var result = '';
+      for (var i = 0; i < 6; i++) {
+        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+      }
+      return result;
     }
-    return result;
-  }
 
-  let mailOptions = {
-    form: 'jipp.pi.17@gmail.com',
-    to: req.body.email,
-    subject: "Test",
-    text: getRandomString()
+    let mailOptions = {
+      form: 'jipp.pi.17@gmail.com',
+      to: company.companyEmail,
+      subject: "Test",
+      text: getRandomString()
 
-  }
-  transporter.sendMail(mailOptions, (err, data) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.status(200).send(data)
     }
+    transporter.sendMail(mailOptions).then(data => {
+      res.send(data)
+    }).catch(err => {
+      res.send(err)
+    })
+
+  }).catch((err) => {
+    res.status(500).send(err)
   })
 });
 

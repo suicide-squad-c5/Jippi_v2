@@ -91,9 +91,12 @@ export class HttpService {
       }
     );
   }
-  emailAuthCompany(email) {
-    return this.http.post(this.ROOT_URL + '/api/login/company/sendmail', {
-      email,
-    });
+  verifyComapnyEmail(CId) {
+    return this.http.post(
+      this.ROOT_URL + `/api/login/company/sendmail/${CId}`,
+      {
+        CId,
+      }
+    );
   }
 }

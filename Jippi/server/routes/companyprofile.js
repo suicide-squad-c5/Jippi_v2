@@ -33,24 +33,24 @@ const uploads = multer({
 
 // updating company Data 
 companyProfileRouter.put("/update/:id", (req, res) => {
-  // console.log("req.body =====>", req.body);
-  // console.log("Company =====>", Company);
-  // console.log(" req.params update ", req.params);
+  console.log("req.body =====>", req.body);
+  console.log(" req.params update ", req.params);
 
   Company.findOne({
       where: {
         id: req.params.id
       }
     }).then(record => {
+      console.log("Company =====>", record);
       if (!record) {
         throw new Error("No Company found");
       }
 
       let values = {
         registered: true,
-        companyName: req.body.name,
-        companyEmail: req.body.email,
-        companyPassword: req.body.password,
+        companyName: req.body.companyName,
+        companyEmail: req.body.companyEmail,
+        companyPassword: req.body.companyPassword,
         location: req.body.location,
         phoneNumber: req.body.phoneNumber
       }
@@ -60,7 +60,7 @@ companyProfileRouter.put("/update/:id", (req, res) => {
       })
     })
     .catch(err => {
-      // console.log("the catch error", err)
+      console.log("the catch error", err)
       res.status(500).send(err);
     })
 });
