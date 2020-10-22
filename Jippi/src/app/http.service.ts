@@ -37,6 +37,7 @@ export class HttpService {
       companyPassword: comapnyLoginObj.companyPassword,
     });
   }
+  //add an item to the database
 
   postAddItem(
     itemName,
@@ -49,16 +50,26 @@ export class HttpService {
     selectedCategory,
     selectedKind
   ) {
-    return this.http.post(this.ROOT_URL + '/api/items', {
-      itemName: itemName,
-      itemPrice: itemPrice,
-      itemDescription: itemDescription,
-      itemImage: itemImage,
-      itemRating: itemRating,
-      companyID: companyID,
-      category: selectedCategory,
-      kind: selectedKind,
-    });
+
+    return this.http
+      .post(this.ROOT_URL + '/api/items', {
+        itemName: itemName,
+        itemPrice: itemPrice,
+        itemDescription: itemDescription,
+        itemImage: itemImage,
+        itemRating: itemRating,
+        companyID: companyID,
+        category: selectedCategory,
+        kind: selectedKind,
+      })
+      .subscribe(() => {
+        alert('done');
+      });
+  }
+  //get all items in db
+  getItems() {
+    return this.http.get(this.ROOT_URL + '/api/items');
+
   }
 
   loginCustomer(email, password) {

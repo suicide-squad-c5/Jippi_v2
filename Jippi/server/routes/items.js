@@ -17,11 +17,21 @@ itemsRouter.post("/", (req, res) => {
   newItem
     .create(item)
     .then(() => {
-      res.status(200).send("success !");
+      var status = 200;
+      res.send({ status });
     })
     .catch((e) => {
       console.log(e);
     });
+});
+
+itemsRouter.get("/", async (req, res) => {
+  try {
+    const items = await newItem.findAll();
+    res.send(items);
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 module.exports = itemsRouter;
