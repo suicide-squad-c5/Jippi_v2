@@ -37,16 +37,18 @@ export class HttpService {
       companyPassword: comapnyLoginObj.companyPassword,
     });
   }
-  
+
   postAddItem(
     itemName,
     itemPrice,
     itemDescription,
     itemImage,
     itemRating,
-    companyID
-){
 
+    companyID,
+    selectedCategory,
+    selectedKind
+  ) {
     return this.http.post(this.ROOT_URL + '/api/items', {
       itemName: itemName,
       itemPrice: itemPrice,
@@ -54,25 +56,75 @@ export class HttpService {
       itemImage: itemImage,
       itemRating: itemRating,
       companyID: companyID,
+      category: selectedCategory,
+      kind: selectedKind,
     });
   }
+
   loginCustomer(email, password) {
     return this.http.post(this.ROOT_URL + `/api/login/customer/login`, {
       email,
       password,
-
-
     });
   }
 
+  // that's for updating the company  Data
+  editCompanyProfileData(name, email, location, phoneNumber, CId) {
+    return this.http.put(this.ROOT_URL + `/api/profile/company/update/${CId}`, {
+      name,
+      email,
+      location,
+      phoneNumber,
+      CId,
+    });
+  }
+  // that's for receiving  the company  Data
+  getCompanyData(CId) {
+    console.log('Cid ===> ', CId);
+    return this.http.post(this.ROOT_URL + `/api/profile/company/get/${CId}`, {
+      CId,
+    });
+  }
+  updateCompanyAvatar(formData, CId) {
+    console.log('formData ===>', formData);
+    return this.http.put(
+      this.ROOT_URL + `/api/profile/company/avatar/${CId}`,
+      {
+        formData,
+        CId,
+      },
+      {
+        reportProgress: true,
+        observe: 'events',
+      }
+    );
+  }
+  verifyComapnyEmail(CId) {
+    return this.http.post(
+      this.ROOT_URL + `/api/login/company/sendmail/${CId}`,
+      {
+        CId,
+      }
+    );
+  }
+  check(CId, verificationCode) {
+    return this.http.post(
+      this.ROOT_URL + `/api/login/company/chekpoint/${CId}`,
+      {
+        CId,
+        verificationCode,
+      }
+    );
+  }
 
-  custProfile(user_id){
-  return this.http.get(this.ROOT_URL + `/api/profile/customer/${user_id}` )
-}
+  custProfile(user_id) {
+    return this.http.get(this.ROOT_URL + `/api/profile/customer/${user_id}`);
+  }
 
-updateCusInfo(user_id,user){
-  return this.http.post(this.ROOT_URL + `/api/profile/customer/update/${user_id}`,user )
-}
-
-
+  updateCusInfo(user_id, user) {
+    return this.http.post(
+      this.ROOT_URL + `/api/profile/customer/update/${user_id}`,
+      user
+    );
+  }
 }

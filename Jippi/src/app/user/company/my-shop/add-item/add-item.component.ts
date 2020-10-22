@@ -11,7 +11,28 @@ export class AddItemComponent implements OnInit {
   itemDescription: string = '';
   itemImage: string = '';
   itemRating: number = null;
-  companyID: 1;
+  companyID: number = 1;
+  selectedCategory: string = 'clothing';
+  selectedKind: string = 'Male';
+  listKind = ['Male', 'Female', 'Kids'];
+
+  kind = {
+    clothing: [] = ['Male', 'Female', 'Kids'],
+    electronics: [] = [
+      'Camera & Photo',
+      'Computers',
+      'Wearable Technology',
+      'Cell Phones',
+    ],
+    Outdoor: [] = ['camping', 'Hunting and fishing', 'Biking', 'Rock Climbing'],
+    Toys: [] = [
+      'Action figures',
+      'Animals',
+      'Cars and radio controlled',
+      'Creative toys',
+      'Dolls',
+    ],
+  };
 
   constructor(private _http: HttpService) {}
 
@@ -26,15 +47,41 @@ export class AddItemComponent implements OnInit {
     );
     console.log('Addthis.ItemComponent -> this.itemImage', this.itemImage);
     console.log('Addthis.ItemComponent -> this.itemRating', this.itemRating);
-  }
-  saveItem() {
-    return this._http.postAddItem(
-      this.itemName,
-      this.itemPrice,
-      this.itemDescription,
-      this.itemImage,
-      this.itemRating,
-      this.companyID
+    console.log('AddItemComponent -> ngOnInit ->this.company', this.companyID);
+    console.log(
+      'AddItemComponent -> ngOnInit ->this.selectedCategory',
+      this.selectedCategory
     );
+    console.log(
+      'AddItemComponent -> selectKindHandler -> this.selectedKind',
+      this.selectedKind
+    );
+  }
+
+  selectCategoryHandler(event: any) {
+    this.selectedCategory = event.target.value;
+    this.listKind = this.kind[this.selectedCategory];
+    this.selectedKind = this.listKind[0];
+  }
+
+  selectKindHandler(event: any) {
+    this.selectedKind = event.target.value;
+  }
+
+  saveItem() {
+    return this._http
+      .postAddItem(
+        this.itemName,
+        this.itemPrice,
+        this.itemDescription,
+        this.itemImage,
+        this.itemRating,
+        this.companyID,
+        this.selectedCategory,
+        this.selectedKind
+      )
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 }
