@@ -11,7 +11,7 @@ export class AddItemComponent implements OnInit {
   itemDescription: string = '';
   itemImage: string = '';
   itemRating: number = null;
-  companyID: number = 1;
+  companyID: number = parseInt(localStorage.comapnyId) ;
   selectedCategory: string = 'clothing';
   selectedKind: string = 'Male';
   listKind = ['Male', 'Female', 'Kids'];
@@ -69,6 +69,7 @@ export class AddItemComponent implements OnInit {
   }
 
   saveItem() {
+    if(this.companyID){ 
     return this._http
       .postAddItem(
         this.itemName,
@@ -83,5 +84,6 @@ export class AddItemComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
       });
+  }
   }
 }

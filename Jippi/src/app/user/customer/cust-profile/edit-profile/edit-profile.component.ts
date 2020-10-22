@@ -32,7 +32,9 @@ export class EditProfileComponent implements OnInit {
     console.log('++++>', this.user_Info);
     console.log('firstName', this.firstName);
   }
-
+ngDoCheck() {
+  console.log('URL',this.url)
+}
   //function to read avatar url
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
