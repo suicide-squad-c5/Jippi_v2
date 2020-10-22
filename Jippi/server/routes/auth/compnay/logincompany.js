@@ -51,7 +51,7 @@ loginCompanyRouter.post("/company/login", (req, res) => {
     });
   });
 });
-
+var code;
 // sending an email to the company to verify 
 loginCompanyRouter.post('/sendmail/:id', (req, res) => {
   console.log("req.body", req.body)
@@ -81,24 +81,63 @@ loginCompanyRouter.post('/sendmail/:id', (req, res) => {
       for (var i = 0; i < 6; i++) {
         result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
       }
-      return result;
+      return code = result;
     }
+    getRandomString()
 
     let mailOptions = {
       form: 'jipp.pi.17@gmail.com',
       to: company.companyEmail,
       subject: "Test",
-      text: getRandomString()
+      text: code
 
     }
     transporter.sendMail(mailOptions).then(data => {
-      res.send(data)
+      res.json({
+        data: data,
+        email: company.companyEmail
+      });
     }).catch(err => {
       res.send(err)
     })
 
   }).catch((err) => {
     res.status(500).send(err)
+  })
+});
+
+loginCompanyRouter.post("/chekpoint/:id", (req, res) => {
+  console.log("Get ready")
+  console.log("req.params", req.params);
+  console.log("req.body", req.body);
+  Company.findOne({
+    where: {
+      id: req.params.id,
+    }
+  }).then((company) => {
+    // EDGE CASES
+    if (!company) {
+      throw new Error("No Account Found for company");
+    }
+    var userCode = req.body.verificationCode
+    if (code !== userCode) {
+      res.json({
+        response: "The Code is Wrong !"
+      })
+    }
+    if (!userCode) {
+      res.json({
+        response: "Please enter your code"
+      })
+    }
+    // ELSE
+    if (code === userCode) {
+      res.status(200).json({
+        result: "welcome to Jippi"
+      })
+    }
+  }).catch((err) => {
+    res.status(400).send(err);
   })
 });
 

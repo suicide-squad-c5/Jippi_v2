@@ -8,6 +8,7 @@ import { HttpService } from 'src/app/http.service';
 })
 export class VerifyEmailComponent implements OnInit {
   constructor(private _http: HttpService) {}
+  verificationCode: any;
   CId: String = '';
   code: any = [];
   ngOnInit() {
@@ -18,6 +19,11 @@ export class VerifyEmailComponent implements OnInit {
     this._http.verifyComapnyEmail(this.CId).subscribe((res) => {
       console.log(res);
       this.code.push(res);
+    });
+  }
+  checkTheVerificationCode() {
+    this._http.check(this.CId, this.verificationCode).subscribe((res) => {
+      console.log(res);
     });
   }
 }

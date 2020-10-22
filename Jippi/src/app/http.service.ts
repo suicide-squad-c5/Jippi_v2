@@ -99,4 +99,13 @@ export class HttpService {
       }
     );
   }
+  check(CId, verificationCode) {
+    return this.http.post(
+      this.ROOT_URL + `/api/login/company/chekpoint/${CId}`,
+      {
+        CId,
+        verificationCode,
+      }
+    );
+  }
 }
