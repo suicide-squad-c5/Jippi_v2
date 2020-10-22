@@ -10,6 +10,7 @@ import { CompSignupComponent } from './user/company/authenti-comp/comp-signup/co
 import { CompLoginComponent } from './user/company/authenti-comp/comp-login/comp-login.component';
 import { EditProfileComponent } from './user/customer/cust-profile/edit-profile/edit-profile.component';
 import { AddItemComponent } from './user/company/my-shop/add-item/add-item.component';
+import { ProfileComponent } from './user/customer/cust-profile/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'company/login', component: CompLoginComponent },
   { path: 'profile/edit', component: EditProfileComponent },
   { path: 'company/addItem', component: AddItemComponent },
+  { path : 'profile', component: ProfileComponent}
 ];
 
 @NgModule({

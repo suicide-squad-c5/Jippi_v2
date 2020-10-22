@@ -1,0 +1,11 @@
+.carousel-item {
+    height:30em;
+}
+
+#carouselExampleIndicators{
+    /* margin-top: 1.5rem; */
+    /* width: 70% ; */
+    height: 60px;
+    margin-left:auto;
+    margin-right:auto;
+}
