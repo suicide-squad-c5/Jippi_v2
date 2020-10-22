@@ -1,4 +1,6 @@
 .grid-container {
-  display: inline-grid;
-  grid-template-columns: auto auto auto;
+  /* display: inline-grid;
+  grid-template-columns: auto auto auto; */
+  margin-right: auto;
+  margin-left: auto;
 }
