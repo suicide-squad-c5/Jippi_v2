@@ -37,13 +37,17 @@ export class HttpService {
       companyPassword: comapnyLoginObj.companyPassword,
     });
   }
+
   postAddItem(
     itemName,
     itemPrice,
     itemDescription,
     itemImage,
     itemRating,
-    companyID
+
+    companyID,
+    selectedCategory,
+    selectedKind
   ) {
     return this.http.post(this.ROOT_URL + '/api/items', {
       itemName: itemName,
@@ -52,14 +56,18 @@ export class HttpService {
       itemImage: itemImage,
       itemRating: itemRating,
       companyID: companyID,
+      category: selectedCategory,
+      kind: selectedKind,
     });
   }
+
   loginCustomer(email, password) {
     return this.http.post(this.ROOT_URL + `/api/login/customer/login`, {
       email,
       password,
     });
   }
+
   // that's for updating the company  Data
   editCompanyProfileData(name, email, location, phoneNumber, CId) {
     return this.http.put(this.ROOT_URL + `/api/profile/company/update/${CId}`, {
@@ -104,6 +112,17 @@ export class HttpService {
         CId,
         verificationCode,
       }
+    );
+  }
+
+  custProfile(user_id) {
+    return this.http.get(this.ROOT_URL + `/api/profile/customer/${user_id}`);
+  }
+
+  updateCusInfo(user_id, user) {
+    return this.http.post(
+      this.ROOT_URL + `/api/profile/customer/update/${user_id}`,
+      user
     );
   }
 }
