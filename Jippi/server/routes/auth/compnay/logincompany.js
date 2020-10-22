@@ -90,7 +90,6 @@ loginCompanyRouter.post('/sendmail/:id', (req, res) => {
       to: company.companyEmail,
       subject: "Test",
       text: code
-
     }
     transporter.sendMail(mailOptions).then(data => {
       res.json({
@@ -110,6 +109,7 @@ loginCompanyRouter.post("/chekpoint/:id", (req, res) => {
   console.log("Get ready")
   console.log("req.params", req.params);
   console.log("req.body", req.body);
+
   Company.findOne({
     where: {
       id: req.params.id,
