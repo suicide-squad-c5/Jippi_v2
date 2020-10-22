@@ -69,19 +69,15 @@ export class AddItemComponent implements OnInit {
   }
 
   saveItem() {
-    return this._http
-      .postAddItem(
-        this.itemName,
-        this.itemPrice,
-        this.itemDescription,
-        this.itemImage,
-        this.itemRating,
-        this.companyID,
-        this.selectedCategory,
-        this.selectedKind
-      )
-      .subscribe((res) => {
-        console.log(res);
-      });
+    return this._http.postAddItem(
+      this.itemName,
+      this.itemPrice,
+      this.itemDescription,
+      this.itemImage,
+      this.itemRating,
+      this.companyID,
+      this.selectedCategory,
+      this.selectedKind
+    );
   }
 }
