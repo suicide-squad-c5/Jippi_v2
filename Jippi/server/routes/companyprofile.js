@@ -58,8 +58,8 @@ companyProfileRouter.put("/update/:id", (req, res) => {
 
       let values = {
         registered: true,
-        companyName: req.body.companyName,
-        companyEmail: req.body.companyEmail,
+        companyName: req.body.name,
+        companyEmail: req.body.email,
         companyPassword: req.body.companyPassword,
         location: req.body.location,
         phoneNumber: req.body.phoneNumber
