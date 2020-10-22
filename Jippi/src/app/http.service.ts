@@ -39,6 +39,15 @@ export class HttpService {
   }
   //add an item to the database
 
+  // CREATE POST REQUEST FOR THE ADMIN LOGIN.
+  postAdminlogin(adminLogin) {
+    return this.http.post(this.ROOT_URL + `/admin/jippi`, {
+      adminEmail: adminLogin.adminEmail,
+      adminPassword: adminLogin.adminPassword,
+      adminAvatar: '',
+    });
+  }
+
   postAddItem(
     itemName,
     itemPrice,

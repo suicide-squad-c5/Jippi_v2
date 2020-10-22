@@ -31,6 +31,10 @@ import { CompLoginComponent } from './user/company/authenti-comp/comp-login/comp
 import { CompSignupComponent } from './user/company/authenti-comp/comp-signup/comp-signup.component';
 import { VerifyEmailComponent } from './user/company/authenti-comp/verify-email/verify-email.component';
 import { AdminComponent } from './user/admin/admin.component';
+import { AdminSectionComponent } from './user/admin/admin-section/admin-section.component';
+import { AddAdminComponent } from './user/admin/add-admin/add-admin.component';
+import { ReportsComponent } from './user/admin/reports/reports.component';
+import { AdminHomeComponent } from './user/admin/admin-home/admin-home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +62,10 @@ import { AdminComponent } from './user/admin/admin.component';
     CompSignupComponent,
     VerifyEmailComponent,
     AdminComponent,
+    AdminSectionComponent,
+    AddAdminComponent,
+    ReportsComponent,
+    AdminHomeComponent,
   ],
   imports: [
     BrowserModule,
