@@ -15,24 +15,26 @@ export class CompProfileComponent implements OnInit {
   phoneNumber: Number;
   src: any;
   CId: any;
+  url: any;
+
   ngOnInit() {
     this.getDataForProfile();
+    console.log('url', this.url);
   }
 
-  updateAvatar(event) {
-    var theFile = event.target.files;
-    console.log('event ', event.target.files[0]);
-    if (theFile && theFile[0]) {
-      var read = new FileReader();
-      read.readAsDataURL(theFile[0]);
-      read.onload = (event) => {
-        this.src = event.target.result;
-      };
-    }
-    // console.log('updateAvatar', read.result);
-    console.log('event.target.result', event.target);
+  // pick image
+  chooseAvatar(event) {
+    this.url = event.target.files[0];
+    console.log('event.target.result', event.target.files[0]);
+  }
+
+  // upload image
+  UpdateAvatar() {
+    const formData = new FormData();
+    formData.append('src', this.url);
+    console.log('formData', formData);
     return this._http
-      .updateCompanyAvatar(this.CId, this.src)
+      .updateCompanyAvatar(formData, this.CId)
       .subscribe((res) => {
         console.log('updateCompanyAvatar res ===>', res);
       });

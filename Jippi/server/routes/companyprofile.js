@@ -1,6 +1,7 @@
 const companyProfileRouter = require("express").Router();
 const db = require("../../database/models");
 const multer = require("multer");
+const Company = db.companies
 
 // that's a multer method that store the file in the upload folder
 const storage = multer.diskStorage({
@@ -30,12 +31,11 @@ const uploads = multer({
 });
 
 
-const Company = db.companies
 // updating company Data 
 companyProfileRouter.put("/update/:id", (req, res) => {
-  console.log("req.body =====>", req.body);
-  console.log("Company =====>", Company);
-  console.log(" req.params update ", req.params);
+  // console.log("req.body =====>", req.body);
+  // console.log("Company =====>", Company);
+  // console.log(" req.params update ", req.params);
 
   Company.findOne({
       where: {
@@ -60,28 +60,29 @@ companyProfileRouter.put("/update/:id", (req, res) => {
       })
     })
     .catch(err => {
-      console.log("the catch error", err)
+      // console.log("the catch error", err)
       res.status(500).send(err);
     })
 });
+
 /* that's for getting  one company data
 (the one that it is logged in now ) */
 
 companyProfileRouter.post('/get/:id', async (req, res) => {
-  console.log(" req.params get ", req.params)
+  // console.log(" req.params get ", req.params)
 
   Company.findOne({
       where: {
         id: req.params.id
       }
     }).then(record => {
-
       if (!record) {
         throw new Error("No Company found");
       } else {
-        console.log("record", record);
+        // console.log("record", record);
         res.send(record)
       }
+
     })
     .catch(err => {
       console.log("the catch error", err)
@@ -90,11 +91,9 @@ companyProfileRouter.post('/get/:id', async (req, res) => {
 });
 // to update to company avatar profile
 companyProfileRouter.put('/avatar/:id', uploads.single('src'), (req, res) => {
-
-  console.log("upload", req.file);
+  console.log(" req.file", req.file);
   console.log("req.body =======>", req.body);
   console.log("req.params ====> ", req.params);
-
   Company.findOne({
     where: {
       id: req.params.id
@@ -108,7 +107,7 @@ companyProfileRouter.put('/avatar/:id', uploads.single('src'), (req, res) => {
     let avatar = {
       avatar: req.file.path
     }
-
+    // res.send(company)
     company.update(avatar).then(updatedAvatar => {
       console.log("updated successfully");
       res.status(200).send(updatedAvatar);

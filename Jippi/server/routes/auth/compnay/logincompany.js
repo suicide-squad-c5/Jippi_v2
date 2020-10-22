@@ -2,7 +2,8 @@ const loginCompanyRouter = require("express").Router();
 const db = require("../../../../database/models");
 const Company = db.companies;
 const jwt = require("jsonwebtoken");
-
+const nodemailer = require("nodemailer");
+require("dotenv").config();
 
 loginCompanyRouter.post("/company/login", (req, res) => {
   console.log("heeeey", req.body);
@@ -50,4 +51,34 @@ loginCompanyRouter.post("/company/login", (req, res) => {
     });
   });
 });
+
+loginCompanyRouter.post('/sendmail', (req, res) => {
+  console.log(req.body)
+  let transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: "jipp.pi.17@gmail.com",
+      pass: "jippi1199"
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  });
+  console.log("transporter.auth", transporter.options)
+
+  let mailOptions = {
+    form: 'jipp.pi.17@gmail.com',
+    to: req.body.email,
+    subject: "Test",
+    text: "99999999"
+  }
+  transporter.sendMail(mailOptions, (err, data) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.status(200).send(data)
+    }
+  })
+});
+
 module.exports = loginCompanyRouter;

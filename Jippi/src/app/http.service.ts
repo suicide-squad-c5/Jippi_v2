@@ -77,11 +77,23 @@ export class HttpService {
       CId,
     });
   }
-  updateCompanyAvatar(src, CId) {
-    console.log('src ===>', src, +'//' + CId);
-    return this.http.put(this.ROOT_URL + `/api/profile/company/avatar/${CId}`, {
-      CId,
-      src,
+  updateCompanyAvatar(formData, CId) {
+    console.log('formData ===>', formData);
+    return this.http.put(
+      this.ROOT_URL + `/api/profile/company/avatar/${CId}`,
+      {
+        formData,
+        CId,
+      },
+      {
+        reportProgress: true,
+        observe: 'events',
+      }
+    );
+  }
+  emailAuthCompany(email) {
+    return this.http.post(this.ROOT_URL + '/api/login/company/sendmail', {
+      email,
     });
   }
 }
