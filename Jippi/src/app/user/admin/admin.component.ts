@@ -1,15 +1,56 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../../http.service';
+import { LocalService } from '../../local.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
+  // get the value from the admin login.
+  adminEmail: string = '';
+  adminPassword: string = '';
+  token: string = '';
+  userType: string = 'vsiteur';
+  adminId: number = null;
 
-  constructor() { }
+  constructor(
+    private _http: HttpService,
+    private router: Router,
+    private local: LocalService
+  ) {}
 
   ngOnInit(): void {
+    this.local.userTy.subscribe((type) => (this.userType = type));
   }
 
+  ngDoCheck() {
+    // check ! (passed fine)
+    // console.log(this.adminEmail, this.adminPassword);
+  }
+
+  adminLogin() {
+    const adminLogData = {
+      adminEmail: this.adminEmail,
+      adminPassword: this.adminPassword,
+    };
+
+    //check ! (passed fine)
+    console.log(adminLogData);
+
+    // SEND REQUEST TO CHECK IF THIS ADMIN EXISTS OR NOT.
+    this._http.postAdminlogin(adminLogData).subscribe((res) => {
+      console.log(res);
+      localStorage.setItem('adminToken', res['token']);
+      localStorage.setItem('adminId', res['id']);
+      this.changeType();
+    });
+  }
+
+  changeType() {
+    this.local.changeType('admin');
+    this.router.navigateByUrl('/admin/home');
+  }
 }

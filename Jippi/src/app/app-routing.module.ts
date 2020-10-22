@@ -14,20 +14,31 @@ import { ProfileComponent } from './user/customer/cust-profile/profile/profile.c
 import { CompProfileComponent } from './user/company/comp-profile/comp-profile.component';
 import { MyShopComponent } from './user/company/my-shop/my-shop.component';
 import { AdminComponent } from './user/admin/admin.component';
+// import { AdminSectionComponent } from './user/admin/admin-section/admin-section.component';
+import { AdminHomeComponent } from './user/admin/admin-home/admin-home.component';
+import { AddAdminComponent } from './user/admin/add-admin/add-admin.component';
+import { ReportsComponent } from './user/admin/reports/reports.component';
 
 const routes: Routes = [
+  // CUSTOEMR SIDE.
   { path: '', component: HomeComponent },
   { path: 'contact', component: ContactUsComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/edit', component: EditProfileComponent },
+  // COMPANY SIDE.
   { path: 'comapny/signup', component: CompSignupComponent },
   { path: 'company/login', component: CompLoginComponent },
-  { path: 'profile/edit', component: EditProfileComponent },
   { path: 'company/addItem', component: AddItemComponent },
-  { path: 'profile', component: ProfileComponent },
   { path: 'company/profile', component: CompProfileComponent },
   { path: 'company/shop', component: MyShopComponent },
+  // ADMIN SIDE.
+  { path: 'admin/jippi', component: AdminComponent },
+  { path: 'admin/home', component: AdminHomeComponent },
+  { path: 'admin/addadmin', component: AddAdminComponent },
+  { path: 'admin/reports', component: ReportsComponent },
 ];
 
 @NgModule({
