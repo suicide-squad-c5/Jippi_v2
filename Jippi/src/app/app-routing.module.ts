@@ -13,6 +13,7 @@ import { AddItemComponent } from './user/company/my-shop/add-item/add-item.compo
 import { ProfileComponent } from './user/customer/cust-profile/profile/profile.component';
 import { CompProfileComponent } from './user/company/comp-profile/comp-profile.component';
 import { MyShopComponent } from './user/company/my-shop/my-shop.component';
+import { AdminComponent } from './user/admin/admin.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

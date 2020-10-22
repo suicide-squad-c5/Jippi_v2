@@ -86,13 +86,11 @@ export class HttpService {
     });
   }
   updateCompanyAvatar(formData, CId) {
-    console.log('formData ===>', formData);
+    console.log('CId ===> <==', CId);
     return this.http.put(
       this.ROOT_URL + `/api/profile/company/avatar/${CId}`,
-      {
-        formData,
-        CId,
-      },
+      formData,
+
       {
         reportProgress: true,
         observe: 'events',
