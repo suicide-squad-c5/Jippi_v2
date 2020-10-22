@@ -7,6 +7,5 @@ module.exports = (sequelize, Sequelize) => {
     location: Sequelize.STRING,
     phoneNumber: Sequelize.STRING,
   });
-
   return Company;
 };
