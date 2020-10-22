@@ -52,6 +52,7 @@ loginCompanyRouter.post("/company/login", (req, res) => {
   });
 });
 
+// sending an email to the company to verify 
 loginCompanyRouter.post('/sendmail', (req, res) => {
   console.log(req.body)
   let transporter = nodemailer.createTransport({
@@ -66,11 +67,21 @@ loginCompanyRouter.post('/sendmail', (req, res) => {
   });
   console.log("transporter.auth", transporter.options)
 
+  const getRandomString = () => {
+    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var result = '';
+    for (var i = 0; i < 6; i++) {
+      result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    }
+    return result;
+  }
+
   let mailOptions = {
     form: 'jipp.pi.17@gmail.com',
     to: req.body.email,
     subject: "Test",
-    text: "99999999"
+    text: getRandomString()
+
   }
   transporter.sendMail(mailOptions, (err, data) => {
     if (err) {
