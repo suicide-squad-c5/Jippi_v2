@@ -4,7 +4,6 @@ const app = express();
 const PORT = process.env.PORT || 3008;
 const cors = require("cors");
 
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());

@@ -16,9 +16,10 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   },
 });
 
-sequelize.query(`CREATE DATABASE ${dbConfig.DB};`)
-  .then(data => console.log("Dataase created successfully", data))
-  .catch(err => console.log(err))
+sequelize
+  .query(`CREATE DATABASE ${dbConfig.DB};`)
+  .then((data) => console.log("Dataase created successfully", data))
+  .catch((err) => console.log(err));
 
 const db = {};
 

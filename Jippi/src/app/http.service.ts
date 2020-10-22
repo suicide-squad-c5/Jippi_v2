@@ -18,6 +18,7 @@ export class HttpService {
     });
   }
 
+  // create post request for the comapny signup.
   postSignUpComapany(companyName, companyPassword, companyEmail) {
     return this.http.post(
       this.ROOT_URL + `/api/register/company/comapny/signup`,
@@ -29,10 +30,82 @@ export class HttpService {
     );
   }
 
+  // craete post request for the comapny login.
+  postLoginCompany(comapnyLoginObj) {
+    return this.http.post(this.ROOT_URL + `/api/login/company/company/login`, {
+      companyEmail: comapnyLoginObj.companyEmail,
+      companyPassword: comapnyLoginObj.companyPassword,
+    });
+  }
+  postAddItem(
+    itemName,
+    itemPrice,
+    itemDescription,
+    itemImage,
+    itemRating,
+    companyID
+  ) {
+    return this.http.post(this.ROOT_URL + '/api/items', {
+      itemName: itemName,
+      itemPrice: itemPrice,
+      itemDescription: itemDescription,
+      itemImage: itemImage,
+      itemRating: itemRating,
+      companyID: companyID,
+    });
+  }
   loginCustomer(email, password) {
     return this.http.post(this.ROOT_URL + `/api/login/customer/login`, {
       email,
       password,
     });
+  }
+  // that's for updating the company  Data
+  editCompanyProfileData(name, email, location, phoneNumber, CId) {
+    return this.http.put(this.ROOT_URL + `/api/profile/company/update/${CId}`, {
+      name,
+      email,
+      location,
+      phoneNumber,
+      CId,
+    });
+  }
+  // that's for receiving  the company  Data
+  getCompanyData(CId) {
+    console.log('Cid ===> ', CId);
+    return this.http.post(this.ROOT_URL + `/api/profile/company/get/${CId}`, {
+      CId,
+    });
+  }
+  updateCompanyAvatar(formData, CId) {
+    console.log('formData ===>', formData);
+    return this.http.put(
+      this.ROOT_URL + `/api/profile/company/avatar/${CId}`,
+      {
+        formData,
+        CId,
+      },
+      {
+        reportProgress: true,
+        observe: 'events',
+      }
+    );
+  }
+  verifyComapnyEmail(CId) {
+    return this.http.post(
+      this.ROOT_URL + `/api/login/company/sendmail/${CId}`,
+      {
+        CId,
+      }
+    );
+  }
+  check(CId, verificationCode) {
+    return this.http.post(
+      this.ROOT_URL + `/api/login/company/chekpoint/${CId}`,
+      {
+        CId,
+        verificationCode,
+      }
+    );
   }
 }

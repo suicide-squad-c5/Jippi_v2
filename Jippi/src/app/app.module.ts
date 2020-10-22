@@ -29,6 +29,7 @@ import { AuthentiCompComponent } from './user/company/authenti-comp/authenti-com
 import { AddItemComponent } from './user/company/my-shop/add-item/add-item.component';
 import { CompLoginComponent } from './user/company/authenti-comp/comp-login/comp-login.component';
 import { CompSignupComponent } from './user/company/authenti-comp/comp-signup/comp-signup.component';
+import { VerifyEmailComponent } from './user/company/authenti-comp/verify-email/verify-email.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +55,7 @@ import { CompSignupComponent } from './user/company/authenti-comp/comp-signup/co
     AddItemComponent,
     CompLoginComponent,
     CompSignupComponent,
+    VerifyEmailComponent,
   ],
   imports: [
     BrowserModule,
