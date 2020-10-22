@@ -14,21 +14,24 @@ export class NavbarComponent implements OnInit {
   constructor(private local: LocalService, private router: Router) {}
 
   ngOnInit(): void {
-    console.log('===>', this.userType)
-    this.local.userTy.subscribe( type => this.userType = type)
-    if(localStorage.Id){
-      this.local.changeType("customer")
-    }else{
-      this.local.changeType("visiteur")
+    console.log('===>', this.userType);
+    this.local.userTy.subscribe((type) => (this.userType = type));
+    if (localStorage.Id) {
+      this.local.changeType('customer');
+    }
+    else if (localStorage.comapnyId){
+      this.local.changeType('company');
+    }else {
+      this.local.changeType('visiteur');
     }
   }
 
-logout(){
-  localStorage.removeItem("Token");
-    localStorage.removeItem("Id");
-  this.local.changeType("visiteur");
-  this.router.navigateByUrl('/');
-}
-
-
+  logout() {
+    localStorage.removeItem('Token');
+    localStorage.removeItem('Id');
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    this.local.changeType('visiteur');
+    this.router.navigateByUrl('/');
+  }
 }

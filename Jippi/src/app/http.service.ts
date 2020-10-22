@@ -45,10 +45,12 @@ export class HttpService {
     itemDescription,
     itemImage,
     itemRating,
+
     companyID,
     selectedCategory,
     selectedKind
   ) {
+
     return this.http
       .post(this.ROOT_URL + '/api/items', {
         itemName: itemName,
@@ -67,6 +69,7 @@ export class HttpService {
   //get all items in db
   getItems() {
     return this.http.get(this.ROOT_URL + '/api/items');
+
   }
 
   loginCustomer(email, password) {
@@ -94,13 +97,11 @@ export class HttpService {
     });
   }
   updateCompanyAvatar(formData, CId) {
-    console.log('formData ===>', formData);
+    console.log('CId ===> <==', CId);
     return this.http.put(
       this.ROOT_URL + `/api/profile/company/avatar/${CId}`,
-      {
-        formData,
-        CId,
-      },
+      formData,
+
       {
         reportProgress: true,
         observe: 'events',
