@@ -13,13 +13,14 @@ export class CompProfileComponent implements OnInit {
   email: string = '';
   location: string = '';
   phoneNumber: Number;
-  src: any;
+  src: string = '';
   CId: any;
   url: any;
 
   ngOnInit() {
     this.getDataForProfile();
     console.log('url', this.url);
+    console.log('src:================> ', this.src);
   }
 
   // pick image
@@ -27,12 +28,11 @@ export class CompProfileComponent implements OnInit {
     this.url = event.target.files[0];
     console.log('event.target.result', event.target.files[0]);
   }
-
   // upload image
   UpdateAvatar() {
     const formData = new FormData();
-    formData.append('src', this.url);
-    console.log('formData', formData);
+    formData.append('file', this.url);
+    formData.append('cId', this.CId);
     return this._http
       .updateCompanyAvatar(formData, this.CId)
       .subscribe((res) => {
@@ -67,7 +67,10 @@ export class CompProfileComponent implements OnInit {
     return this._http.getCompanyData(this.CId).subscribe((res) => {
       console.log('getCompanyData   res ===>', res);
       this.company_Data.push(res);
+      this.src = res['avatar'];
+      console.log("res['avatar']", res['avatar']);
       console.log('this.company_Data ===>', this.company_Data);
+      console.log('this.src +++', this.src);
     });
   }
 }
