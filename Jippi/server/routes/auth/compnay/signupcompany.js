@@ -1,5 +1,4 @@
 const signupCompanyRouter = require("express").Router();
-
 const db = require("../../../../database/models");
 const companyLog = db.companies;
 
