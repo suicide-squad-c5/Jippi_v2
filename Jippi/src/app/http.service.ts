@@ -57,6 +57,11 @@ export class HttpService {
     });
   }
 
+  // CREATE REQUEST TO DELETE ITEMS FROM ADMIN SIDE.
+  deleteItem(itemId) {
+    return this.http.delete(this.ROOT_URL + `/api/items/${itemId}`);
+  }
+
   postAddItem(
     itemName,
     itemPrice,
@@ -68,7 +73,6 @@ export class HttpService {
     selectedCategory,
     selectedKind
   ) {
-
     return this.http
       .post(this.ROOT_URL + '/api/items', {
         itemName: itemName,
@@ -87,7 +91,6 @@ export class HttpService {
   //get all items in db
   getItems() {
     return this.http.get(this.ROOT_URL + '/api/items');
-
   }
 
   loginCustomer(email, password) {
