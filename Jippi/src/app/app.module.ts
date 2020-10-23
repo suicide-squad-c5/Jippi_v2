@@ -37,6 +37,11 @@ import { ReportsComponent } from './user/admin/reports/reports.component';
 import { AdminHomeComponent } from './user/admin/admin-home/admin-home.component';
 import { BasketComponent } from './user/customer/basket/basket.component';
 import { CompanyHomeComponent } from './user/company/company-home/company-home.component';
+=======
+import { AdminItemsComponent } from './user/admin/admin-home/admin-items/admin-items.component';
+import { AdminItemComponent } from './user/admin/admin-home/admin-items/admin-item/admin-item.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +75,8 @@ import { CompanyHomeComponent } from './user/company/company-home/company-home.c
     AdminHomeComponent,
     BasketComponent,
     CompanyHomeComponent,
+    AdminItemsComponent,
+    AdminItemComponent,
   ],
   imports: [
     BrowserModule,

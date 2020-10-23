@@ -17,6 +17,7 @@ export class ItemComponent implements OnInit {
     console.log('ItemComponent -> item', this.item);
     this.local.basktItems.subscribe(basket_item => this.basket = basket_item);
     this.local.quantityItems.subscribe(qnt => this.quantity = qnt);
+
   }
 ngDoCheck() {
   console.log("basket",this.basket, this.quantity);

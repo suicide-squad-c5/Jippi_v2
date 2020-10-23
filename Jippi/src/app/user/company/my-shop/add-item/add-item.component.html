@@ -62,12 +62,11 @@
   <br />
   <!-- Item image -->
   <input
+    (change)="chooseAnImage($event)"
     name="itemImage"
     type="file"
     id="defaultSubscriptionFormEmail"
     class="form-control mb-4"
-    placeholder="Item image"
-    [(ngModel)]="itemImage"
   />
 
   <!-- Item rate -->
@@ -78,6 +77,11 @@
     class="form-control mb-4"
     placeholder="Rating"
     [(ngModel)]="itemRating"
+  />
+  <img
+    [src]="url ? url : 'https://tipsmake.com/data/thumbs/how-to-hide-facebook-profile-picture-thumb-EhRnrBzAY.jpg'"
+    class="img-fluid"
+    alt="Responsive image"
   />
 
   <!-- Add button -->

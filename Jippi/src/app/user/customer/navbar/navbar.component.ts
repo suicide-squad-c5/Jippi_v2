@@ -21,10 +21,11 @@ export class NavbarComponent implements OnInit {
     this.local.userTy.subscribe((type) => (this.userType = type));
     if (localStorage.Id) {
       this.local.changeType('customer');
-    }
-    else if (localStorage.comapnyId){
+    } else if (localStorage.comapnyId) {
       this.local.changeType('company');
-    }else {
+    } else if (localStorage.adminId) {
+      this.local.changeType('admin');
+    } else {
       this.local.changeType('visiteur');
     }
   }
