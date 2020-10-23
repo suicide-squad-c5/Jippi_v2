@@ -34,4 +34,13 @@ itemsRouter.get("/", async (req, res) => {
   }
 });
 
+itemsRouter.delete(`/:itemId`, async (req, res) => {
+  newItem.destroy({
+    where: {
+      id: req.params.itemId,
+    },
+  });
+  console.log("heyyyyyyy", req.params.itemId);
+});
+
 module.exports = itemsRouter;

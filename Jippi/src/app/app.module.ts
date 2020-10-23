@@ -35,6 +35,9 @@ import { AdminSectionComponent } from './user/admin/admin-section/admin-section.
 import { AddAdminComponent } from './user/admin/add-admin/add-admin.component';
 import { ReportsComponent } from './user/admin/reports/reports.component';
 import { AdminHomeComponent } from './user/admin/admin-home/admin-home.component';
+import { AdminItemsComponent } from './user/admin/admin-home/admin-items/admin-items.component';
+import { AdminItemComponent } from './user/admin/admin-home/admin-items/admin-item/admin-item.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +69,8 @@ import { AdminHomeComponent } from './user/admin/admin-home/admin-home.component
     AddAdminComponent,
     ReportsComponent,
     AdminHomeComponent,
+    AdminItemsComponent,
+    AdminItemComponent,
   ],
   imports: [
     BrowserModule,
