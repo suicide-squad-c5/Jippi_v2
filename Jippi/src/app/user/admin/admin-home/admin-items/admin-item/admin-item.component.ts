@@ -22,5 +22,6 @@ export class AdminItemComponent implements OnInit {
       console.log(res);
       alert('deleted !');
     });
+    location.reload();
   }
 }
