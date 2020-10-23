@@ -1,7 +1,13 @@
 <div class="container">
-    <h1 class="h3 mb-3 font-weight-normal">Add admin to the list</h1>
+    <h1 class=" h3 mb-3 font-weight-normal">Add an Admin</h1>
+    <div class="alert alert-danger" role="alert">
+        Us an admin you can't add other admins to the list. Remember that just the owner have the right to add them,
+        or
+        by order from him.
+    </div>
+    <br />
     <label for="inputEmail" class="sr-only">Admin name</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""
+    <input type="text" id="inputEmail" class="form-control" placeholder="Admin name" required="" autofocus=""
         [(ngModel)]="adminName" required />
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""
@@ -9,7 +15,19 @@
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""
         [(ngModel)]="adminPassword" required />
-    <button class="btn btn-lg btn-primary btn-block" type="submit">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Confirm password" required=""
+        [(ngModel)]="adminCPassword" required />
+    <div class="input-group">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"
+                [(ngModel)]="adminAvatar">
+            <label class="custom-file-label" for="inputGroupFile01">Choose image</label>
+        </div>
+    </div>
+    <br />
+    <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="createAdmin()">
         Add
     </button>
+    <br />
 </div>

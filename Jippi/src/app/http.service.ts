@@ -44,7 +44,16 @@ export class HttpService {
     return this.http.post(this.ROOT_URL + `/admin/jippi`, {
       adminEmail: adminLogin.adminEmail,
       adminPassword: adminLogin.adminPassword,
-      adminAvatar: '',
+    });
+  }
+
+  // CREATE POST REQUEST TO THE ADMIN CREATE ACCOUNT.
+  postAdminCreate(adminCreate) {
+    return this.http.post(this.ROOT_URL + `/admin/jippi/create`, {
+      adminName: adminCreate.adminName,
+      adminEmail: adminCreate.adminEmail,
+      adminPassword: adminCreate.adminPassword,
+      adminAvatar: adminCreate.adminAvatar,
     });
   }
 

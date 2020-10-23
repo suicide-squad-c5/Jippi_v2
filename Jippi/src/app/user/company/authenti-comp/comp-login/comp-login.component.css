@@ -8,6 +8,9 @@
   text-align: center;
   display: block;
   margin-top: 5em;
+  border: 1px solid;
+  border-radius: 3%;
+  border-color: #D5DBDB;
 }
 
 *,
