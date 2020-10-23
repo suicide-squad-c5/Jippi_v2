@@ -30,8 +30,8 @@ export class NavbarComponent implements OnInit {
   logout() {
     localStorage.removeItem('Token');
     localStorage.removeItem('Id');
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
+    localStorage.removeItem('companyToken');
+    localStorage.removeItem('comapnyId');
     localStorage.removeItem('adminToken');
     localStorage.removeItem('adminId');
     this.local.changeType('visiteur');
