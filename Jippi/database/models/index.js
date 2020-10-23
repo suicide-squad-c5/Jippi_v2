@@ -29,4 +29,5 @@ db.sequelize = sequelize;
 db.customers = require("./customer.model.js")(sequelize, Sequelize);
 db.companies = require("../companySchema")(sequelize, Sequelize);
 db.items = require("../itemsSchema")(sequelize, Sequelize);
+db.admins = require("../adminSchema")(sequelize, Sequelize);
 module.exports = db;

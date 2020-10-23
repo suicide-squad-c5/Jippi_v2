@@ -37,6 +37,7 @@ export class HttpService {
       companyPassword: comapnyLoginObj.companyPassword,
     });
   }
+
   // ================ITEMS=====================
   //  to add a new item
   postAddItem(formData) {
@@ -47,6 +48,33 @@ export class HttpService {
     return this.http.post(this.ROOT_URL + `/api/items/get/${itemId}`, {
       itemId,
     });
+
+  //add an item to the database
+
+  // CREATE POST REQUEST FOR THE ADMIN LOGIN.
+  postAdminlogin(adminLogin) {
+    return this.http.post(this.ROOT_URL + `/admin/jippi`, {
+      adminEmail: adminLogin.adminEmail,
+      adminPassword: adminLogin.adminPassword,
+    });
+  }
+
+  // CREATE POST REQUEST TO THE ADMIN CREATE ACCOUNT.
+  postAdminCreate(adminCreate) {
+    return this.http.post(this.ROOT_URL + `/admin/jippi/create`, {
+      adminName: adminCreate.adminName,
+      adminEmail: adminCreate.adminEmail,
+      adminPassword: adminCreate.adminPassword,
+      adminAvatar: adminCreate.adminAvatar,
+    });
+  }
+
+
+  //get all items in db
+  getItems() {
+    return this.http.get(this.ROOT_URL + '/api/items');
+
+
   }
   // ================================================
   loginCustomer(email, password) {

@@ -2,15 +2,15 @@
   position: relative;
   /* margin-top: 8%; */
   width: 100%;
-  max-width: 330px;
+  max-width: 350px;
   padding: 15px;
   margin: 0 auto;
   text-align: center;
   display: block;
   margin-top: 5em;
-  border: 1px solid;
+  border: 1px solid ;
   border-radius: 3%;
-  border-color: #D5DBDB;
+  border-color: #B2BABB;
 }
 
 *,
@@ -42,4 +42,8 @@ body {
 
 #inputPassword {
   margin-bottom: 1.5rem;
+}
+
+.custom-file-input {
+  cursor: pointer;
 }

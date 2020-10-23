@@ -11,6 +11,7 @@ export class AddItemComponent implements OnInit {
   itemName: string = '';
   itemPrice: any = 0;
   itemDescription: string = '';
+
   itemImage: any;
   itemRating: any = 0;
   companyID: any = parseInt(localStorage.comapnyId);
@@ -97,5 +98,6 @@ export class AddItemComponent implements OnInit {
         this.url = res['itemImage'];
       });
     });
+
   }
 }

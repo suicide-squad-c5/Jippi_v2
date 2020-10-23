@@ -1,4 +1,7 @@
 .container{
     position: relative;
     margin-top: 5%;
+      border: 1px solid;
+      border-radius: 3%;
+      border-color: #D5DBDB;
 }
