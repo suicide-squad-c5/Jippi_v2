@@ -10,6 +10,6 @@ export class ItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log('ItemComponent -> item', this.item);
+    console.log('ItemComponent ----> item', this.item);
   }
 }
