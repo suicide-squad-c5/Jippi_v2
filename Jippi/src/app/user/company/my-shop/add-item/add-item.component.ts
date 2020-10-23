@@ -1,21 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
+
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
   styleUrls: ['./add-item.component.css'],
 })
 export class AddItemComponent implements OnInit {
+  constructor(private _http: HttpService) {}
   itemName: string = '';
-  itemPrice: number = null;
+  itemPrice: any = 0;
   itemDescription: string = '';
-  itemImage: string = '';
-  itemRating: number = null;
-  companyID: number = parseInt(localStorage.comapnyId);
+
+  itemImage: any;
+  itemRating: any = 0;
+  companyID: any = parseInt(localStorage.comapnyId);
   selectedCategory: string = 'clothing';
   selectedKind: string = 'Male';
   listKind = ['Male', 'Female', 'Kids'];
-
+  url: any;
+  itemId: any;
   kind = {
     clothing: [] = ['Male', 'Female', 'Kids'],
     electronics: [] = [
@@ -34,10 +38,10 @@ export class AddItemComponent implements OnInit {
     ],
   };
 
-  constructor(private _http: HttpService) {}
-
-  ngOnInit(): void {}
-
+  ngOnInit(): void {
+    console.log('companyID', this.companyID);
+    console.log('this.url', this.url);
+  }
   show() {
     console.log('AddItemComponent -> itemName', this.itemName);
     console.log('Addthis.ItemComponent -> this.itemPrice', this.itemPrice);
@@ -68,22 +72,32 @@ export class AddItemComponent implements OnInit {
     this.selectedKind = event.target.value;
   }
 
+  chooseAnImage(event) {
+    this.itemImage = event.target.files[0];
+    console.log('this.itemImage===========<<<', this.itemImage);
+  }
+
   saveItem() {
-    if (this.companyID) {
-      return this._http
-        .postAddItem(
-          this.itemName,
-          this.itemPrice,
-          this.itemDescription,
-          this.itemImage,
-          this.itemRating,
-          this.companyID,
-          this.selectedCategory,
-          this.selectedKind
-        )
-        // .subscribe((res) => {
-        //   console.log(res);
-        // });
-    }
+    const formData = new FormData();
+    formData.append('itemName', this.itemName);
+    formData.append('itemPrice', this.itemPrice);
+    formData.append('itemDescription', this.itemDescription);
+    formData.append('itemImage', this.itemImage);
+    formData.append('itemRating', this.itemRating);
+    formData.append('companyID', this.companyID);
+    formData.append('selectedCategory', this.selectedCategory);
+    formData.append('selectedKind', this.selectedKind);
+
+    return this._http.postAddItem(formData).subscribe((res) => {
+      this.itemId = res['id'];
+      // console.log(this.url);
+      console.log('UUUUUUUUUUUUU=======> ', res['id']);
+
+      return this._http.getItemData(this.itemId).subscribe((res) => {
+        console.log('getItemDataToShowTheImage', res);
+        this.url = res['itemImage'];
+      });
+    });
+
   }
 }
