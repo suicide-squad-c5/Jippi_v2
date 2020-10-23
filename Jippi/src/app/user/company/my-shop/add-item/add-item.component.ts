@@ -9,10 +9,10 @@ import { HttpService } from '../../../../http.service';
 export class AddItemComponent implements OnInit {
   constructor(private _http: HttpService) {}
   itemName: string = '';
-  itemPrice;
+  itemPrice: any = 0;
   itemDescription: string = '';
   itemImage: any;
-  itemRating;
+  itemRating: any = 0;
   companyID: any = parseInt(localStorage.comapnyId);
   selectedCategory: string = 'clothing';
   selectedKind: string = 'Male';
@@ -88,13 +88,14 @@ export class AddItemComponent implements OnInit {
     formData.append('selectedKind', this.selectedKind);
 
     return this._http.postAddItem(formData).subscribe((res) => {
-      console.log(this.url);
-      console.log('UUUUUUUUUUUUU', res);
+      this.itemId = res['id'];
+      // console.log(this.url);
+      console.log('UUUUUUUUUUUUU=======> ', res['id']);
+
+      return this._http.getItemData(this.itemId).subscribe((res) => {
+        console.log('getItemDataToShowTheImage', res);
+        this.url = res['itemImage'];
+      });
     });
   }
-  // getItemDataToShowTheImage() {
-  //   return this._http.getItemData(itemId).subscribe((res) => {
-  //     this.url = res['url'];
-  //   });
-  // }
 }

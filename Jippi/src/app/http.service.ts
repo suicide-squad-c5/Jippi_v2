@@ -40,11 +40,9 @@ export class HttpService {
   // ================ITEMS=====================
   //  to add a new item
   postAddItem(formData) {
-    return this.http.post(this.ROOT_URL + '/api/items/', formData, {
-      reportProgress: true,
-      observe: 'events',
-    });
+    return this.http.post(this.ROOT_URL + '/api/items/add', formData);
   }
+
   getItemData(itemId) {
     return this.http.post(this.ROOT_URL + `/api/items/get/${itemId}`, {
       itemId,

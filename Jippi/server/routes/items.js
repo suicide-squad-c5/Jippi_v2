@@ -4,6 +4,7 @@ const multer = require("multer");
 var cloudinary = require('cloudinary').v2;
 
 const newItem = db.items
+
 cloudinary.config({
   cloud_name: 'jipi',
   api_key: '895721462325433',
@@ -15,47 +16,45 @@ const up = multer({
 });
 
 // posting an Item
-itemsRouter.post("/", up.single('itemImage'), (req, res) => {
-  console.log("getting the request");
-  console.log("req.file", req.file);
-  console.log("req", req.body);
-  //sending the item image to  cloudinary
+itemsRouter.post("/add", up.single('itemImage'), (req, res) => {
   var img = req.file.path;
   cloudinary.uploader.upload(img, (error, result) => {
-      error && console.log("cloudinary [error] ==> ", error);
-      console.log("result", result)
-      const item = {
-        itemName: req.body.itemName,
-        itemPrice: req.body.itemPrice,
-        itemDescription: req.body.itemDescription,
-        itemImage: result.url,
-        itemRating: req.body.itemRating,
-        itemCompany: req.body.companyID,
-        itemCategory: req.body.category,
-        itemKind: req.body.kind,
-      };
-      newItem
-        .create(item)
-    }).then((theItem) => {
-      console.log("theItem", theItem);
-      res.status(201).send(theItem);
-    })
-    .catch((err) => {
+    error && console.log("cloudinary [error] ==> ", error);
+  }).then((result) => {
+    console.log("result9898989*", result)
+    const item = {
+      itemName: req.body.itemName,
+      itemPrice: req.body.itemPrice,
+      itemDescription: req.body.itemDescription,
+      itemImage: result.url,
+      itemRating: req.body.itemRating,
+      itemCompany: req.body.companyID,
+      itemCategory: req.body.category,
+      itemKind: req.body.kind,
+    };
+    newItem.create(item).then((theItem) => {
+      console.log("theItem=========>", theItem);
+      res.send(theItem);
+    }).catch((err) => {
       res.send(err)
     })
+  })
 });
 
 itemsRouter.post('/get/:id', (req, res) => {
-  console.log("res", res);
-  console.log("req", req)
+  console.log("res", req.body);
+  console.log("req.params", req.params)
   newItem.findOne({
-    were: {
+    where: {
       id: req.params.id
     }
   }).then((data) => {
+    console.log("data", data)
     res.status(200).send(data)
   }).catch((err) => {
-    res.status(500).send(err)
+    if (err) {
+      res.send("there is no data")
+    }
   })
 });
 
