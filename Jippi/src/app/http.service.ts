@@ -66,7 +66,7 @@ export class HttpService {
       CId,
     });
   }
-  // that's for receiving  the company  Data
+  // that's for receiving  the company Data
   getCompanyData(CId) {
     console.log('Cid ===> ', CId);
     return this.http.post(this.ROOT_URL + `/api/profile/company/get/${CId}`, {
