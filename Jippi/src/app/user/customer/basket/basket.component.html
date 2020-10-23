@@ -1,0 +1,69 @@
+<section class="pt-5 pb-5">
+  <div class="container">
+    <div class="row w-100">
+      <div class="col-lg-12 col-md-12 col-12">
+        <h3 class="display-5 mb-2 text-center">Shopping Cart</h3>
+        <p class="mb-5 text-center">
+          <i class="text-info font-weight-bold">{{basket_item.length}}</i> items in your cart</p>
+        <table id="shoppingCart" class="table table-condensed table-responsive">
+          <thead>
+            <tr>
+              <th style="width:60%">Product</th>
+              <th style="width:12%">Price</th>
+              <th style="width:10%">Quantity</th>
+              <th style="width:16%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of basket_item"  >
+              <td data-th="Product">
+                <div class="row">
+                  <div class="col-md-3 text-left">
+                    <img src="https://via.placeholder.com/250x250/5fa9f8/ffffff" alt=""
+                      class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                  </div>
+                  <div class="col-md-9 text-left mt-sm-2">
+                    <h4>{{item.itemName}}</h4>
+                    <p class="font-weight-light">Brand &amp; Name</p>
+                  </div>
+                </div>
+              </td>
+              <td data-th="Price">DT {{item.itemPrice}}</td>
+              <td class="col col-qty  layout-inline" data-th="Quantity">
+                  <!-- <a  class="qty qty-minus" (click)="subtractQunt(item)">-</a> -->
+                  <span class="badge badge-pill badge-info" (click)="subtractQunt(item)">-</span>
+                  <input type="numeric" [(ngModel)]="quantity[basket_item.indexOf(item)]"/>
+                  <!-- <a  class="qty qty-plus" (click)="addQunt(item)">+</a> -->
+                  <span class="badge badge-pill badge-info" (click)="addQunt(item)">+</span>
+              </td>
+              <td class="actions" data-th="">
+                <div class="text-right">
+                  <button class="btn btn-white border-secondary bg-white btn-md mb-2" (click)="deleteItem(item)">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
+                    </svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="float-right text-right">
+          <h4>Subtotal:</h4>
+          <h1>DT {{this.tot}}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4 d-flex align-items-center">
+      <div class="col-sm-6 order-md-2 text-right">
+        <a href="catalog.html" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Checkout</a>
+      </div>
+      <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+        <a href="catalog.html">
+          <i class="fas fa-arrow-left mr-2"></i> Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+</section>
