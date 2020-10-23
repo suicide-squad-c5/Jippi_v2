@@ -58,4 +58,13 @@ itemsRouter.post('/get/:id', (req, res) => {
   })
 });
 
+itemsRouter.get("/", async (req, res) => {
+  try {
+    const items = await newItem.findAll();
+    res.send(items);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 module.exports = itemsRouter;

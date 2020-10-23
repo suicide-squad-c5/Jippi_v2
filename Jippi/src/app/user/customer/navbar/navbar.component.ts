@@ -18,7 +18,10 @@ export class NavbarComponent implements OnInit {
     this.local.userTy.subscribe((type) => (this.userType = type));
     if (localStorage.Id) {
       this.local.changeType('customer');
-    } else {
+    }
+    else if (localStorage.comapnyId){
+      this.local.changeType('company');
+    }else {
       this.local.changeType('visiteur');
     }
   }
@@ -28,6 +31,8 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('Id');
     localStorage.removeItem('token');
     localStorage.removeItem('id');
+    localStorage.removeItem('adminToken');
+    localStorage.removeItem('adminId');
     this.local.changeType('visiteur');
     this.router.navigateByUrl('/');
   }

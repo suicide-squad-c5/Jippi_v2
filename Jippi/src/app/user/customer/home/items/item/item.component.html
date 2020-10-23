@@ -1,1 +1,23 @@
-<p>item works!</p>
+<!-- Card -->
+<div class="achref">
+  <div class="view zoom overlay z-depth-2 rounded">
+    <img
+      class="img-fluid w-100"
+      src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
+    />
+  </div>
+
+  <div class="text-center pt-4">
+    <h5>{{ item.itemName }}</h5>
+    <p class="mb-2 text-muted text-uppercase small">{{ item.itemKind }}</p>
+    <hr />
+    <h6 class="mb-3">{{ item.itemPrice }} TD</h6>
+    <button type="button" class="btn btn-primary btn-sm mr-1 mb-2">
+      <i class="fas fa-shopping-cart pr-2"></i>Add to cart
+    </button>
+    <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+      <i class="fas fa-info-circle pr-2"></i>Details
+    </button>
+  </div>
+</div>
+<!-- Card -->
