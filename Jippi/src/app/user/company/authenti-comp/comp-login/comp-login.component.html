@@ -1,14 +1,33 @@
 <div class="container">
+  <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input
+    type="email"
+    id="inputEmail"
+    class="form-control"
+    placeholder="Email address"
+    required=""
+    autofocus=""
+    [(ngModel)]="companyEmailLog"
+  />
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input
+    type="password"
+    id="inputPassword"
+    class="form-control"
+    placeholder="Password"
+    required=""
+    [(ngModel)]="companyPasswordLog"
+  />
 
-    <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""
-        [(ngModel)]="companyEmailLog">
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""
-        [(ngModel)]="companyPasswordLog">
-
-    <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="companyDataLog()">Login</button>
-    <p class="mt-5 mb-3 text-muted">You don't have an account? <a href="#"> sign up</a></p>
-
+  <button
+    class="btn btn-lg btn-primary btn-block"
+    type="submit"
+    (click)="companyDataLog()"
+  >
+    Login
+  </button>
+  <p class="mt-5 mb-3 text-muted">
+    You don't have an account? <a href="comapny/signup"> sign up</a>
+  </p>
 </div>
