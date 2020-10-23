@@ -3,7 +3,6 @@ const db = require("../../database/models");
 const multer = require("multer");
 var cloudinary = require('cloudinary').v2;
 
-
 const newItem = db.items
 
 cloudinary.config({
@@ -38,7 +37,6 @@ itemsRouter.post("/add", up.single('itemImage'), (req, res) => {
       res.send(theItem);
     }).catch((err) => {
       res.send(err)
-
     })
   })
 });
