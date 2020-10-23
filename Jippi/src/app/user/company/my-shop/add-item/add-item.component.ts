@@ -1,21 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
+
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
   styleUrls: ['./add-item.component.css'],
 })
 export class AddItemComponent implements OnInit {
+  constructor(private _http: HttpService) {}
   itemName: string = '';
   itemPrice;
   itemDescription: string = '';
-  itemImage: string = '';
+  itemImage: any;
   itemRating;
   companyID: any = parseInt(localStorage.comapnyId);
   selectedCategory: string = 'clothing';
   selectedKind: string = 'Male';
   listKind = ['Male', 'Female', 'Kids'];
   url: any;
+  itemId: any;
   kind = {
     clothing: [] = ['Male', 'Female', 'Kids'],
     electronics: [] = [
@@ -34,12 +37,10 @@ export class AddItemComponent implements OnInit {
     ],
   };
 
-  constructor(private _http: HttpService) {}
-
   ngOnInit(): void {
     console.log('companyID', this.companyID);
+    console.log('this.url', this.url);
   }
-
   show() {
     console.log('AddItemComponent -> itemName', this.itemName);
     console.log('Addthis.ItemComponent -> this.itemPrice', this.itemPrice);
@@ -70,36 +71,30 @@ export class AddItemComponent implements OnInit {
     this.selectedKind = event.target.value;
   }
 
-  chooseAnImage(event: any) {
+  chooseAnImage(event) {
     this.itemImage = event.target.files[0];
+    console.log('this.itemImage===========<<<', this.itemImage);
   }
 
   saveItem() {
-    const file = new FormData();
-    file.append('itemName', this.itemName);
-    file.append('itemPrice', this.itemPrice);
-    file.append('itemDescription', this.itemDescription);
-    file.append('itemImage', this.itemImage);
-    file.append('itemRating', this.itemRating);
-    file.append('companyID', this.companyID);
-    file.append('selectedCategory', this.selectedCategory);
-    file.append('selectedKind', this.selectedKind);
-    if (this.companyID) {
-      return this._http
-        .postAddItem(
-          this.itemName,
-          this.itemPrice,
-          this.itemDescription,
-          file,
-          this.itemRating,
-          this.companyID,
-          this.selectedCategory,
-          this.selectedKind
-        )
-        .subscribe((res) => {
-          this.url = res['itemImage'];
-          console.log(res);
-        });
-    }
+    const formData = new FormData();
+    formData.append('itemName', this.itemName);
+    formData.append('itemPrice', this.itemPrice);
+    formData.append('itemDescription', this.itemDescription);
+    formData.append('itemImage', this.itemImage);
+    formData.append('itemRating', this.itemRating);
+    formData.append('companyID', this.companyID);
+    formData.append('selectedCategory', this.selectedCategory);
+    formData.append('selectedKind', this.selectedKind);
+
+    return this._http.postAddItem(formData).subscribe((res) => {
+      console.log(this.url);
+      console.log('UUUUUUUUUUUUU', res);
+    });
   }
+  // getItemDataToShowTheImage() {
+  //   return this._http.getItemData(itemId).subscribe((res) => {
+  //     this.url = res['url'];
+  //   });
+  // }
 }

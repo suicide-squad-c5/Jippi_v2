@@ -9,15 +9,21 @@ cloudinary.config({
   api_key: '895721462325433',
   api_secret: 'jwt587tJi2fPSuNYmcgq-w4svHU'
 });
-const uploads = multer({
+
+const up = multer({
   dest: 'upload'
-})
-// posting 
-itemsRouter.post("/", uploads.any(0), (req, res) => {
+});
+
+// posting an Item
+itemsRouter.post("/", up.single('itemImage'), (req, res) => {
+  console.log("getting the request");
   console.log("req.file", req.file);
   console.log("req", req.body);
-  var theImg = req.files[0].path;
-  cloudinary.uploader.upload(theImg, (error, result) => {
+  //sending the item image to  cloudinary
+  var img = req.file.path;
+  cloudinary.uploader.upload(img, (error, result) => {
+      error && console.log("cloudinary [error] ==> ", error);
+      console.log("result", result)
       const item = {
         itemName: req.body.itemName,
         itemPrice: req.body.itemPrice,
@@ -30,18 +36,27 @@ itemsRouter.post("/", uploads.any(0), (req, res) => {
       };
       newItem
         .create(item)
-        .then((theItem) => {
-          console.log("theItem that jsut created", theItem)
-          //sending the item image to  cloudinary
-
-          error && console.log("cloudinary [error] ==> ", error);
-          console.log(result);
-          res.send(theItem)
-        });
+    }).then((theItem) => {
+      console.log("theItem", theItem);
+      res.status(201).send(theItem);
     })
     .catch((err) => {
-      console.log(err);
-    });
+      res.send(err)
+    })
+});
+
+itemsRouter.post('/get/:id', (req, res) => {
+  console.log("res", res);
+  console.log("req", req)
+  newItem.findOne({
+    were: {
+      id: req.params.id
+    }
+  }).then((data) => {
+    res.status(200).send(data)
+  }).catch((err) => {
+    res.status(500).send(err)
+  })
 });
 
 module.exports = itemsRouter;
