@@ -14,6 +14,12 @@ export class LocalService {
   // company side.
   private companyID = new BehaviorSubject(null);
   company_iD = this.companyID.asObservable();
+  //basket side.
+  private basket = new BehaviorSubject([]);
+  basktItems = this.basket.asObservable();
+  //quantity items
+  private quantity = new BehaviorSubject([]);
+  quantityItems = this.quantity.asObservable();
 
   constructor() {}
 
@@ -28,4 +34,13 @@ export class LocalService {
   getUserInfo(info: any) {
     this.userInfo.next(info);
   }
+
+  addToBasket(basket_item: any  ){
+    this.basket.next(basket_item);
+  }
+
+addOne(qnt: any){
+  this.quantity.next(qnt);
+}
+
 }
