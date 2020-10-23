@@ -68,6 +68,38 @@ export class HttpService {
     });
   }
 
+
+  // CREATE REQUEST TO DELETE ITEMS FROM ADMIN SIDE.
+  deleteItem(itemId) {
+    return this.http.delete(this.ROOT_URL + `/api/items/${itemId}`);
+  }
+
+  postAddItem(
+    itemName,
+    itemPrice,
+    itemDescription,
+    itemImage,
+    itemRating,
+
+    companyID,
+    selectedCategory,
+    selectedKind
+  ) {
+    return this.http
+      .post(this.ROOT_URL + '/api/items', {
+        itemName: itemName,
+        itemPrice: itemPrice,
+        itemDescription: itemDescription,
+        itemImage: itemImage,
+        itemRating: itemRating,
+        companyID: companyID,
+        category: selectedCategory,
+        kind: selectedKind,
+      })
+      .subscribe(() => {
+        alert('done');
+      });
+  }
   //get all items in db
   getItems() {
     return this.http.get(this.ROOT_URL + '/api/items');
