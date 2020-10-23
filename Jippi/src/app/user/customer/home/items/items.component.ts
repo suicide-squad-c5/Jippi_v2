@@ -6,7 +6,9 @@ import { HttpService } from '../../../../http.service';
   styleUrls: ['./items.component.css'],
 })
 export class ItemsComponent implements OnInit {
+  quantity: any = [];
   itemsList: any = [];
+  basket: any = [];
   constructor(private _http: HttpService) {}
 
   ngOnInit(): void {

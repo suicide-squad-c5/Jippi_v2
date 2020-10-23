@@ -35,8 +35,11 @@ import { AdminSectionComponent } from './user/admin/admin-section/admin-section.
 import { AddAdminComponent } from './user/admin/add-admin/add-admin.component';
 import { ReportsComponent } from './user/admin/reports/reports.component';
 import { AdminHomeComponent } from './user/admin/admin-home/admin-home.component';
+import { BasketComponent } from './user/customer/basket/basket.component';
+import { CompanyHomeComponent } from './user/company/company-home/company-home.component';
 import { AdminItemsComponent } from './user/admin/admin-home/admin-items/admin-items.component';
 import { AdminItemComponent } from './user/admin/admin-home/admin-items/admin-item/admin-item.component';
+
 
 @NgModule({
   declarations: [
@@ -69,6 +72,8 @@ import { AdminItemComponent } from './user/admin/admin-home/admin-items/admin-it
     AddAdminComponent,
     ReportsComponent,
     AdminHomeComponent,
+    BasketComponent,
+    CompanyHomeComponent,
     AdminItemsComponent,
     AdminItemComponent,
   ],
