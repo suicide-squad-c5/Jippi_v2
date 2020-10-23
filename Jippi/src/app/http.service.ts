@@ -42,7 +42,7 @@ export class HttpService {
   postAddItem(formData) {
     return this.http.post(this.ROOT_URL + '/api/items/add', formData);
   }
-
+  // to get the item image updatedin the UI so u can see it before posting it
   getItemData(itemId) {
     return this.http.post(this.ROOT_URL + `/api/items/get/${itemId}`, {
       itemId,

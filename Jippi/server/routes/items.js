@@ -40,7 +40,7 @@ itemsRouter.post("/add", up.single('itemImage'), (req, res) => {
     })
   })
 });
-
+// to get a certain item by it's id
 itemsRouter.post('/get/:id', (req, res) => {
   console.log("res", req.body);
   console.log("req.params", req.params)
