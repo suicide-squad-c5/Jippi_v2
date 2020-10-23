@@ -16,11 +16,15 @@ export class LoginComponent implements OnInit {
   userType: string = 'vsiteur';
   userid: number = null;
 
-  constructor(private _http: HttpService, private local: LocalService, private router: Router ) {}
+  constructor(
+    private _http: HttpService,
+    private local: LocalService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-   this.local.userTy.subscribe( type => this.userType = type)
-   this.local.user_id.subscribe( id => this.userid = id);
+    this.local.userTy.subscribe((type) => (this.userType = type));
+    this.local.user_id.subscribe((id) => (this.userid = id));
   }
 
   /*this will compare the email and password if they match it will response with generating a token to the front end here, along with the id and  here we saved them to the local storeage so if u want to get the data of the user that is logiing in now just get  one object form the Db where the id  matchs */
@@ -36,17 +40,14 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('Id', res['id']);
           this.local.getUserId(res['id']);
           this.newType();
-          }
-          else if (!res['succ']) {
+        } else if (!res['succ']) {
           this.errorMessage = res['status'];
         }
       });
   }
-// function for send the user id to profile component
-  newType(){
-    this.local.changeType("customer");
+  // function for send the user id to profile component
+  newType() {
+    this.local.changeType('customer');
     this.router.navigateByUrl('/');
   }
-
-
 }

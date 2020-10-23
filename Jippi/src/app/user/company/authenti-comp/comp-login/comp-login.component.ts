@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
+import { LocalService } from '../../../../local.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comp-login',
@@ -10,10 +12,19 @@ export class CompLoginComponent implements OnInit {
   // take all login values from the company login.
   companyEmailLog: string = '';
   companyPasswordLog: string = '';
+  token: string = '';
+  userType: string = 'vsiteur';
+  companyId: number = null;
 
-  constructor(private _http: HttpService) {}
+  constructor(
+    private _http: HttpService,
+    private local: LocalService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.local.userTy.subscribe((type) => (this.userType = type));
+  }
 
   ngDoCheck() {
     // check ! (passed fine)
@@ -33,6 +44,12 @@ export class CompLoginComponent implements OnInit {
       console.log('yo', res);
       localStorage.setItem('companyToken', res['token']);
       localStorage.setItem('comapnyId', res['id']);
+      this.changeNav();
     });
+  }
+
+  changeNav() {
+    this.local.changeType('company');
+    this.router.navigateByUrl('/');
   }
 }

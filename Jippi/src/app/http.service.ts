@@ -37,40 +37,25 @@ export class HttpService {
       companyPassword: comapnyLoginObj.companyPassword,
     });
   }
-
-  postAddItem(
-    itemName,
-    itemPrice,
-    itemDescription,
-    itemImage,
-    itemRating,
-
-
-    companyID,
-    selectedCategory,
-    selectedKind
-  ) {
-
-
-    return this.http.post(this.ROOT_URL + '/api/items', {
-      itemName: itemName,
-      itemPrice: itemPrice,
-      itemDescription: itemDescription,
-      itemImage: itemImage,
-      itemRating: itemRating,
-      companyID: companyID,
-      category: selectedCategory,
-      kind: selectedKind,
+  // ================ITEMS=====================
+  //  to add a new item
+  postAddItem(formData) {
+    return this.http.post(this.ROOT_URL + '/api/items/add', formData);
+  }
+  // to get the item image updatedin the UI so u can see it before posting it
+  getItemData(itemId) {
+    return this.http.post(this.ROOT_URL + `/api/items/get/${itemId}`, {
+      itemId,
     });
   }
-
+  // ================================================
   loginCustomer(email, password) {
     return this.http.post(this.ROOT_URL + `/api/login/customer/login`, {
       email,
       password,
     });
   }
-
+  // ================COMPANY====================================
   // that's for updating the company  Data
   editCompanyProfileData(name, email, location, phoneNumber, CId) {
     return this.http.put(this.ROOT_URL + `/api/profile/company/update/${CId}`, {
@@ -88,18 +73,15 @@ export class HttpService {
       CId,
     });
   }
+  // UPDATAE THE AVATART OF THE COMPANY
   updateCompanyAvatar(formData, CId) {
     console.log('CId ===> <==', CId);
     return this.http.put(
       this.ROOT_URL + `/api/profile/company/avatar/${CId}`,
-      formData,
-
-      {
-        reportProgress: true,
-        observe: 'events',
-      }
+      formData
     );
   }
+  // EMAIL AUTH FOR THE COMPANY
   verifyComapnyEmail(CId) {
     return this.http.post(
       this.ROOT_URL + `/api/login/company/sendmail/${CId}`,
@@ -117,17 +99,15 @@ export class HttpService {
       }
     );
   }
+  // ==========COOSTUMER==================
+  custProfile(user_id) {
+    return this.http.get(this.ROOT_URL + `/api/profile/customer/${user_id}`);
+  }
 
-
-
-  custProfile(user_id){
-  return this.http.get(this.ROOT_URL + `/api/profile/customer/${user_id}` )
-}
-
-updateCusInfo(user_id,user){
-  return this.http.post(this.ROOT_URL + `/api/profile/customer/update/${user_id}`,user )
-}
-
-
-
+  updateCusInfo(user_id, user) {
+    return this.http.post(
+      this.ROOT_URL + `/api/profile/customer/update/${user_id}`,
+      user
+    );
+  }
 }
