@@ -4,12 +4,14 @@ const app = express();
 const PORT = process.env.PORT || 3008;
 const cors = require("cors");
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.json());
 app.use(cors());
 // Routes
 // CompanyRoutes
-const signupCompanyRouter = require("./server/routes/auth/compnay/signupcompany.js");
+const signupCompanyRouter = require("./server/routes/auth/compnay/signupcompany.js").signupCompanyRouter;
 const loginCompanyRouter = require("./server/routes/auth/compnay/logincompany.js");
 const companyProfileRouter = require("./server/routes/companyprofile");
 //CustomerRoutes

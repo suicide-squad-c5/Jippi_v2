@@ -1,7 +1,39 @@
 const customerProfileRouter = require("express").Router();
 const db = require("../../database/models");
 const customer = db.customers;
-
+const multer = require("multer");
+var cloudinary = require("cloudinary").v2;
+cloudinary.config({
+  cloud_name: "jipi",
+  api_key: "895721462325433",
+  api_secret: "jwt587tJi2fPSuNYmcgq-w4svHU",
+});
+// that's a multer method that store the file in the upload folder
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'upload');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+// const uploads = multer({
+//   dest: "upload",
+// });
+const fileFileter = (req, res, cb) => {
+  if (file.mimetype !== "image/jpeg" || file.mimetype !== "image/png") {
+    cb(null, false);
+  } else {
+    cb(null, true);
+  }
+};
+const uploads = multer({
+  storage: storage,
+  limits: {
+    fileSize: (1024 * 1024) * 10
+  },
+  fileFileter: fileFileter
+});
 customerProfileRouter.get("/:userid", (req, res) => {
   console.log("++++>", req.params);
   customer
@@ -15,15 +47,36 @@ customerProfileRouter.get("/:userid", (req, res) => {
       res.send(customer);
     });
 });
-//////////////
-customerProfileRouter.post("/update/:userid", (req, res) => {
-  console.log("++++>", req.body);
-  customer.findOne({ where: { id: req.body.userid } }).then((customer) => {
-    console.log("customer", customer.dataValues);
-    customer.update(req.body).then((data) => {
-      res.send(data);
-    });
-  });
+//to  update all  customer data from his profile 
+customerProfileRouter.put("/update/:userid", uploads.single("customerImg"), (req, res) => {
+  console.log("====", req.body)
+  console.log("====", req.file)
+  customer.findOne({
+    where: {
+      id: req.params.userid
+    }
+  }).then((customer) => {
+
+    console.log("customer", customer)
+    const img = req.file.path
+    cloudinary.uploader.upload(img, (error, result) => {
+      error && console.log(error)
+      let values = {
+        first_name: req.body.firstName,
+        last_name: req.body.lastname,
+        email: req.body.email,
+        password: req.body.password,
+        avatar: result.url,
+        adress: req.body.adress,
+        phone_number: req.body.phoneNumber
+      }
+      customer.update(values).then((updatedCustomer) => {
+        res.send(updatedCustomer);
+      });
+    })
+  }).catch((err) => {
+    res.send(err)
+  })
 });
 
 module.exports = customerProfileRouter;

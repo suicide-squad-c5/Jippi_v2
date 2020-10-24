@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // import compnent that will get path.
+import { VerifyEmailComponent } from './user/company/authenti-comp/verify-email/verify-email.component';
 import { HomeComponent } from './user/customer/home/home.component';
 import { ContactUsComponent } from './user/customer/contact-us/contact-us.component';
 import { LoginComponent } from './user/customer/authentification/login/login.component';
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'company/addItem', component: AddItemComponent },
   { path: 'company/profile', component: CompProfileComponent },
   { path: 'company/shop', component: MyShopComponent },
+  { path: 'company/check', component: VerifyEmailComponent },
   // ADMIN SIDE.
   { path: 'admin/jippi', component: AdminComponent },
   { path: 'admin/home', component: AdminHomeComponent },

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './comp-signup.component.html',
@@ -13,7 +13,7 @@ export class CompSignupComponent implements OnInit {
   companyPassword: string = '';
   companyConfirmPassword: string = '';
 
-  constructor(private _http: HttpService) {}
+  constructor(private router: Router, private _http: HttpService) {}
 
   ngOnInit(): void {}
 
@@ -52,7 +52,12 @@ export class CompSignupComponent implements OnInit {
           this.companyEmail
         )
         .subscribe((data) => {
-          alert('signup sucssefuly');
+          localStorage.setItem('comapnyId', data['id']);
+          console.log('data=.......', data);
+          alert(
+            `signup sucssefuly  we have sent you an email at ${this.companyEmail}`
+          );
+          this.router.navigate(['company/check']);
         });
     }
   }
