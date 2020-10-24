@@ -1,344 +1,116 @@
-<div *ngFor="let elm of company_Data; index as i" class="main-content">
-  <!-- Top navbar -->
-  <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-    <div class="container-fluid">
-      <!-- Brand -->
-      <a
-        class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
-        href="https://www.creative-tim.com/product/argon-dashboard"
-        target="_blank"
-        >User profile</a
-      >
-      <!-- Form -->
-      <form
-        class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
-      >
-        <div class="form-group mb-0">
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text"
-                ><i class="fas fa-search"></i
-              ></span>
-            </div>
-            <input class="form-control" placeholder="Search" type="text" />
-          </div>
-        </div>
-      </form>
-      <!-- User -->
-      <ul class="navbar-nav align-items-center d-none d-md-flex">
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link pr-0"
-            href="#"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <img
-                  alt="Image placeholder"
-                  src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg"
-                />
-              </span>
-              <div class="media-body ml-2 d-none d-lg-block">
-                <span class="mb-0 text-sm font-weight-bold"
-                  >{{elm.companyName}}</span
-                >
-              </div>
-            </div>
-          </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-            <div class="dropdown-header noti-title">
-              <h6 class="text-overflow m-0">Welcome!</h6>
-            </div>
-            <a href="../examples/profile.html" class="dropdown-item">
-              <i class="ni ni-single-02"></i>
-              <span>My profile</span>
-            </a>
-            <a href="../examples/profile.html" class="dropdown-item">
-              <i class="ni ni-settings-gear-65"></i>
-              <span>Settings</span>
-            </a>
-            <a href="../examples/profile.html" class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i>
-              <span>Activity</span>
-            </a>
-            <a href="../examples/profile.html" class="dropdown-item">
-              <i class="ni ni-support-16"></i>
-              <span>Support</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#!" class="dropdown-item">
-              <i class="ni ni-user-run"></i>
-              <span>Logout</span>
-            </a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <!-- Header -->
-  <div
-    class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-    style="
-      min-height: 600px;
-      background-image: url(https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/profile-cover.jpg);
-      background-size: cover;
-      background-position: center top;
-    "
-  >
-    <!-- Mask -->
-    <span class="mask bg-gradient-default opacity-8"></span>
-    <!-- Header container -->
-    <div class="container-fluid d-flex align-items-center">
-      <div class="row">
-        <div class="col-lg-7 col-md-10">
-          <h1 class="display-2 text-white">Hello Jesse</h1>
-          <p class="text-white mt-0 mb-5">
-            This is your profile page. You can see the progress you've made with
-            your work and manage your projects or assigned tasks
-          </p>
-          <button (click)="editProfile()" type="submit" class="btn btn-info">
-            Edit profile
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Page content -->
-  <div class="container-fluid mt--7">
+<div class="container emp-profile" *ngFor="let elm of company_Data; index as i"
+  style="margin-top: 5%; border:1px solid; border-radius:1%;border-color:grey; padding:100px;">
+  <div method="post">
     <div class="row">
-      <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-        <div class="card card-profile shadow">
-          <div class="row justify-content-center">
-            <div class="col-lg-3 order-lg-2">
-              <div class="card-profile-image">
-                <a href="#">
-                  <img
-                    [src]="src ? src : 'https://tipsmake.com/data/thumbs/how-to-hide-facebook-profile-picture-thumb-EhRnrBzAY.jpg'"
-                    class="rounded-circle"
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"
-          >
-            <div class="d-flex justify-content-between">
-              <input
-                type="file"
-                (change)="chooseAvatar($event)"
-                class="btn btn-sm btn-info mr-4"
-              />
-
-              Upload Image
-
-              <button
-                (click)="UpdateAvatar()"
-                class="btn btn-sm btn-default float-right"
-              >
-                update
-              </button>
-            </div>
-          </div>
-          <div class="card-body pt-0 pt-md-4">
-            <div class="row">
-              <div class="col">
-                <div
-                  class="card-profile-stats d-flex justify-content-center mt-md-5"
-                >
-                  <div>
-                    <span class="heading">22</span>
-                    <span class="description">Friends</span>
-                  </div>
-                  <div>
-                    <span class="heading">10</span>
-                    <span class="description">Photos</span>
-                  </div>
-                  <div>
-                    <span class="heading">89</span>
-                    <span class="description">Comments</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="text-center">
-              <h3>
-                {{elm.companyName}}<span class="font-weight-light">, 27</span>
-              </h3>
-              <div class="h5 font-weight-300">
-                <i class="ni location_pin mr-2"></i>{{elm.location}}
-              </div>
-              <div class="h5 mt-4">
-                <i class="ni business_briefcase-24 mr-2"></i>{{elm.email}}
-              </div>
-              <div>
-                <i class="ni education_hat mr-2"></i>University of Computer
-                Science
-              </div>
-              <hr class="my-4" />
-              <p>
-                Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick
-                Murphy — writes, performs and records all of his own music.
-              </p>
-              <a href="#">Show more</a>
-            </div>
-          </div>
+      <div class="col-md-4">
+        <div class="profile-img">
+          <img src="https://www.flaticon.com/svg/static/icons/svg/3061/3061341.svg" alt="" style="width:80%" />
         </div>
       </div>
-      <div class="col-xl-8 order-xl-1">
-        <div class="card bg-secondary shadow">
-          <div class="card-header bg-white border-0">
-            <div class="row align-items-center">
-              <div class="col-8">
-                <h3 class="mb-0">My account</h3>
+      <div class="col-md-6">
+        <div class="profile-head">
+          <h1>
+            {{elm.companyName}}
+          </h1>
+          <br />
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                aria-selected="true">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                aria-selected="false">Timeline</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"
+          [routerLink]="['/company/edit']" />
+      </div>
+    </div>
+    <div class="form_test">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="tab-content profile-tab" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Email</label>
+                </div>
+                <div class="col-md-6">
+                  <p>{{elm.companyEmail}}</p>
+                </div>
               </div>
-              <div class="col-4 text-right">
-                <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Phone number</label>
+                </div>
+                <div class="col-md-6">
+                  <p>+216 {{elm.phoneNumber}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Comapny location</label>
+                </div>
+                <div class="col-md-6">
+                  <p>{{elm.location}}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card-body">
-            <form>
-              <h6 class="heading-small text-muted mb-4">ompany information</h6>
-              <div class="pl-lg-4">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="form-group focused">
-                      <label class="form-control-label" for="input-name"
-                        >{{elm.companyName}}</label
-                      >
-                      <input
-                        [(ngModel)]="name"
-                        [ngModelOptions]="{standalone: true}"
-                        type="text"
-                        id="input-name"
-                        class="form-control form-control-alternative"
-                        placeholder="name"
-                        value="lucky.jesse"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-email"
-                        >Email address</label
-                      >
-                      <input
-                        [(ngModel)]="email"
-                        [ngModelOptions]="{standalone: true}"
-                        type="email"
-                        id="input-email"
-                        class="form-control form-control-alternative"
-                        placeholder="exp@example.com"
-                      />
-                    </div>
-                  </div>
+
+            <!-- her whene timline start -->
+
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Experience</label>
                 </div>
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="form-group focused">
-                      <label class="form-control-label" for="input-first-name"
-                        >location</label
-                      >
-                      <input
-                        [(ngModel)]="location"
-                        [ngModelOptions]="{standalone: true}"
-                        type="text"
-                        id="input-first-name"
-                        class="form-control form-control-alternative"
-                        placeholder="location"
-                        value="Lucky"
-                      />
-                    </div>
-                  </div>
+                <div class="col-md-6">
+                  <p>Expert</p>
                 </div>
               </div>
-              <hr class="my-4" />
-              <!-- PhoneNumber -->
-              <h6 class="heading-small text-muted mb-4">Contact information</h6>
-              <div class="pl-lg-4">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group focused">
-                      <label class="form-control-label" for="input-PhoneNumber"
-                        >PhoneNumber</label
-                      >
-                      <input
-                        [(ngModel)]="phoneNumber"
-                        [ngModelOptions]="{standalone: true}"
-                        id="input-PhoneNumber"
-                        class="form-control form-control-alternative"
-                        placeholder=" PhoneNumber"
-                        value="Number"
-                        type="text"
-                      />
-                    </div>
-                  </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Hourly Rate</label>
                 </div>
-                <div class="row">
-                  <div class="col-lg-4">
-                    <div class="form-group focused">
-                      <label class="form-control-label" for="input-city"
-                        >City</label
-                      >
-                      <input
-                        type="text"
-                        id="input-city"
-                        class="form-control form-control-alternative"
-                        placeholder="City"
-                        value="New York"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group focused">
-                      <label class="form-control-label" for="input-country"
-                        >Country</label
-                      >
-                      <input
-                        type="text"
-                        id="input-country"
-                        class="form-control form-control-alternative"
-                        placeholder="Country"
-                        value="Any"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-country"
-                        >Postal code</label
-                      >
-                      <input
-                        type="number"
-                        id="input-postal-code"
-                        class="form-control form-control-alternative"
-                        placeholder="Postal code"
-                      />
-                    </div>
-                  </div>
+                <div class="col-md-6">
+                  <p>10$/hr</p>
                 </div>
               </div>
-              <hr class="my-4" />
-              <!-- Description -->
-              <h6 class="heading-small text-muted mb-4">About Us</h6>
-              <div class="pl-lg-4">
-                <div class="form-group focused">
-                  <label>About Us</label>
-                  <textarea
-                    rows="4"
-                    class="form-control form-control-alternative"
-                    placeholder="A few words about you ..."
-                  >
-A Description</textarea
-                  >
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Total Projects</label>
+                </div>
+                <div class="col-md-6">
+                  <p>230</p>
                 </div>
               </div>
-            </form>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>English Level</label>
+                </div>
+                <div class="col-md-6">
+                  <p>Expert</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Availability</label>
+                </div>
+                <div class="col-md-6">
+                  <p>6 months</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label>Your Bio</label><br />
+                  <p>Your detail description</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

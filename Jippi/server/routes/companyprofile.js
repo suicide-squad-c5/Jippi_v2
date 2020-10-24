@@ -12,6 +12,7 @@ cloudinary.config({
   api_key: "895721462325433",
   api_secret: "jwt587tJi2fPSuNYmcgq-w4svHU",
 });
+
 // that's a multer method that store the file in the upload folder
 // const storage = multer.diskStorage({
 //   destination: function (req, file, cb) {
@@ -21,6 +22,7 @@ cloudinary.config({
 //     cb(null, file.originalname);
 //   }
 // });
+
 const uploads = multer({
   dest: "upload",
 });
@@ -42,15 +44,15 @@ const fileFileter = (req, res, cb) => {
 //   fileFileter: fileFileter
 // });
 // updating company Data
-companyProfileRouter.put("/update/:id", (req, res) => {
+companyProfileRouter.put("/update/:companyId", (req, res) => {
   console.log("req.body =====>", req.body);
   console.log(" req.params update ", req.params);
 
   Company.findOne({
-      where: {
-        id: req.params.id,
-      },
-    })
+    where: {
+      id: req.params.companyId,
+    },
+  })
     .then((record) => {
       console.log("Company =====>", record);
       if (!record) {
@@ -59,8 +61,8 @@ companyProfileRouter.put("/update/:id", (req, res) => {
 
       let values = {
         registered: true,
-        companyName: req.body.name,
-        companyEmail: req.body.email,
+        companyName: req.body.companyName,
+        companyEmail: req.body.companyEmail,
         location: req.body.location,
         phoneNumber: req.body.phoneNumber,
       };
@@ -82,10 +84,10 @@ companyProfileRouter.post("/get/:id", (req, res) => {
   console.log(" req.params get ", req.params);
 
   Company.findOne({
-      where: {
-        id: req.params.id,
-      },
-    })
+    where: {
+      id: req.params.id,
+    },
+  })
     .then((record) => {
       if (!record) {
         throw new Error("No Company found get");
@@ -105,10 +107,10 @@ companyProfileRouter.put("/avatar/:id", uploads.any(0), (req, res) => {
   console.log("req.body", req.body.cId);
   console.log("req", req.files[0].path);
   Company.findOne({
-      where: {
-        id: req.params.id,
-      },
-    })
+    where: {
+      id: req.params.id,
+    },
+  })
     .then((company) => {
       var theImg = req.files[0].path;
 

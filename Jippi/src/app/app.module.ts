@@ -42,6 +42,7 @@ import { AdminItemComponent } from './user/admin/admin-home/admin-items/admin-it
 import { UsersComponent } from './user/admin/users/users.component';
 import { CompaniesUsersComponent } from './user/admin/users/companies-users/companies-users.component';
 import { CustomersUserComponent } from './user/admin/users/customers-user/customers-user.component';
+import { CompEditProfileComponent } from './user/company/comp-profile/comp-edit-profile/comp-edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { CustomersUserComponent } from './user/admin/users/customers-user/custom
     AdminItemComponent,
     UsersComponent,
     CompaniesUsersComponent,
+    CompEditProfileComponent,
     // CustomersUserComponent,
   ],
   imports: [
