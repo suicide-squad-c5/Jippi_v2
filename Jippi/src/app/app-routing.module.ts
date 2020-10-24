@@ -20,6 +20,7 @@ import { AddAdminComponent } from './user/admin/add-admin/add-admin.component';
 import { ReportsComponent } from './user/admin/reports/reports.component';
 import { BasketComponent } from './user/customer/basket/basket.component';
 import { UsersComponent } from './user/admin/users/users.component';
+import { CompanyHomeComponent } from './user/company/company-home/company-home.component';
 
 const routes: Routes = [
   // CUSTOEMR SIDE.
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'company/addItem', component: AddItemComponent },
   { path: 'company/profile', component: CompProfileComponent },
   { path: 'company/shop', component: MyShopComponent },
+  { path: 'company/home', component: CompanyHomeComponent },
   // ADMIN SIDE.
   { path: 'admin/jippi', component: AdminComponent },
   { path: 'admin/home', component: AdminHomeComponent },
