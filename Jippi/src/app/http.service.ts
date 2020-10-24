@@ -48,7 +48,11 @@ export class HttpService {
       itemId,
     });
   }
-  //add an item to the database
+
+  getcompanyItems(companyId) {
+    return this.http.get(this.ROOT_URL + `/api/items/Company/${companyId}`);
+  }
+
 
   // CREATE POST REQUEST FOR THE ADMIN LOGIN.
   postAdminlogin(adminLogin) {
@@ -56,6 +60,11 @@ export class HttpService {
       adminEmail: adminLogin.adminEmail,
       adminPassword: adminLogin.adminPassword,
     });
+  }
+
+  // GET ALL CUSTOMERS FOR THE ADMIN LIST.
+  getcustomers() {
+    return this.http.get(this.ROOT_URL + '/api/profile/customer');
   }
 
   // CREATE POST REQUEST TO THE ADMIN CREATE ACCOUNT.
@@ -66,6 +75,11 @@ export class HttpService {
       adminPassword: adminCreate.adminPassword,
       adminAvatar: adminCreate.adminAvatar,
     });
+  }
+
+  // CREATE REQUEST TO DELETE ITEMS FROM ADMIN SIDE.
+  deleteItem(itemId) {
+    return this.http.delete(this.ROOT_URL + `/api/items/${itemId}`);
   }
 
   //get all items in db

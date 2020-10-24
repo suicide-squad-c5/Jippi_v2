@@ -79,4 +79,13 @@ customerProfileRouter.put("/update/:userid", uploads.single("customerImg"), (req
   })
 });
 
+customerProfileRouter.get("/", async (req, res) => {
+  try {
+    const customers = await customer.findAll();
+    res.send(customers);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = customerProfileRouter;

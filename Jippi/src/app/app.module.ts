@@ -35,6 +35,17 @@ import { AdminSectionComponent } from './user/admin/admin-section/admin-section.
 import { AddAdminComponent } from './user/admin/add-admin/add-admin.component';
 import { ReportsComponent } from './user/admin/reports/reports.component';
 import { AdminHomeComponent } from './user/admin/admin-home/admin-home.component';
+import { BasketComponent } from './user/customer/basket/basket.component';
+import { CompanyHomeComponent } from './user/company/company-home/company-home.component';
+import { AdminItemsComponent } from './user/admin/admin-home/admin-items/admin-items.component';
+import { AdminItemComponent } from './user/admin/admin-home/admin-items/admin-item/admin-item.component';
+import { UsersComponent } from './user/admin/users/users.component';
+import { CompaniesUsersComponent } from './user/admin/users/companies-users/companies-users.component';
+import { CustomersUserComponent } from './user/admin/users/customers-user/customers-user.component';
+import { CompanyItemsComponent } from './user/company/company-home/company-items/company-items.component';
+import { CompanyItemComponent } from './user/company/company-home/company-items/company-item/company-item.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +77,16 @@ import { AdminHomeComponent } from './user/admin/admin-home/admin-home.component
     AddAdminComponent,
     ReportsComponent,
     AdminHomeComponent,
+    BasketComponent,
+    CompanyHomeComponent,
+    AdminItemsComponent,
+    AdminItemComponent,
+    UsersComponent,
+    CompaniesUsersComponent,
+    CompanyItemsComponent,
+    CompanyItemComponent,
+
+    // CustomersUserComponent,
   ],
   imports: [
     BrowserModule,
