@@ -32,8 +32,9 @@ itemsRouter.post("/add", up.single("itemImage"), (req, res) => {
         itemImage: result.url,
         itemRating: req.body.itemRating,
         itemCompany: req.body.companyID,
-        itemCategory: req.body.category,
-        itemKind: req.body.kind,
+        itemCategory: req.body.selectedCategory,
+        itemKind: req.body.selectedKind,
+
       };
       newItem
         .create(item)
