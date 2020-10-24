@@ -1,6 +1,7 @@
 const itemsRouter = require("express").Router();
 const db = require("../../database/models");
 const multer = require("multer");
+
 var cloudinary = require("cloudinary").v2;
 
 const newItem = db.items;
@@ -33,6 +34,7 @@ itemsRouter.post("/add", up.single("itemImage"), (req, res) => {
         itemCompany: req.body.companyID,
         itemCategory: req.body.selectedCategory,
         itemKind: req.body.selectedKind,
+
       };
       newItem
         .create(item)
@@ -64,6 +66,7 @@ itemsRouter.post("/get/:id", (req, res) => {
         res.send("there is no data");
       }
     });
+
 });
 
 itemsRouter.get("/", async (req, res) => {
@@ -82,6 +85,20 @@ itemsRouter.delete(`/:itemId`, async (req, res) => {
     },
   });
   console.log("heyyyyyyy", req.params.itemId);
+});
+
+
+itemsRouter.get(`/Company/:id`, async (req, res) => {
+  try {
+    const items = await newItem.findAll({
+      where: {
+        itemCompany: req.params.id,
+      },
+    });
+    res.status(200).send(items);
+  } catch (e) {
+    console.error(e);
+  }
 });
 
 module.exports = itemsRouter;
