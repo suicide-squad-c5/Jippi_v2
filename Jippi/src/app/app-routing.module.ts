@@ -18,6 +18,8 @@ import { AdminComponent } from './user/admin/admin.component';
 import { AdminHomeComponent } from './user/admin/admin-home/admin-home.component';
 import { AddAdminComponent } from './user/admin/add-admin/add-admin.component';
 import { ReportsComponent } from './user/admin/reports/reports.component';
+import { BasketComponent } from './user/customer/basket/basket.component';
+import { UsersComponent } from './user/admin/users/users.component';
 
 const routes: Routes = [
   // CUSTOEMR SIDE.
@@ -39,6 +41,8 @@ const routes: Routes = [
   { path: 'admin/home', component: AdminHomeComponent },
   { path: 'admin/addadmin', component: AddAdminComponent },
   { path: 'admin/reports', component: ReportsComponent },
+  { path: 'customer/basket', component: BasketComponent },
+  { path: 'admin/users', component: UsersComponent },
 ];
 
 @NgModule({
