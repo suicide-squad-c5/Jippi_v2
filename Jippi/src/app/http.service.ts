@@ -48,7 +48,11 @@ export class HttpService {
       itemId,
     });
   }
-  //add an item to the database
+
+  getcompanyItems(companyId) {
+    return this.http.get(this.ROOT_URL + `/api/items/Company/${companyId}`);
+  }
+
 
   // CREATE POST REQUEST FOR THE ADMIN LOGIN.
   postAdminlogin(adminLogin) {

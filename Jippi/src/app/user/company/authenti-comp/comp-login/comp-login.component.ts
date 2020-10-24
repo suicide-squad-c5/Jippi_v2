@@ -50,6 +50,6 @@ export class CompLoginComponent implements OnInit {
 
   changeNav() {
     this.local.changeType('company');
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/company/home');
   }
 }
