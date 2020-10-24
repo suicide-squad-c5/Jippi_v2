@@ -53,6 +53,7 @@ export class HttpService {
     return this.http.get(this.ROOT_URL + `/api/items/Company/${companyId}`);
   }
 
+
   // CREATE POST REQUEST FOR THE ADMIN LOGIN.
   postAdminlogin(adminLogin) {
     return this.http.post(this.ROOT_URL + `/admin/jippi`, {

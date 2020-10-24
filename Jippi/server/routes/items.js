@@ -1,6 +1,7 @@
 const itemsRouter = require("express").Router();
 const db = require("../../database/models");
 const multer = require("multer");
+
 var cloudinary = require("cloudinary").v2;
 
 const newItem = db.items;
@@ -64,6 +65,7 @@ itemsRouter.post("/get/:id", (req, res) => {
         res.send("there is no data");
       }
     });
+
 });
 
 itemsRouter.get("/", async (req, res) => {
@@ -83,6 +85,7 @@ itemsRouter.delete(`/:itemId`, async (req, res) => {
   });
   console.log("heyyyyyyy", req.params.itemId);
 });
+
 
 itemsRouter.get(`/Company/:id`, async (req, res) => {
   try {

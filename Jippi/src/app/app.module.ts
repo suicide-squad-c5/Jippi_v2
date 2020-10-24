@@ -45,6 +45,7 @@ import { CustomersUserComponent } from './user/admin/users/customers-user/custom
 import { CompanyItemsComponent } from './user/company/company-home/company-items/company-items.component';
 import { CompanyItemComponent } from './user/company/company-home/company-items/company-item/company-item.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +85,7 @@ import { CompanyItemComponent } from './user/company/company-home/company-items/
     CompaniesUsersComponent,
     CompanyItemsComponent,
     CompanyItemComponent,
+
     // CustomersUserComponent,
   ],
   imports: [
