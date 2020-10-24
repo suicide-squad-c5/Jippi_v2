@@ -16,15 +16,16 @@
   top: 50%;
 }
 
-.card{
-    margin-top:3%;
-    margin-left: 3%;
-    padding: 25px;
-    
+.card {
+  margin-top: 3%;
+  margin-left: 3%;
+  padding: 25px;
+  width: 18rem;
+  margin-left: 15%;
 }
 
-#shopBy{
-    text-align: center;
+#shopBy {
+  text-align: center;
 }
 
 ul.rating li {
@@ -32,15 +33,14 @@ ul.rating li {
   margin-left: 2%;
 }
 
-.form-check{
-    margin-top:4%;
-    
+.form-check {
+  margin-top: 4%;
 }
 
-li{
-    list-style-type: none;
+li {
+  list-style-type: none;
 }
 
-.list{
-    text-align: left;
+.list {
+  text-align: left;
 }

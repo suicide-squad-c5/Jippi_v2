@@ -6,6 +6,7 @@ module.exports = (sequelize, Sequelize) => {
     avatar: Sequelize.STRING,
     location: Sequelize.STRING,
     phoneNumber: Sequelize.STRING,
+    verificationCode: Sequelize.STRING
   });
   return Company;
 };

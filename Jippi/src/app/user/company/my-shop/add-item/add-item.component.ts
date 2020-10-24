@@ -40,6 +40,8 @@ export class AddItemComponent implements OnInit {
   ngOnInit(): void {
     console.log('companyID', this.companyID);
     console.log('this.url', this.url);
+    console.log('kind', this.selectedKind)
+    console.log('catigory', this.selectedCategory);
   }
   show() {
     console.log('AddItemComponent -> itemName', this.itemName);

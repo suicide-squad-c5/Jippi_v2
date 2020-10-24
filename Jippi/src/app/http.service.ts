@@ -48,7 +48,11 @@ export class HttpService {
       itemId,
     });
   }
-  //add an item to the database
+
+  getcompanyItems(companyId) {
+    return this.http.get(this.ROOT_URL + `/api/items/Company/${companyId}`);
+  }
+
 
   // CREATE POST REQUEST FOR THE ADMIN LOGIN.
   postAdminlogin(adminLogin) {
@@ -146,11 +150,13 @@ export class HttpService {
   custProfile(user_id) {
     return this.http.get(this.ROOT_URL + `/api/profile/customer/${user_id}`);
   }
-
-  updateCusInfo(user_id, user) {
-    return this.http.post(
-      this.ROOT_URL + `/api/profile/customer/update/${user_id}`,
-      user
+  updateCusInfo(formData, userId) {
+    return this.http.put(
+      this.ROOT_URL + `/api/profile/customer/update/${userId}`,
+      formData
     );
+  }
+  getTheUpdateCustomerImage(imageId) {
+    return this.http.get(this.ROOT_URL + `/api/profile/customer/${imageId}`);
   }
 }

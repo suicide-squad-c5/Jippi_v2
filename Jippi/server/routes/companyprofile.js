@@ -89,6 +89,7 @@ companyProfileRouter.post("/get/:id", (req, res) => {
     },
   })
     .then((record) => {
+      console.log("record", record)
       if (!record) {
         throw new Error("No Company found get");
       } else {
