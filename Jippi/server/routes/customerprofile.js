@@ -26,4 +26,13 @@ customerProfileRouter.post("/update/:userid", (req, res) => {
   });
 });
 
+customerProfileRouter.get("/", async (req, res) => {
+  try {
+    const customers = await customer.findAll();
+    res.send(customers);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = customerProfileRouter;
