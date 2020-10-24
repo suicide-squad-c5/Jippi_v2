@@ -20,6 +20,9 @@ export class LocalService {
   //quantity items
   private quantity = new BehaviorSubject([]);
   quantityItems = this.quantity.asObservable();
+  //items for filter
+  private itemslist = new BehaviorSubject([]);
+  items_list = this.itemslist.asObservable();
 
   constructor() {}
 
@@ -41,6 +44,10 @@ export class LocalService {
 
 addOne(qnt: any){
   this.quantity.next(qnt);
+}
+
+passItems(items){
+  this.itemslist.next(items);
 }
 
 }
