@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
-
+import { Router } from '@angular/router';
 // import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
   phoneNumber: string = '';
   newUser: any = [];
 
-  constructor(private _http: HttpService) {}
+  constructor(private _http: HttpService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -44,6 +44,8 @@ export class SignupComponent implements OnInit {
       .subscribe((data) => {
         this.newUser = data;
         console.log(data);
+        this.router.navigateByUrl('/login');
       });
+    
   }
 }

@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
+
 @Component({
-  selector: 'app-items',
-  templateUrl: './items.component.html',
-  styleUrls: ['./items.component.css'],
+  selector: 'app-admin-items',
+  templateUrl: './admin-items.component.html',
+  styleUrls: ['./admin-items.component.css'],
 })
-export class ItemsComponent implements OnInit {
-  quantity: any = [];
+export class AdminItemsComponent implements OnInit {
   itemsList: any = [];
-  basket: any = [];
   constructor(private _http: HttpService) {}
 
   ngOnInit(): void {
@@ -17,6 +16,7 @@ export class ItemsComponent implements OnInit {
   getitems() {
     return this._http.getItems().subscribe((data) => {
       this.itemsList = data;
+      console.log(this.itemsList);
     });
   }
 }

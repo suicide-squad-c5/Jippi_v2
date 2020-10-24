@@ -1,28 +1,61 @@
 const itemsRouter = require("express").Router();
 const db = require("../../database/models");
-const newItem = db.items;
+const multer = require("multer");
+var cloudinary = require('cloudinary').v2;
 
-itemsRouter.post("/", (req, res) => {
-  console.log("req", req.body);
-  const item = {
-    itemName: req.body.itemName,
-    itemPrice: req.body.itemPrice,
-    itemDescription: req.body.itemDescription,
-    itemImage: req.body.itemImage,
-    itemRating: req.body.itemRating,
-    itemCompany: req.body.companyID,
-    itemCategory: req.body.category,
-    itemKind: req.body.kind,
-  };
-  newItem
-    .create(item)
-    .then(() => {
-      var status = 200;
-      res.send({ status });
+const newItem = db.items
+
+cloudinary.config({
+  cloud_name: 'jipi',
+  api_key: '895721462325433',
+  api_secret: 'jwt587tJi2fPSuNYmcgq-w4svHU'
+});
+
+const up = multer({
+  dest: 'upload'
+});
+
+// posting an Item
+itemsRouter.post("/add", up.single('itemImage'), (req, res) => {
+  var img = req.file.path;
+  cloudinary.uploader.upload(img, (error, result) => {
+    error && console.log("cloudinary [error] ==> ", error);
+  }).then((result) => {
+    console.log("result9898989*", result)
+    const item = {
+      itemName: req.body.itemName,
+      itemPrice: req.body.itemPrice,
+      itemDescription: req.body.itemDescription,
+      itemImage: result.url,
+      itemRating: req.body.itemRating,
+      itemCompany: req.body.companyID,
+      itemCategory: req.body.category,
+      itemKind: req.body.kind,
+    };
+    newItem.create(item).then((theItem) => {
+      console.log("theItem=========>", theItem);
+      res.send(theItem);
+    }).catch((err) => {
+      res.send(err)
     })
-    .catch((e) => {
-      console.log(e);
-    });
+  })
+});
+// to get a certain item by it's id
+itemsRouter.post('/get/:id', (req, res) => {
+  console.log("res", req.body);
+  console.log("req.params", req.params)
+  newItem.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then((data) => {
+    console.log("data", data)
+    res.status(200).send(data)
+  }).catch((err) => {
+    if (err) {
+      res.send("there is no data")
+    }
+  })
 });
 
 itemsRouter.get("/", async (req, res) => {
@@ -32,6 +65,15 @@ itemsRouter.get("/", async (req, res) => {
   } catch (e) {
     console.log(e);
   }
+});
+
+itemsRouter.delete(`/:itemId`, async (req, res) => {
+  newItem.destroy({
+    where: {
+      id: req.params.itemId,
+    },
+  });
+  console.log("heyyyyyyy", req.params.itemId);
 });
 
 module.exports = itemsRouter;

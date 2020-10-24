@@ -37,6 +37,17 @@ export class HttpService {
       companyPassword: comapnyLoginObj.companyPassword,
     });
   }
+  // ================ITEMS=====================
+  //  to add a new item
+  postAddItem(formData) {
+    return this.http.post(this.ROOT_URL + '/api/items/add', formData);
+  }
+  // to get the item image updatedin the UI so u can see it before posting it
+  getItemData(itemId) {
+    return this.http.post(this.ROOT_URL + `/api/items/get/${itemId}`, {
+      itemId,
+    });
+  }
   //add an item to the database
 
   // CREATE POST REQUEST FOR THE ADMIN LOGIN.
@@ -45,6 +56,11 @@ export class HttpService {
       adminEmail: adminLogin.adminEmail,
       adminPassword: adminLogin.adminPassword,
     });
+  }
+
+  // GET ALL CUSTOMERS FOR THE ADMIN LIST.
+  getcustomers() {
+    return this.http.get(this.ROOT_URL + '/api/profile/customer');
   }
 
   // CREATE POST REQUEST TO THE ADMIN CREATE ACCOUNT.
@@ -57,46 +73,23 @@ export class HttpService {
     });
   }
 
-  postAddItem(
-    itemName,
-    itemPrice,
-    itemDescription,
-    itemImage,
-    itemRating,
-
-    companyID,
-    selectedCategory,
-    selectedKind
-  ) {
-
-    return this.http
-      .post(this.ROOT_URL + '/api/items', {
-        itemName: itemName,
-        itemPrice: itemPrice,
-        itemDescription: itemDescription,
-        itemImage: itemImage,
-        itemRating: itemRating,
-        companyID: companyID,
-        category: selectedCategory,
-        kind: selectedKind,
-      })
-      .subscribe(() => {
-        alert('done');
-      });
+  // CREATE REQUEST TO DELETE ITEMS FROM ADMIN SIDE.
+  deleteItem(itemId) {
+    return this.http.delete(this.ROOT_URL + `/api/items/${itemId}`);
   }
+
   //get all items in db
   getItems() {
     return this.http.get(this.ROOT_URL + '/api/items');
-
   }
-
+  // ================================================
   loginCustomer(email, password) {
     return this.http.post(this.ROOT_URL + `/api/login/customer/login`, {
       email,
       password,
     });
   }
-
+  // ================COMPANY====================================
   // that's for updating the company  Data
   editCompanyProfileData(name, email, location, phoneNumber, CId) {
     return this.http.put(this.ROOT_URL + `/api/profile/company/update/${CId}`, {
@@ -107,25 +100,22 @@ export class HttpService {
       CId,
     });
   }
-  // that's for receiving  the company  Data
+  // that's for receiving  the company Data
   getCompanyData(CId) {
     console.log('Cid ===> ', CId);
     return this.http.post(this.ROOT_URL + `/api/profile/company/get/${CId}`, {
       CId,
     });
   }
+  // UPDATAE THE AVATART OF THE COMPANY
   updateCompanyAvatar(formData, CId) {
     console.log('CId ===> <==', CId);
     return this.http.put(
       this.ROOT_URL + `/api/profile/company/avatar/${CId}`,
-      formData,
-
-      {
-        reportProgress: true,
-        observe: 'events',
-      }
+      formData
     );
   }
+  // EMAIL AUTH FOR THE COMPANY
   verifyComapnyEmail(CId) {
     return this.http.post(
       this.ROOT_URL + `/api/login/company/sendmail/${CId}`,
@@ -143,7 +133,7 @@ export class HttpService {
       }
     );
   }
-
+  // ==========COOSTUMER==================
   custProfile(user_id) {
     return this.http.get(this.ROOT_URL + `/api/profile/customer/${user_id}`);
   }
