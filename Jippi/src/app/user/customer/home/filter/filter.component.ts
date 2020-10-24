@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filter.component.css'],
 })
 export class FilterComponent implements OnInit {
+  kinds: [];
+
   constructor() {}
 
   ngOnInit(): void {}
