@@ -137,6 +137,15 @@ companyProfileRouter.put("/avatar/:id", uploads.any(0), (req, res) => {
     .catch((err) => {
       res.status(400).send(err);
     });
+
+  companyProfileRouter.get("/get", async (req, res) => {
+    try {
+      const companiesA = await Company.findAll();
+      res.send(companiesA);
+    } catch (err) {
+      console.log(err);
+    }
+  });
 });
 
 module.exports = companyProfileRouter;

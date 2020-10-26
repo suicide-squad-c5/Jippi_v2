@@ -80,7 +80,7 @@ export class HttpService {
 
   // GET ALL THE COMPANIES FOR THE ADMIN SIDE.
   getCompanies() {
-    return this.http.get(this.ROOT_URL + `/api/companies`);
+    return this.http.get(this.ROOT_URL + `/api/profile/company`);
   }
 
   //get all items in db
@@ -94,6 +94,7 @@ export class HttpService {
       password,
     });
   }
+
   // ================COMPANY====================================
   // that's for updating the company  Data
   editCompanyProfileData(
@@ -157,5 +158,12 @@ export class HttpService {
       this.ROOT_URL + `/api/profile/customer/update/${user_id}`,
       user
     );
+  }
+  getTheUpdateCustomerImage(imageId) {
+    return this.http.get(this.ROOT_URL + `/api/profile/customer/${imageId}`);
+  }
+
+  getcompanyItems(companyId) {
+    return this.http.get(this.ROOT_URL + `/api/items/Company/${companyId}`);
   }
 }

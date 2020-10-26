@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../../../../http.service';
 
 @Component({
   selector: 'app-companies-users',
@@ -6,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./companies-users.component.css'],
 })
 export class CompaniesUsersComponent implements OnInit {
-  constructor() {}
+  constructor(private _http: HttpService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getCompanies();
+  }
+
+  getCompanies() {
+    this._http.getCompanies().subscribe((data) => {
+      console.log(data);
+    });
+  }
 }
