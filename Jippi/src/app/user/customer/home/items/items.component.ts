@@ -16,11 +16,10 @@ export class ItemsComponent implements OnInit {
   ngOnInit(): void {
     this.getitems();
     // this.local.items_list.subscribe(items => this.itemsList = items);
-    this.local.items_list.subscribe(items => this.itemsList = items);
+    this.local.items_list.subscribe((items) => (this.itemsList = items));
   }
   ngDoCheck() {
-    
-    console.log("++++>>",this.itemsList)
+    console.log('++++>>', this.itemsList);
   }
   getitems() {
     return this._http.getItems().subscribe((data) => {
@@ -28,9 +27,4 @@ export class ItemsComponent implements OnInit {
       this.local.passItems(data);
     });
   }
-
-  
-
-  
-
 }
