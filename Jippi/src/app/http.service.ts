@@ -59,9 +59,9 @@ export class HttpService {
   }
 
   // GET ALL CUSTOMERS FOR THE ADMIN LIST.
-  getcustomers() {
-    return this.http.get(this.ROOT_URL + '/api/profile/customer');
-  }
+  // getcustomers() {
+  //   return this.http.get(this.ROOT_URL + '/api/profile/customer');
+  // }
 
   // CREATE POST REQUEST TO THE ADMIN CREATE ACCOUNT.
   postAdminCreate(adminCreate) {
@@ -83,6 +83,23 @@ export class HttpService {
     return this.http.get(this.ROOT_URL + `/api/profile/company`);
   }
 
+  // BAN THE COMPANY BY UPDATE BANN FROM FALSE TO TRUE.
+  bannCompany(companyId) {
+    return this.http.put(this.ROOT_URL + `/api/profile/company/${companyId}`, {
+      companyId,
+    });
+  }
+
+  // UNBANNED COMPANY FOR THE ADMIN SIDE. \
+  unbanedCompany(companyId) {
+    return this.http.put(
+      this.ROOT_URL + `/api/profile/company/unbaned/${companyId}`,
+      {
+        companyId,
+      }
+    );
+  }
+
   //get all items in db
   getItems() {
     return this.http.get(this.ROOT_URL + '/api/items');
@@ -95,7 +112,7 @@ export class HttpService {
     });
   }
 
-  // ================COMPANY====================================
+  // ==============================COMPANY====================================
   // that's for updating the company  Data
   editCompanyProfileData(
     companyName,
