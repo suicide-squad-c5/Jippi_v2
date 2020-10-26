@@ -28,12 +28,14 @@
                   type="checkbox"
                   name="Camera & Photo"
                   value="Camera & Photo"
+                  [(ngModel)] = "items_kinds['Camera & Photo']"
                 />Camera & Photo
               </li>
               <li class="list">
                 <input
                   type="checkbox"
                   name="Computers"
+                  [(ngModel)] = "items_kinds['Computers']"
                   value="Computers"
                 />Computers
               </li>
@@ -41,6 +43,7 @@
                 <input
                   type="checkbox"
                   name="Wearable Technology"
+                  [(ngModel)] = "items_kinds['Wearable Technology']"
                   value="Wearable Technology"
                 />Wearable Technology
               </li>
@@ -48,6 +51,7 @@
                 <input
                   type="checkbox"
                   name="Cell Phones"
+                  [(ngModel)] = "items_kinds['Cell Phones']"
                   value="Cell Phones"
                 />Cell Phones
               </li>
@@ -66,13 +70,19 @@
           <div id="cate2" class="collapse">
             <ul>
               <li class="list">
-                <input type="checkbox" name="Male" value="Male" />Male
+                <input type="checkbox" name="Male" value="Male" 
+                [(ngModel)] = "items_kinds['Male']"
+                />Male
               </li>
               <li class="list">
-                <input type="checkbox" name="Female" value="Female" />Female
+                <input type="checkbox" name="Female" value="Female" 
+                [(ngModel)] = "items_kinds['Female']"
+                />Female
               </li>
               <li class="list">
-                <input type="checkbox" name="Kids" value="Kids" />Kids
+                <input type="checkbox" name="Kids" value="Kids" 
+                [(ngModel)] = "items_kinds['Kids']"
+                />Kids
               </li>
             </ul>
           </div>
@@ -93,26 +103,33 @@
                   type="checkbox"
                   name="Action figures"
                   value="Action figures"
+                  [(ngModel)] = "items_kinds['Action figures']"
                 />Action figures
               </li>
               <li class="list">
-                <input type="checkbox" name="Animals" value="Animals" />Animals
+                <input type="checkbox" name="Animals" value="Animals" 
+                [(ngModel)] = "items_kinds['Animals']"
+                />Animals
               </li>
               <li class="list">
                 <input
                   type="checkbox"
                   name="Cars and radio controlled"
                   value="Cars and radio controlled"
+                  [(ngModel)] = "items_kinds['Cars and radio controlled']"
                 />Cars and radio controlled
               </li>
               <li class="list">
-                <input type="checkbox" name="Dolls" value="Dolls" />Dolls
+                <input type="checkbox" name="Dolls" value="Dolls" 
+                [(ngModel)] = "items_kinds['Dolls']"
+                />Dolls
               </li>
               <li class="list">
                 <input
                   type="checkbox"
                   name="Creative toys"
                   value="Creative toys"
+                  [(ngModel)] = "items_kinds['Creative toys']"
                 />Creative toys
               </li>
             </ul>
@@ -130,23 +147,29 @@
           <div id="cate4" class="collapse">
             <ul>
               <li class="list">
-                <input type="checkbox" name="camping" value="camping" />camping
+                <input type="checkbox" name="camping" value="camping" 
+                [(ngModel)] = "items_kinds['camping']"
+                />camping
               </li>
               <li class="list">
                 <input
                   type="checkbox"
                   name="Hunting and fishing"
                   value="Hunting and fishing"
+                  [(ngModel)] = "items_kinds['Hunting and fishing']"
                 />Hunting and fishing
               </li>
               <li class="list">
-                <input type="checkbox" name="Biking" value="Biking" />Biking
+                <input type="checkbox" name="Biking" value="Biking" 
+                [(ngModel)] = "items_kinds['Biking']"
+                />Biking
               </li>
               <li class="list">
                 <input
                   type="checkbox"
                   name="Rock Climbing"
                   value="Rock Climbing"
+                  [(ngModel)] = "items_kinds['Rock Climbing']"
                 />Rock Climbing
               </li>
               <li class="list"></li>
@@ -330,7 +353,7 @@
     </section>
     <!-- Section: Filters -->
     <!-- </section> -->
-    <button type="button" class="btn btn-primary btn-sm mr-1 mb-2">
+    <button type="button" class="btn btn-primary btn-sm mr-1 mb-2" (click)='filterItems()'>
       <i class="fas fa-shopping-cart pr-2"></i>Search
     </button>
     <!-- </section> -->

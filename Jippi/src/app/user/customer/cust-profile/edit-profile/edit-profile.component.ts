@@ -8,19 +8,22 @@ import { LocalService } from '../../../../local.service';
 })
 export class EditProfileComponent implements OnInit {
   user_Info: any = {};
-  firstName: String = '';
-  lastName: String = '';
-  phoneNumber: Number = null;
+  userId: any = parseInt(localStorage['Id']);
+  firstName: string | Blob = '';
+  lastName: string = '';
+  phoneNumber: string | Blob = null;
   email: any = '';
   adress: string = '';
-  password: String = '';
+  password: string = '';
   confirmPassword: String = '';
   url: any;
   alertt: string = '';
   newinfo: any = [];
+  imageId: any;
   constructor(private _http: HttpService, private local: LocalService) {}
 
   ngOnInit(): void {
+    this.getImage();
     this.local.user_info.subscribe((info) => (this.user_Info = info));
     this.firstName = this.user_Info.first_name;
     this.lastName = this.user_Info.last_name;
@@ -32,21 +35,15 @@ export class EditProfileComponent implements OnInit {
     console.log('++++>', this.user_Info);
     console.log('firstName', this.firstName);
   }
-ngDoCheck() {
-  console.log('URL',this.url)
-}
+  ngDoCheck() {
+    // console.log('URL', this.url);
+  }
   //function to read avatar url
   onSelectFile(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-
-      reader.readAsDataURL(event.target.files[0]);
-
-      reader.onload = (event) => {
-        this.url = event.target.result;
-      };
-    }
+    this.url = event.target.files[0];
+    console.log('evvnet', event.target.files[0]);
   }
+
   check() {
     let succ = 'Success update';
     let err = 'Some think rong';
@@ -61,24 +58,33 @@ ngDoCheck() {
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(em)
     ) {
       this.alertt = succ;
+      return true;
     }
   }
   updateCustomerInfo() {
-    if (this.password === this.confirmPassword) {
-      var body = {
-        userid: localStorage.Id,
-        first_name: this.firstName,
-        last_name: this.lastName,
-        email: this.email,
-        password: this.password,
-        address: this.adress,
-        phone_number: this.phoneNumber,
-      };
-    }
-    this._http
-      .updateCusInfo(parseInt(localStorage.Id), body)
-      .subscribe((data) => {
-        this.newinfo = data;
+    // if (this.check() === true && this.password === this.confirmPassword) {
+    const formData = new FormData();
+    formData.append('userId', this.userId);
+    formData.append('customerImg', this.url);
+    formData.append('firstName', this.firstName);
+    formData.append('lastName', this.lastName);
+    formData.append('email', this.email);
+    formData.append('password', this.password);
+    formData.append('adress', this.adress);
+    formData.append('phoneNumber', this.phoneNumber);
+    return this._http.updateCusInfo(formData, this.userId).subscribe((data) => {
+      this.newinfo = data;
+      this.url = data['avatar'];
+      console.log('data custumer update====**-*//-*//-*-', data);
+    });
+    // }
+  }
+  getImage() {
+    return this._http
+      .getTheUpdateCustomerImage(this.userId)
+      .subscribe((res) => {
+        this.url = res['avatar'];
+        console.log('000105424', res['avatar']);
       });
   }
 }

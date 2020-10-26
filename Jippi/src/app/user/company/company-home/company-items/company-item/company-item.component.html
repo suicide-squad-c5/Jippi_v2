@@ -11,7 +11,11 @@
     </p>
     <hr style="width: 70%" />
     <h6 class="mb-3">{{ companyItems.itemPrice }} TD</h6>
-    <button type="button" class="btn btn-danger btn-sm mr-1 mb-2">
+    <button
+      type="button"
+      class="btn btn-danger btn-sm mr-1 mb-2"
+      (click)="deleteItem(companyItems.id)"
+    >
       Delete
     </button>
     <button type="button" class="btn btn-light btn-sm mr-1 mb-2">Update</button>

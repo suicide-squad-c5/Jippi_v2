@@ -20,7 +20,12 @@ export class LocalService {
   //quantity items
   private quantity = new BehaviorSubject([]);
   quantityItems = this.quantity.asObservable();
-
+  //items for filter
+  private itemslist = new BehaviorSubject([]);
+  items_list = this.itemslist.asObservable();
+  //chande deleteAction boolean to rerander company_items component
+  private delete = new BehaviorSubject(false);
+  deleted = this.delete.asObservable();
   constructor() {}
 
   changeType(type: string) {
@@ -35,12 +40,18 @@ export class LocalService {
     this.userInfo.next(info);
   }
 
-  addToBasket(basket_item: any  ){
+  addToBasket(basket_item: any) {
     this.basket.next(basket_item);
   }
 
-addOne(qnt: any){
-  this.quantity.next(qnt);
-}
+  addOne(qnt: any) {
+    this.quantity.next(qnt);
+  }
 
+  passItems(items) {
+    this.itemslist.next(items);
+  }
+  deleteFun(boolean) {
+    this.delete.next(boolean);
+  }
 }

@@ -32,8 +32,8 @@ itemsRouter.post("/add", up.single("itemImage"), (req, res) => {
         itemImage: result.url,
         itemRating: req.body.itemRating,
         itemCompany: req.body.companyID,
-        itemCategory: req.body.category,
-        itemKind: req.body.kind,
+        itemCategory: req.body.selectedCategory,
+        itemKind: req.body.selectedKind,
       };
       newItem
         .create(item)
@@ -65,7 +65,6 @@ itemsRouter.post("/get/:id", (req, res) => {
         res.send("there is no data");
       }
     });
-
 });
 
 itemsRouter.get("/", async (req, res) => {
@@ -84,8 +83,8 @@ itemsRouter.delete(`/:itemId`, async (req, res) => {
     },
   });
   console.log("heyyyyyyy", req.params.itemId);
+  res.send({ status: 200 });
 });
-
 
 itemsRouter.get(`/Company/:id`, async (req, res) => {
   try {
