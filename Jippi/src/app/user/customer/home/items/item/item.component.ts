@@ -12,36 +12,38 @@ export class ItemComponent implements OnInit {
   // basket_item: any = [];
   @Input() item: any;
   @Input() basket: any;
-  constructor(private local: LocalService, private router: Router ) {}
+  constructor(private local: LocalService, private router: Router) {}
 
   ngOnInit(): void {
     console.log('ItemComponent -> item', this.item);
-    this.local.basktItems.subscribe(basket_item => this.basket = basket_item);
-    this.local.quantityItems.subscribe(qnt => this.quantity = qnt);
-
+    this.local.basktItems.subscribe(
+      (basket_item) => (this.basket = basket_item)
+    );
+    this.local.quantityItems.subscribe((qnt) => (this.quantity = qnt));
   }
-ngDoCheck() {
-  console.log("basket",this.basket, this.quantity);
-  // console.log('++++>',this.local.basktItems)
-}
 
-addFun(){
-  if(this.basket.indexOf(this.item) === -1){ 
-  this.basket.push(this.item);
-  this.quantity.push(1)
+  ngDoCheck() {
+    console.log('basket', this.basket, this.quantity);
+    // console.log('++++>',this.local.basktItems)
   }
-  this.addItem();
-  this.addOne();
-}
 
-addItem(){
-  if(localStorage.Id){ 
-  this.local.addToBasket(this.basket);
-  }else{
-    this.router.navigateByUrl('/signup')
+  addFun() {
+    if (this.basket.indexOf(this.item) === -1) {
+      this.basket.push(this.item);
+      this.quantity.push(1);
+    }
+    this.addItem();
+    this.addOne();
   }
-}
-  addOne(){
-  this.local.addOne(this.quantity);
-}
+
+  addItem() {
+    if (localStorage.Id) {
+      this.local.addToBasket(this.basket);
+    } else {
+      this.router.navigateByUrl('/signup');
+    }
+  }
+  addOne() {
+    this.local.addOne(this.quantity);
+  }
 }

@@ -45,6 +45,7 @@ import { CustomersUserComponent } from './user/admin/users/customers-user/custom
 import { CompEditProfileComponent } from './user/company/comp-profile/comp-edit-profile/comp-edit-profile.component';
 import { CompanyItemsComponent } from './user/company/company-home/company-items/company-items.component';
 import { CompanyItemComponent } from './user/company/company-home/company-items/company-item/company-item.component';
+import { ItemDetailsComponent } from './user/customer/home/items/item-details/item-details.component';
 
 
 
@@ -88,6 +89,7 @@ import { CompanyItemComponent } from './user/company/company-home/company-items/
     CompEditProfileComponent,
     CompanyItemsComponent,
     CompanyItemComponent,
+    ItemDetailsComponent,
 
     // CustomersUserComponent,
   ],
