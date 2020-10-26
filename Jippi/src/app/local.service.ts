@@ -23,6 +23,9 @@ export class LocalService {
   //items for filter
   private itemslist = new BehaviorSubject([]);
   items_list = this.itemslist.asObservable();
+  // GET USER DATA FOR THE BAN AND UNBANNED.
+  private getcompanyData = new BehaviorSubject(false);
+  getcompany_Data = this.getcompanyData.asObservable();
 
   //chande deleteAction boolean to rerander company_items component
   private delete = new BehaviorSubject(false);
@@ -54,15 +57,25 @@ export class LocalService {
     this.quantity.next(qnt);
   }
 
+
   passItems(items) {
     this.itemslist.next(items);
   }
+  // FUNCTION FOR CHECK COMPANY DATA ALWAYS.
+  companyData(boo) {
+    this.getcompanyData.next(boo);
+
+
+//   passItems(items) {
+//     this.itemslist.next(items);
+//   }
 
   deleteFun(boolean) {
     this.delete.next(boolean);
 
   asItemid(itemid) {
     this.itemId.next(itemid);
+
 
   }
 }
