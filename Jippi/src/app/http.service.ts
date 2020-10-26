@@ -78,6 +78,11 @@ export class HttpService {
     return this.http.delete(this.ROOT_URL + `/api/items/${itemId}`);
   }
 
+  // GET ALL THE COMPANIES FOR THE ADMIN SIDE.
+  getCompanies() {
+    return this.http.get(this.ROOT_URL + `/api/companies`);
+  }
+
   //get all items in db
   getItems() {
     return this.http.get(this.ROOT_URL + '/api/items');

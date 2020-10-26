@@ -25,8 +25,10 @@ export class NavbarComponent implements OnInit {
       this.local.changeType('customer');
     } else if (localStorage.comapnyId) {
       this.local.changeType('company');
+
     } else if (localStorage.adminId) {
       this.local.changeType('admin');
+
     } else {
       this.local.changeType('visiteur');
     }

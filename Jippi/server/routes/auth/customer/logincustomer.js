@@ -4,9 +4,9 @@ const Customer = db.customers;
 const jwt = require("jsonwebtoken");
 
 loginCustomerRouter.post("/login", (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
 
-  console.log(Customer);
+  // console.log(Customer);
 
   Customer.findOne({
     where: {
@@ -41,8 +41,7 @@ loginCustomerRouter.post("/login", (req, res) => {
     }
 
     // ELSE
-    let token = jwt.sign(
-      {
+    let token = jwt.sign({
         id: data.id,
       },
       "test"

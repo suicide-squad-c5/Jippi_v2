@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LocalService } from '../../../../../local.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item',
@@ -11,7 +12,7 @@ export class ItemComponent implements OnInit {
   // basket_item: any = [];
   @Input() item: any;
   @Input() basket: any;
-  constructor(private local: LocalService) {}
+  constructor(private local: LocalService, private router: Router) {}
 
   ngOnInit(): void {
     console.log('ItemComponent -> item', this.item);
@@ -36,7 +37,11 @@ export class ItemComponent implements OnInit {
   }
 
   addItem() {
-    this.local.addToBasket(this.basket);
+    if (localStorage.Id) {
+      this.local.addToBasket(this.basket);
+    } else {
+      this.router.navigateByUrl('/signup');
+    }
   }
   addOne() {
     this.local.addOne(this.quantity);
