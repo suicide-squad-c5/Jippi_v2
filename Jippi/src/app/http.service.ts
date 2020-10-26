@@ -95,14 +95,23 @@ export class HttpService {
   }
   // ================COMPANY====================================
   // that's for updating the company  Data
-  editCompanyProfileData(name, email, location, phoneNumber, CId) {
-    return this.http.put(this.ROOT_URL + `/api/profile/company/update/${CId}`, {
-      name,
-      email,
-      location,
-      phoneNumber,
-      CId,
-    });
+  editCompanyProfileData(
+    companyName,
+    companyEmail,
+    location,
+    phoneNumber,
+    companyId
+  ) {
+    return this.http.put(
+      this.ROOT_URL + `/api/profile/company/update/${companyId}`,
+      {
+        companyName,
+        companyEmail,
+        location,
+        phoneNumber,
+        companyId,
+      }
+    );
   }
   // that's for receiving  the company Data
   getCompanyData(CId) {
@@ -112,10 +121,10 @@ export class HttpService {
     });
   }
   // UPDATAE THE AVATART OF THE COMPANY
-  updateCompanyAvatar(formData, CId) {
-    console.log('CId ===> <==', CId);
+  updateCompanyAvatar(formData, companyId) {
+    console.log('CId ===> <==', companyId);
     return this.http.put(
-      this.ROOT_URL + `/api/profile/company/avatar/${CId}`,
+      this.ROOT_URL + `/api/profile/company/avatar/${companyId}`,
       formData
     );
   }
