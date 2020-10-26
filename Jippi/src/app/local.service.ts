@@ -23,9 +23,15 @@ export class LocalService {
   //items for filter
   private itemslist = new BehaviorSubject([]);
   items_list = this.itemslist.asObservable();
+
+  //chande deleteAction boolean to rerander company_items component
+  private delete = new BehaviorSubject(false);
+  deleted = this.delete.asObservable();
+
   // item ID
   private itemId = new BehaviorSubject(null);
   item_id = this.itemId.asObservable();
+
   constructor() {}
 
   changeType(type: string) {
@@ -51,7 +57,12 @@ export class LocalService {
   passItems(items) {
     this.itemslist.next(items);
   }
+
+  deleteFun(boolean) {
+    this.delete.next(boolean);
+
   asItemid(itemid) {
     this.itemId.next(itemid);
+
   }
 }
