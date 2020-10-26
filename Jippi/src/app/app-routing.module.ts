@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 // import compnent that will get path.
 import { VerifyEmailComponent } from './user/company/authenti-comp/verify-email/verify-email.component';
 import { HomeComponent } from './user/customer/home/home.component';
@@ -14,14 +13,16 @@ import { AddItemComponent } from './user/company/my-shop/add-item/add-item.compo
 import { ProfileComponent } from './user/customer/cust-profile/profile/profile.component';
 import { CompProfileComponent } from './user/company/comp-profile/comp-profile.component';
 import { MyShopComponent } from './user/company/my-shop/my-shop.component';
-import { AdminComponent } from './user/admin/admin.component';
+import { BasketComponent } from './user/customer/basket/basket.component';
 // import { AdminSectionComponent } from './user/admin/admin-section/admin-section.component';
+import { AdminComponent } from './user/admin/admin.component';
 import { AdminHomeComponent } from './user/admin/admin-home/admin-home.component';
 import { AddAdminComponent } from './user/admin/add-admin/add-admin.component';
 import { ReportsComponent } from './user/admin/reports/reports.component';
-import { BasketComponent } from './user/customer/basket/basket.component';
 import { UsersComponent } from './user/admin/users/users.component';
+import { CompEditProfileComponent } from './user/company/comp-profile/comp-edit-profile/comp-edit-profile.component';
 import { CompanyHomeComponent } from './user/company/company-home/company-home.component';
+import { ItemDetailsComponent } from './user/customer/home/items/item-details/item-details.component';
 
 const routes: Routes = [
   // CUSTOEMR SIDE.
@@ -33,11 +34,14 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'profile/edit', component: EditProfileComponent },
   // COMPANY SIDE.
+  // items
+  { path: 'items/details', component: ItemDetailsComponent },
   { path: 'comapny/signup', component: CompSignupComponent },
   { path: 'company/login', component: CompLoginComponent },
   { path: 'company/addItem', component: AddItemComponent },
   { path: 'company/profile', component: CompProfileComponent },
   { path: 'company/shop', component: MyShopComponent },
+  { path: 'company/edit', component: CompEditProfileComponent },
   { path: 'company/check', component: VerifyEmailComponent },
   { path: 'company/home', component: CompanyHomeComponent },
   // ADMIN SIDE.
