@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 // import compnent that will get path.
 import { VerifyEmailComponent } from './user/company/authenti-comp/verify-email/verify-email.component';
 import { HomeComponent } from './user/customer/home/home.component';

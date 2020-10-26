@@ -20,13 +20,10 @@ export class ItemDetailsComponent implements OnInit {
       this.showClickedOnItem();
     });
     console.log('itemid******', this.itemID);
-
-    // console.log('itemid******', this.itemID);
   }
 
   // to show the main item that the user has clicked on
   showClickedOnItem() {
-    // this.test = this.itemID;
     return this._http.getItemData(this.itemID).subscribe((res) => {
       this.Data.push(res);
       console.log('itemData ==> ', this.Data);

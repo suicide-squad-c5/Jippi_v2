@@ -52,4 +52,7 @@ export class ItemComponent implements OnInit {
     this.itemId = item.id;
     this.local.asItemid(item.id);
   }
+  moreDetails() {
+    this.router.navigate(['/items/details/'], { fragment: `${this.itemId}` });
+  }
 }

@@ -1,11 +1,7 @@
 <!-- Card -->
 <div class="achref">
   <div class="view zoom overlay z-depth-2 rounded">
-    <img
-      class="img-fluid w-100"
-      src="{{item.itemImage}}"
-      (click)="getItemId(item)"
-    />
+    <img class="img-fluid w-100" src="{{item.itemImage}}" />
   </div>
 
   <div class="text-center pt-4">
@@ -33,7 +29,11 @@
       </svg>
       Add to cart
     </button>
-    <button type="button" class="btn btn-light btn-sm mr-1 mb-2">
+    <button
+      (click)="getItemId(item);moreDetails()"
+      type="button"
+      class="btn btn-light btn-sm mr-1 mb-2"
+    >
       <svg
         width="1em"
         height="1em"
