@@ -23,7 +23,9 @@ export class LocalService {
   //items for filter
   private itemslist = new BehaviorSubject([]);
   items_list = this.itemslist.asObservable();
-
+  // item ID
+  private itemId = new BehaviorSubject(null);
+  item_id = this.itemId.asObservable();
   constructor() {}
 
   changeType(type: string) {
@@ -38,16 +40,18 @@ export class LocalService {
     this.userInfo.next(info);
   }
 
-  addToBasket(basket_item: any  ){
+  addToBasket(basket_item: any) {
     this.basket.next(basket_item);
   }
 
-addOne(qnt: any){
-  this.quantity.next(qnt);
-}
+  addOne(qnt: any) {
+    this.quantity.next(qnt);
+  }
 
-passItems(items){
-  this.itemslist.next(items);
-}
-
+  passItems(items) {
+    this.itemslist.next(items);
+  }
+  asItemid(itemid) {
+    this.itemId.next(itemid);
+  }
 }

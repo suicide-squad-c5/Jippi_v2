@@ -23,7 +23,7 @@ import { ReportsComponent } from './user/admin/reports/reports.component';
 import { UsersComponent } from './user/admin/users/users.component';
 import { CompEditProfileComponent } from './user/company/comp-profile/comp-edit-profile/comp-edit-profile.component';
 import { CompanyHomeComponent } from './user/company/company-home/company-home.component';
-
+import { ItemDetailsComponent } from './user/customer/home/items/item-details/item-details.component';
 
 const routes: Routes = [
   // CUSTOEMR SIDE.
@@ -35,6 +35,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'profile/edit', component: EditProfileComponent },
   // COMPANY SIDE.
+  // items
+  { path: 'items/details', component: ItemDetailsComponent },
   { path: 'comapny/signup', component: CompSignupComponent },
   { path: 'company/login', component: CompLoginComponent },
   { path: 'company/addItem', component: AddItemComponent },
