@@ -73,7 +73,7 @@ export class HttpService {
     });
   }
 
-  // CREATE REQUEST TO DELETE ITEMS FROM ADMIN SIDE.
+  // CREATE REQUEST TO DELETE ITEMS.
   deleteItem(itemId) {
     return this.http.delete(this.ROOT_URL + `/api/items/${itemId}`);
   }
