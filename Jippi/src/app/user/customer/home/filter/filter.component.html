@@ -339,12 +339,12 @@
       <form>
         <div class="d-flex align-items-center mt-4 pb-1">
           <div class="md-form md-outline my-0">
-            <input id="from" type="text" class="form-control mb-0" />
+            <input id="from" type="text" class="form-control mb-0" name="min_price" [(ngModel)]="min_price"/>
             <label for="form">Dt Min</label>
           </div>
           <p class="px-2 mb-0 text-muted">-</p>
           <div class="md-form md-outline my-0">
-            <input id="to" type="text" class="form-control mb-0" />
+            <input id="to" type="text" class="form-control mb-0" name="max_price" [(ngModel)]="max_price"/>
             <label for="to">Dt Max</label>
           </div>
         </div>
@@ -353,7 +353,7 @@
     </section>
     <!-- Section: Filters -->
     <!-- </section> -->
-    <button type="button" class="btn btn-primary btn-sm mr-1 mb-2" (click)='filterItems()'>
+    <button type="button" class="btn btn-primary btn-sm mr-1 mb-2" (click)='filterPrice()'>
       <i class="fas fa-shopping-cart pr-2"></i>Search
     </button>
     <button type="button" class="btn btn-primary btn-sm mr-1 mb-2" (click)=' getAllData()'>
