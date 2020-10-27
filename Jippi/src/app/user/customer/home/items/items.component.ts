@@ -46,7 +46,7 @@ export class ItemsComponent implements OnInit {
   // SEARCH BAR FOR ITEMS.
   SearchBar() {
     this.itemsList = this.itemsList.filter((item) => {
-      return item.itemName.toLowerCase().match(this.itemName.toLowerCase());
+      return item?.itemName.toLowerCase().match(this?.itemName.toLowerCase());
     });
   }
 }
