@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
 import { Router } from '@angular/router';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 // import { HttpClient } from '@angular/common/http';
 
@@ -36,17 +36,17 @@ export class SignupComponent implements OnInit {
 
   postSignup() {
     if (this.password !== this.ConfirmePassword) {
-      swal(
-        'Something wrong',
-        'There is an issue with your password! please check again',
-        'warning'
-      );
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'There is an issue with your password! please check again',
+      });
     } else if (this.phoneNumber.length > 9) {
-      swal(
-        'Phone number wrong',
-        'your phone number is short than 8 characters',
-        'warning'
-      );
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'your phone number is short than 8 characters',
+      });
     } else {
       return this._http
         .postSignupCustomer(
