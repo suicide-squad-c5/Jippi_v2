@@ -1,8 +1,8 @@
 const signupCustomerRouter = require("express").Router();
 // const Customer = require("../../../database/");
-
 const db = require("../../../../database/models");
 const Customer = db.customers;
+var passwordHash = require("password-hash");
 
 signupCustomerRouter.post("/signup", (req, res) => {
   console.log("req.body", req.body);
@@ -21,7 +21,7 @@ signupCustomerRouter.post("/signup", (req, res) => {
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     email: req.body.email,
-    password: req.body.password,
+    password: passwordHash.generate(req.body.password),
     avatar: req.body.avatar,
     address: req.body.address,
     phone_number: req.body.phone_number,
