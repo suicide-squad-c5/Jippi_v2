@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
 import { Router } from '@angular/router';
+import swal from 'sweetalert';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './comp-signup.component.html',
@@ -40,7 +42,11 @@ export class CompSignupComponent implements OnInit {
 
     // check if the password equal to the confirm password or not.
     if (this.companyConfirmPassword !== this.companyPassword) {
-      alert('something wrong! please try again');
+      swal(
+        'Something wrong',
+        'There is an issue with your password! please check again',
+        'warning'
+      );
     } else {
       // check ! (passed fine)
       console.log(Data);

@@ -29,6 +29,9 @@ export class LocalService {
   // GET USER DATA FOR THE BAN AND UNBANNED.
   private getcompanyData = new BehaviorSubject(false);
   getcompany_Data = this.getcompanyData.asObservable();
+  // ITEMNAME FOR THE NAVBAR SEARCH.
+  private getItemName = new BehaviorSubject('');
+  getitem_name = this.getItemName.asObservable();
 
   //chande deleteAction boolean to rerander company_items component
   private delete = new BehaviorSubject(false);
@@ -84,5 +87,9 @@ export class LocalService {
     this.itemId.next(itemid);
 
 
+  }
+  // FUNCTION FOR ITEMANEM.
+  itemNameCheck(itemName) {
+    this.getItemName.next(itemName);
   }
 }
