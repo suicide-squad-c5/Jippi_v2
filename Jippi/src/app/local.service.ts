@@ -23,12 +23,23 @@ export class LocalService {
   //items for filter
   private itemslist = new BehaviorSubject([]);
   items_list = this.itemslist.asObservable();
+//all items for  filter
+  private allitems = new BehaviorSubject(false);
+  all_items = this.allitems.asObservable();
   // GET USER DATA FOR THE BAN AND UNBANNED.
   private getcompanyData = new BehaviorSubject(false);
   getcompany_Data = this.getcompanyData.asObservable();
   // ITEMNAME FOR THE NAVBAR SEARCH.
   private getItemName = new BehaviorSubject('');
   getitem_name = this.getItemName.asObservable();
+
+  //chande deleteAction boolean to rerander company_items component
+  private delete = new BehaviorSubject(false);
+  deleted = this.delete.asObservable();
+
+  // item ID
+  private itemId = new BehaviorSubject(null);
+  item_id = this.itemId.asObservable();
 
   constructor() {}
 
@@ -52,12 +63,30 @@ export class LocalService {
     this.quantity.next(qnt);
   }
 
+// function to pass and filter items
   passItems(items) {
     this.itemslist.next(items);
   }
+//function to pass all items;
+  passAllItems(items){
+      this.allitems.next(items);
+    }
   // FUNCTION FOR CHECK COMPANY DATA ALWAYS.
   companyData(boo) {
     this.getcompanyData.next(boo);
+
+  }
+//   passItems(items) {
+//     this.itemslist.next(items);
+//   }
+
+  deleteFun(boolean) {
+    this.delete.next(boolean);
+  }
+  asItemid(itemid) {
+    this.itemId.next(itemid);
+
+
   }
   // FUNCTION FOR ITEMANEM.
   itemNameCheck(itemName) {
