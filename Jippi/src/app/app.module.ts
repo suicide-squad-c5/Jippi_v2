@@ -46,8 +46,7 @@ import { CompEditProfileComponent } from './user/company/comp-profile/comp-edit-
 import { CompanyItemsComponent } from './user/company/company-home/company-items/company-items.component';
 import { CompanyItemComponent } from './user/company/company-home/company-items/company-item/company-item.component';
 import { ItemDetailsComponent } from './user/customer/home/items/item-details/item-details.component';
-
-
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 
 @NgModule({
   declarations: [
@@ -100,6 +99,7 @@ import { ItemDetailsComponent } from './user/customer/home/items/item-details/it
     CommonModule,
     HttpClientModule,
     MDBBootstrapModule,
+    PasswordStrengthMeterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

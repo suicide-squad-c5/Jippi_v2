@@ -2,6 +2,7 @@ const loginCompanyRouter = require("express").Router();
 const db = require("../../../../database/models");
 const Company = db.companies;
 const jwt = require("jsonwebtoken");
+var passwordHash = require("password-hash");
 
 loginCompanyRouter.post("/company/login", (req, res) => {
   // console.log("heeeey", req.body);
@@ -30,7 +31,10 @@ loginCompanyRouter.post("/company/login", (req, res) => {
     }
 
     // check if the password correct or not.
-    if (req.body.companyPassword !== company.companyPassword) {
+    if (
+      passwordHash.verify(req.body.companyPassword, company.companyPassword) !==
+      true
+    ) {
       return res.status(401).json({
         title: "log failed",
         error: "invalid password",
