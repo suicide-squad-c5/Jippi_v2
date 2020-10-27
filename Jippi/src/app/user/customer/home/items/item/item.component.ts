@@ -25,7 +25,6 @@ export class ItemComponent implements OnInit {
   }
   ngDoCheck() {
     console.log('basket', this.basket, this.quantity);
-    // console.log('++++>',this.local.basktItems)
   }
 
   addFun() {
@@ -47,11 +46,13 @@ export class ItemComponent implements OnInit {
   addOne() {
     this.local.addOne(this.quantity);
   }
+  // to ge tthe item id that user clicked on
   getItemId(item) {
     console.log('itemid////---', item.id);
     this.itemId = item.id;
     this.local.asItemid(item.id);
   }
+  // to add the item id to the route
   moreDetails() {
     this.router.navigate(['/items/details/'], { fragment: `${this.itemId}` });
   }
