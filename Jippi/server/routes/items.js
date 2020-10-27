@@ -16,6 +16,37 @@ const up = multer({
   dest: "upload",
 });
 
+itemsRouter.put("/update", up.single("itemImage"), (req, res) => {
+  console.log("req", req.body);
+  var img = req.file.path;
+  cloudinary.uploader
+    .upload(img, (error, result) => {
+      error && console.log("cloudinary [error] ==> ", error);
+    })
+    .then((result) => {
+      const item = {
+        itemName: req.body.itemName,
+        itemPrice: req.body.itemPrice,
+        itemDescription: req.body.itemDescription,
+        itemImage: result.url,
+        itemCompany: req.body.companyID,
+        itemCategory: req.body.selectedCategory,
+        itemKind: req.body.selectedKind,
+      };
+      console.log("im the item to update", item);
+      //update the item with item id down bellow!!!!
+      newItem.update(item, {
+        where: { id: req.body.id },
+      });
+    })
+    .then(() => {
+      res.send({ status: 200 });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 // posting an Item
 itemsRouter.post("/add", up.single("itemImage"), (req, res) => {
   var img = req.file.path;

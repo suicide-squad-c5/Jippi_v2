@@ -13,17 +13,11 @@ export class CompanyItemsComponent implements OnInit {
   constructor(private _http: HttpService, private local: LocalService) {}
 
   ngOnInit(): void {
-    console.log('boo****>', this.deleteAction);
     this.getCompanyItems(localStorage.comapnyId);
-    console.log(
-      'CompanyItemsComponent -> getCompanyItems -> this.companyItems',
-      this.companyItems
-    );
     this.local.deleted.subscribe((boolean) => (this.deleteAction = boolean));
   }
 
   ngDoCheck() {
-    console.log('boo****>', this.deleteAction);
     if (this.deleteAction) {
       this.getCompanyItems(localStorage.comapnyId);
       this.deleteAction = false;
@@ -33,10 +27,6 @@ export class CompanyItemsComponent implements OnInit {
   getCompanyItems(id) {
     return this._http.getcompanyItems(id).subscribe((data) => {
       this.companyItems = data;
-      console.log(
-        'CompanyItemsComponent -> getCompanyItems -> this.companyItems',
-        this.companyItems
-      );
     });
   }
 }

@@ -23,7 +23,7 @@ import { ReportsComponent } from './user/admin/reports/reports.component';
 import { UsersComponent } from './user/admin/users/users.component';
 import { CompEditProfileComponent } from './user/company/comp-profile/comp-edit-profile/comp-edit-profile.component';
 import { CompanyHomeComponent } from './user/company/company-home/company-home.component';
-
+import { UpdateItemComponent } from './user/company/company-home/company-items/update-item/update-item.component';
 
 const routes: Routes = [
   // CUSTOEMR SIDE.
@@ -43,6 +43,7 @@ const routes: Routes = [
   { path: 'company/edit', component: CompEditProfileComponent },
   { path: 'company/check', component: VerifyEmailComponent },
   { path: 'company/home', component: CompanyHomeComponent },
+  { path: 'company/updateItem', component: UpdateItemComponent },
   // ADMIN SIDE.
   { path: 'admin/jippi', component: AdminComponent },
   { path: 'admin/home', component: AdminHomeComponent },
