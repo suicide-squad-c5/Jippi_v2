@@ -28,13 +28,7 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  // getcustomers() {
-  //   return this._http.getcustomers().subscribe((data) => {
-  //     this.customersList = data;
-  //     console.log(this.customersList);
-  //   });
-  // }
-
+  // BRING ALL THE COMPANIES TO ADMIN INTERFACE.
   getCompanies() {
     this._http.getCompanies().subscribe((data) => {
       this.companiesList = data;
@@ -42,7 +36,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  // SEARCH FOR COMPANY BY NAME.
+  // SEARCH FOR A COMPANY BY NAME.
   Search() {
     this.companiesList = this.companiesList.filter((company) => {
       return company.companyName

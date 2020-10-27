@@ -10,6 +10,7 @@ export class ItemsComponent implements OnInit {
   quantity: any = [];
   itemsList: any = [];
   basket: any = [];
+  itemName: string = '';
   // items: any = [];
   constructor(private _http: HttpService, private local: LocalService) {}
 
@@ -20,11 +21,23 @@ export class ItemsComponent implements OnInit {
   }
   ngDoCheck() {
     console.log('++++>>', this.itemsList);
+    this.local.getitem_name.subscribe((itemName) => (this.itemName = itemName));
+    console.log('itemname', this.itemName);
+    this.SearchBar();
+
   }
   getitems() {
     return this._http.getItems().subscribe((data) => {
       this.itemsList = data;
       this.local.passItems(data);
+    });
+  }
+
+
+  // SEARCH BAR FOR ITEMS.
+  SearchBar() {
+    this.itemsList = this.itemsList.filter((item) => {
+      return item.itemName.toLowerCase().match(this.itemName.toLowerCase());
     });
   }
 }
