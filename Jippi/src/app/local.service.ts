@@ -65,14 +65,14 @@ export class LocalService {
   companyData(boo) {
     this.getcompanyData.next(boo);
 
-
+  }
 //   passItems(items) {
 //     this.itemslist.next(items);
 //   }
 
   deleteFun(boolean) {
     this.delete.next(boolean);
-
+  }
   asItemid(itemid) {
     this.itemId.next(itemid);
 
