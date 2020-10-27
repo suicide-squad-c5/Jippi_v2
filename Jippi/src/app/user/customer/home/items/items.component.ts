@@ -9,22 +9,29 @@ import { LocalService } from '../../../../local.service';
 export class ItemsComponent implements OnInit {
   quantity: any = [];
   itemsList: any = [];
+  allitems: boolean = false;
   basket: any = [];
   // items: any = [];
   constructor(private _http: HttpService, private local: LocalService) {}
 
   ngOnInit(): void {
     this.getitems();
-    // this.local.items_list.subscribe(items => this.itemsList = items);
+    this.local.all_items.subscribe(boo => this.allitems = boo);
     this.local.items_list.subscribe((items) => (this.itemsList = items));
   }
   ngDoCheck() {
-    console.log('++++>>', this.itemsList);
+    if(this.allitems){
+      this.getitems();
+      this.allitems = false;
+    }
+    console.log('++++>>', this.itemsList, this.allitems);
   }
   getitems() {
     return this._http.getItems().subscribe((data) => {
       this.itemsList = data;
+      let dtaa = this.itemsList
       this.local.passItems(data);
+      // this.local.passAllItems(data);
     });
   }
 }
