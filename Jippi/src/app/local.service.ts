@@ -23,6 +23,17 @@ export class LocalService {
   //items for filter
   private itemslist = new BehaviorSubject([]);
   items_list = this.itemslist.asObservable();
+  // GET USER DATA FOR THE BAN AND UNBANNED.
+  private getcompanyData = new BehaviorSubject(false);
+  getcompany_Data = this.getcompanyData.asObservable();
+
+  //chande deleteAction boolean to rerander company_items component
+  private delete = new BehaviorSubject(false);
+  deleted = this.delete.asObservable();
+
+  // item ID
+  private itemId = new BehaviorSubject(null);
+  item_id = this.itemId.asObservable();
 
   constructor() {}
 
@@ -38,16 +49,33 @@ export class LocalService {
     this.userInfo.next(info);
   }
 
-  addToBasket(basket_item: any  ){
+  addToBasket(basket_item: any) {
     this.basket.next(basket_item);
   }
 
-addOne(qnt: any){
-  this.quantity.next(qnt);
-}
+  addOne(qnt: any) {
+    this.quantity.next(qnt);
+  }
 
-passItems(items){
-  this.itemslist.next(items);
-}
 
+  passItems(items) {
+    this.itemslist.next(items);
+  }
+  // FUNCTION FOR CHECK COMPANY DATA ALWAYS.
+  companyData(boo) {
+    this.getcompanyData.next(boo);
+
+  }
+//   passItems(items) {
+//     this.itemslist.next(items);
+//   }
+
+  deleteFun(boolean) {
+    this.delete.next(boolean);
+  }
+  asItemid(itemid) {
+    this.itemId.next(itemid);
+
+
+  }
 }

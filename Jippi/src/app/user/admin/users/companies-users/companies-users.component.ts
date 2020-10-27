@@ -1,15 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { HttpService } from '../../../../http.service';
+import { LocalService } from '../../../../local.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-companies-users',
   templateUrl: './companies-users.component.html',
-  styleUrls: ['./companies-users.component.css']
+  styleUrls: ['./companies-users.component.css'],
 })
 export class CompaniesUsersComponent implements OnInit {
-
-  constructor() { }
+  constructor(private _http: HttpService, private local: LocalService) {}
+  @Input() company: any;
+  callDataCompany: any = false;
 
   ngOnInit(): void {
+    console.log('data in companies', this.company);
+    this.local.getcompany_Data.subscribe((boo) => (this.callDataCompany = boo));
   }
 
+  // THIS FUNCTION WILL SWITH THE BANNED ROW IN THE SCHEMA FROM FALSE TO TRUE.
+  banCompany(companyId) {
+    // CHECK ! (passed fine).
+    console.log('companyId', companyId);
+    this._http.bannCompany(companyId).subscribe((res) => {
+      swal('Done!', 'This company has been Banned', 'success');
+      console.log('this is the result of banncompany', res);
+      this.callDataCompany = true;
+      this.local.companyData(this.callDataCompany);
+      console.log('cll', this.callDataCompany);
+    });
+  }
+  // UNBANED COMPANY BY CHANGE THE TRUE TO FALSE.
+  unbanCompany(companyId) {
+    // CHECK ! (passed fine).
+    console.log('companyId for unbaned', companyId);
+    this._http.unbanedCompany(companyId).subscribe((res) => {
+      swal('Done!', 'This company has been Unbannded', 'success');
+      console.log('unbaned done', res);
+      this.callDataCompany = true;
+      this.local.companyData(this.callDataCompany);
+      console.log('cll', this.callDataCompany);
+    });
+  }
 }

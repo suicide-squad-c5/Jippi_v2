@@ -34,7 +34,6 @@ itemsRouter.post("/add", up.single("itemImage"), (req, res) => {
         itemCompany: req.body.companyID,
         itemCategory: req.body.selectedCategory,
         itemKind: req.body.selectedKind,
-
       };
       newItem
         .create(item)
@@ -50,7 +49,7 @@ itemsRouter.post("/add", up.single("itemImage"), (req, res) => {
 // to get a certain item by it's id
 itemsRouter.post("/get/:id", (req, res) => {
   console.log("res", req.body);
-  console.log("req.params", req.params);
+  console.log("req.params **", req.params);
   newItem
     .findOne({
       where: {
@@ -66,7 +65,6 @@ itemsRouter.post("/get/:id", (req, res) => {
         res.send("there is no data");
       }
     });
-
 });
 
 itemsRouter.get("/", async (req, res) => {
@@ -85,8 +83,8 @@ itemsRouter.delete(`/:itemId`, async (req, res) => {
     },
   });
   console.log("heyyyyyyy", req.params.itemId);
+  res.send({ status: 200 });
 });
-
 
 itemsRouter.get(`/Company/:id`, async (req, res) => {
   try {

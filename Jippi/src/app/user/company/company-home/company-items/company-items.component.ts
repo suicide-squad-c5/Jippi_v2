@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
+import { LocalService } from '../../../../local.service';
 @Component({
   selector: 'app-company-items',
   templateUrl: './company-items.component.html',
@@ -7,17 +8,26 @@ import { HttpService } from '../../../../http.service';
 })
 export class CompanyItemsComponent implements OnInit {
   companyItems: any = [];
+  deleteAction: boolean = false;
 
-  constructor(private _http: HttpService) {}
+  constructor(private _http: HttpService, private local: LocalService) {}
 
   ngOnInit(): void {
+    console.log('boo****>', this.deleteAction);
     this.getCompanyItems(localStorage.comapnyId);
-    // setTimeout(() => {
     console.log(
       'CompanyItemsComponent -> getCompanyItems -> this.companyItems',
       this.companyItems
     );
-    // }, 1000);
+    this.local.deleted.subscribe((boolean) => (this.deleteAction = boolean));
+  }
+
+  ngDoCheck() {
+    console.log('boo****>', this.deleteAction);
+    if (this.deleteAction) {
+      this.getCompanyItems(localStorage.comapnyId);
+      this.deleteAction = false;
+    }
   }
 
   getCompanyItems(id) {

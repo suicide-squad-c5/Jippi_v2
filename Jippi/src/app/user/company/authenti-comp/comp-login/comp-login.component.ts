@@ -15,6 +15,7 @@ export class CompLoginComponent implements OnInit {
   token: string = '';
   userType: string = 'vsiteur';
   companyId: number = null;
+  alert: boolean = false;
 
   constructor(
     private _http: HttpService,
@@ -42,9 +43,13 @@ export class CompLoginComponent implements OnInit {
     // send request to check if this user exist in the database.
     this._http.postLoginCompany(LogCdata).subscribe((res) => {
       console.log('yo', res);
-      localStorage.setItem('companyToken', res['token']);
-      localStorage.setItem('comapnyId', res['id']);
-      this.changeNav();
+      if (res['status'] === 800) {
+        this.alert = true;
+      } else {
+        localStorage.setItem('companyToken', res['token']);
+        localStorage.setItem('comapnyId', res['id']);
+        this.changeNav();
+      }
     });
   }
 
