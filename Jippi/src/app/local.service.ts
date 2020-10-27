@@ -30,6 +30,14 @@ export class LocalService {
   private getItemName = new BehaviorSubject('');
   getitem_name = this.getItemName.asObservable();
 
+  //chande deleteAction boolean to rerander company_items component
+  private delete = new BehaviorSubject(false);
+  deleted = this.delete.asObservable();
+
+  // item ID
+  private itemId = new BehaviorSubject(null);
+  item_id = this.itemId.asObservable();
+
   constructor() {}
 
   changeType(type: string) {
@@ -52,12 +60,26 @@ export class LocalService {
     this.quantity.next(qnt);
   }
 
+
   passItems(items) {
     this.itemslist.next(items);
   }
   // FUNCTION FOR CHECK COMPANY DATA ALWAYS.
   companyData(boo) {
     this.getcompanyData.next(boo);
+
+
+//   passItems(items) {
+//     this.itemslist.next(items);
+//   }
+
+  deleteFun(boolean) {
+    this.delete.next(boolean);
+
+  asItemid(itemid) {
+    this.itemId.next(itemid);
+
+
   }
   // FUNCTION FOR ITEMANEM.
   itemNameCheck(itemName) {

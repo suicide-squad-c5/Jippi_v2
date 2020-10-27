@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./item.component.css'],
 })
 export class ItemComponent implements OnInit {
+  itemId: number = null;
   @Input() quantity: any;
   // basket_item: any = [];
   @Input() item: any;
@@ -20,6 +21,8 @@ export class ItemComponent implements OnInit {
       (basket_item) => (this.basket = basket_item)
     );
     this.local.quantityItems.subscribe((qnt) => (this.quantity = qnt));
+
+    // =================================================
   }
 
   ngDoCheck() {
@@ -45,5 +48,15 @@ export class ItemComponent implements OnInit {
   }
   addOne() {
     this.local.addOne(this.quantity);
+
+  }
+  getItemId(item) {
+    console.log('itemid////---', item.id);
+    this.itemId = item.id;
+    this.local.asItemid(item.id);
+  }
+  moreDetails() {
+    this.router.navigate(['/items/details/'], { fragment: `${this.itemId}` });
+
   }
 }

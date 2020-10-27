@@ -24,6 +24,7 @@ export class ItemsComponent implements OnInit {
     this.local.getitem_name.subscribe((itemName) => (this.itemName = itemName));
     console.log('itemname', this.itemName);
     this.SearchBar();
+
   }
   getitems() {
     return this._http.getItems().subscribe((data) => {
@@ -31,6 +32,7 @@ export class ItemsComponent implements OnInit {
       this.local.passItems(data);
     });
   }
+
 
   // SEARCH BAR FOR ITEMS.
   SearchBar() {
