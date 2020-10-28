@@ -37,6 +37,7 @@ export class EditProfileComponent implements OnInit {
     console.log('firstName', this.firstName);
   }
   ngDoCheck() {
+  
     console.log('URL', this.url);
   }
   //function to read avatar url
