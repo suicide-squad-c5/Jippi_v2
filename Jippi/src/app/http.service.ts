@@ -100,6 +100,17 @@ export class HttpService {
     );
   }
 
+  // SEND EMAIL (CONTACT).
+  sendEmailC(mailData) {
+    console.log('http service');
+    return this.http.post(this.ROOT_URL + `/contact`, {
+      userName: mailData.Uname,
+      userEmail: mailData.Uemail,
+      userPhone: mailData.Uphone,
+      userMessage: mailData.Umessage,
+    });
+  }
+
   //get all items in db
   getItems() {
     return this.http.get(this.ROOT_URL + '/api/items');
