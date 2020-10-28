@@ -85,6 +85,9 @@ export class HttpService {
   getItems() {
     return this.http.get(this.ROOT_URL + '/api/items');
   }
+  getfour(CompanyId) {
+    return this.http.get(this.ROOT_URL + `/api/items/getfour/${CompanyId}`);
+  }
   // ================================================
   loginCustomer(email, password) {
     return this.http.post(this.ROOT_URL + `/api/login/customer/login`, {

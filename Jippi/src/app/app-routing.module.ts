@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'profile/edit', component: EditProfileComponent },
   // COMPANY SIDE.
   // items
-  { path: 'items/details', component: ItemDetailsComponent },
+  { path: 'items/details/:id', component: ItemDetailsComponent },
   { path: 'comapny/signup', component: CompSignupComponent },
   { path: 'company/login', component: CompLoginComponent },
   { path: 'company/addItem', component: AddItemComponent },

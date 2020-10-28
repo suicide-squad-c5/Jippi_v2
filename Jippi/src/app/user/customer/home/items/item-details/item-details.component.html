@@ -16,7 +16,7 @@
     href="https://mdbootstrap.com/previews/ecommerce-demo/css/bootstrap.min.css"
   />
 
-  <div *ngFor="let item of Data" class="container">
+  <div class="container">
     <!--Section: Block Content-->
     <section class="my-5">
       <div class="row">
@@ -138,8 +138,7 @@
                 class="img-fluid w-100"
                 alt="Sample"
               />
-
-              <a href="#!">
+              <a (click)="view(do.id)">
                 <div class="mask"></div>
               </a>
             </div>
@@ -307,16 +306,11 @@
           </li>
         </ul>
       </div>
-      <!-- Grid column -->
     </div>
-    <!-- Grid row -->
   </div>
-  <!-- Footer Links -->
-
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">
     © 2020 Copyright:
     <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
   </div>
-  <!-- Copyright -->
 </footer>
