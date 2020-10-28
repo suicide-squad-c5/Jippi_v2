@@ -171,7 +171,7 @@ export class HttpService {
   }
 
   updateCusInfo(user_id, user) {
-    return this.http.post(
+    return this.http.put(
       this.ROOT_URL + `/api/profile/customer/update/${user_id}`,
       user
     );

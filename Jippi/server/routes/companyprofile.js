@@ -165,8 +165,6 @@ companyProfileRouter.put("/:companyId", async (req, res) => {
 
 // UNBANED COMPANY FUNCTION.
 companyProfileRouter.put("/unbaned/:companyId", async (req, res) => {
-  console.log(req.body.companyId);
-  console.log(req.params.companyId);
   Company.update({ baned: "false" }, { where: { id: req.params.companyId } })
     .then((company) => {
       res.json(company);
