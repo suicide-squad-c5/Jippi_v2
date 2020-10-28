@@ -76,10 +76,7 @@ export class LocalService {
     this.getcompanyData.next(boo);
 
   }
-//   passItems(items) {
-//     this.itemslist.next(items);
-//   }
-
+  ////
   deleteFun(boolean) {
     this.delete.next(boolean);
   }

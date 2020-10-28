@@ -26,9 +26,9 @@ export class ItemsComponent implements OnInit {
       this.getitems();
       this.allitems = false;
     }
-    console.log('++++>>', this.itemsList, this.allitems);
+    // console.log('++++>>', this.itemsList, this.allitems);
     this.local.getitem_name.subscribe((itemName) => (this.itemName = itemName));
-    console.log('itemname', this.itemName);
+    // console.log('itemname', this.itemName);
     this.SearchBar();
 
 

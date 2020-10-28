@@ -39,9 +39,7 @@ export class FilterComponent implements OnInit {
     this.local.items_list.subscribe((items) => (this.items = items));
     this.local.all_items.subscribe((items) => (this.allItems = items));
 
-    console.log('items_list in filter', this.items, this.allItems);
-
-    console.log('<<<', this.items, this.items_kinds, this.allItemsData);
+    // console.log('<<<', this.items, this.items_kinds, this.allItemsData);
   }
 
   filterItems() {
@@ -53,10 +51,7 @@ export class FilterComponent implements OnInit {
     }
     this.local.passItems(this.items);
   }
-  checkCheckBoxvalue(event) {
-    console.log('test filter', event.checked);
-  }
-
+  
   getAllData() {
     this.local.passAllItems(true);
     this.getAllDataItems();
@@ -74,14 +69,12 @@ export class FilterComponent implements OnInit {
     let max = parseInt(this.max_price);
     for (let i = 0; i < this.items.length; i++) {
       if (this.items[i].itemPrice < min) {
-        console.log('item min', this.items[i].itemPrice, i);
+        // console.log('item min', this.items[i].itemPrice, i);
         this.items.splice(i, 1,undefined);
       } else if (this.items[i]?.itemPrice > max) {
-        console.log('item max', this.items[i].itemPrice, i);
+        // console.log('item max', this.items[i].itemPrice, i);
         this.items.splice(i, 1, undefined);
-      } else {
-        console.log('item in marge', this.items[i].itemPrice, i);
-      }
+      } 
     }
     this.local.passItems(this.items);
   }

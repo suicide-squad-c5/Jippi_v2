@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../../../../http.service';
 import { LocalService } from '../../../../local.service';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-companies-users',
@@ -23,7 +23,13 @@ export class CompaniesUsersComponent implements OnInit {
     // CHECK ! (passed fine).
     console.log('companyId', companyId);
     this._http.bannCompany(companyId).subscribe((res) => {
-      swal('Done!', 'This company has been Banned', 'success');
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'The company has been baned',
+        showConfirmButton: false,
+        timer: 1500,
+      });
       console.log('this is the result of banncompany', res);
       this.callDataCompany = true;
       this.local.companyData(this.callDataCompany);
@@ -35,7 +41,13 @@ export class CompaniesUsersComponent implements OnInit {
     // CHECK ! (passed fine).
     console.log('companyId for unbaned', companyId);
     this._http.unbanedCompany(companyId).subscribe((res) => {
-      swal('Done!', 'This company has been Unbannded', 'success');
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'The company has been unbanded',
+        showConfirmButton: false,
+        timer: 1500,
+      });
       console.log('unbaned done', res);
       this.callDataCompany = true;
       this.local.companyData(this.callDataCompany);
