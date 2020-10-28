@@ -55,11 +55,10 @@ export class HttpService {
     return this.http.put(this.ROOT_URL + '/api/items/update', formData);
   }
 
-  getcompanyItems(companyId) {
-    return this.http.get(this.ROOT_URL + `/api/items/Company/${companyId}`);
-  }
+
 
   //add an item to the database
+
 
 
   // CREATE POST REQUEST FOR THE ADMIN LOGIN.
@@ -115,6 +114,9 @@ export class HttpService {
   //get all items in db
   getItems() {
     return this.http.get(this.ROOT_URL + '/api/items');
+  }
+  getfour(CompanyId) {
+    return this.http.get(this.ROOT_URL + `/api/items/getfour/${CompanyId}`);
   }
   // ================================================
   loginCustomer(email, password) {
