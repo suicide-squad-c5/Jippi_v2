@@ -33,8 +33,6 @@ export class EditProfileComponent implements OnInit {
     this.email = this.user_Info.email;
     this.adress = this.user_Info.address;
     // this.url = this.user_Info.avatar;
-    this.password = '';
-    this.confirmPassword = '';
     console.log('++++>', this.user_Info);
     console.log('firstName', this.firstName);
   }
