@@ -42,6 +42,7 @@ export class EditProfileComponent implements OnInit {
   }
   //function to read avatar url
   onSelectFile(event) {
+    console.log('evvnet', event.target.files[0]);
     this.url = event.target.files[0];
     console.log('evvnet', event.target.files[0]);
   }
