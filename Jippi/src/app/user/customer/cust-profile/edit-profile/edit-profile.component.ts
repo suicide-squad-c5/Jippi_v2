@@ -7,6 +7,8 @@ import { LocalService } from '../../../../local.service';
   styleUrls: ['./edit-profile.component.css'],
 })
 export class EditProfileComponent implements OnInit {
+  public imagePath;
+  imgURL: any;
   user_Info: any = {};
   userId: any = parseInt(localStorage['Id']);
   firstName: string | Blob = '';
@@ -86,5 +88,16 @@ export class EditProfileComponent implements OnInit {
         this.url = res['avatar'];
         console.log('000105424', res['avatar']);
       });
+  }
+  preview(files) {
+    if (files.length === 0) {
+      return;
+    }
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    };
   }
 }
