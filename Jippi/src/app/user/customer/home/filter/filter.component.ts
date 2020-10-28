@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { timeStamp } from 'console';
 import { LocalService } from '../../../../local.service';
 
 @Component({
@@ -67,6 +68,7 @@ export class FilterComponent implements OnInit {
     for (let key in this.items_kinds) {
       this.items_kinds[key] = false;
     }
+    this.checked = false;
   }
 
   //filter items with price
