@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { timeStamp } from 'console';
+// import { timeStamp } from 'console';
 import { LocalService } from '../../../../local.service';
 
 @Component({

@@ -27,7 +27,7 @@ export class CompEditProfileComponent implements OnInit {
     this.location = this.companyInfo[0]?.location;
   }
 ngDoCheck() {
-  console.log('=+=+=+>', this.companyInfo);
+  // console.log('=+=+=+>', this.companyInfo);
 }
   editcompanyProfile() {
     var CompanyID = localStorage.getItem('comapnyId');
