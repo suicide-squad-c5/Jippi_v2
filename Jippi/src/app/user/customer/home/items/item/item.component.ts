@@ -57,14 +57,8 @@ export class ItemComponent implements OnInit {
     this.itemId = item.id;
     this.local.asItemid(item.id);
   }
-<<<<<<< HEAD
   // to add the item id to the route
   moreDetails(item) {
     this.router.navigate([`/items/details/${item.id}`]);
-=======
-  moreDetails() {
-    this.router.navigate(['/items/details/'], { fragment: `${this.itemId}` });
-
->>>>>>> 446222676c81d37cfbeedbf26a32121eec79159b
   }
 }

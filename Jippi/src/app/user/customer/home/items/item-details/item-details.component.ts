@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./item-details.component.css'],
 })
 export class ItemDetailsComponent implements OnInit {
-  item = {};
+  item :any = {};
   fourItems: any;
   itemID: number = null;
   itemIdre: number = null;

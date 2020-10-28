@@ -55,13 +55,12 @@ export class HttpService {
     return this.http.put(this.ROOT_URL + '/api/items/update', formData);
   }
 
-<<<<<<< HEAD
-=======
+
 
   //add an item to the database
 
 
->>>>>>> 446222676c81d37cfbeedbf26a32121eec79159b
+
   // CREATE POST REQUEST FOR THE ADMIN LOGIN.
   postAdminlogin(adminLogin) {
     return this.http.post(this.ROOT_URL + `/admin/jippi`, {
