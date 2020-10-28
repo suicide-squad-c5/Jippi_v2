@@ -8,6 +8,9 @@ import { HttpService } from '../../../../../http.service';
 })
 export class UpdateItemComponent implements OnInit {
   constructor(private location: Location, private _http: HttpService) {}
+  public imagePath;
+  imgURL: any;
+  //previw image up §§
   oldData: any;
   itemName: string = '';
   itemPrice: any = 0;
@@ -81,5 +84,17 @@ export class UpdateItemComponent implements OnInit {
 
   show() {
     console.log('im show');
+  }
+
+  preview(files) {
+    if (files.length === 0) {
+      return;
+    }
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    };
   }
 }
