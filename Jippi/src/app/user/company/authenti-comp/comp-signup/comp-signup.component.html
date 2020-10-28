@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-8 col-xl-6">
         <div class="row">
-          <div class="col text-center">
+          <div class="col text-center" style="margin-top:5%">
             <h1>Register</h1>
             <p class="text-h3">
               Join JIPPI now and create your own shop to start sell your items,
@@ -13,58 +13,38 @@
         </div>
         <div class="row align-items-center">
           <div class="col mt-4">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Company Name"
-              [(ngModel)]="companyName"
-            />
+            <input type="text" class="form-control" placeholder="Company Name" [(ngModel)]="companyName" />
           </div>
         </div>
         <div class="row align-items-center mt-4">
           <div class="col">
-            <input
-              type="email"
-              class="form-control"
-              placeholder="Email"
-              [(ngModel)]="companyEmail"
-            />
+            <input type="email" class="form-control" placeholder="Email" [(ngModel)]="companyEmail" />
           </div>
         </div>
         <div class="row align-items-center mt-4">
           <div class="col">
-            <input
-              type="password"
-              class="form-control"
-              placeholder="Password"
-              [(ngModel)]="companyPassword"
-            />
+            <input type="password" class="form-control" placeholder="Password" [(ngModel)]="companyPassword" />
+            <!-- <password-strength-meter [password]="password"></password-strength-meter> -->
+
           </div>
           <div class="col">
-            <input
-              type="password"
-              class="form-control"
-              placeholder="Confirm Password"
-              [(ngModel)]="companyConfirmPassword"
-            />
+            <input type="password" class="form-control" placeholder="Confirm Password"
+              [(ngModel)]="companyConfirmPassword" />
+            <!-- <password-strength-meter [password]="password"></password-strength-meter> -->
           </div>
         </div>
         <div class="row justify-content-start mt-4">
           <div class="col">
-            <div class="form-check">
+            <button color="info" block="true" class="btn btn-lg btn-primary btn-block" type="submit"
+              (click)="companyData()">
+              Sign in
+            </button>
+            <br />
+            <div class="form-check" style="margin-bottom:5%;">
               <label class="form-check-label">
                 you already have account <a href="company/login">Log in</a>
               </label>
             </div>
-            <button
-              color="info"
-              block="true"
-              class="btn btn-lg btn-primary btn-block"
-              type="submit"
-              (click)="companyData()"
-            >
-              Sign in
-            </button>
           </div>
         </div>
       </div>

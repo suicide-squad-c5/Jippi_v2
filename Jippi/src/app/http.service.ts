@@ -49,6 +49,7 @@ export class HttpService {
     });
   }
 
+
   //update an item
   updateItem(formData) {
     return this.http.put(this.ROOT_URL + '/api/items/update', formData);
@@ -57,6 +58,9 @@ export class HttpService {
   getcompanyItems(companyId) {
     return this.http.get(this.ROOT_URL + `/api/items/Company/${companyId}`);
   }
+
+  //add an item to the database
+
 
   // CREATE POST REQUEST FOR THE ADMIN LOGIN.
   postAdminlogin(adminLogin) {
@@ -67,9 +71,9 @@ export class HttpService {
   }
 
   // GET ALL CUSTOMERS FOR THE ADMIN LIST.
-  getcustomers() {
-    return this.http.get(this.ROOT_URL + '/api/profile/customer');
-  }
+  // getcustomers() {
+  //   return this.http.get(this.ROOT_URL + '/api/profile/customer');
+  // }
 
   // CREATE POST REQUEST TO THE ADMIN CREATE ACCOUNT.
   postAdminCreate(adminCreate) {
@@ -81,9 +85,31 @@ export class HttpService {
     });
   }
 
-  // CREATE REQUEST TO DELETE ITEMS FROM ADMIN SIDE.
+  // CREATE REQUEST TO DELETE ITEMS.
   deleteItem(itemId) {
     return this.http.delete(this.ROOT_URL + `/api/items/${itemId}`);
+  }
+
+  // GET ALL THE COMPANIES FOR THE ADMIN SIDE.
+  getCompanies() {
+    return this.http.get(this.ROOT_URL + `/api/profile/company`);
+  }
+
+  // BAN THE COMPANY BY UPDATE BANN FROM FALSE TO TRUE.
+  bannCompany(companyId) {
+    return this.http.put(this.ROOT_URL + `/api/profile/company/${companyId}`, {
+      companyId,
+    });
+  }
+
+  // UNBANNED COMPANY FOR THE ADMIN SIDE. \
+  unbanedCompany(companyId) {
+    return this.http.put(
+      this.ROOT_URL + `/api/profile/company/unbaned/${companyId}`,
+      {
+        companyId,
+      }
+    );
   }
 
   //get all items in db
@@ -97,7 +123,8 @@ export class HttpService {
       password,
     });
   }
-  // ================COMPANY====================================
+
+  // ==============================COMPANY====================================
   // that's for updating the company  Data
   editCompanyProfileData(
     companyName,
@@ -154,13 +181,18 @@ export class HttpService {
   custProfile(user_id) {
     return this.http.get(this.ROOT_URL + `/api/profile/customer/${user_id}`);
   }
-  updateCusInfo(formData, userId) {
+
+  updateCusInfo(user_id, user) {
     return this.http.put(
-      this.ROOT_URL + `/api/profile/customer/update/${userId}`,
-      formData
+      this.ROOT_URL + `/api/profile/customer/update/${user_id}`,
+      user
     );
   }
   getTheUpdateCustomerImage(imageId) {
     return this.http.get(this.ROOT_URL + `/api/profile/customer/${imageId}`);
+  }
+
+  getcompanyItems(companyId) {
+    return this.http.get(this.ROOT_URL + `/api/items/Company/${companyId}`);
   }
 }
