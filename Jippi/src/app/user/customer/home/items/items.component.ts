@@ -25,9 +25,9 @@ export class ItemsComponent implements OnInit {
       this.getitems();
       this.allitems = false;
     }
-    console.log('++++>>', this.itemsList, this.allitems);
+    // console.log('++++>>', this.itemsList, this.allitems);
     this.local.getitem_name.subscribe((itemName) => (this.itemName = itemName));
-    console.log('itemname', this.itemName);
+    // console.log('itemname', this.itemName);
     this.SearchBar();
   }
   getitems() {
@@ -43,7 +43,7 @@ export class ItemsComponent implements OnInit {
   // SEARCH BAR FOR ITEMS.
   SearchBar() {
     this.itemsList = this.itemsList.filter((item) => {
-      return item.itemName.toLowerCase().match(this.itemName.toLowerCase());
+      return item?.itemName.toLowerCase().match(this?.itemName.toLowerCase());
     });
   }
 }

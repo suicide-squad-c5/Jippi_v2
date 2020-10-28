@@ -12,6 +12,9 @@ export class LocalService {
   private userInfo = new BehaviorSubject({});
   user_info = this.userInfo.asObservable();
   // company side.
+  //companie information  
+  companyInfo = new BehaviorSubject({});
+  company_info = this.companyInfo.asObservable();
   private companyID = new BehaviorSubject(null);
   company_iD = this.companyID.asObservable();
   //basket side.
@@ -54,7 +57,10 @@ export class LocalService {
   getUserInfo(info: any) {
     this.userInfo.next(info);
   }
-
+// get company info
+getCompaniInfo(info: any) {
+  this.companyInfo.next(info)
+}
   addToBasket(basket_item: any) {
     this.basket.next(basket_item);
   }
@@ -76,10 +82,7 @@ export class LocalService {
     this.getcompanyData.next(boo);
 
   }
-//   passItems(items) {
-//     this.itemslist.next(items);
-//   }
-
+  ////
   deleteFun(boolean) {
     this.delete.next(boolean);
   }

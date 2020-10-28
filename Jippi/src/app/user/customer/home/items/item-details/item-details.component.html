@@ -16,7 +16,7 @@
     href="https://mdbootstrap.com/previews/ecommerce-demo/css/bootstrap.min.css"
   />
 
-  <div *ngFor="let item of Data" class="container">
+  <div class="container">
     <!--Section: Block Content-->
     <section class="my-5">
       <div class="row">
@@ -69,13 +69,9 @@
                 </tr>
                 <tr>
                   <th class="pl-0 w-25" scope="row">
-                    <strong>Gander</strong>
+                    <strong>Item Type:</strong>
                   </th>
                   <td>{{item.itemKind}}</td>
-                </tr>
-                <tr>
-                  <th class="pl-0 w-25" scope="row"><strong>Color</strong></th>
-                  <td>Sand</td>
                 </tr>
               </tbody>
             </table>
@@ -111,10 +107,11 @@
               </tbody>
             </table>
           </div>
+          <!-- add to card -->
           <button type="button" class="btn btn-primary btn-md mr-1 mb-2">
             Buy now
           </button>
-          <button type="button" class="btn btn-light btn-md mr-1 mb-2">
+          <button type="button" class="btn btn-light btn-md mr-1 mb-2" (click)="addFun(this.item)">
             <i class="fas fa-shopping-cart pr-2"></i>Add to cart
           </button>
         </div>
@@ -131,22 +128,21 @@
         <!-- Grid column -->
         <div class="col-md-6 col-lg-3 mb-4">
           <!-- Card -->
-          <div class="">
+          <div *ngFor="let do of fourItems" class="">
             <div class="view zoom z-depth-2 rounded">
               <img
+                src="{{do.itemImage}}"
                 class="img-fluid w-100"
-                src="https://mdbootstrap.com/img/Photos/Horizontal/Interior/img(66).jpg"
                 alt="Sample"
               />
-              <a href="#!">
+              <a (click)="view(do.id)">
                 <div class="mask"></div>
               </a>
             </div>
-
             <div class="text-center pt-4">
-              <h5>Seagrass basket - M</h5>
-              <h6 class="mb-3">$ 23.00</h6>
-              <button type="button" class="btn btn-primary btn-sm mr-1">
+              <h5>{{do.itemName}}</h5>
+              <h6 class="mb-3">{{do.itemPrice}}</h6>
+              <button type="button" class="btn btn-primary btn-sm mr-1" (click)="addFun(do)">
                 <i class="fas fa-shopping-cart pr-2"></i>Add to cart
               </button>
               <button
@@ -160,124 +156,12 @@
               </button>
             </div>
           </div>
-          <!-- Card -->
         </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-6 col-lg-3 mb-4">
-          <!-- Card -->
-          <div class="">
-            <div class="view zoom z-depth-2 rounded">
-              <img
-                class="img-fluid w-100"
-                src="https://mdbootstrap.com/img/Photos/Horizontal/Interior/img(23).jpg"
-                alt="Sample"
-              />
-              <a href="#!">
-                <div class="mask"></div>
-              </a>
-            </div>
-
-            <div class="text-center pt-4">
-              <h5>Seagrass basket - L</h5>
-              <h6 class="mb-3">$ 25.00</h6>
-              <button type="button" class="btn btn-primary btn-sm mr-1">
-                <i class="fas fa-shopping-cart pr-2"></i>Add to cart
-              </button>
-              <button
-                type="button"
-                class="btn btn-danger btn-sm px-3 material-tooltip-main"
-                data-toggle="tooltip"
-                data-placement="top"
-                title="Add to wishlist"
-              >
-                <i class="far fa-heart"></i>
-              </button>
-            </div>
-          </div>
-          <!-- Card -->
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-6 col-lg-3 mb-4">
-          <!-- Card -->
-          <div class="">
-            <div class="view zoom z-depth-2 rounded">
-              <img
-                class="img-fluid w-100"
-                src="https://mdbootstrap.com/img/Photos/Horizontal/Interior/img(63).jpg"
-                alt="Sample"
-              />
-              <a href="#!">
-                <div class="mask"></div>
-              </a>
-            </div>
-
-            <div class="text-center pt-4">
-              <h5>Flat seagrass basket</h5>
-              <h6 class="mb-3">$ 20.00</h6>
-              <button type="button" class="btn btn-primary btn-sm mr-1">
-                <i class="fas fa-shopping-cart pr-2"></i>Add to cart
-              </button>
-              <button
-                type="button"
-                class="btn btn-danger btn-sm px-3 material-tooltip-main"
-                data-toggle="tooltip"
-                data-placement="top"
-                title="Add to wishlist"
-              >
-                <i class="far fa-heart"></i>
-              </button>
-            </div>
-          </div>
-          <!-- Card -->
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-6 col-lg-3 mb-4">
-          <!-- Card -->
-          <div class="">
-            <div class="view zoom z-depth-2 rounded">
-              <img
-                class="img-fluid w-100"
-                src="https://mdbootstrap.com/img/Photos/Horizontal/Interior/img(59).jpg"
-                alt="Sample"
-              />
-              <a href="#!">
-                <div class="mask"></div>
-              </a>
-            </div>
-
-            <div class="text-center pt-4">
-              <h5>Small wicker basket</h5>
-              <h6 class="mb-3">$ 9.00</h6>
-              <button type="button" class="btn btn-primary btn-sm mr-1">
-                <i class="fas fa-shopping-cart pr-2"></i>Add to cart
-              </button>
-              <button
-                type="button"
-                class="btn btn-danger btn-sm px-3 material-tooltip-main"
-                data-toggle="tooltip"
-                data-placement="top"
-                title="Add to wishlist"
-              >
-                <i class="far fa-heart"></i>
-              </button>
-            </div>
-          </div>
-          <!-- Card -->
-        </div>
-        <!-- Grid column -->
+        <!-- row ends here -->
       </div>
-      <!-- Grid row -->
     </section>
-    <!--Section: New products-->
   </div>
 </main>
-<!-- Main layout -->
 
 <!-- Footer -->
 <footer class="page-footer font-small elegant-color">
@@ -419,16 +303,11 @@
           </li>
         </ul>
       </div>
-      <!-- Grid column -->
     </div>
-    <!-- Grid row -->
   </div>
-  <!-- Footer Links -->
-
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">
     © 2020 Copyright:
     <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
   </div>
-  <!-- Copyright -->
 </footer>

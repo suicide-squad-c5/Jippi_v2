@@ -48,7 +48,18 @@ export class HttpService {
       itemId,
     });
   }
+
+
+  //update an item
+  updateItem(formData) {
+    return this.http.put(this.ROOT_URL + '/api/items/update', formData);
+  }
+
+
+
   //add an item to the database
+
+
 
   // CREATE POST REQUEST FOR THE ADMIN LOGIN.
   postAdminlogin(adminLogin) {
@@ -114,6 +125,9 @@ export class HttpService {
   //get all items in db
   getItems() {
     return this.http.get(this.ROOT_URL + '/api/items');
+  }
+  getfour(CompanyId) {
+    return this.http.get(this.ROOT_URL + `/api/items/getfour/${CompanyId}`);
   }
   // ================================================
   loginCustomer(email, password) {
@@ -182,7 +196,7 @@ export class HttpService {
   }
 
   updateCusInfo(user_id, user) {
-    return this.http.post(
+    return this.http.put(
       this.ROOT_URL + `/api/profile/customer/update/${user_id}`,
       user
     );

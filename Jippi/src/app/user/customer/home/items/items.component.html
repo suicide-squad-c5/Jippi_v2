@@ -1,5 +1,8 @@
 <div class="row">
   <div class="col-md-3 col-sm-6" *ngFor="let item of itemsList">
+  <div *ngIf="item !== undefined"> 
     <app-item class="grid-item" [item]="item" [basket]="basket" [quantity]="quantity"></app-item>
   </div>
+  </div>
 </div>
+

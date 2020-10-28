@@ -1,0 +1,85 @@
+<p>update-item works!</p>
+<?php
+echo "Hello World!";
+?>
+<form class="text-center border border-light p-5" action="#!">
+  <p class="h4 mb-4">Add an item to your shop</p>
+
+  <p>Please fill the descriptions down bellow</p>
+
+  <!--Item Name -->
+  <input
+    name="itemName"
+    type="text"
+    id="defaultSubscriptionFormPassword"
+    class="form-control mb-4"
+    [(ngModel)]="itemName"
+  />
+
+  <!--Item price -->
+  <input
+    name="itemPrice"
+    type="number"
+    id="defaultSubscriptionFormPassword"
+    class="form-control mb-4"
+    [(ngModel)]="itemPrice"
+  />
+
+  <!-- description -->
+  <input
+    name="itemDescription"
+    type="textarea"
+    id="defaultSubscriptionFormEmail"
+    class="form-control mb-4"
+    [(ngModel)]="itemDescription"
+  />
+
+  <!-- category -->
+
+  <label for="sel1">Choose a category :</label>
+  <select
+    class="form-control"
+    id="sel1"
+    (change)="selectCategoryHandler($event); show()"
+  >
+    <option value="clothing">clothing</option>
+    <option value="electronics">electronics</option>
+    <option value="Outdoor">Outdoor</option>
+    <option value="Toys">Toys</option>
+  </select>
+
+  <!-- kind -->
+
+  <label for="sel1">Choose a kind :</label>
+  <select
+    class="form-control"
+    id="sel1"
+    (change)="selectKindHandler($event); show()"
+  >
+    <option *ngFor="let kind of listKind" value="{{ kind }}">
+      {{ kind }}
+    </option>
+  </select>
+  <br />
+  <!-- Item image -->
+  <input
+    (change)="chooseAnImage($event); preview(file.files)"
+    name="itemImage"
+    #file
+    type="file"
+    accept="image/*"
+    id="defaultSubscriptionFormEmail"
+    class="form-control mb-4"
+  />
+
+  <img [src]="imgURL ? imgURL : oldData.itemImage" alt="Responsive image" />
+
+  <!-- Add button -->
+  <button
+    class="btn btn-info btn-block"
+    type="submit"
+    (click)="saveItem(); show()"
+  >
+    Add to my shop
+  </button>
+</form>
