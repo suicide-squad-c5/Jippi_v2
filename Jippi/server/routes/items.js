@@ -99,8 +99,8 @@ itemsRouter.post("/add", up.single("itemImage"), (req, res) => {
 });
 // to get a certain item by it's id
 itemsRouter.post("/get/:id", (req, res) => {
-  console.log("res", req.body);
-  console.log("req.params **", req.params);
+  // console.log("res", req.body);
+  // console.log("req.params **", req.params);
   newItem
     .findOne({
       where: {
@@ -108,7 +108,7 @@ itemsRouter.post("/get/:id", (req, res) => {
       },
     })
     .then((data) => {
-      console.log("data", data);
+      // console.log("data", data);
       res.status(200).send(data);
     })
     .catch((err) => {
@@ -149,5 +149,17 @@ itemsRouter.get(`/Company/:id`, async (req, res) => {
     console.error(e);
   }
 });
-
+itemsRouter.get("/getfour/:id", async (req, res) => {
+  try {
+    console.log('=============>', req.params);
+    const items = await newItem.findAll({
+      where: {
+        itemCompany: req.params.id
+      }
+    })
+    res.send(items)
+  } catch (err) {
+    res.status(400).send(err)
+  }
+});
 module.exports = itemsRouter;

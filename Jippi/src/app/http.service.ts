@@ -56,7 +56,9 @@ export class HttpService {
   }
 
 
+
   //add an item to the database
+
 
 
   // CREATE POST REQUEST FOR THE ADMIN LOGIN.
@@ -112,6 +114,9 @@ export class HttpService {
   //get all items in db
   getItems() {
     return this.http.get(this.ROOT_URL + '/api/items');
+  }
+  getfour(CompanyId) {
+    return this.http.get(this.ROOT_URL + `/api/items/getfour/${CompanyId}`);
   }
   // ================================================
   loginCustomer(email, password) {
