@@ -1,10 +1,5 @@
 <div class="row">
-  <div class="col-md-4 grid-container" *ngFor="let item of itemsList">
-    <app-item
-      class="grid-item"
-      [item]="item"
-      [basket]="basket"
-      [quantity]="quantity"
-    ></app-item>
+  <div class="col-md-3 col-sm-6" *ngFor="let item of itemsList">
+    <app-item class="grid-item" [item]="item" [basket]="basket" [quantity]="quantity"></app-item>
   </div>
 </div>

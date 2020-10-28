@@ -23,10 +23,11 @@ import { UsersComponent } from './user/admin/users/users.component';
 import { CompEditProfileComponent } from './user/company/comp-profile/comp-edit-profile/comp-edit-profile.component';
 import { CompanyHomeComponent } from './user/company/company-home/company-home.component';
 import { ItemDetailsComponent } from './user/customer/home/items/item-details/item-details.component';
+import { LandingPageComponent } from './user/landing-page/landing-page.component';
 
 const routes: Routes = [
   // CUSTOEMR SIDE.
-  { path: '', component: HomeComponent },
+  { path: '', component: LandingPageComponent },
   { path: 'contact', component: ContactUsComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
@@ -51,6 +52,7 @@ const routes: Routes = [
   { path: 'admin/reports', component: ReportsComponent },
   { path: 'customer/basket', component: BasketComponent },
   { path: 'admin/users', component: UsersComponent },
+  { path: 'shop/items', component: HomeComponent },
 ];
 
 @NgModule({

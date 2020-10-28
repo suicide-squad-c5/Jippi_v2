@@ -48,6 +48,7 @@ import { CompanyItemComponent } from './user/company/company-home/company-items/
 import { ItemDetailsComponent } from './user/customer/home/items/item-details/item-details.component';
 import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 import { LandingPageComponent } from './user/landing-page/landing-page.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { LandingPageComponent } from './user/landing-page/landing-page.component
     HttpClientModule,
     MDBBootstrapModule,
     PasswordStrengthMeterModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
