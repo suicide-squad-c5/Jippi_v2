@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 // import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -11,10 +13,9 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
   firstName: string = '';
   lastName: string = '';
-
   email: string = '';
-
   password: string = '';
+  ConfirmePassword: string = '';
   phoneNumber: string = '';
   newUser: any = [];
 
@@ -32,20 +33,34 @@ export class SignupComponent implements OnInit {
       this.phoneNumber
     );
   }
+
   postSignup() {
-    return this._http
-      .postSignupCustomer(
-        this.firstName,
-        this.lastName,
-        this.email,
-        this.password,
-        this.phoneNumber
-      )
-      .subscribe((data) => {
-        this.newUser = data;
-        console.log(data);
-        this.router.navigateByUrl('/login');
+    if (this.password !== this.ConfirmePassword) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'There is an issue with your password! please check again',
       });
-    
+    } else if (this.phoneNumber.length > 9) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'your phone number is short than 8 characters',
+      });
+    } else {
+      return this._http
+        .postSignupCustomer(
+          this.firstName,
+          this.lastName,
+          this.email,
+          this.password,
+          this.phoneNumber
+        )
+        .subscribe((data) => {
+          this.newUser = data;
+          console.log(data);
+          this.router.navigateByUrl('/login');
+        });
+    }
   }
 }

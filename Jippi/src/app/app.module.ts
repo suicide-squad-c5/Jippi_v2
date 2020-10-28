@@ -47,8 +47,8 @@ import { CompanyItemsComponent } from './user/company/company-home/company-items
 import { CompanyItemComponent } from './user/company/company-home/company-items/company-item/company-item.component';
 import { ItemDetailsComponent } from './user/customer/home/items/item-details/item-details.component';
 import { UpdateItemComponent } from './user/company/company-home/company-items/update-item/update-item.component';
-
-
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+import { LandingPageComponent } from './user/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +92,8 @@ import { UpdateItemComponent } from './user/company/company-home/company-items/u
     CompanyItemComponent,
     ItemDetailsComponent,
     UpdateItemComponent,
+    LandingPageComponent,
+
 
     // CustomersUserComponent,
   ],
@@ -102,6 +104,7 @@ import { UpdateItemComponent } from './user/company/company-home/company-items/u
     CommonModule,
     HttpClientModule,
     MDBBootstrapModule,
+    PasswordStrengthMeterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
