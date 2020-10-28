@@ -15,6 +15,8 @@ export class ItemDetailsComponent implements OnInit {
   itemIdre: number = null;
   test: number = 39;
   CompanyId: number = null;
+  quantity: any;
+  basket: any;
   constructor(
     private router: Router,
     private _http: HttpService,
@@ -22,8 +24,7 @@ export class ItemDetailsComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngDoCheck() {}
-  ngOnInit() {
+    ngOnInit() {
     // this.local.item_id.subscribe((itemid) => {
     //   sessionStorage.setItem('itemIdre', itemid);
     // this.itemID = itemid;
@@ -31,6 +32,10 @@ export class ItemDetailsComponent implements OnInit {
     // Get the id from params
     // Get the company id
     // Get the list of that compay's items
+    this.local.basktItems.subscribe(
+      (basket_item) => (this.basket = basket_item)
+    );
+    this.local.quantityItems.subscribe((qnt) => (this.quantity = qnt));
     this.route.params.subscribe((params) => {
       console.log(params);
       this.itemID = params.id;
@@ -69,5 +74,25 @@ export class ItemDetailsComponent implements OnInit {
   // to see the item that u click on in details
   view(doid) {
     this.router.navigate([`/items/details/${doid}`]);
+  }
+
+    addFun() {
+    if (this.basket.indexOf(this.item) === -1) {
+      this.basket.push(this.item);
+      this.quantity.push(1);
+    }
+    this.addItem();
+    this.addOne();
+  }
+  addItem() {
+    if (localStorage.Id) {
+      this.local.addToBasket(this.basket);
+    } else {
+      this.router.navigateByUrl('/signup');
+    }
+  }
+  addOne() {
+    this.local.addOne(this.quantity);
+
   }
 }
