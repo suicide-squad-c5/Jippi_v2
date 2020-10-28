@@ -1,0 +1,14 @@
+.main-container {
+  position: relative;
+  width: 100%;
+  padding: 70px;
+
+}
+
+* {
+  background-color: rgb(238, 238, 238);
+}
+
+.pd{
+    background-color:white;
+}
