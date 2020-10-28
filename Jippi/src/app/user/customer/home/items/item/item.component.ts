@@ -1,13 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LocalService } from '../../../../../local.service';
 import { Router } from '@angular/router';
-
+import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css'],
 })
 export class ItemComponent implements OnInit {
+  toggle: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  toggle$ = this.toggle.asObservable();
   itemId: number = null;
   @Input() quantity: any;
   // basket_item: any = [];
@@ -27,7 +29,6 @@ export class ItemComponent implements OnInit {
 
   ngDoCheck() {
     console.log('basket', this.basket, this.quantity);
-    // console.log('++++>',this.local.basktItems)
   }
 
   addFun() {
@@ -50,13 +51,20 @@ export class ItemComponent implements OnInit {
     this.local.addOne(this.quantity);
 
   }
+  // to ge tthe item id that user clicked on
   getItemId(item) {
     console.log('itemid////---', item.id);
     this.itemId = item.id;
     this.local.asItemid(item.id);
   }
+<<<<<<< HEAD
+  // to add the item id to the route
+  moreDetails(item) {
+    this.router.navigate([`/items/details/${item.id}`]);
+=======
   moreDetails() {
     this.router.navigate(['/items/details/'], { fragment: `${this.itemId}` });
 
+>>>>>>> 446222676c81d37cfbeedbf26a32121eec79159b
   }
 }
