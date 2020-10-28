@@ -14,6 +14,14 @@ loginCompanyRouter.post("/company/login", (req, res) => {
       companyEmail: req.body.companyEmail,
     },
   }).then((company) => {
+    console.log(company)
+
+    if (company.verified !== true) {
+      res.json({
+        message: "You did not verify your email"
+      })
+    }
+
     // console.log("hey then", company);
     console.log("company.companyPassword", company.companyPassword);
 
@@ -48,81 +56,33 @@ loginCompanyRouter.post("/company/login", (req, res) => {
     }
 
     // create token and send it with the user id to the front end.
-    let token = jwt.sign(
-      {
+    let token = jwt.sign({
         companyId: company.id,
       },
       "check"
     );
-    return res.status(200).json({
-      title: "login successful",
-      token: token,
-      id: company.id,
-    });
+    if (company.verified == true) {
+      return res.status(200).json({
+        title: "login successful",
+        token: token,
+        id: company.id,
+      });
+    }
+
+
   });
 });
-// var code;
-// sending an email to the company to verify
-// loginCompanyRouter.post('/sendmail/:id', (req, res) => {
-//   console.log("req.body", req.body)
-//   console.log("req.params", req.params)
-//   Company.findOne({
-//     where: {
-//       id: req.params.id,
-//     }
-//   }).then((company) => {
 
-//     let transporter = nodemailer.createTransport({
-//       service: 'Gmail',
-//       auth: {
-//         user: "jipp.pi.17@gmail.com",
-//         pass: "jippi1199"
-//       },
-//       tls: {
-//         rejectUnauthorized: false
-//       }
-//     });
-//     console.log("transporter.auth", transporter.options)
-
-//     const getRandomString = () => {
-//       var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-//       var result = '';
-//       for (var i = 0; i < 6; i++) {
-//         result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
-//       }
-//       return code = result;
-//     }
-//     getRandomString()
-
-//     let mailOptions = {
-//       form: 'jipp.pi.17@gmail.com',
-//       to: company.companyEmail,
-//       subject: "Test",
-//       text: code
-//     }
-//     transporter.sendMail(mailOptions).then(data => {
-//       res.json({
-//         data: data,
-//         email: company.companyEmail
-//       });
-//     }).catch(err => {
-//       res.send(err)
-//     })
-
-//   }).catch((err) => {
-//     res.status(500).send(err)
-//   })
-// });
 
 loginCompanyRouter.post("/chekpoint/:id", (req, res) => {
   console.log("Get ready");
   console.log("req.params", req.params);
   // console.log("req.body", req.body);
   Company.findOne({
-    where: {
-      id: req.params.id,
-    },
-  })
+      where: {
+        id: req.params.id,
+      },
+    })
     .then((company) => {
       console.log("company", company.verificationCode);
       console.log("req.body.verificationCode", req.body.verificationCode);
@@ -143,8 +103,12 @@ loginCompanyRouter.post("/chekpoint/:id", (req, res) => {
       }
       // ELSE
       if (company.verificationCode === userCode) {
+        company.update({
+          verified: true
+        })
         res.status(200).json({
           result: "welcome to Jippi",
+
         });
       }
     })

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./item-details.component.css'],
 })
 export class ItemDetailsComponent implements OnInit {
-  item = {};
+  item: any = {};
   fourItems: any;
   itemID: number = null;
   itemIdre: number = null;
@@ -46,6 +46,7 @@ export class ItemDetailsComponent implements OnInit {
     // this.itemIdre = parseInt(sessionStorage.getItem('itemIdre'));
     return this._http.getItemData(id).subscribe((res) => {
       this.item = res;
+      console.log(this.item);
     });
   }
   //  to show  some items belong to the same comapny

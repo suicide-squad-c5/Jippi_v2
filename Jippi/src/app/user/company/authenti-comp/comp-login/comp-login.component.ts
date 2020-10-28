@@ -16,6 +16,7 @@ export class CompLoginComponent implements OnInit {
   userType: string = 'vsiteur';
   companyId: number = null;
   alert: boolean = false;
+  verified: boolean = true;
 
   constructor(
     private _http: HttpService,
@@ -28,8 +29,10 @@ export class CompLoginComponent implements OnInit {
   }
 
   ngDoCheck() {
-    // check ! (passed fine)
-    // console.log(this.companyEmailLog);
+    if (this.verified === false) {
+      this.router.navigateByUrl('/company/login');
+    }
+    console.log('asdfasdfasdfasdfsadfasd', this.verified);
   }
 
   companyDataLog() {
@@ -45,16 +48,23 @@ export class CompLoginComponent implements OnInit {
       console.log('yo', res);
       if (res['status'] === 800) {
         this.alert = true;
-      } else {
+      } else if (res === res['message']) {
+        return;
+      } else if (res['title'] === 'login successful') {
         localStorage.setItem('companyToken', res['token']);
         localStorage.setItem('comapnyId', res['id']);
-        this.changeNav();
+        this.local.changeType('company');
+        this.router.navigateByUrl('/company/home');
+        // this.changeNav();
       }
     });
   }
 
   changeNav() {
-    this.local.changeType('company');
-    this.router.navigateByUrl('/company/home');
+    // if (this.verified === false) {
+    //   this.router.navigateByUrl('/company/login');
+    // } else {
+    this.companyDataLog();
   }
+  // }
 }

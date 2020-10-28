@@ -49,10 +49,10 @@ companyProfileRouter.put("/update/:companyId", (req, res) => {
   console.log(" req.params update ", req.params);
 
   Company.findOne({
-    where: {
-      id: req.params.companyId,
-    },
-  })
+      where: {
+        id: req.params.companyId,
+      },
+    })
     .then((record) => {
       console.log("Company =====>", record);
       if (!record) {
@@ -84,10 +84,10 @@ companyProfileRouter.post("/get/:id", (req, res) => {
   console.log(" req.params get ", req.params);
 
   Company.findOne({
-    where: {
-      id: req.params.id,
-    },
-  })
+      where: {
+        id: req.params.id,
+      },
+    })
     .then((record) => {
       if (!record) {
         throw new Error("No Company found get");
@@ -108,10 +108,10 @@ companyProfileRouter.put("/avatar/:id", uploads.any(0), (req, res) => {
   console.log("req.body", req.body.cId);
   console.log("req", req.files[0].path);
   Company.findOne({
-    where: {
-      id: req.params.id,
-    },
-  })
+      where: {
+        id: req.params.id,
+      },
+    })
     .then((company) => {
       var theImg = req.files[0].path;
 
@@ -154,7 +154,13 @@ companyProfileRouter.get("/", async (req, res) => {
 companyProfileRouter.put("/:companyId", async (req, res) => {
   console.log(req.body.companyId);
   console.log(req.params.companyId);
-  Company.update({ baned: "true" }, { where: { id: req.params.companyId } })
+  Company.update({
+      baned: "true"
+    }, {
+      where: {
+        id: req.params.companyId
+      }
+    })
     .then((company) => {
       res.json(company);
     })
@@ -165,7 +171,13 @@ companyProfileRouter.put("/:companyId", async (req, res) => {
 
 // UNBANED COMPANY FUNCTION.
 companyProfileRouter.put("/unbaned/:companyId", async (req, res) => {
-  Company.update({ baned: "false" }, { where: { id: req.params.companyId } })
+  Company.update({
+      baned: "false"
+    }, {
+      where: {
+        id: req.params.companyId
+      }
+    })
     .then((company) => {
       res.json(company);
     })
