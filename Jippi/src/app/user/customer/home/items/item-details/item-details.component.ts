@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class ItemDetailsComponent implements OnInit {
   item :any = {};
   fourItems: any;
-  itemID: number = null;
+  itemID: any;
   itemIdre: number = null;
   test: number = 39;
   CompanyId: number = null;
@@ -45,6 +45,11 @@ export class ItemDetailsComponent implements OnInit {
     this.get4itemsOfThatCompany();
     console.log('//////////', this.fourItems);
   }
+  ngDoCheck() {
+    console.log('all item name',this.fourItems, this.itemID);
+    //  this.fourItems = this.fourItems?.filter( itm => itm.id !== this.itemID);
+     console.log('fourItems====>S', this.fourItems)
+  }
 
   // to show the main item that the user has clicked on
   showClickedOnItem(id) {
@@ -59,7 +64,7 @@ export class ItemDetailsComponent implements OnInit {
       for (let i = 0; i < res.length; i++) {
         if (this.itemID == res[i].id) {
           this.CompanyId = res[i]['itemCompany'];
-          console.log('*/-/*-/+-*-', this.CompanyId);
+          // console.log('*/-/*-/+-*-', this.CompanyId);
           this.getSomeitems();
         }
       }
@@ -68,7 +73,9 @@ export class ItemDetailsComponent implements OnInit {
   getSomeitems() {
     return this._http.getfour(this.CompanyId).subscribe((res: any[]) => {
       console.log('res', res);
-      this.fourItems = res;
+      this.fourItems = res
+      this.fourItems = this.fourItems.filter( itm => parseInt(itm.id) !== parseInt(this.itemID));
+      
     });
   }
   // to see the item that u click on in details
@@ -76,9 +83,9 @@ export class ItemDetailsComponent implements OnInit {
     this.router.navigate([`/items/details/${doid}`]);
   }
 
-    addFun() {
-    if (this.basket.indexOf(this.item) === -1) {
-      this.basket.push(this.item);
+    addFun(itemToAdd) {
+    if (this.basket.indexOf(itemToAdd) === -1) {
+      this.basket.push(itemToAdd);
       this.quantity.push(1);
     }
     this.addItem();
