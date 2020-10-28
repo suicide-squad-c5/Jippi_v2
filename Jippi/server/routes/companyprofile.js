@@ -5,8 +5,8 @@ const multer = require("multer");
 const path = require("path");
 var cloudinary = require("cloudinary").v2;
 // companyProfileRouter.use(express.static(path.join(__dirname + './upload')));
-
 const Company = db.companies;
+
 cloudinary.config({
   cloud_name: "jipi",
   api_key: "895721462325433",
@@ -89,7 +89,6 @@ companyProfileRouter.post("/get/:id", (req, res) => {
     },
   })
     .then((record) => {
-      console.log("record", record)
       if (!record) {
         throw new Error("No Company found get");
       } else {
@@ -102,6 +101,7 @@ companyProfileRouter.post("/get/:id", (req, res) => {
       res.status(500).send(err);
     });
 });
+
 // to update to company avatar profile
 companyProfileRouter.put("/avatar/:id", uploads.any(0), (req, res) => {
   console.log(__dirname);
@@ -137,6 +137,40 @@ companyProfileRouter.put("/avatar/:id", uploads.any(0), (req, res) => {
     })
     .catch((err) => {
       res.status(400).send(err);
+    });
+});
+
+companyProfileRouter.get("/", async (req, res) => {
+  // console.log("request ===>", req.body);
+  try {
+    const companiesA = await Company.findAll();
+    res.status(200).send(companiesA);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// BAN COMPANY FUNCTION.
+companyProfileRouter.put("/:companyId", async (req, res) => {
+  console.log(req.body.companyId);
+  console.log(req.params.companyId);
+  Company.update({ baned: "true" }, { where: { id: req.params.companyId } })
+    .then((company) => {
+      res.json(company);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// UNBANED COMPANY FUNCTION.
+companyProfileRouter.put("/unbaned/:companyId", async (req, res) => {
+  Company.update({ baned: "false" }, { where: { id: req.params.companyId } })
+    .then((company) => {
+      res.json(company);
+    })
+    .catch((err) => {
+      console.log(err);
     });
 });
 

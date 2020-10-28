@@ -37,12 +37,7 @@ export class AddItemComponent implements OnInit {
     ],
   };
 
-  ngOnInit(): void {
-    console.log('companyID', this.companyID);
-    console.log('this.url', this.url);
-    console.log('kind', this.selectedKind)
-    console.log('catigory', this.selectedCategory);
-  }
+  ngOnInit(): void {}
   show() {
     console.log('AddItemComponent -> itemName', this.itemName);
     console.log('Addthis.ItemComponent -> this.itemPrice', this.itemPrice);

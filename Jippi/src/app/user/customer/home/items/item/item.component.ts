@@ -23,8 +23,10 @@ export class ItemComponent implements OnInit {
       (basket_item) => (this.basket = basket_item)
     );
     this.local.quantityItems.subscribe((qnt) => (this.quantity = qnt));
+
     // =================================================
   }
+
   ngDoCheck() {
     console.log('basket', this.basket, this.quantity);
   }
@@ -47,6 +49,7 @@ export class ItemComponent implements OnInit {
   }
   addOne() {
     this.local.addOne(this.quantity);
+
   }
   // to ge tthe item id that user clicked on
   getItemId(item) {
@@ -54,8 +57,14 @@ export class ItemComponent implements OnInit {
     this.itemId = item.id;
     this.local.asItemid(item.id);
   }
+<<<<<<< HEAD
   // to add the item id to the route
   moreDetails(item) {
     this.router.navigate([`/items/details/${item.id}`]);
+=======
+  moreDetails() {
+    this.router.navigate(['/items/details/'], { fragment: `${this.itemId}` });
+
+>>>>>>> 446222676c81d37cfbeedbf26a32121eec79159b
   }
 }

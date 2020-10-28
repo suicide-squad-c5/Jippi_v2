@@ -12,6 +12,8 @@ export class NavbarComponent implements OnInit {
   userType: string = 'visiteur';
   basket_item: any = [];
   itemNum: number = 0;
+  itemList: any = [];
+  itemName: string = '';
 
   constructor(private local: LocalService, private router: Router) {}
 
@@ -21,14 +23,13 @@ export class NavbarComponent implements OnInit {
       (basket_item) => (this.basket_item = basket_item)
     );
     this.local.userTy.subscribe((type) => (this.userType = type));
+    this.local.getitem_name.subscribe((itemName) => (this.itemName = itemName));
     if (localStorage.Id) {
       this.local.changeType('customer');
     } else if (localStorage.comapnyId) {
       this.local.changeType('company');
-
     } else if (localStorage.adminId) {
       this.local.changeType('admin');
-
     } else {
       this.local.changeType('visiteur');
     }
@@ -36,6 +37,9 @@ export class NavbarComponent implements OnInit {
 
   ngDoCheck() {
     this.itemNum = this.basket_item.length;
+    this.local.itemNameCheck(this.itemName);
+    console.log('itemname navbar', this.itemName);
+    this.local.getitem_name.subscribe((itemName) => (this.itemName = itemName));
   }
 
   logout() {

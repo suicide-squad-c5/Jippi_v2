@@ -2,6 +2,7 @@ const loginCustomerRouter = require("express").Router();
 const db = require("../../../../database/models");
 const Customer = db.customers;
 const jwt = require("jsonwebtoken");
+var passwordHash = require("password-hash");
 
 loginCustomerRouter.post("/login", (req, res) => {
   // console.log(req.body);
@@ -31,7 +32,9 @@ loginCustomerRouter.post("/login", (req, res) => {
       });
     }
 
-    if (req.body.password !== foundCustomer.password) {
+    if (
+      passwordHash.verify(req.body.password, foundCustomer.password) !== true
+    ) {
       console.log(foundCustomer);
       console.log("req.body.password", req.body.password);
       return res.status(401).json({
@@ -41,7 +44,8 @@ loginCustomerRouter.post("/login", (req, res) => {
     }
 
     // ELSE
-    let token = jwt.sign({
+    let token = jwt.sign(
+      {
         id: data.id,
       },
       "test"
@@ -53,7 +57,6 @@ loginCustomerRouter.post("/login", (req, res) => {
       id: data.id,
     });
   });
-
 });
 
 module.exports = loginCustomerRouter;
