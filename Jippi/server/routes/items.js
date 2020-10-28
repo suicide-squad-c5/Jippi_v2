@@ -16,6 +16,37 @@ const up = multer({
   dest: "upload",
 });
 
+itemsRouter.put("/update", up.single("itemImage"), (req, res) => {
+  console.log("req", req.body);
+  var img = req.file.path;
+  cloudinary.uploader
+    .upload(img, (error, result) => {
+      error && console.log("cloudinary [error] ==> ", error);
+    })
+    .then((result) => {
+      const item = {
+        itemName: req.body.itemName,
+        itemPrice: req.body.itemPrice,
+        itemDescription: req.body.itemDescription,
+        itemImage: result.url,
+        itemCompany: req.body.companyID,
+        itemCategory: req.body.selectedCategory,
+        itemKind: req.body.selectedKind,
+      };
+      console.log("im the item to update", item);
+      //update the item with item id down bellow!!!!
+      newItem.update(item, {
+        where: { id: req.body.id },
+      });
+    })
+    .then(() => {
+      res.send({ status: 200 });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 // posting an Item
 itemsRouter.post("/add", up.single("itemImage"), (req, res) => {
   var img = req.file.path;
@@ -34,7 +65,6 @@ itemsRouter.post("/add", up.single("itemImage"), (req, res) => {
         itemCompany: req.body.companyID,
         itemCategory: req.body.selectedCategory,
         itemKind: req.body.selectedKind,
-
       };
       newItem
         .create(item)
@@ -49,8 +79,8 @@ itemsRouter.post("/add", up.single("itemImage"), (req, res) => {
 });
 // to get a certain item by it's id
 itemsRouter.post("/get/:id", (req, res) => {
-  console.log("res", req.body);
-  console.log("req.params **", req.params);
+  // console.log("res", req.body);
+  // console.log("req.params **", req.params);
   newItem
     .findOne({
       where: {
@@ -58,7 +88,7 @@ itemsRouter.post("/get/:id", (req, res) => {
       },
     })
     .then((data) => {
-      console.log("data", data);
+      // console.log("data", data);
       res.status(200).send(data);
     })
     .catch((err) => {
@@ -66,7 +96,6 @@ itemsRouter.post("/get/:id", (req, res) => {
         res.send("there is no data");
       }
     });
-
 });
 
 itemsRouter.get("/", async (req, res) => {
@@ -85,8 +114,8 @@ itemsRouter.delete(`/:itemId`, async (req, res) => {
     },
   });
   console.log("heyyyyyyy", req.params.itemId);
+  res.send({ status: 200 });
 });
-
 
 itemsRouter.get(`/Company/:id`, async (req, res) => {
   try {
@@ -100,5 +129,17 @@ itemsRouter.get(`/Company/:id`, async (req, res) => {
     console.error(e);
   }
 });
-
+itemsRouter.get("/getfour/:id", async (req, res) => {
+  try {
+    console.log('=============>', req.params);
+    const items = await newItem.findAll({
+      where: {
+        itemCompany: req.params.id
+      }
+    })
+    res.send(items)
+  } catch (err) {
+    res.status(400).send(err)
+  }
+});
 module.exports = itemsRouter;
