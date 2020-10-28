@@ -7,6 +7,8 @@ import { LocalService } from '../../../../local.service';
   styleUrls: ['./edit-profile.component.css'],
 })
 export class EditProfileComponent implements OnInit {
+  public imagePath;
+  imgURL: any;
   user_Info: any = {};
   userId: any = parseInt(localStorage['Id']);
   firstName: string | Blob = '';
@@ -31,8 +33,6 @@ export class EditProfileComponent implements OnInit {
     this.email = this.user_Info.email;
     this.adress = this.user_Info.address;
     // this.url = this.user_Info.avatar;
-    this.password = '';
-    this.confirmPassword = '';
     console.log('++++>', this.user_Info);
     console.log('firstName', this.firstName);
   }
@@ -42,6 +42,7 @@ export class EditProfileComponent implements OnInit {
   }
   //function to read avatar url
   onSelectFile(event) {
+    console.log('evvnet', event.target.files[0]);
     this.url = event.target.files[0];
     console.log('evvnet', event.target.files[0]);
   }
@@ -88,5 +89,16 @@ export class EditProfileComponent implements OnInit {
         this.url = res['avatar'];
         console.log('000105424', res['avatar']);
       });
+  }
+  preview(files) {
+    if (files.length === 0) {
+      return;
+    }
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    };
   }
 }

@@ -54,6 +54,8 @@ export class HttpService {
     return this.http.put(this.ROOT_URL + '/api/items/update', formData);
   }
 
+  //add an item to the database
+
   // CREATE POST REQUEST FOR THE ADMIN LOGIN.
   postAdminlogin(adminLogin) {
     return this.http.post(this.ROOT_URL + `/admin/jippi`, {
@@ -102,6 +104,17 @@ export class HttpService {
         companyId,
       }
     );
+  }
+
+  // SEND EMAIL (CONTACT).
+  sendEmailC(mailData) {
+    console.log('http service');
+    return this.http.post(this.ROOT_URL + `/contact`, {
+      userName: mailData.Uname,
+      userEmail: mailData.Uemail,
+      userPhone: mailData.Uphone,
+      userMessage: mailData.Umessage,
+    });
   }
 
   //get all items in db

@@ -1,4 +1,7 @@
 <p>update-item works!</p>
+<?php
+echo "Hello World!";
+?>
 <form class="text-center border border-light p-5" action="#!">
   <p class="h4 mb-4">Add an item to your shop</p>
 
@@ -60,14 +63,16 @@
   <br />
   <!-- Item image -->
   <input
-    (change)="chooseAnImage($event)"
+    (change)="chooseAnImage($event); preview(file.files)"
     name="itemImage"
+    #file
     type="file"
+    accept="image/*"
     id="defaultSubscriptionFormEmail"
     class="form-control mb-4"
   />
 
-  <img [src]=" oldData.itemImage " alt="Responsive image" />
+  <img [src]="imgURL ? imgURL : oldData.itemImage" alt="Responsive image" />
 
   <!-- Add button -->
   <button
