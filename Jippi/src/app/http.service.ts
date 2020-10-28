@@ -49,10 +49,14 @@ export class HttpService {
     });
   }
 
+  //update an item
+  updateItem(formData) {
+    return this.http.put(this.ROOT_URL + '/api/items/update', formData);
+  }
+
   getcompanyItems(companyId) {
     return this.http.get(this.ROOT_URL + `/api/items/Company/${companyId}`);
   }
-
 
   // CREATE POST REQUEST FOR THE ADMIN LOGIN.
   postAdminlogin(adminLogin) {

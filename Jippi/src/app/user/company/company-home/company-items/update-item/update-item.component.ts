@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../../http.service';
-
+import { Location } from '@angular/common';
+import { HttpService } from '../../../../../http.service';
 @Component({
-  selector: 'app-add-item',
-  templateUrl: './add-item.component.html',
-  styleUrls: ['./add-item.component.css'],
+  selector: 'app-update-item',
+  templateUrl: './update-item.component.html',
+  styleUrls: ['./update-item.component.css'],
 })
-export class AddItemComponent implements OnInit {
-  constructor(private _http: HttpService) {}
+export class UpdateItemComponent implements OnInit {
+  constructor(private location: Location, private _http: HttpService) {}
+  oldData: any;
   itemName: string = '';
   itemPrice: any = 0;
   itemDescription: string = '';
   itemImage: any;
-  itemRating: any = 0;
-  companyID: any = parseInt(localStorage.comapnyId);
   selectedCategory: string = 'clothing';
   selectedKind: string = 'Male';
   listKind = ['Male', 'Female', 'Kids'];
@@ -36,28 +35,16 @@ export class AddItemComponent implements OnInit {
       'Dolls',
     ],
   };
-
-  ngOnInit(): void {}
-  show() {
-    console.log('AddItemComponent -> itemName', this.itemName);
-    console.log('Addthis.ItemComponent -> this.itemPrice', this.itemPrice);
+  ngOnInit(): void {
+    this.oldData = this.location.getState();
     console.log(
-      'Addthis.ItemComponent -> this.itemDescription',
-      this.itemDescription
+      'UpdateItemComponent -> ngOnInit -> this.oldData',
+      this.oldData
     );
-    console.log('Addthis.ItemComponent -> this.itemImage', this.itemImage);
-    console.log('Addthis.ItemComponent -> this.itemRating', this.itemRating);
-    console.log('AddItemComponent -> ngOnInit ->this.company', this.companyID);
-    console.log(
-      'AddItemComponent -> ngOnInit ->this.selectedCategory',
-      this.selectedCategory
-    );
-    console.log(
-      'AddItemComponent -> selectKindHandler -> this.selectedKind',
-      this.selectedKind
-    );
+    this.itemName = this.oldData.itemName;
+    this.itemPrice = this.oldData.itemPrice;
+    this.itemDescription = this.oldData.itemDescription;
   }
-
   selectCategoryHandler(event: any) {
     this.selectedCategory = event.target.value;
     this.listKind = this.kind[this.selectedCategory];
@@ -70,29 +57,29 @@ export class AddItemComponent implements OnInit {
 
   chooseAnImage(event) {
     this.itemImage = event.target.files[0];
-    console.log('this.itemImage===========<<<', this.itemImage);
   }
 
   saveItem() {
     const formData = new FormData();
     formData.append('itemName', this.itemName);
+    formData.append('id', this.oldData.id);
     formData.append('itemPrice', this.itemPrice);
     formData.append('itemDescription', this.itemDescription);
     formData.append('itemImage', this.itemImage);
-    formData.append('itemRating', this.itemRating);
-    formData.append('companyID', this.companyID);
+    formData.append('companyID', this.oldData.itemCompany);
     formData.append('selectedCategory', this.selectedCategory);
     formData.append('selectedKind', this.selectedKind);
 
-    return this._http.postAddItem(formData).subscribe((res) => {
+    return this._http.updateItem(formData).subscribe((res) => {
       this.itemId = res['id'];
-      // console.log(this.url);
-      console.log('UUUUUUUUUUUUU=======> ', res['id']);
-
       return this._http.getItemData(this.itemId).subscribe((res) => {
         console.log('getItemDataToShowTheImage', res);
         this.url = res['itemImage'];
       });
     });
+  }
+
+  show() {
+    console.log('im show');
   }
 }
