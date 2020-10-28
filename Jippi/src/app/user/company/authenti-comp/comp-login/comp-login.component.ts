@@ -41,7 +41,7 @@ export class CompLoginComponent implements OnInit {
       companyPassword: this.companyPasswordLog,
     };
 
-    // check ! (passed fine)
+    //// check ! (passed fine)
     console.log(LogCdata);
     // send request to check if this user exist in the database.
     this._http.postLoginCompany(LogCdata).subscribe((res) => {
