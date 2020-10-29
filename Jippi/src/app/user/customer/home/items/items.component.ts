@@ -17,12 +17,11 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getitems();
-    this.local.all_items.subscribe(boo => this.allitems = boo);
+    this.local.all_items.subscribe((boo) => (this.allitems = boo));
     this.local.items_list.subscribe((items) => (this.itemsList = items));
   }
   ngDoCheck() {
-
-    if(this.allitems){
+    if (this.allitems) {
       this.getitems();
       this.allitems = false;
     }
@@ -30,18 +29,16 @@ export class ItemsComponent implements OnInit {
     this.local.getitem_name.subscribe((itemName) => (this.itemName = itemName));
     // console.log('itemname', this.itemName);
     this.SearchBar();
-
-
   }
   getitems() {
     return this._http.getItems().subscribe((data) => {
       this.itemsList = data;
-      let dtaa = this.itemsList
+      this.itemsList = this.itemsList.reverse();
+      // let dtaa = this.itemsList
       this.local.passItems(data);
       // this.local.passAllItems(data);
     });
   }
-
 
   // SEARCH BAR FOR ITEMS.
   SearchBar() {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../http.service';
+import { LocalService } from '../../../local.service';
 
 @Component({
   selector: 'app-comp-profile',
@@ -7,7 +8,7 @@ import { HttpService } from '../../../http.service';
   styleUrls: ['./comp-profile.component.css'],
 })
 export class CompProfileComponent implements OnInit {
-  constructor(private _http: HttpService) {}
+  constructor(private _http: HttpService, private local: LocalService) {}
   company_Data: any = [];
   name: string = '';
   email: string = '';
@@ -16,11 +17,16 @@ export class CompProfileComponent implements OnInit {
   src: string = '';
   CId: any;
   url: any;
-
+  companyInfo: any = {};
   ngOnInit() {
     this.getDataForProfile();
+    this.local.company_info.subscribe(info => this.companyInfo = info);
     console.log('url', this.url);
     console.log('src:================> ', this.src);
+  }
+
+  ngDoCheck() {
+    this.sendCompanyInfo();
   }
 
   // pick image
@@ -72,5 +78,9 @@ export class CompProfileComponent implements OnInit {
       console.log('this.company_Data ===>', this.company_Data);
       console.log('this.src +++', this.src);
     });
+  }
+
+  sendCompanyInfo(){
+    this.local.getCompaniInfo(this.company_Data)
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import { timeStamp } from 'console';
 import { LocalService } from '../../../../local.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { LocalService } from '../../../../local.service';
 })
 export class FilterComponent implements OnInit {
   kinds: [];
+  checked: boolean = false;
   items: any = [];
   allItemsData: any[];
   min_price: string = '';
@@ -44,11 +46,16 @@ export class FilterComponent implements OnInit {
 
   filterItems() {
     // this.getAllData();
+    this.checkCheckbox();
+    if (this.checked){ 
     for (var i = 0; i < this.items.length; i++) {
-      if (!this.items_kinds[this.items[i].itemKind]) {
+      if (!this.items_kinds[this.items[i]?.itemKind]) {
         this.items.splice(i, 1, undefined);
-      }
-    }
+      }}}
+     if(this.min_price && this.max_price){
+      this.filterPrice();
+     }
+    
     this.local.passItems(this.items);
   }
   
@@ -61,6 +68,7 @@ export class FilterComponent implements OnInit {
     for (let key in this.items_kinds) {
       this.items_kinds[key] = false;
     }
+    this.checked = false;
   }
 
   //filter items with price
@@ -68,7 +76,7 @@ export class FilterComponent implements OnInit {
     let min = parseInt(this.min_price);
     let max = parseInt(this.max_price);
     for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].itemPrice < min) {
+      if (this.items[i]?.itemPrice < min) {
         // console.log('item min', this.items[i].itemPrice, i);
         this.items.splice(i, 1,undefined);
       } else if (this.items[i]?.itemPrice > max) {
@@ -77,5 +85,14 @@ export class FilterComponent implements OnInit {
       } 
     }
     this.local.passItems(this.items);
+  }
+
+  checkCheckbox() {
+    let checkArray = Object.values(this.items_kinds)
+    for (let i = 0; i < checkArray.length; i++) {
+      if (checkArray[i]){
+        this.checked = true;
+      }
+    }
   }
 }

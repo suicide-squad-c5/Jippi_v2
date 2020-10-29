@@ -1,3 +1,9 @@
+.main-container {
+  position: relative;
+  width: 100%;
+  padding: 40px;
+}
+
 .carousel-item {
   height: 30em;
 }
@@ -13,4 +19,8 @@
 .items {
   position: relative;
   float: right;
+}
+
+*{
+  background-color: rgb(238, 238, 238);
 }
