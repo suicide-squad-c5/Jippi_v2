@@ -28,6 +28,8 @@ const adminRouter = require("./server/routes/auth/admin/adminLogin");
 const adminCreateRouter = require("./server/routes/auth/admin/adminCreate");
 // CONTACT.
 const contactRouter = require("./server/routes/contact");
+//company Name "Numbers"
+const customer_companyRouter = require("./server/routes/customer_company");
 
 const db = require("./database/models");
 db.sequelize
@@ -55,6 +57,8 @@ app.use("/admin/jippi", adminRouter);
 app.use("/admin/jippi/create", adminCreateRouter);
 // CONTACT.
 app.use("/contact", contactRouter);
+//company Name "Numbers"
+app.use("/companyName", customer_companyRouter);
 
 app.listen(PORT, () => {
   console.log(`Main Server is listening on port ${PORT}...`);
