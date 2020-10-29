@@ -208,4 +208,10 @@ export class HttpService {
   getcompanyItems(companyId) {
     return this.http.get(this.ROOT_URL + `/api/items/Company/${companyId}`);
   }
+
+  // ==============customers/companay Relation ===============
+  getCompanyName(companyId) {
+  return this.http.get(this.ROOT_URL + `/companyName/companyName/${companyId}`);
 }
+}
+
