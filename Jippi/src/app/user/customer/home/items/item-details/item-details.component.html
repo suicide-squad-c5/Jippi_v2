@@ -1,101 +1,140 @@
 <div class="main-container">
-  <!--Section: Block Content-->
-  <section class="my-5">
+  <div class="container">
     <div class="row">
-      <div class="col-md-5 mb-4 mb-md-0">
-        <div class="product-image6 ">
-          <img class="img-fluid w-100" src="{{item.itemImage}}" alt="Sample" />
+      <div class="col-sm-12 col-md-6 col-lg-6" style="background-color:transparent; padding:2%;">
+        <div class="product-image6 " style="background-color:whitw;">
+          <img id="product" class="img-fluid w-100" src="{{item.itemImage}}" alt="Sample" />
           <a href="#!">
             <div class="mask"></div>
           </a>
         </div>
+        <!-- OTHER IMAGE FOR THE ITEMS-->
+        <div class="row product-gallery mx-1">
+          <div class="col-12">
+            <div class="row">
+              <div class="col-3">
+                <div class="view overlay rounded z-depth-1 gallery-item">
+                  <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
+                    class="other-pic">
+                  <div class="mask rgba-white-slight"></div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="view overlay rounded z-depth-1 gallery-item">
+                  <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg"
+                    class="other-pic">
+                  <div class="mask rgba-white-slight"></div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="view overlay rounded z-depth-1 gallery-item">
+                  <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg"
+                    class="other-pic">
+                  <div class="mask rgba-white-slight"></div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="view overlay rounded z-depth-1 gallery-item">
+                  <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg"
+                    class="other-pic">
+                  <div class="mask rgba-white-slight"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="col-md-7">
-        <h5>{{item.itemName}}</h5>
-        <p class="mb-2 text-muted text-uppercase small">Storage</p>
-        <ul class="rating">
-          <li>
-            <i class="fas fa-star fa-sm text-primary"></i>
-          </li>
-          <li>
-            <i class="fas fa-star fa-sm text-primary"></i>
-          </li>
-          <li>
-            <i class="fas fa-star fa-sm text-primary"></i>
-          </li>
-          <li>
-            <i class="fas fa-star fa-sm text-primary"></i>
-          </li>
-          <li>
-            <i class="far fa-star fa-sm text-primary"></i>
-          </li>
-        </ul>
-        <p>
-          <span class="mr-1"><strong>{{item.itemPrice}}</strong></span>
-        </p>
-        <p class="pt-1">
-          {{item.itemDescription}}
-        </p>
-        <div class="table-responsive">
-          <table class="table table-sm table-borderless mb-0">
-            <tbody>
-              <tr>
-                <th class="pl-0 w-25" scope="row">
-                  <strong>Category</strong>
-                </th>
-                <td>{{item.itemCategory}}</td>
-              </tr>
-              <tr>
-                <th class="pl-0 w-25" scope="row">
-                  <strong>Item Type:</strong>
-                </th>
-                <td>{{item.itemKind}}</td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="col-sm col-md-12 col-lg-12" style=" margin-top:4%; ">
+          <h5>{{item.itemName}}</h5>
+          <p class="mb-2 text-muted text-uppercase small">Storage</p>
+
+          <!-- rating -->
+          <!-- <star-rating-comp show-half-stars="true"></star-rating-comp> -->
+          <!-- <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating> -->
+          <!-- rating -->
+
+          <p>
+            <span class="mr-1"><strong>{{item.itemPrice}}</strong></span>
+          </p>
+          <p class="pt-1">
+            {{item.itemDescription}}
+          </p>
+          <div class="table-responsive">
+            <table class="table table-sm table-borderless mb-0">
+              <tbody>
+                <tr>
+                  <th class="pl-0 w-25" scope="row">
+                    <strong>Category</strong>
+                  </th>
+                  <td>{{item.itemCategory}}</td>
+                </tr>
+                <tr>
+                  <th class="pl-0 w-25" scope="row">
+                    <strong>Item Type:</strong>
+                  </th>
+                  <td>{{item.itemKind}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <hr />
+          <div class="table-responsive mb-2">
+            <table class="table table-sm table-borderless">
+              <tbody>
+                <tr>
+                  <td class="pl-0 pb-0 w-25">Quantity</td>
+                </tr>
+                <tr>
+                  <td class="pl-0">
+
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend" style="cursor: pointer;"
+                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                        <span class="input-group-text"><i class="fas fa-minus"></i></span>
+                      </div>
+                      <input min="0" value="1" type="number" class="form-control "
+                        aria-label="Amount (to the nearest dollar)">
+                      <div class="input-group-append" style="cursor: pointer;"
+                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                        <span class="input-group-text"><i class="fas fa-plus"></i></span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- add to card -->
+          <button type="button" class="btn btn-primary btn-md mr-1 mb-2">
+            Buy now
+          </button>
+          <button type="button" class="btn btn-secondary btn-md mr-1 mb-2" (click)="addFun(this.item)">
+            <i class="fas fa-shopping-cart pr-2"></i>Add to cart
+          </button>
+
+
         </div>
-        <hr />
-        <div class="table-responsive mb-2">
-          <table class="table table-sm table-borderless">
-            <tbody>
-              <tr>
-                <td class="pl-0 pb-0 w-25">Quantity</td>
-              </tr>
-              <tr>
-                <td class="pl-0">
-                  <div class="def-number-input number-input safari_only mb-0">
-                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                      class="minus"></button>
-                    <input class="quantity" min="0" name="quantity" value="1" type="number" />
-                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                      class="plus"></button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- add to card -->
-        <button type="button" class="btn btn-primary btn-md mr-1 mb-2">
-          Buy now
-        </button>
-        <button type="button" class="btn btn-light btn-md mr-1 mb-2" (click)="addFun(this.item)">
-          <i class="fas fa-shopping-cart pr-2"></i>Add to cart
-        </button>
+
       </div>
     </div>
-  </section>
-  <!--Section: Block Content-->
 
-  <!--Section: New products-->
+  </div>
+
+
+
+  <!-- the last item that this company has posted -->
+
   <section>
     <h3 class="text-center pt-5 mb-0">Our latest collection</h3>
 
     <!-- Grid row -->
+
     <div class="row mt-5 mb-4">
-      <!-- Grid column -->
+
       <div class="col-md-6 col-lg-3 mb-4">
-        <!-- Card -->
+
         <div *ngFor="let do of fourItems" class="">
           <div class="view zoom z-depth-2 rounded">
             <img src="{{do.itemImage}}" class="img-fluid w-100" alt="Sample" />
@@ -106,7 +145,7 @@
           <div class="text-center pt-4">
             <h5>{{do.itemName}}</h5>
             <h6 class="mb-3">{{do.itemPrice}}</h6>
-            <button type="button" class="btn btn-primary btn-sm mr-1" (click)="addFun(do)">
+            <button type="button" class="btn btn-secondary btn-sm mr-1" (click)="addFun(do)">
               <i class="fas fa-shopping-cart pr-2"></i>Add to cart
             </button>
             <button type="button" class="btn btn-danger btn-sm px-3 material-tooltip-main" data-toggle="tooltip"
@@ -116,7 +155,8 @@
           </div>
         </div>
       </div>
-      <!-- row ends here -->
     </div>
+    <!-- row ends here -->
   </section>
+
 </div>

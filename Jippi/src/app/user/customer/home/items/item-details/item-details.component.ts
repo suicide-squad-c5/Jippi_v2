@@ -3,6 +3,7 @@ import { HttpService } from '../../../../../http.service';
 import { LocalService } from '../../../../../local.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ItemDetailsComponent implements OnInit {
   item: any = {};
+  check: boolean = false;
   fourItems: any;
   itemID: any;
   itemIdre: number = null;
@@ -17,6 +19,7 @@ export class ItemDetailsComponent implements OnInit {
   CompanyId: number = null;
   quantity: any;
   basket: any;
+  starRating: number = 0;
   constructor(
     private router: Router,
     private _http: HttpService,
@@ -41,14 +44,13 @@ export class ItemDetailsComponent implements OnInit {
       this.itemID = params.id;
       this.showClickedOnItem(params.id);
     });
-
-    this.get4itemsOfThatCompany();
     console.log('//////////', this.fourItems);
   }
   ngDoCheck() {
-    console.log('all item name', this.fourItems, this.itemID);
+    // console.log('all item name',this.fourItems, this.itemID);
     //  this.fourItems = this.fourItems?.filter( itm => itm.id !== this.itemID);
-    console.log('fourItems====>S', this.fourItems);
+    //  console.log('fourItems====>S', this.fourItems)
+    this.checkFun();
   }
 
   // to show the main item that the user has clicked on
@@ -56,6 +58,7 @@ export class ItemDetailsComponent implements OnInit {
     // this.itemIdre = parseInt(sessionStorage.getItem('itemIdre'));
     return this._http.getItemData(id).subscribe((res) => {
       this.item = res;
+      this.check = true;
     });
   }
   //  to show  some items belong to the same comapny
@@ -101,5 +104,12 @@ export class ItemDetailsComponent implements OnInit {
   }
   addOne() {
     this.local.addOne(this.quantity);
+  }
+
+  checkFun() {
+    if (this.check) {
+      this.get4itemsOfThatCompany();
+      this.check = false;
+    }
   }
 }
