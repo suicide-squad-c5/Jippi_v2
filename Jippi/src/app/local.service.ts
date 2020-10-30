@@ -23,6 +23,9 @@ export class LocalService {
   //quantity items
   private quantity = new BehaviorSubject([]);
   quantityItems = this.quantity.asObservable();
+  //company name for the basket
+  private companysNames = new BehaviorSubject([]);
+  companys_Names = this.companysNames.asObservable();
   //items for filter
   private itemslist = new BehaviorSubject([]);
   items_list = this.itemslist.asObservable();
@@ -64,10 +67,14 @@ getCompaniInfo(info: any) {
   addToBasket(basket_item: any) {
     this.basket.next(basket_item);
   }
-
+//func for the quentity of one item in the basket 
   addOne(qnt: any) {
     this.quantity.next(qnt);
   }
+ //Name of each item company in the basket_item
+ passCompanyName(name: any){
+   this.companysNames.next(name);
+ } 
 
 // function to pass and filter items
   passItems(items) {
