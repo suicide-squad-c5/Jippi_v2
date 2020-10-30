@@ -1,27 +1,9 @@
-.loader-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  z-index: 998;
-}
-
-.loader-overlay .preloader-wrapper {
-  position: fixed;
-  top: 50%;
-}
-
 .card {
-  margin-top: 3%;
-  margin-left: 3%;
+  position: relative;
   padding: 25px;
-  width: 18rem;
-  margin-left: 15%;
+  width: 90%;
+  margin-left: 5%;
+  padding-left: 10px;
 }
 
 #shopBy {
@@ -43,4 +25,12 @@ li {
 
 .list {
   text-align: left;
+}
+
+.buttons{
+  text-align: center;
+}
+
+.min-max{
+  text-align: center;
 }
