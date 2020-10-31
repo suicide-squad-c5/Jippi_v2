@@ -100,13 +100,11 @@ export class AddItemComponent implements OnInit {
 
     return this._http.postAddItem(formData).subscribe((res) => {
       this.itemId = res['id'];
-      // console.log(this.url);
-      console.log('UUUUUUUUUUUUU=======> ', res['id']);
-
-      return this._http.getItemData(this.itemId).subscribe((res) => {
-        console.log('getItemDataToShowTheImage', res);
-        this.url = res['itemImage'];
-      });
+      alert('the item was added to your shop');
+      // return this._http.getItemData(this.itemId).subscribe((res) => {
+      //   console.log('getItemDataToShowTheImage', res);
+      //   this.url = res['itemImage'];
+      // });
     });
   }
 }

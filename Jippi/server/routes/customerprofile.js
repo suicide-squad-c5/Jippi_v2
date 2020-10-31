@@ -3,6 +3,7 @@ const db = require("../../database/models");
 const customer = db.customers;
 const multer = require("multer");
 var cloudinary = require("cloudinary").v2;
+var passwordHash = require("password-hash");
 cloudinary.config({
   cloud_name: "jipi",
   api_key: "895721462325433",
@@ -71,7 +72,7 @@ customerProfileRouter.put(
         first_name: req.body.firstName,
         last_name: req.body.lastname,
         email: req.body.email,
-        password: req.body.password,
+        password: passwordHash.generate(req.body.password),
         avatar: req.body.customerImg,
         adress: req.body.adress,
         phone_number: req.body.phoneNumber,
@@ -89,7 +90,7 @@ customerProfileRouter.put(
           first_name: req.body.firstName,
           last_name: req.body.lastname,
           email: req.body.email,
-          password: req.body.password,
+          password: passwordHash.generate(req.body.password),
           avatar: result.url,
           adress: req.body.adress,
           phone_number: req.body.phoneNumber,

@@ -18,12 +18,7 @@ const up = multer({
 
 itemsRouter.put("/update", up.single("itemImage"), (req, res) => {
   console.log("req", req.body);
-  var img;
-  // = req.file.path;
-  req.body.itemImage
-    ? (img = req.body.itemImage.slice(0, 5) === "http:")
-    : (img = false);
-  if (img) {
+  if (!!req.body.itemImage) {
     const item = {
       itemName: req.body.itemName,
       itemPrice: req.body.itemPrice,
@@ -40,12 +35,10 @@ itemsRouter.put("/update", up.single("itemImage"), (req, res) => {
         res.send({ status: 200 });
       });
   } else {
-    cloudinary.uploade
-      .upload(img, (error, result) => {
+    const itelmImg = req.file.path;
+    cloudinary.uploader
+      .upload(itelmImg, (error, result) => {
         error && console.log("cloudinary [error] ==> ", error);
-      })
-
-      .then((result) => {
         const item = {
           itemName: req.body.itemName,
           itemPrice: req.body.itemPrice,
@@ -151,15 +144,15 @@ itemsRouter.get(`/Company/:id`, async (req, res) => {
 });
 itemsRouter.get("/getfour/:id", async (req, res) => {
   try {
-    console.log('=============>', req.params);
+    console.log("=============>", req.params);
     const items = await newItem.findAll({
       where: {
-        itemCompany: req.params.id
-      }
-    })
-    res.send(items)
+        itemCompany: req.params.id,
+      },
+    });
+    res.send(items);
   } catch (err) {
-    res.status(400).send(err)
+    res.status(400).send(err);
   }
 });
 module.exports = itemsRouter;
