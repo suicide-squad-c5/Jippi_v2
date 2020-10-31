@@ -1,95 +1,97 @@
-<form class="text-center border border-light p-5" action="#!">
-  <p class="h4 mb-4">Add an item to your shop</p>
+<div class="main-container">
+  <!-- <form class="text-center border border-light p-5" action="#!"> -->
+  <div class="container">
+    <!-- the row of the item -->
+    <div class="row">
+      <!-- advices table -->
+      <div class="col-sm-8 col-md-4 col-lg-4">
+        <div class="info">
+          <h2>Advices</h2>
+          <br />
 
-  <p>Please fill the descriptions down bellow</p>
+          <h4>
+            You want to get good chance to seel your items?
+          </h4>
+          <br />
+          <br />
 
-  <!--Item Name -->
-  <input
-    name="itemName"
-    type="text"
-    id="defaultSubscriptionFormPassword"
-    class="form-control mb-4"
-    placeholder="Item name"
-    [(ngModel)]="itemName"
-  />
+          <h5>
+            you have to give the best description ever that you van describe your items very very well.
+          </h5>
+          <br />
+          <br />
 
-  <!--Item price -->
-  <input
-    name="itemPrice"
-    type="number"
-    id="defaultSubscriptionFormPassword"
-    class="form-control mb-4"
-    placeholder="Item price"
-    [(ngModel)]="itemPrice"
-  />
+          <h5>
+            Post great pictures for your items.
+          </h5>
+          <br />
+          <br />
 
-  <!-- description -->
-  <input
-    name="itemDescription"
-    type="textarea"
-    id="defaultSubscriptionFormEmail"
-    class="form-control mb-4"
-    placeholder="Description"
-    [(ngModel)]="itemDescription"
-  />
+          <h5>
+            And you will be good :)
+          </h5>
+        </div>
 
-  <!-- category -->
 
-  <label for="sel1">Choose a category :</label>
-  <select
-    class="form-control"
-    id="sel1"
-    (change)="selectCategoryHandler($event); show()"
-  >
-    <option value="clothing">clothing</option>
-    <option value="electronics">electronics</option>
-    <option value="Outdoor">Outdoor</option>
-    <option value="Toys">Toys</option>
-  </select>
+      </div>
 
-  <!-- kind -->
+      <!-- create item table -->
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="item-generate">
+          <p class="h4 mb-4">Add an item to your shop</p>
 
-  <label for="sel1">Choose a kind :</label>
-  <select
-    class="form-control"
-    id="sel1"
-    (change)="selectKindHandler($event); show()"
-  >
-    <option *ngFor="let kind of listKind" value="{{ kind }}">
-      {{ kind }}
-    </option>
-  </select>
-  <br />
-  <!-- Item image -->
-  <input
-    (change)="chooseAnImage($event)"
-    name="itemImage"
-    type="file"
-    id="defaultSubscriptionFormEmail"
-    class="form-control mb-4"
-  />
+          <p>Please fill the descriptions down bellow</p>
 
-  <!-- Item rate -->
-  <input
-    name="itemRating"
-    type="number"
-    id="defaultSubscriptionFormEmail"
-    class="form-control mb-4"
-    placeholder="Rating"
-    [(ngModel)]="itemRating"
-  />
-  <img
-    [src]="url ? url : 'https://tipsmake.com/data/thumbs/how-to-hide-facebook-profile-picture-thumb-EhRnrBzAY.jpg'"
-    class="img-fluid"
-    alt="Responsive image"
-  />
+          <!--Item Name -->
+          <input name="itemName" type="text" id="defaultSubscriptionFormPassword" class="form-control mb-4"
+            placeholder="Item name" [(ngModel)]="itemName" />
 
-  <!-- Add button -->
-  <button
-    class="btn btn-info btn-block"
-    type="submit"
-    (click)="saveItem(); show()"
-  >
-    Add to my shop
-  </button>
-</form>
+          <!--Item price -->
+          <input name="itemPrice" type="number" id="defaultSubscriptionFormPassword" class="form-control mb-4"
+            placeholder="Item price" [(ngModel)]="itemPrice" />
+
+          <!-- description -->
+          <input name="itemDescription" type="textarea" id="defaultSubscriptionFormEmail" class="form-control mb-4"
+            placeholder="Description" [(ngModel)]="itemDescription" />
+
+          <!-- category -->
+
+          <label for="sel1">Choose a category :</label>
+          <select class="form-control" id="sel1" (change)="selectCategoryHandler($event); show()">
+            <option value="clothing">clothing</option>
+            <option value="electronics">electronics</option>
+            <option value="Outdoor">Outdoor</option>
+            <option value="Toys">Toys</option>
+          </select>
+
+          <!-- kind -->
+
+          <label for="sel1">Choose a kind :</label>
+          <select class="form-control" id="sel1" (change)="selectKindHandler($event); show()">
+            <option *ngFor="let kind of listKind" value="{{ kind }}">
+              {{ kind }}
+            </option>
+          </select>
+          <br />
+          <!-- Item image -->
+          <input (change)="chooseAnImage($event)" name="itemImage" type="file" id="defaultSubscriptionFormEmail"
+            class="form-control mb-4" />
+          <br />
+          <br />
+
+          <!-- Item rate -->
+          <img [src]="url ? url : 'https://www.flaticon.com/svg/static/icons/svg/1360/1360174.svg'" class="img-fluid"
+            alt="Responsive image" />
+          <br />
+          <br />
+
+          <!-- Add button -->
+          <button class="btn btn-info btn-block" type="submit" (click)="saveItem(); show()">
+            Add to my shop
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- </form> -->
+  </div>
+

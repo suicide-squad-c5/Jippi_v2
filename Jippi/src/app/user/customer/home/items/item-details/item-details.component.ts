@@ -3,14 +3,16 @@ import { HttpService } from '../../../../../http.service';
 import { LocalService } from '../../../../../local.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.css'],
 })
 export class ItemDetailsComponent implements OnInit {
-  
-  item :any = {};
+
+  item: any = {};
+
   check: boolean = false;
   fourItems: any;
   itemID: any;
@@ -21,6 +23,7 @@ export class ItemDetailsComponent implements OnInit {
   companyNam: any;
   quantity: any;
   basket: any;
+  starRating: number = 0;
   constructor(
     private router: Router,
     private _http: HttpService,
@@ -28,7 +31,7 @@ export class ItemDetailsComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-    ngOnInit() {
+  ngOnInit() {
     // this.local.item_id.subscribe((itemid) => {
     //   sessionStorage.setItem('itemIdre', itemid);
     // this.itemID = itemid;
@@ -52,7 +55,7 @@ export class ItemDetailsComponent implements OnInit {
     // console.log('all item name',this.fourItems, this.itemID);
     //  this.fourItems = this.fourItems?.filter( itm => itm.id !== this.itemID);
     //  console.log('fourItems====>S', this.fourItems)
-     this.checkFun();
+    this.checkFun();
   }
 
   // to show the main item that the user has clicked on
@@ -78,9 +81,10 @@ export class ItemDetailsComponent implements OnInit {
   getSomeitems() {
     return this._http.getfour(this.CompanyId).subscribe((res: any[]) => {
       console.log('res', res);
-      this.fourItems = res
-      this.fourItems = this.fourItems.filter( itm => parseInt(itm.id) !== parseInt(this.itemID));
-      
+      this.fourItems = res;
+      this.fourItems = this.fourItems.filter(
+        (itm) => parseInt(itm.id) !== parseInt(this.itemID)
+      );
     });
   }
   // to see the item that u click on in details
@@ -88,7 +92,7 @@ export class ItemDetailsComponent implements OnInit {
     this.router.navigate([`/items/details/${doid}`]);
   }
 
-    addFun(itemToAdd) {
+  addFun(itemToAdd) {
     if (this.basket.indexOf(itemToAdd) === -1) {
       this.basket.push(itemToAdd);
       this.quantity.push(1);
@@ -107,11 +111,12 @@ export class ItemDetailsComponent implements OnInit {
   }
   addOne() {
     this.local.addOne(this.quantity);
-
   }
+
 //chek for change items
   checkFun(){
     if (this.check){
+
       this.get4itemsOfThatCompany();
       
       this.check = false;

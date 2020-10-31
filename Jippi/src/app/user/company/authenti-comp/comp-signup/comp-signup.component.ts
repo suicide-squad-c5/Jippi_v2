@@ -60,9 +60,11 @@ export class CompSignupComponent implements OnInit {
         .subscribe((data) => {
           localStorage.setItem('comapnyId', data['id']);
           console.log('data=.......', data);
-          alert(
-            `signup sucssefuly  we have sent you an email at ${this.companyEmail}`
-          );
+          Swal.fire({
+            icon: 'success',
+            title: 'Done',
+            text: `signup sucssefuly we have sent you an email at ${this.companyEmail}`,
+          });
           this.router.navigate(['company/check']);
         });
     }

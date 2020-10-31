@@ -95,7 +95,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     UpdateItemComponent,
     LandingPageComponent,
 
-
     // CustomersUserComponent,
   ],
   imports: [
