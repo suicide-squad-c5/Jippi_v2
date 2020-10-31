@@ -26,7 +26,7 @@ export class CompEditProfileComponent implements OnInit {
     this.companyName = this.companyInfo[0].companyName;
     this.companyEmail = this.companyInfo[0].companyEmail;
     this.phoneNumber = this.companyInfo[0].phoneNumber;
-    this.location = this.companyInfo[0].location;
+    this.location = this.companyInfo[0]?.location;
     this.avatar = this.companyInfo[0].avatar;
     console.log(
       'CompEditProfileComponent -> ngOnInit -> this.companyInfo',
