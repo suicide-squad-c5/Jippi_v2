@@ -1,6 +1,20 @@
 .testWhidth {
-  width: 25%;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 5%;
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 15px;
+  margin: 40px auto;
+  text-align: center;
+  display: block;
+  border: 1px solid;
+  border-radius: 3%;
+  border-color: #D5DBDB;
+  background-color: white;
+}
+
+.main-container{
+  background-color: rgb(238, 238, 238);
+  position: relative;
+  width: 100%;
+  padding:70px
 }
