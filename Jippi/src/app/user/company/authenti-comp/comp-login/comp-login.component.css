@@ -1,16 +1,15 @@
 .container {
   position: relative;
-  /* margin-top: 8%; */
   width: 100%;
   max-width: 330px;
   padding: 15px;
-  margin: 0 auto;
+  margin: 100px auto;
   text-align: center;
   display: block;
-  margin-top: 5em;
   border: 1px solid;
   border-radius: 3%;
   border-color: #D5DBDB;
+  background-color: white;
 }
 
 *,
@@ -23,23 +22,17 @@
   text-align: center !important;
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol";
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  text-align: left;
-  background-color: #fff;
-}
-
 #inputEmail {
   margin-bottom: 1.5rem;
 }
 
 #inputPassword {
   margin-bottom: 1.5rem;
+}
+
+.main-container{
+  background-color: rgb(238, 238, 238);
+  position: relative;
+  width: 100%;
+  padding:70px
 }

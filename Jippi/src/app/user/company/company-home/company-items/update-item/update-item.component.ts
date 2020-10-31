@@ -75,10 +75,11 @@ export class UpdateItemComponent implements OnInit {
 
     return this._http.updateItem(formData).subscribe((res) => {
       this.itemId = res['id'];
-      return this._http.getItemData(this.itemId).subscribe((res) => {
-        console.log('getItemDataToShowTheImage', res);
-        this.url = res['itemImage'];
-      });
+      // return this._http.getItemData(this.itemId).subscribe((res) => {
+      //   console.log('getItemDataToShowTheImage', res);
+      //   this.url = res['itemImage'];
+      // });
+      alert('item updated');
     });
   }
 

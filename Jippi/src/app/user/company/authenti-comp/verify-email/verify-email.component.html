@@ -1,37 +1,25 @@
-<div class="container">
-  <h1 class="h3 mb-3 font-weight-normal">verify Your Email</h1>
-  <h3 class="h3 mb-3 font-weight-normal">{{code.verify}}</h3>
-  <label for="inputverificationCode" class="sr-only">verificationCode</label>
-  <span class=""
-    >you will recive a verification code on your Email :<b
-      >{{code.email}}</b
-    ></span
-  >
-  <input
-    type="verificationCode"
-    id="inputverificationCode"
-    class="form-control"
-    placeholder="verificationCode address"
-    required=""
-    autofocus=""
-    [(ngModel)]="verificationCode"
-  />
+<div class="main-container">
+  <div class="container">
+    <h1 class="h3 mb-3 font-weight-normal">verify Your Email</h1>
+    <h3 class="h3 mb-3 font-weight-normal">{{code.verify}}</h3>
+    <label for="inputverificationCode" class="sr-only">verificationCode</label>
+    <span class="">you will recive a verification code on your Email : <b>{{code.email}}</b></span>
+    <br />
+    <br />
 
-  <button
-    class="btn btn-lg btn-primary btn-block"
-    type="submit"
-    (click)="verify()"
-  >
-    Get Your code
-  </button>
-  <button
-    class="btn btn-lg btn-primary btn-block"
-    type="submit"
-    (click)="checkTheVerificationCode()"
-  >
-    Check-Point
-  </button>
-  <p class="mt-5 mb-3 text-muted">
-    You don't have an account? <a href="#"> sign up</a>
-  </p>
+    <input type="verificationCode" id="inputverificationCode" class="form-control"
+      placeholder="verificationCode address" required="" autofocus="" [(ngModel)]="verificationCode" />
+
+    <br />
+    <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="checkTheVerificationCode()">
+      Confirme your email
+    </button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="verify()">
+      Resend Code
+    </button>
+
+    <p class="mt-5 mb-3 text-muted">
+      You don't have an account? <a href="#"> sign up</a>
+    </p>
+  </div>
 </div>

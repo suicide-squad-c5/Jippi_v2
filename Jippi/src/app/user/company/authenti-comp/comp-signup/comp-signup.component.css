@@ -1,7 +1,15 @@
 .container{
+    border: 1px solid;
+    border-radius: 3%;
+    border-color: #D5DBDB;
+    background-color:white;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.main-container{
+    background-color: rgb(238, 238, 238);
     position: relative;
-    margin-top: 5%;
-      border: 1px solid;
-      border-radius: 3%;
-      border-color: #D5DBDB;
+    width: 100%;
+    padding:70px
 }
