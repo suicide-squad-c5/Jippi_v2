@@ -69,7 +69,7 @@ export class ItemDetailsComponent implements OnInit {
       for (let i = 0; i < res.length; i++) {
         if (this.itemID == res[i].id) {
           this.CompanyId = res[i]['itemCompany'];
-          console.log('*/-/*-/+-*-', this.CompanyId);
+          // console.log('*/-/*-/+-*-', this.CompanyId);
           this.getSomeitems();
         }
       }
@@ -119,9 +119,9 @@ export class ItemDetailsComponent implements OnInit {
   }
  //get the company name
   companyNameFunc(CompanyId) {
-    console.log('CompanyID+++>', CompanyId);
+    // console.log('CompanyID+++>', CompanyId);
     this._http.getCompanyName(CompanyId).subscribe((data) => {
-      console.log('companyName====>', data);
+      // console.log('companyName====>', data);
       this.companyNam = data;
       this.campanysNames.push(this.companyNam?.companyName);
       
