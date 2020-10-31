@@ -39,6 +39,7 @@ export class ItemDetailsComponent implements OnInit {
     this.route.params.subscribe((params) => {
       console.log(params);
       this.itemID = params.id;
+
       this.showClickedOnItem(params.id);
     });
 

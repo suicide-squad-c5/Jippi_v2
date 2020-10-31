@@ -64,10 +64,25 @@ export class HttpService {
     });
   }
 
+  getCustomerById(id: number) {
+    return this.http.get(this.ROOT_URL + `/api/profile/customer/${id}`);
+  }
+  comment(comment, userId, itemId, likes) {
+    return this.http.post(this.ROOT_URL + `/api/item/comments/post/${itemId}`, {
+      comment,
+      userId,
+      likes,
+    });
+  }
+  getAllComments(itemId) {
+    return this.http.get(
+      this.ROOT_URL + `/api/item/comments/get/all/${itemId}`
+    );
+  }
   // GET ALL CUSTOMERS FOR THE ADMIN LIST.
-  // getcustomers() {
-  //   return this.http.get(this.ROOT_URL + '/api/profile/customer');
-  // }
+  getcustomers() {
+    return this.http.get(this.ROOT_URL + '/api/profile/customer');
+  }
 
   // CREATE POST REQUEST TO THE ADMIN CREATE ACCOUNT.
   postAdminCreate(adminCreate) {

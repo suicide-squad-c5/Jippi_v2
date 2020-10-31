@@ -20,9 +20,9 @@ itemsRouter.put("/update", up.single("itemImage"), (req, res) => {
   console.log("req", req.body);
   var img;
   // = req.file.path;
-  req.body.itemImage
-    ? (img = req.body.itemImage.slice(0, 5) === "http:")
-    : (img = false);
+  req.body.itemImage ?
+    (img = req.body.itemImage.slice(0, 5) === "http:") :
+    (img = false);
   if (img) {
     const item = {
       itemName: req.body.itemName,
@@ -34,10 +34,14 @@ itemsRouter.put("/update", up.single("itemImage"), (req, res) => {
     };
     newItem
       .update(item, {
-        where: { id: req.body.id },
+        where: {
+          id: req.body.id
+        },
       })
       .then(() => {
-        res.send({ status: 200 });
+        res.send({
+          status: 200
+        });
       });
   } else {
     cloudinary.uploade
@@ -58,11 +62,15 @@ itemsRouter.put("/update", up.single("itemImage"), (req, res) => {
         console.log("im the item to update", item);
         //update the item with item id down bellow!!!!
         newItem.update(item, {
-          where: { id: req.body.id },
+          where: {
+            id: req.body.id
+          },
         });
       })
       .then(() => {
-        res.send({ status: 200 });
+        res.send({
+          status: 200
+        });
       });
   }
 });
@@ -134,7 +142,9 @@ itemsRouter.delete(`/:itemId`, async (req, res) => {
     },
   });
   console.log("heyyyyyyy", req.params.itemId);
-  res.send({ status: 200 });
+  res.send({
+    status: 200
+  });
 });
 
 itemsRouter.get(`/Company/:id`, async (req, res) => {
@@ -149,6 +159,7 @@ itemsRouter.get(`/Company/:id`, async (req, res) => {
     console.error(e);
   }
 });
+// get items form the same company
 itemsRouter.get("/getfour/:id", async (req, res) => {
   try {
     console.log('=============>', req.params);

@@ -112,7 +112,11 @@
           <button type="button" class="btn btn-primary btn-md mr-1 mb-2">
             Buy now
           </button>
-          <button type="button" class="btn btn-light btn-md mr-1 mb-2" (click)="addFun(this.item)">
+          <button
+            type="button"
+            class="btn btn-light btn-md mr-1 mb-2"
+            (click)="addFun(this.item)"
+          >
             <i class="fas fa-shopping-cart pr-2"></i>Add to cart
           </button>
         </div>
@@ -143,7 +147,11 @@
             <div class="text-center pt-4">
               <h5>{{do.itemName}}</h5>
               <h6 class="mb-3">{{do.itemPrice}}</h6>
-              <button type="button" class="btn btn-primary btn-sm mr-1" (click)="addFun(do)">
+              <button
+                type="button"
+                class="btn btn-primary btn-sm mr-1"
+                (click)="addFun(do)"
+              >
                 <i class="fas fa-shopping-cart pr-2"></i>Add to cart
               </button>
               <button
@@ -166,6 +174,7 @@
 
 <!-- Footer -->
 <footer class="page-footer font-small elegant-color">
+  <app-comments [itemID]="itemID"></app-comments>
   <div class="color-primary">
     <div class="container">
       <!-- Grid row-->
