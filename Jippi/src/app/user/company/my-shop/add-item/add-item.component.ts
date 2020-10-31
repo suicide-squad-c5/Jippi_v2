@@ -8,6 +8,8 @@ import { HttpService } from '../../../../http.service';
 })
 export class AddItemComponent implements OnInit {
   constructor(private _http: HttpService) {}
+  public imagePath;
+  imgURL: any;
   itemName: string = '';
   itemPrice: any = 0;
   itemDescription: string = '';
@@ -71,6 +73,18 @@ export class AddItemComponent implements OnInit {
   chooseAnImage(event) {
     this.itemImage = event.target.files[0];
     console.log('this.itemImage===========<<<', this.itemImage);
+  }
+
+  preview(files) {
+    if (files.length === 0) {
+      return;
+    }
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    };
   }
 
   saveItem() {

@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
   constructor(private local: LocalService, private router: Router) {}
 
   ngOnInit(): void {
-    console.log('===>', this.userType);
+    // console.log('===>', this.userType);
     this.local.basktItems.subscribe(
       (basket_item) => (this.basket_item = basket_item)
     );
@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
   ngDoCheck() {
     this.itemNum = this.basket_item.length;
     this.local.itemNameCheck(this.itemName);
-    console.log('itemname navbar', this.itemName);
+    // console.log('itemname navbar', this.itemName);
     this.local.getitem_name.subscribe((itemName) => (this.itemName = itemName));
   }
 

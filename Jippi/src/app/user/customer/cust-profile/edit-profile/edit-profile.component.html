@@ -7,11 +7,7 @@
       <div class="text-center">
         <img
           id="avatar"
-          [src]="
-            imgURL
-              ? imgURL
-              : url || 'https://ptetutorials.com/images/user-profile.png'
-          "
+          [src]="imgURL ? imgURL : url || '/assets/user-profile.png'"
           class="avatar img-circle"
           alt="avatar"
           width="100%"

@@ -10,13 +10,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./item-details.component.css'],
 })
 export class ItemDetailsComponent implements OnInit {
+
   item: any = {};
+
   check: boolean = false;
   fourItems: any;
   itemID: any;
   itemIdre: number = null;
   test: number = 39;
   CompanyId: number = null;
+  campanysNames: any;
+  companyNam: any;
   quantity: any;
   basket: any;
   starRating: number = 0;
@@ -39,12 +43,13 @@ export class ItemDetailsComponent implements OnInit {
       (basket_item) => (this.basket = basket_item)
     );
     this.local.quantityItems.subscribe((qnt) => (this.quantity = qnt));
+    this.local.companys_Names.subscribe((name) => (this.campanysNames = name));
     this.route.params.subscribe((params) => {
       console.log(params);
       this.itemID = params.id;
       this.showClickedOnItem(params.id);
     });
-    console.log('//////////', this.fourItems);
+    // console.log('//////////', this.fourItems);
   }
   ngDoCheck() {
     // console.log('all item name',this.fourItems, this.itemID);
@@ -67,7 +72,7 @@ export class ItemDetailsComponent implements OnInit {
       for (let i = 0; i < res.length; i++) {
         if (this.itemID == res[i].id) {
           this.CompanyId = res[i]['itemCompany'];
-          // console.log('*/-/*-/+-*-', this.CompanyId);
+          console.log('*/-/*-/+-*-', this.CompanyId);
           this.getSomeitems();
         }
       }
@@ -91,9 +96,11 @@ export class ItemDetailsComponent implements OnInit {
     if (this.basket.indexOf(itemToAdd) === -1) {
       this.basket.push(itemToAdd);
       this.quantity.push(1);
+      this.companyNameFunc(this.CompanyId)
     }
     this.addItem();
     this.addOne();
+    this.local.passCompanyName(this.campanysNames);
   }
   addItem() {
     if (localStorage.Id) {
@@ -106,10 +113,25 @@ export class ItemDetailsComponent implements OnInit {
     this.local.addOne(this.quantity);
   }
 
-  checkFun() {
-    if (this.check) {
+//chek for change items
+  checkFun(){
+    if (this.check){
+
       this.get4itemsOfThatCompany();
+      
       this.check = false;
     }
   }
+ //get the company name
+  companyNameFunc(CompanyId) {
+    console.log('CompanyID+++>', CompanyId);
+    this._http.getCompanyName(CompanyId).subscribe((data) => {
+      console.log('companyName====>', data);
+      this.companyNam = data;
+      this.campanysNames.push(this.companyNam?.companyName);
+      
+    });
+    
+  }
+
 }
