@@ -53,19 +53,5 @@ export class BasketComponent implements OnInit {
     this.quantity[this.basket_item.indexOf(ite)]--;
     this.tot -= this.basket_item[this.basket_item.indexOf(ite)].itemPrice;
   }
-  // get the company name
-  // companyName(CompanyId) {
-  //   console.log('CompanyID+++>', CompanyId);
-  //   this._http.getCompanyName(CompanyId).subscribe((data) => {
-  //     console.log('companyName====>', data);
-  //     this.companyNam = data;
-  //   });
-  // }
-  // company_Names(){
-  //   for (let i = 0; i < this.basket_item.length; i++) {
-  //     this.companyName(this.basket_item[i].itemCompany);
-  //     this.companyNames.push(this.companyNam?.companyName);
-  //   }
-  //   console.log('==++==++>>', this.companyNames)
-  // }
+ 
 }

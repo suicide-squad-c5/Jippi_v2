@@ -8,58 +8,63 @@ import { LocalService } from '../../../../local.service';
 })
 export class CompEditProfileComponent implements OnInit {
   constructor(private _http: HttpService, private local: LocalService) {}
+  alert: string = '';
+  companyInfo: any = {};
+  /** image preview **/
+  public imagePath;
+  imgURL: any;
+  /**************/
   companyName: string = '';
   companyEmail: string = '';
   location: string = '';
   phoneNumber: string = '';
   companyPassword: string = '';
   companyConfirmPassword: string = '';
-  alertt: string = '';
-  src: string = '';
-  companyId: any;
-  avatarUrl: any;
-  companyInfo: any = {};
+  avatar: string = '';
   ngOnInit(): void {
-    this.local.company_info.subscribe(info => this.companyInfo = info);
+    this.local.company_info.subscribe((info) => (this.companyInfo = info));
     this.companyName = this.companyInfo[0].companyName;
     this.companyEmail = this.companyInfo[0].companyEmail;
-    this.phoneNumber = this.companyInfo[0]?.phoneNumber;
+    this.phoneNumber = this.companyInfo[0].phoneNumber;
     this.location = this.companyInfo[0]?.location;
-  }
-ngDoCheck() {
-  // console.log('=+=+=+>', this.companyInfo);
-}
-  editcompanyProfile() {
-    var CompanyID = localStorage.getItem('comapnyId');
-    console.log('CompanyID ======>', CompanyID);
-    this.companyId = CompanyID;
-    return this._http
-      .editCompanyProfileData(
-        this.companyName,
-        this.companyEmail,
-        this.location,
-        this.phoneNumber,
-        this.companyId
-      )
-      .subscribe((res) => {
-        console.log('editCompanyProfileData res ===>', res);
-      });
+    this.avatar = this.companyInfo[0].avatar;
+    console.log(
+      'CompEditProfileComponent -> ngOnInit -> this.companyInfo',
+      this.companyInfo
+    );
   }
 
-  chooseAvatar(event) {
-    this.avatarUrl = event.target.files[0];
-    console.log('event.target.result', event.target.files[0]);
+  onSelectFile(event) {
+    this.avatar = event.target.files[0];
+    console.log(
+      'CompEditProfileComponent -> onSelectFile -> this.avatar',
+      this.avatar
+    );
   }
 
-  // upload image
-  UpdateAvatar() {
+  sendUpdate() {
     const formData = new FormData();
-    formData.append('file', this.avatarUrl);
-    formData.append('cId', this.companyId);
-    return this._http
-      .updateCompanyAvatar(formData, this.companyId)
-      .subscribe((res) => {
-        console.log('updateCompanyAvatar res ===>', res);
-      });
+    formData.append('companyId', this.companyInfo[0].id);
+    formData.append('companyName', this.companyName);
+    formData.append('companyEmail', this.companyEmail);
+    formData.append('companyPassword', this.companyPassword);
+    formData.append('avatar', this.avatar);
+    formData.append('location', this.location);
+    formData.append('phoneNumber', this.phoneNumber);
+    return this._http.editCompanyProfileData(formData).subscribe((res) => {
+      console.log('editCompanyProfileData res ===>', res);
+    });
+  }
+
+  preview(files) {
+    if (files.length === 0) {
+      return;
+    }
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    };
   }
 }
