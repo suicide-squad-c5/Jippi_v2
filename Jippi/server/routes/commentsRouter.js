@@ -5,15 +5,7 @@ const {
 } = require("process");
 const db = require("../../database/models");
 const sequelize = db.sequelize;
-// const config = require("../../database/config/db.config.js")
-// const connection = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "theHellHole*80",
-//   db: "jippi"
-// })
-// const multer = require("multer");
-// var cloudinary = require("cloudinary").v2;
+
 const Customer = db.customers;
 const newItem = db.items;
 const Comments = db.comments;
