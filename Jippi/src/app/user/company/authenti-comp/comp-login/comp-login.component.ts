@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
 import { LocalService } from '../../../../local.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-comp-login',
@@ -16,6 +17,7 @@ export class CompLoginComponent implements OnInit {
   userType: string = 'vsiteur';
   companyId: number = null;
   alert: boolean = false;
+  verified: boolean = true;
 
   constructor(
     private _http: HttpService,
@@ -28,8 +30,10 @@ export class CompLoginComponent implements OnInit {
   }
 
   ngDoCheck() {
-    // check ! (passed fine)
-    // console.log(this.companyEmailLog);
+    if (this.verified === false) {
+      this.router.navigateByUrl('/company/login');
+    }
+    console.log('asdfasdfasdfasdfsadfasd', this.verified);
   }
 
   companyDataLog() {
@@ -38,23 +42,46 @@ export class CompLoginComponent implements OnInit {
       companyPassword: this.companyPasswordLog,
     };
 
-    // check ! (passed fine)
+    //// check ! (passed fine)
     console.log(LogCdata);
+
     // send request to check if this user exist in the database.
-    this._http.postLoginCompany(LogCdata).subscribe((res) => {
+    this._http.postLoginCompany(LogCdata).subscribe((res: any) => {
       console.log('yo', res);
-      if (res['status'] === 800) {
+      if (res.status === 800) {
         this.alert = true;
+
+//       } else if (res === res['message']) {
+//         return;
+//       } else if (res['title'] === 'login successful') {
+
+      } else if (res.status === 401) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Done',
+          text: `this company are not exist`,
+        });
+      } else if (res.status === 500) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Done',
+          text: `password wrong`,
+        });
       } else {
         localStorage.setItem('companyToken', res['token']);
         localStorage.setItem('comapnyId', res['id']);
-        this.changeNav();
+        this.local.changeType('company');
+        this.router.navigateByUrl('/company/home');
+        // this.changeNav();
       }
     });
   }
 
   changeNav() {
-    this.local.changeType('company');
-    this.router.navigateByUrl('/company/home');
+    // if (this.verified === false) {
+    //   this.router.navigateByUrl('/company/login');
+    // } else {
+    this.companyDataLog();
   }
+  // }
 }

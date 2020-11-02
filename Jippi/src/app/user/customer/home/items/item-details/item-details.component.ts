@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ItemDetailsComponent implements OnInit {
 
+
   item: any = {};
 
   check: boolean = false;
@@ -47,6 +48,7 @@ export class ItemDetailsComponent implements OnInit {
     this.route.params.subscribe((params) => {
       console.log(params);
       this.itemID = params.id;
+
       this.showClickedOnItem(params.id);
     });
     // console.log('//////////', this.fourItems);
@@ -132,6 +134,7 @@ export class ItemDetailsComponent implements OnInit {
       
     });
     
+
   }
 
 }
