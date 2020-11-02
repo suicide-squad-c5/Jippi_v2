@@ -1,5 +1,21 @@
 <div class="main-container">
   <div class="container">
+
+    <!--Section: Block Content-->
+<!--     <section class="my-5">
+      <div class="row">
+        <div class="col-md-5 mb-4 mb-md-0">
+          <div class="view zoom z-depth-2 rounded">
+            <img
+              src="{{item.itemImage}}"
+              class="img-fluid w-100"
+              alt="Sample"
+            />
+
+            <a href="#!">
+              <div class="mask"></div>
+            </a> -->
+
     <div class="row">
       <div class="col-sm-12 col-md-6 col-lg-6" style="background-color:transparent; padding:2%;">
         <div class="product-image6 " style="background-color:whitw;">
@@ -41,6 +57,7 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
 
@@ -110,12 +127,54 @@
           <button type="button" class="btn btn-primary btn-md mr-1 mb-2">
             Buy now
           </button>
+
           <button type="button" class="btn btn-secondary btn-md mr-1 mb-2" (click)="addFun(this.item)">
+
             <i class="fas fa-shopping-cart pr-2"></i>Add to cart
           </button>
 
 
+
+      <!-- Grid row -->
+<!--       <div class="row mt-5 mb-4"> -->
+        <!-- Grid column -->
+<!--         <div class="col-md-6 col-lg-3 mb-4"> -->
+          <!-- Card -->
+<!--           <div *ngFor="let do of fourItems" class="">
+            <div class="view zoom z-depth-2 rounded">
+              <img
+                src="{{do.itemImage}}"
+                class="img-fluid w-100"
+                alt="Sample"
+              />
+              <a (click)="view(do.id)">
+                <div class="mask"></div>
+              </a>
+            </div>
+            <div class="text-center pt-4">
+              <h5>{{do.itemName}}</h5>
+              <h6 class="mb-3">{{do.itemPrice}}</h6>
+              <button
+                type="button"
+                class="btn btn-primary btn-sm mr-1"
+                (click)="addFun(do)"
+              >
+                <i class="fas fa-shopping-cart pr-2"></i>Add to cart
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger btn-sm px-3 material-tooltip-main"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Add to wishlist"
+              >
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div> -->
+ 
         </div>
+
 
       </div>
     </div>

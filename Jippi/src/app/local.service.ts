@@ -12,7 +12,7 @@ export class LocalService {
   private userInfo = new BehaviorSubject({});
   user_info = this.userInfo.asObservable();
   // company side.
-  //companie information  
+  //companie information
   companyInfo = new BehaviorSubject({});
   company_info = this.companyInfo.asObservable();
   private companyID = new BehaviorSubject(null);
@@ -29,7 +29,7 @@ export class LocalService {
   //items for filter
   private itemslist = new BehaviorSubject([]);
   items_list = this.itemslist.asObservable();
-//all items for  filter
+  //all items for  filter
   private allitems = new BehaviorSubject(false);
   all_items = this.allitems.asObservable();
   // GET USER DATA FOR THE BAN AND UNBANNED.
@@ -60,10 +60,10 @@ export class LocalService {
   getUserInfo(info: any) {
     this.userInfo.next(info);
   }
-// get company info
-getCompaniInfo(info: any) {
-  this.companyInfo.next(info)
-}
+  // get company info
+  getCompaniInfo(info: any) {
+    this.companyInfo.next(info);
+  }
   addToBasket(basket_item: any) {
     this.basket.next(basket_item);
   }
@@ -76,18 +76,17 @@ getCompaniInfo(info: any) {
    this.companysNames.next(name);
  } 
 
-// function to pass and filter items
+  // function to pass and filter items
   passItems(items) {
     this.itemslist.next(items);
   }
-//function to pass all items;
-  passAllItems(items){
-      this.allitems.next(items);
-    }
+  //function to pass all items;
+  passAllItems(items) {
+    this.allitems.next(items);
+  }
   // FUNCTION FOR CHECK COMPANY DATA ALWAYS.
   companyData(boo) {
     this.getcompanyData.next(boo);
-
   }
   ////
   deleteFun(boolean) {
@@ -95,8 +94,6 @@ getCompaniInfo(info: any) {
   }
   asItemid(itemid) {
     this.itemId.next(itemid);
-
-
   }
   // FUNCTION FOR ITEMANEM.
   itemNameCheck(itemName) {
