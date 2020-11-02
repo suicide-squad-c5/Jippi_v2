@@ -14,12 +14,12 @@ loginCompanyRouter.post("/company/login", (req, res) => {
       companyEmail: req.body.companyEmail,
     },
   }).then((company) => {
-    console.log(company)
+    console.log(company);
 
     if (company.verified !== true) {
       res.json({
-        message: "You did not verify your email"
-      })
+        message: "You did not verify your email",
+      });
     }
 
     // console.log("hey then", company);
@@ -57,7 +57,8 @@ loginCompanyRouter.post("/company/login", (req, res) => {
     }
 
     // create token and send it with the user id to the front end.
-    let token = jwt.sign({
+    let token = jwt.sign(
+      {
         companyId: company.id,
       },
       "check"
@@ -78,44 +79,39 @@ loginCompanyRouter.post("/company/login", (req, res) => {
     });
   });
 });
-// var code;
+var code;
 // sending an email to the company to verify
-// loginCompanyRouter.post('/sendmail/:id', (req, res) => {
-//   console.log("req.body", req.body)
-//   console.log("req.params", req.params)
-//   Company.findOne({
-//     where: {
-//       id: req.params.id,
-//     }
-//   }).then((company) => {
-
-//     let transporter = nodemailer.createTransport({
-//       service: 'Gmail',
-//       auth: {
-//         user: "jipp.pi.17@gmail.com",
-//         pass: "jippi1199"
-//       },
-//       tls: {
-//         rejectUnauthorized: false
-//       }
-//     });
-//     console.log("transporter.auth", transporter.options)
-
-
-
+loginCompanyRouter.post("/sendmail/:id", (req, res) => {
+  console.log("req.body", req.body);
+  console.log("req.params", req.params);
+  Company.findOne({
+    where: {
+      id: req.params.id,
+    },
+  }).then((company) => {
+    let transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: "jipp.pi.17@gmail.com",
+        pass: "jippi1199",
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
+    console.log("transporter.auth", transporter.options);
   });
 });
-
 
 loginCompanyRouter.post("/chekpoint/:id", (req, res) => {
   console.log("Get ready");
   console.log("req.params", req.params);
   // console.log("req.body", req.body);
   Company.findOne({
-      where: {
-        id: req.params.id,
-      },
-    })
+    where: {
+      id: req.params.id,
+    },
+  })
     .then((company) => {
       console.log("company", company.verificationCode);
       console.log("req.body.verificationCode", req.body.verificationCode);
@@ -137,11 +133,10 @@ loginCompanyRouter.post("/chekpoint/:id", (req, res) => {
       // ELSE
       if (company.verificationCode === userCode) {
         company.update({
-          verified: true
-        })
+          verified: true,
+        });
         res.status(200).json({
           result: "welcome to Jippi",
-
         });
       }
     })
