@@ -28,13 +28,13 @@ const uploads = multer({
 });
 
 // that's to reject a none image  files
-const fileFileter = (req, res, cb) => {
-  if (file.mimetype !== "image/jpeg" || file.mimetype !== "image/png") {
-    cb(null, false);
-  } else {
-    cb(null, true);
-  }
-};
+// const fileFileter = (req, res, cb) => {
+//   if (file.mimetype !== "image/jpeg" || file.mimetype !== "image/png") {
+//     cb(null, false);
+//   } else {
+//     cb(null, true);
+//   }
+// };
 /* that contains everything from above funciton .it wil be invoked in the updating avatart function to ru every thing we seted up  */
 // const uploads = multer({
 //   storage: storage,
@@ -43,10 +43,9 @@ const fileFileter = (req, res, cb) => {
 //   },
 //   fileFileter: fileFileter
 // });
+
 // updating company Data
-companyProfileRouter.put("/update/:companyId", (req, res) => {
-  console.log("req.body =====>", req.body);
-  console.log(" req.params update ", req.params);
+
 
   Company.findOne({
       where: {
@@ -59,27 +58,50 @@ companyProfileRouter.put("/update/:companyId", (req, res) => {
         throw new Error("No Company found");
       }
 
-      let values = {
-        registered: true,
+companyProfileRouter.put("/update", uploads.any(0), (req, res) => {
+  console.log("req", req.files);
+  /* ACHREF IS HERE !!!!! */
+  var img;
+  // = req.file.path;
+  req.body.avatar
+    ? (img = req.body.avatar.slice(0, 5) === "http:")
+    : (img = false);
+  if (img) {
+    const newData = {
+      companyName: req.body.companyName,
+      companyEmail: req.body.companyEmail,
+      location: req.body.location,
+      phoneNumber: req.body.phoneNumber,
+    };
+    Company.update(newData, { where: { id: req.body.companyId } }).then(() => {
+      res.send({ status: 200 });
+    });
+  } else {
+    var theImg = req.files[0].path;
+    cloudinary.uploader.upload(theImg, (error, result) => {
+      error && console.log("cloudinary [error] ==> ", error);
+
+
+      const newData = {
         companyName: req.body.companyName,
         companyEmail: req.body.companyEmail,
         location: req.body.location,
+        avatar: result.url,
         phoneNumber: req.body.phoneNumber,
       };
-      record.update(values).then((updatedRecord) => {
-        res.status(200).send(record);
-        console.log("Updated", JSON.stringify(updatedRecord));
-      });
-    })
-    .catch((err) => {
-      console.log("the catch error", err);
-      res.status(500).send(err);
+
+      console.log("newData", newData);
+      Company.update(newData, { where: { id: req.body.companyId } }).then(
+        () => {
+          res.send({ status: 200 });
+        }
+      );
     });
+  }
 });
 
 /* that's for getting  one company data
 (the one that it is logged in now ) */
-
 companyProfileRouter.post("/get/:id", (req, res) => {
   console.log(" req.params get ", req.params);
 

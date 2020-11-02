@@ -1,74 +1,54 @@
 <!-- Default form login -->
-<div class="testWhidth">
-  <div class="text-center border border-light p-5">
-    <p class="h4 mb-4">Login</p>
-    <div *ngIf="this.responseToTheUser" class="alert alert-success">
-      <strong>Success!</strong> Indicates a successful or positive action.
-    </div>
-
-    <div *ngIf="this.errorMessage" class="alert alert-danger">
-      <strong>Danger!</strong> Indicates a dangerous or potentially negative
-      action.
-    </div>
-    <!-- Email -->
-    <input
-      type="email"
-      id="defaultLoginFormEmail"
-      class="form-control mb-4"
-      placeholder="E-mail"
-      [(ngModel)]="email"
-    />
-    <!-- Password -->
-    <input
-      type="password"
-      id="defaultLoginFormPassword"
-      class="form-control mb-4"
-      placeholder="Password"
-      [(ngModel)]="password"
-    />
-    <div class="d-flex justify-content-around">
-      <div>
-        <!-- Remember me -->
-        <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+<div class="main-container">
+  <div class="testWhidth">
+    <div class="text-center border border-light p-5">
+      <p class="h4 mb-4">Login</p>
+      <div *ngIf="this.responseToTheUser" class="alert alert-success">
+        <strong>Success!</strong> Indicates a successful or positive action.
       </div>
-      <div>
-        <!-- Forgot password -->
-        <a href="">Forgot password?</a>
+
+      <div *ngIf="this.errorMessage" class="alert alert-danger">
+        <strong>Danger!</strong> Indicates a dangerous or potentially negative
+        action.
       </div>
+      <!-- Email -->
+      <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail"
+        [(ngModel)]="email" />
+      <!-- Password -->
+      <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password"
+        [(ngModel)]="password" />
+      <div class="d-flex justify-content-around">
+      </div>
+
+      <!-- Sign in button -->
+      <button color="info" block="true" class="btn btn-lg btn-primary btn-block" (click)="login()" type="submit">
+        Login
+      </button>
+
+      <!-- Register -->
+      <p>
+        Not a member?
+        <a href="http://localhost:4200/signup">Register</a>
+
+      </p>
+      <!-- Social login -->
+      <!-- <p>or login in with:</p>
+
+      <a type="button" class="light-blue-text mx-2">
+        <i class="fab fa-facebook"></i>
+      </a>
+      <a type="button" class="light-blue-text mx-2">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a type="button" class="light-blue-text mx-2">
+        <i class="fab fa-google"></i>
+      </a> -->
+
     </div>
-
-    <!-- Sign in button -->
-    <button
-      color="info"
-      block="true"
-      class="btn btn-lg btn-primary btn-block"
-      (click)="login()"
-      type="submit"
-    >
-      Login
-    </button>
-
-    <!-- Register -->
-    <p>
-      Not a member?
-      <a href="http://localhost:4200/signup">Register</a>
-    </p>
-
-    <!-- Social login -->
-    <p>or login in with:</p>
-
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="facebook"></mdb-icon>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="twitter"></mdb-icon>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="linkedin"></mdb-icon>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="github"></mdb-icon>
-    </a>
+    <div>
+      <!-- Forgot password -->
+      <a href="">Forgot password?</a>
+    </div>
   </div>
 </div>
 <!-- Default form login -->

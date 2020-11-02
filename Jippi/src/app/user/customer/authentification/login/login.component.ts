@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
 import { LocalService } from '../../../../local.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -32,16 +34,26 @@ export class LoginComponent implements OnInit {
   login() {
     return this._http
       .loginCustomer(this.email, this.password)
-      .subscribe((res) => {
-        if (res['succ']) {
+      .subscribe((res: any) => {
+        if (res.status === 404) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Done',
+            text: `this user are not exist`,
+          });
+        } else if (res.status === 500) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Done',
+            text: `password wrong`,
+          });
+        } else {
           this.responseToTheUser = res['succ'];
           console.log('succ res =======>', res);
           localStorage.setItem('Token', res['token']);
           localStorage.setItem('Id', res['id']);
           this.local.getUserId(res['id']);
           this.newType();
-        } else if (!res['succ']) {
-          this.errorMessage = res['status'];
         }
       });
   }

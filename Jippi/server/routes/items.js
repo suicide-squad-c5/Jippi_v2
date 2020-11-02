@@ -1,4 +1,4 @@
-const itemsRouter = require("express").Router();
+const    itemsRouter = require("express").Router();
 const db = require("../../database/models");
 const multer = require("multer");
 
@@ -18,12 +18,8 @@ const up = multer({
 
 itemsRouter.put("/update", up.single("itemImage"), (req, res) => {
   console.log("req", req.body);
-  var img;
-  // = req.file.path;
-  req.body.itemImage ?
-    (img = req.body.itemImage.slice(0, 5) === "http:") :
-    (img = false);
-  if (img) {
+
+  if (!!req.body.itemImage) {
     const item = {
       itemName: req.body.itemName,
       itemPrice: req.body.itemPrice,
@@ -44,12 +40,10 @@ itemsRouter.put("/update", up.single("itemImage"), (req, res) => {
         });
       });
   } else {
-    cloudinary.uploade
-      .upload(img, (error, result) => {
+    const itelmImg = req.file.path;
+    cloudinary.uploader
+      .upload(itelmImg, (error, result) => {
         error && console.log("cloudinary [error] ==> ", error);
-      })
-
-      .then((result) => {
         const item = {
           itemName: req.body.itemName,
           itemPrice: req.body.itemPrice,
@@ -162,15 +156,15 @@ itemsRouter.get(`/Company/:id`, async (req, res) => {
 // get items form the same company
 itemsRouter.get("/getfour/:id", async (req, res) => {
   try {
-    console.log('=============>', req.params);
+    console.log("=============>", req.params);
     const items = await newItem.findAll({
       where: {
-        itemCompany: req.params.id
-      }
-    })
-    res.send(items)
+        itemCompany: req.params.id,
+      },
+    });
+    res.send(items);
   } catch (err) {
-    res.status(400).send(err)
+    res.status(400).send(err);
   }
 });
 module.exports = itemsRouter;
