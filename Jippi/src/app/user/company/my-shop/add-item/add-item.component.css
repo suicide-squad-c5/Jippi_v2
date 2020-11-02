@@ -1,0 +1,41 @@
+.main-container{
+  background-color: rgb(238, 238, 238);
+  position: relative;
+  width: 100%;
+  padding: 20px
+}
+
+.container{
+position: relative;
+    width: 100%;
+    max-width: 1000px;
+    padding: 95px;
+    margin: 100px auto;
+    text-align: center;
+    display: block;
+    border: 1px solid;
+    border-radius: 3%;
+    border-color: #D5DBDB;
+    background-color: white;
+}
+
+.info{
+    color: white;
+    width:50%;
+    border: 1px solid #5499C7;
+    background-color:#5499C7;
+    border-radius:5px;
+    height: 100%;
+    width:100%;
+}
+
+.item-generate{
+    width:150%;
+}
+
+img{
+      object-fit: cover;
+      width: 30%;
+      height: 11em;
+
+}

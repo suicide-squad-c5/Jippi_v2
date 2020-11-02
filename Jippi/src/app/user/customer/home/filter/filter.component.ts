@@ -62,6 +62,8 @@ export class FilterComponent implements OnInit {
   getAllData() {
     this.local.passAllItems(true);
     this.getAllDataItems();
+    this.min_price = '';
+    this.max_price = '';
   }
 
   getAllDataItems() {

@@ -33,7 +33,8 @@ loginCompanyRouter.post("/company/login", (req, res) => {
       });
     }
     if (!company) {
-      res.status(400).json({
+      res.send({
+        status: 401,
         title: "this company is not definened",
       });
     }
@@ -43,12 +44,12 @@ loginCompanyRouter.post("/company/login", (req, res) => {
       passwordHash.verify(req.body.companyPassword, company.companyPassword) !==
       true
     ) {
-      return res.status(401).json({
+      res.send({
+        status: 500,
         title: "log failed",
         error: "invalid password",
       });
     }
-
     if (company.baned === "true") {
       res.send({
         status: 800,
@@ -61,6 +62,7 @@ loginCompanyRouter.post("/company/login", (req, res) => {
       },
       "check"
     );
+
     if (company.verified == true) {
       return res.status(200).json({
         title: "login successful",
@@ -68,6 +70,37 @@ loginCompanyRouter.post("/company/login", (req, res) => {
         id: company.id,
       });
     }
+
+    res.status(200).json({
+      title: "login successful",
+      token: token,
+      id: company.id,
+    });
+  });
+});
+// var code;
+// sending an email to the company to verify
+// loginCompanyRouter.post('/sendmail/:id', (req, res) => {
+//   console.log("req.body", req.body)
+//   console.log("req.params", req.params)
+//   Company.findOne({
+//     where: {
+//       id: req.params.id,
+//     }
+//   }).then((company) => {
+
+//     let transporter = nodemailer.createTransport({
+//       service: 'Gmail',
+//       auth: {
+//         user: "jipp.pi.17@gmail.com",
+//         pass: "jippi1199"
+//       },
+//       tls: {
+//         rejectUnauthorized: false
+//       }
+//     });
+//     console.log("transporter.auth", transporter.options)
+
 
 
   });

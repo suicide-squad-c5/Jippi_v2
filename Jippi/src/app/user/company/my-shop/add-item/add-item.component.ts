@@ -8,6 +8,8 @@ import { HttpService } from '../../../../http.service';
 })
 export class AddItemComponent implements OnInit {
   constructor(private _http: HttpService) {}
+  public imagePath;
+  imgURL: any;
   itemName: string = '';
   itemPrice: any = 0;
   itemDescription: string = '';
@@ -73,6 +75,18 @@ export class AddItemComponent implements OnInit {
     console.log('this.itemImage===========<<<', this.itemImage);
   }
 
+  preview(files) {
+    if (files.length === 0) {
+      return;
+    }
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    };
+  }
+
   saveItem() {
     const formData = new FormData();
     formData.append('itemName', this.itemName);
@@ -86,13 +100,11 @@ export class AddItemComponent implements OnInit {
 
     return this._http.postAddItem(formData).subscribe((res) => {
       this.itemId = res['id'];
-      // console.log(this.url);
-      console.log('UUUUUUUUUUUUU=======> ', res['id']);
-
-      return this._http.getItemData(this.itemId).subscribe((res) => {
-        console.log('getItemDataToShowTheImage', res);
-        this.url = res['itemImage'];
-      });
+      alert('the item was added to your shop');
+      // return this._http.getItemData(this.itemId).subscribe((res) => {
+      //   console.log('getItemDataToShowTheImage', res);
+      //   this.url = res['itemImage'];
+      // });
     });
   }
 }

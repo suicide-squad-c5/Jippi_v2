@@ -26,7 +26,8 @@ loginCustomerRouter.post("/login", (req, res) => {
     }
 
     if (!foundCustomer) {
-      return res.status(400).json({
+      res.send({
+        status: 404,
         title: "No customer found with that email",
         errorMessage: " the request was empty",
       });
@@ -37,7 +38,8 @@ loginCustomerRouter.post("/login", (req, res) => {
     ) {
       console.log(foundCustomer);
       console.log("req.body.password", req.body.password);
-      return res.status(401).json({
+      res.send({
+        status: 500,
         title: "log in failed",
         errorMessage: "Wrong password",
       });

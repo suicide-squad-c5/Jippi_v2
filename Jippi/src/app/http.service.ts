@@ -149,23 +149,9 @@ export class HttpService {
 
   // ==============================COMPANY====================================
   // that's for updating the company  Data
-  editCompanyProfileData(
-    companyName,
-    companyEmail,
-    location,
-    phoneNumber,
-    companyId
-  ) {
-    return this.http.put(
-      this.ROOT_URL + `/api/profile/company/update/${companyId}`,
-      {
-        companyName,
-        companyEmail,
-        location,
-        phoneNumber,
-        companyId,
-      }
-    );
+  editCompanyProfileData(data) {
+    return this.http.put(this.ROOT_URL + `/api/profile/company/update`, data);
+    /******** =======>fix here!!!!!!<====== ********/
   }
   // that's for receiving  the company Data
   getCompanyData(CId) {
@@ -218,4 +204,10 @@ export class HttpService {
   getcompanyItems(companyId) {
     return this.http.get(this.ROOT_URL + `/api/items/Company/${companyId}`);
   }
+
+  // ==============customers/companay Relation ===============
+  getCompanyName(companyId) {
+  return this.http.get(this.ROOT_URL + `/companyName/companyName/${companyId}`);
 }
+}
+

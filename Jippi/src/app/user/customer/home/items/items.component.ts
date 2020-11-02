@@ -9,6 +9,7 @@ import { LocalService } from '../../../../local.service';
 export class ItemsComponent implements OnInit {
   quantity: any = [];
   itemsList: any = [];
+  campanysNames: any = [];
   allitems: boolean = false;
   basket: any = [];
   itemName: string = '';
