@@ -25,7 +25,8 @@ loginCompanyRouter.post("/company/login", (req, res) => {
       });
     }
     if (!company) {
-      res.status(400).json({
+      res.send({
+        status: 401,
         title: "this company is not definened",
       });
     }
@@ -35,12 +36,12 @@ loginCompanyRouter.post("/company/login", (req, res) => {
       passwordHash.verify(req.body.companyPassword, company.companyPassword) !==
       true
     ) {
-      return res.status(401).json({
+      res.send({
+        status: 500,
         title: "log failed",
         error: "invalid password",
       });
     }
-
     if (company.baned === "true") {
       res.send({
         status: 800,
@@ -54,7 +55,7 @@ loginCompanyRouter.post("/company/login", (req, res) => {
       },
       "check"
     );
-    return res.status(200).json({
+    res.status(200).json({
       title: "login successful",
       token: token,
       id: company.id,

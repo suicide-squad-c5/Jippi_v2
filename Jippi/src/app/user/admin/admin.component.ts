@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../http.service';
 import { LocalService } from '../../local.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin',
@@ -41,11 +42,25 @@ export class AdminComponent implements OnInit {
     console.log(adminLogData);
 
     // SEND REQUEST TO CHECK IF THIS ADMIN EXISTS OR NOT.
-    this._http.postAdminlogin(adminLogData).subscribe((res) => {
+    this._http.postAdminlogin(adminLogData).subscribe((res: any) => {
       console.log(res);
-      localStorage.setItem('adminToken', res['token']);
-      localStorage.setItem('adminId', res['id']);
-      this.changeType();
+      if (res.status === 400) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Done',
+          text: `password wrong`,
+        });
+      } else if (res.status === 401) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Done',
+          text: `this admin are not exist`,
+        });
+      } else {
+        localStorage.setItem('adminToken', res['token']);
+        localStorage.setItem('adminId', res['id']);
+        this.changeType();
+      }
     });
   }
 
