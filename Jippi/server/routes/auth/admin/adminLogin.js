@@ -16,20 +16,23 @@ adminRouter.post("/", (req, res) => {
 
     // CHECK IF WE HAVE REQUEST OR NOT.
     if (!req.body) {
-      res.status(500).json({
+      res.send({
+        status: 500,
         title: "error in login admin",
         error: "nothing in the request body",
       });
     }
     if (!admin) {
-      res.status(400).json({
+      res.send({
+        status: 401,
         title: "admin is not found",
       });
     }
 
     // CHECK IF THE PASSWORD CORRECT OR NOT.
     if (req.body.adminPassword !== admin.adminPassword) {
-      return res.status(401).json({
+      return res.send({
+        status: 400,
         title: "log failed",
         error: "invalid password",
       });
@@ -42,7 +45,8 @@ adminRouter.post("/", (req, res) => {
       },
       "check"
     );
-    return res.status(200).json({
+    res.send({
+      status: 200,
       title: "login successful",
       token: token,
       id: admin.id,

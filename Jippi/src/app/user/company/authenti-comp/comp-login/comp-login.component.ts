@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
 import { LocalService } from '../../../../local.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-comp-login',
@@ -40,11 +41,24 @@ export class CompLoginComponent implements OnInit {
 
     // check ! (passed fine)
     console.log(LogCdata);
+
     // send request to check if this user exist in the database.
-    this._http.postLoginCompany(LogCdata).subscribe((res) => {
+    this._http.postLoginCompany(LogCdata).subscribe((res: any) => {
       console.log('yo', res);
-      if (res['status'] === 800) {
+      if (res.status === 800) {
         this.alert = true;
+      } else if (res.status === 401) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Done',
+          text: `this company are not exist`,
+        });
+      } else if (res.status === 500) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Done',
+          text: `password wrong`,
+        });
       } else {
         localStorage.setItem('companyToken', res['token']);
         localStorage.setItem('comapnyId', res['id']);
