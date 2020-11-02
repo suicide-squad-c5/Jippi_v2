@@ -92,6 +92,13 @@
                     <a class="btn btn-sm btn-default btn-hover-primary" href="#"
                       >Comment</a
                     >
+                    <button
+                      *ngIf="userId === po.userId"
+                      class="btn btn-sm btn-default btn-hover-primary"
+                      (click)="deleteYourComments(po.id,po.userId)"
+                    >
+                      Delete
+                    </button>
                   </div>
                   <hr />
 

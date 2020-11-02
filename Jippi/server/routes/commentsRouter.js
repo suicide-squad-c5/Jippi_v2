@@ -43,39 +43,13 @@ commentsRouter.post('/post/:itemId', async (req, res) => {
     res.send(err)
   });
 });
-// ===============================================
 
-// const getUsers = function () {
-//   return new Promise((resolve, reject) => {
-//     connection.query(
-//       `SELECT Comments.userId,Comments.comment,Comments.likes, Customers.first_name , Customers.avatar
-// FROM Comments
-// INNER JOIN Customers ON Comments.userId = Customers.id;
-// `,
-//       (err, data) => {
-//         if (err) {
-//           reject(err);
-//         }
-//         resolve(data);
-//       }
-//     );
-//   });
-// };
-// let test = async () => {
-//   try {
-//     let result = await getUsers()
-//     console.log(result)
-//   } catch (err) {
-//     console.log(err)
-//   }
-// }
-// test()
 commentsRouter.get('/get/all/:itemId', async (req, res) => {
   console.log('kkkkk', req.params.itemId)
   try {
-    const result = await sequelize.query(`SELECT Comments.userId,Comments.comment,Comments.likes,Comments.itemId, Customers.first_name , Customers.avatar
+    const result = await sequelize.query(`SELECT Comments.userId,Comments.id,Comments.comment,Comments.likes,Comments.itemId, Customers.first_name , Customers.avatar
 FROM Comments
-INNER JOIN Customers ON Comments.userId = Customers.id INNER JOIN Items ON Items.id AND Comments.itemId = ${req.params.itemId};
+INNER JOIN Customers ON Comments.userId = Customers.id INNER JOIN Items ON Items.id = ${req.params.itemId} WHERE (${req.params.itemId} = Comments.itemId);
 `)
     console.log("===============>", result)
     res.status(200).send(result);
@@ -83,5 +57,20 @@ INNER JOIN Customers ON Comments.userId = Customers.id INNER JOIN Items ON Items
     res.status(400).send(err)
   }
 });
-
+commentsRouter.delete("/delete/comment/:commentId", async (req, res) => {
+  console.log('=======================', req.params)
+  try {
+    const result = await Comments.destroy({
+      where: {
+        id: req.params.commentId
+      }
+    })
+    res.status(200).json({
+      result: result,
+      message: "Your comment has been deleted"
+    })
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
 module.exports = commentsRouter;

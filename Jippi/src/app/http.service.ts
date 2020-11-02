@@ -79,6 +79,12 @@ export class HttpService {
       this.ROOT_URL + `/api/item/comments/get/all/${itemId}`
     );
   }
+  // toDelete a comment
+  deleteComments(CommentId) {
+    return this.http.delete(
+      this.ROOT_URL + `/api/item/comments/delete/comment/${CommentId}`
+    );
+  }
   // GET ALL CUSTOMERS FOR THE ADMIN LIST.
   getcustomers() {
     return this.http.get(this.ROOT_URL + '/api/profile/customer');
