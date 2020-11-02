@@ -54,6 +54,8 @@ export class HttpService {
     return this.http.put(this.ROOT_URL + '/api/items/update', formData);
   }
 
+  //add an item to the database
+
   // CREATE POST REQUEST FOR THE ADMIN LOGIN.
   postAdminlogin(adminLogin) {
     return this.http.post(this.ROOT_URL + `/admin/jippi`, {
@@ -62,10 +64,25 @@ export class HttpService {
     });
   }
 
+  getCustomerById(id: number) {
+    return this.http.get(this.ROOT_URL + `/api/profile/customer/${id}`);
+  }
+  comment(comment, userId, itemId, likes) {
+    return this.http.post(this.ROOT_URL + `/api/item/comments/post/${itemId}`, {
+      comment,
+      userId,
+      likes,
+    });
+  }
+  getAllComments(itemId) {
+    return this.http.get(
+      this.ROOT_URL + `/api/item/comments/get/all/${itemId}`
+    );
+  }
   // GET ALL CUSTOMERS FOR THE ADMIN LIST.
-  // getcustomers() {
-  //   return this.http.get(this.ROOT_URL + '/api/profile/customer');
-  // }
+  getcustomers() {
+    return this.http.get(this.ROOT_URL + '/api/profile/customer');
+  }
 
   // CREATE POST REQUEST TO THE ADMIN CREATE ACCOUNT.
   postAdminCreate(adminCreate) {
@@ -102,6 +119,17 @@ export class HttpService {
         companyId,
       }
     );
+  }
+
+  // SEND EMAIL (CONTACT).
+  sendEmailC(mailData) {
+    console.log('http service');
+    return this.http.post(this.ROOT_URL + `/contact`, {
+      userName: mailData.Uname,
+      userEmail: mailData.Uemail,
+      userPhone: mailData.Uphone,
+      userMessage: mailData.Umessage,
+    });
   }
 
   //get all items in db

@@ -18,33 +18,61 @@ const up = multer({
 
 itemsRouter.put("/update", up.single("itemImage"), (req, res) => {
   console.log("req", req.body);
-  var img = req.file.path;
-  cloudinary.uploader
-    .upload(img, (error, result) => {
-      error && console.log("cloudinary [error] ==> ", error);
-    })
-    .then((result) => {
-      const item = {
-        itemName: req.body.itemName,
-        itemPrice: req.body.itemPrice,
-        itemDescription: req.body.itemDescription,
-        itemImage: result.url,
-        itemCompany: req.body.companyID,
-        itemCategory: req.body.selectedCategory,
-        itemKind: req.body.selectedKind,
-      };
-      console.log("im the item to update", item);
-      //update the item with item id down bellow!!!!
-      newItem.update(item, {
-        where: { id: req.body.id },
+  var img;
+  // = req.file.path;
+  req.body.itemImage ?
+    (img = req.body.itemImage.slice(0, 5) === "http:") :
+    (img = false);
+  if (img) {
+    const item = {
+      itemName: req.body.itemName,
+      itemPrice: req.body.itemPrice,
+      itemDescription: req.body.itemDescription,
+      itemCompany: req.body.companyID,
+      itemCategory: req.body.selectedCategory,
+      itemKind: req.body.selectedKind,
+    };
+    newItem
+      .update(item, {
+        where: {
+          id: req.body.id
+        },
+      })
+      .then(() => {
+        res.send({
+          status: 200
+        });
       });
-    })
-    .then(() => {
-      res.send({ status: 200 });
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+  } else {
+    cloudinary.uploade
+      .upload(img, (error, result) => {
+        error && console.log("cloudinary [error] ==> ", error);
+      })
+
+      .then((result) => {
+        const item = {
+          itemName: req.body.itemName,
+          itemPrice: req.body.itemPrice,
+          itemDescription: req.body.itemDescription,
+          itemImage: result.url,
+          itemCompany: req.body.companyID,
+          itemCategory: req.body.selectedCategory,
+          itemKind: req.body.selectedKind,
+        };
+        console.log("im the item to update", item);
+        //update the item with item id down bellow!!!!
+        newItem.update(item, {
+          where: {
+            id: req.body.id
+          },
+        });
+      })
+      .then(() => {
+        res.send({
+          status: 200
+        });
+      });
+  }
 });
 
 // posting an Item
@@ -114,7 +142,9 @@ itemsRouter.delete(`/:itemId`, async (req, res) => {
     },
   });
   console.log("heyyyyyyy", req.params.itemId);
-  res.send({ status: 200 });
+  res.send({
+    status: 200
+  });
 });
 
 itemsRouter.get(`/Company/:id`, async (req, res) => {
@@ -129,6 +159,7 @@ itemsRouter.get(`/Company/:id`, async (req, res) => {
     console.error(e);
   }
 });
+// get items form the same company
 itemsRouter.get("/getfour/:id", async (req, res) => {
   try {
     console.log('=============>', req.params);

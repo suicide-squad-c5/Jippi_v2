@@ -24,11 +24,12 @@ import { CompEditProfileComponent } from './user/company/comp-profile/comp-edit-
 import { CompanyHomeComponent } from './user/company/company-home/company-home.component';
 import { UpdateItemComponent } from './user/company/company-home/company-items/update-item/update-item.component';
 import { ItemDetailsComponent } from './user/customer/home/items/item-details/item-details.component';
-
+import { LandingPageComponent } from './user/landing-page/landing-page.component';
+import { CommentsComponent } from './user/customer/home/items/comments/comments.component';
 
 const routes: Routes = [
   // CUSTOEMR SIDE.
-  { path: '', component: HomeComponent },
+  { path: '', component: LandingPageComponent },
   { path: 'contact', component: ContactUsComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'company/check', component: VerifyEmailComponent },
   { path: 'company/home', component: CompanyHomeComponent },
   { path: 'company/updateItem', component: UpdateItemComponent },
+  { path: 'company/item/comments', component: CommentsComponent },
   // ADMIN SIDE.
   { path: 'admin/jippi', component: AdminComponent },
   { path: 'admin/home', component: AdminHomeComponent },
@@ -54,6 +56,7 @@ const routes: Routes = [
   { path: 'admin/reports', component: ReportsComponent },
   { path: 'customer/basket', component: BasketComponent },
   { path: 'admin/users', component: UsersComponent },
+  { path: 'shop/items', component: HomeComponent },
 ];
 
 @NgModule({

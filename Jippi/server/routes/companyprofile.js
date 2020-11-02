@@ -152,8 +152,6 @@ companyProfileRouter.get("/", async (req, res) => {
 
 // BAN COMPANY FUNCTION.
 companyProfileRouter.put("/:companyId", async (req, res) => {
-  console.log(req.body.companyId);
-  console.log(req.params.companyId);
   Company.update({
       baned: "true"
     }, {

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
-
+import { LocalService } from '../../../../local.service';
 @Component({
   selector: 'app-comp-edit-profile',
   templateUrl: './comp-edit-profile.component.html',
   styleUrls: ['./comp-edit-profile.component.css'],
 })
 export class CompEditProfileComponent implements OnInit {
-  constructor(private _http: HttpService) {}
+  constructor(private _http: HttpService, private local: LocalService) {}
   companyName: string = '';
   companyEmail: string = '';
   location: string = '';
@@ -18,9 +18,17 @@ export class CompEditProfileComponent implements OnInit {
   src: string = '';
   companyId: any;
   avatarUrl: any;
-
-  ngOnInit(): void {}
-
+  companyInfo: any = {};
+  ngOnInit(): void {
+    this.local.company_info.subscribe(info => this.companyInfo = info);
+    this.companyName = this.companyInfo[0].companyName;
+    this.companyEmail = this.companyInfo[0].companyEmail;
+    this.phoneNumber = this.companyInfo[0]?.phoneNumber;
+    this.location = this.companyInfo[0]?.location;
+  }
+ngDoCheck() {
+  // console.log('=+=+=+>', this.companyInfo);
+}
   editcompanyProfile() {
     var CompanyID = localStorage.getItem('comapnyId');
     console.log('CompanyID ======>', CompanyID);

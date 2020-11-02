@@ -50,8 +50,7 @@ height: 50%;
 }
 
 .navbar{
-   box-shadow: 0.5px 0.1px 15px #888888;
-
+   box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 1);
 }
 
 .navbar-costumer{

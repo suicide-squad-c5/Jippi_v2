@@ -10,7 +10,7 @@ require("dotenv").config();
 //   decode
 // }
 
-let dcode = "44";
+let dcode = "";
 const getRandomString = () => {
   var randomChars =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
