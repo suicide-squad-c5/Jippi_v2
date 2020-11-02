@@ -93,16 +93,18 @@ export class ItemDetailsComponent implements OnInit {
     this.router.navigate([`/items/details/${doid}`]);
   }
 
-  addFun(itemToAdd) {
-    if (this.basket.indexOf(itemToAdd) === -1) {
-      this.basket.push(itemToAdd);
+  addFun() {
+    if (this.basket.indexOf(this.item) === -1) {
+      this.basket.push(this.item);
       this.quantity.push(1);
-      this.companyNameFunc(this.CompanyId);
+      this.companyNameFunc(this.item.itemCompany);
     }
     this.addItem();
     this.addOne();
     this.local.passCompanyName(this.campanysNames);
+    console.log('companyName===>', this.campanysNames);
   }
+
   addItem() {
     if (localStorage.Id) {
       this.local.addToBasket(this.basket);
@@ -132,7 +134,6 @@ export class ItemDetailsComponent implements OnInit {
     });
   }
 
-  // to add the item id to the route
   moreDetails(item) {
     this.router.navigate([`/items/details/${item.id}`]);
   }
