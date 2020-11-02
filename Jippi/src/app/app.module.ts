@@ -51,6 +51,7 @@ import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 import { LandingPageComponent } from './user/landing-page/landing-page.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommentsComponent } from './user/customer/home/items/comments/comments.component';
+import { GetYourItemsComponent } from './user/customer/basket/get-your-items/get-your-items.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { CommentsComponent } from './user/customer/home/items/comments/comments.
     UpdateItemComponent,
     LandingPageComponent,
     CommentsComponent,
+    GetYourItemsComponent,
 
     // CustomersUserComponent,
   ],
