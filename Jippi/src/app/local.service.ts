@@ -47,6 +47,10 @@ export class LocalService {
   private itemId = new BehaviorSubject(null);
   item_id = this.itemId.asObservable();
 
+  //delete item for admin
+  private deleteItem = new BehaviorSubject(false);
+  delete_item = this.deleteItem.asObservable();
+
   constructor() {}
 
   changeType(type: string) {
@@ -98,5 +102,9 @@ export class LocalService {
   // FUNCTION FOR ITEMANEM.
   itemNameCheck(itemName) {
     this.getItemName.next(itemName);
+  }
+  //Function delete Item for admin
+  deleteItemFunc(boo){
+    this.deleteItem.next(boo);
   }
 }
