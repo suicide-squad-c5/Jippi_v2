@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalService } from '../../../local.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -14,11 +15,25 @@ export class NavbarComponent implements OnInit {
   itemNum: number = 0;
   itemList: any = [];
   itemName: string = '';
+  route: boolean = false;
 
-  constructor(private local: LocalService, private router: Router) {}
+  constructor(
+    location: Location,
+    private local: LocalService,
+    private router: Router
+  ) {
+    router.events.subscribe((val) => {
+      if (location.path() === '/shop/items') {
+        this.route = true;
+      } else {
+        this.route = false;
+      }
+    });
+  }
 
   ngOnInit(): void {
     // console.log('===>', this.userType);
+
     this.local.basktItems.subscribe(
       (basket_item) => (this.basket_item = basket_item)
     );
@@ -40,6 +55,7 @@ export class NavbarComponent implements OnInit {
     this.local.itemNameCheck(this.itemName);
     // console.log('itemname navbar', this.itemName);
     this.local.getitem_name.subscribe((itemName) => (this.itemName = itemName));
+    console.log('NavbarComponent -> route', this.route);
   }
 
   logout() {

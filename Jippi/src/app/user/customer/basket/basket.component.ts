@@ -53,8 +53,10 @@ export class BasketComponent implements OnInit {
     this.tot += this.basket_item[this.basket_item.indexOf(ite)].itemPrice;
   }
   subtractQunt(ite) {
+    if(this.quantity[this.basket_item.indexOf(ite)] > 0){ 
     this.quantity[this.basket_item.indexOf(ite)]--;
     this.tot -= this.basket_item[this.basket_item.indexOf(ite)].itemPrice;
+    }
   }
  
 addQnt(){
