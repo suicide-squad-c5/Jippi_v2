@@ -26,6 +26,9 @@ export class CommentsComponent implements OnInit {
   // ======Res========
   postedData: any = [];
   check: boolean = false;
+  // ======================
+  comntId: number = 20;
+  DeletedCmntM: string = '';
   test: string =
     'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png';
   @Input() itemID: any;
@@ -60,5 +63,13 @@ export class CommentsComponent implements OnInit {
       this.postedData = res;
       this.check = true;
     });
+  }
+  deleteYourComments(comntId, userId) {
+    if (userId === this.userId) {
+      return this._http.deleteComments(comntId).subscribe((res) => {
+        this.DeletedCmntM = res['message'];
+        this.getComments();
+      });
+    }
   }
 }
