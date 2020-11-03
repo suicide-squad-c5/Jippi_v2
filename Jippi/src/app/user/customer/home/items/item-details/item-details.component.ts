@@ -3,6 +3,7 @@ import { HttpService } from '../../../../../http.service';
 import { LocalService } from '../../../../../local.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-item-details',
@@ -24,6 +25,8 @@ export class ItemDetailsComponent implements OnInit {
   basket: any;
   starRating: number = 0;
   itemId: string = '';
+  routeer: string = '';
+
   constructor(
     private router: Router,
     private _http: HttpService,
