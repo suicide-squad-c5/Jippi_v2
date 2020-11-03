@@ -1,0 +1,28 @@
+.main-container{
+    position: relative;
+    width: 100%;
+    padding: 70px;
+    background-color: rgb(238, 238, 238);
+}
+
+.container{
+  background-color: white;
+}
+
+.two {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main thead {
+  background: #1E1F23;
+  color: #fff
+}
+
+.img {
+  height: 100px
+}
+
+h1 {
+  text-align: center
+}
