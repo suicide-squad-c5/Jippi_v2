@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
@@ -88,23 +88,37 @@ export class AddItemComponent implements OnInit {
   }
 
   saveItem() {
-    const formData = new FormData();
-    formData.append('itemName', this.itemName);
-    formData.append('itemPrice', this.itemPrice);
-    formData.append('itemDescription', this.itemDescription);
-    formData.append('itemImage', this.itemImage);
-    formData.append('itemRating', this.itemRating);
-    formData.append('companyID', this.companyID);
-    formData.append('selectedCategory', this.selectedCategory);
-    formData.append('selectedKind', this.selectedKind);
+    if (
+      this.itemName === '' ||
+      this.itemPrice === 0 ||
+      this.itemImage === undefined
+    ) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text:
+          'Please fill all the fealds and add an image for a better chance to sell your item',
+      });
+      return;
+    } else {
+      const formData = new FormData();
+      formData.append('itemName', this.itemName);
+      formData.append('itemPrice', this.itemPrice);
+      formData.append('itemDescription', this.itemDescription);
+      formData.append('itemImage', this.itemImage);
+      formData.append('itemRating', this.itemRating);
+      formData.append('companyID', this.companyID);
+      formData.append('selectedCategory', this.selectedCategory);
+      formData.append('selectedKind', this.selectedKind);
 
-    return this._http.postAddItem(formData).subscribe((res) => {
-      this.itemId = res['id'];
-      alert('the item was added to your shop');
-      // return this._http.getItemData(this.itemId).subscribe((res) => {
-      //   console.log('getItemDataToShowTheImage', res);
-      //   this.url = res['itemImage'];
-      // });
-    });
+      return this._http.postAddItem(formData).subscribe((res) => {
+        this.itemId = res['id'];
+        Swal.fire({
+          icon: 'success',
+          title: 'Done',
+          text: `this item is added to your shop`,
+        });
+      });
+    }
   }
 }
