@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./item-details.component.css'],
 })
 export class ItemDetailsComponent implements OnInit {
-
   item: any = {};
 
   check: boolean = false;
@@ -24,6 +23,7 @@ export class ItemDetailsComponent implements OnInit {
   quantity: any;
   basket: any;
   starRating: number = 0;
+  itemId: string = '';
   constructor(
     private router: Router,
     private _http: HttpService,
@@ -47,6 +47,7 @@ export class ItemDetailsComponent implements OnInit {
     this.route.params.subscribe((params) => {
       console.log(params);
       this.itemID = params.id;
+
       this.showClickedOnItem(params.id);
     });
     // console.log('//////////', this.fourItems);
@@ -72,7 +73,7 @@ export class ItemDetailsComponent implements OnInit {
       for (let i = 0; i < res.length; i++) {
         if (this.itemID == res[i].id) {
           this.CompanyId = res[i]['itemCompany'];
-          console.log('*/-/*-/+-*-', this.CompanyId);
+          // console.log('*/-/*-/+-*-', this.CompanyId);
           this.getSomeitems();
         }
       }
@@ -81,7 +82,7 @@ export class ItemDetailsComponent implements OnInit {
   getSomeitems() {
     return this._http.getfour(this.CompanyId).subscribe((res: any[]) => {
       console.log('res', res);
-      this.fourItems = res;
+      this.fourItems = res.slice(0, 3);
       this.fourItems = this.fourItems.filter(
         (itm) => parseInt(itm.id) !== parseInt(this.itemID)
       );
@@ -92,16 +93,18 @@ export class ItemDetailsComponent implements OnInit {
     this.router.navigate([`/items/details/${doid}`]);
   }
 
-  addFun(itemToAdd) {
-    if (this.basket.indexOf(itemToAdd) === -1) {
-      this.basket.push(itemToAdd);
+  addFun() {
+    if (this.basket.indexOf(this.item) === -1) {
+      this.basket.push(this.item);
       this.quantity.push(1);
-      this.companyNameFunc(this.CompanyId)
+      this.companyNameFunc(this.item.itemCompany);
     }
     this.addItem();
     this.addOne();
     this.local.passCompanyName(this.campanysNames);
+    console.log('companyName===>', this.campanysNames);
   }
+
   addItem() {
     if (localStorage.Id) {
       this.local.addToBasket(this.basket);
@@ -113,25 +116,25 @@ export class ItemDetailsComponent implements OnInit {
     this.local.addOne(this.quantity);
   }
 
-//chek for change items
-  checkFun(){
-    if (this.check){
-
+  //chek for change items
+  checkFun() {
+    if (this.check) {
       this.get4itemsOfThatCompany();
-      
+
       this.check = false;
     }
   }
- //get the company name
+  //get the company name
   companyNameFunc(CompanyId) {
-    console.log('CompanyID+++>', CompanyId);
+    // console.log('CompanyID+++>', CompanyId);
     this._http.getCompanyName(CompanyId).subscribe((data) => {
-      console.log('companyName====>', data);
+      // console.log('companyName====>', data);
       this.companyNam = data;
       this.campanysNames.push(this.companyNam?.companyName);
-      
     });
-    
   }
 
+  moreDetails(item) {
+    this.router.navigate([`/items/details/${item.id}`]);
+  }
 }

@@ -9,30 +9,23 @@
           <h2>Advices</h2>
           <br />
 
-          <h4>
-            You want to get good chance to seel your items?
-          </h4>
+          <h4>You want to get good chance to seel your items?</h4>
           <br />
           <br />
 
           <h5>
-            you have to give the best description ever that you van describe your items very very well.
+            you have to give the best description ever that you van describe
+            your items very very well.
           </h5>
           <br />
           <br />
 
-          <h5>
-            Post great pictures for your items.
-          </h5>
+          <h5>Post great pictures for your items.</h5>
           <br />
           <br />
 
-          <h5>
-            And you will be good :)
-          </h5>
+          <h5>And you will be good :)</h5>
         </div>
-
-
       </div>
 
       <!-- create item table -->
@@ -43,21 +36,43 @@
           <p>Please fill the descriptions down bellow</p>
 
           <!--Item Name -->
-          <input name="itemName" type="text" id="defaultSubscriptionFormPassword" class="form-control mb-4"
-            placeholder="Item name" [(ngModel)]="itemName" />
+          <input
+            name="itemName"
+            type="text"
+            id="defaultSubscriptionFormPassword"
+            class="form-control mb-4"
+            placeholder="Item name"
+            [(ngModel)]="itemName"
+          />
 
           <!--Item price -->
-          <input name="itemPrice" type="number" id="defaultSubscriptionFormPassword" class="form-control mb-4"
-            placeholder="Item price" [(ngModel)]="itemPrice" />
+          <input
+            name="itemPrice"
+            type="number"
+            id="defaultSubscriptionFormPassword"
+            class="form-control mb-4"
+            placeholder="Item price"
+            [(ngModel)]="itemPrice"
+          />
 
           <!-- description -->
-          <input name="itemDescription" type="textarea" id="defaultSubscriptionFormEmail" class="form-control mb-4"
-            placeholder="Description" [(ngModel)]="itemDescription" />
+          <input
+            name="itemDescription"
+            type="textarea"
+            id="defaultSubscriptionFormEmail"
+            class="form-control mb-4"
+            placeholder="Description"
+            [(ngModel)]="itemDescription"
+          />
 
           <!-- category -->
 
           <label for="sel1">Choose a category :</label>
-          <select class="form-control" id="sel1" (change)="selectCategoryHandler($event); show()">
+          <select
+            class="form-control"
+            id="sel1"
+            (change)="selectCategoryHandler($event); show()"
+          >
             <option value="clothing">clothing</option>
             <option value="electronics">electronics</option>
             <option value="Outdoor">Outdoor</option>
@@ -67,26 +82,43 @@
           <!-- kind -->
 
           <label for="sel1">Choose a kind :</label>
-          <select class="form-control" id="sel1" (change)="selectKindHandler($event); show()">
+          <select
+            class="form-control"
+            id="sel1"
+            (change)="selectKindHandler($event); show()"
+          >
             <option *ngFor="let kind of listKind" value="{{ kind }}">
               {{ kind }}
             </option>
           </select>
           <br />
-          <!-- Item image -->
-          <input (change)="chooseAnImage($event)" name="itemImage" type="file" id="defaultSubscriptionFormEmail"
-            class="form-control mb-4" />
+          <!-- Item image selection -->
+          <input
+            #file
+            name="itemImage"
+            type="file"
+            id="defaultSubscriptionFormEmail"
+            class="form-control mb-4"
+            (change)="chooseAnImage($event); preview(file.files)"
+          />
           <br />
           <br />
 
-          <!-- Item rate -->
-          <img [src]="url ? url : 'https://www.flaticon.com/svg/static/icons/svg/1360/1360174.svg'" class="img-fluid"
-            alt="Responsive image" />
+          <!-- Item image -->
+          <img
+            [src]="imgURL ? imgURL : '/assets/shopping-bag.png'"
+            class="img-fluid"
+            alt="Responsive image"
+          />
           <br />
           <br />
 
           <!-- Add button -->
-          <button class="btn btn-info btn-block" type="submit" (click)="saveItem(); show()">
+          <button
+            class="btn btn-info btn-block"
+            type="submit"
+            (click)="saveItem(); show()"
+          >
             Add to my shop
           </button>
         </div>
@@ -94,4 +126,4 @@
     </div>
     <!-- </form> -->
   </div>
-
+</div>

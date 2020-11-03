@@ -18,8 +18,12 @@ export class ItemComponent implements OnInit {
   // basket_item: any = [];
   @Input() item: any;
   @Input() basket: any;
-  @Input()  campanysNames: any;
-  constructor(private local: LocalService, private router: Router, private _http: HttpService) {}
+  @Input() campanysNames: any;
+  constructor(
+    private local: LocalService,
+    private router: Router,
+    private _http: HttpService
+  ) {}
 
   ngOnInit(): void {
     console.log('ItemComponent -> item', this.item);
@@ -32,22 +36,21 @@ export class ItemComponent implements OnInit {
     // =================================================
   }
 
-  ngDoCheck() {
-    console.log('basket', this.basket, this.quantity, this.campanysNames);
-    console.log('<======>',this.companyName?.companyName)
-  }
+  // ngDoCheck() {
+  //   console.log('basket', this.basket, this.quantity, this.campanysNames);
+  //   console.log('<======>',this.companyName?.companyName)
+  // }
 
   addFun() {
     if (this.basket.indexOf(this.item) === -1) {
       this.basket.push(this.item);
       this.quantity.push(1);
       this.companyNameFunc(this.item.itemCompany);
-
     }
     this.addItem();
     this.addOne();
-    this.local.passCompanyName(this.campanysNames)
-    console.log("companyName===>", this.campanysNames)
+    this.local.passCompanyName(this.campanysNames);
+    console.log('companyName===>', this.campanysNames);
   }
 
   addItem() {
@@ -59,7 +62,6 @@ export class ItemComponent implements OnInit {
   }
   addOne() {
     this.local.addOne(this.quantity);
-
   }
   // to ge tthe item id that user clicked on
   getItemId(item) {
@@ -79,8 +81,6 @@ export class ItemComponent implements OnInit {
       console.log('companyName====>', data);
       this.companyName = data;
       this.campanysNames.push(this.companyName?.companyName);
-      
     });
-    
   }
 }

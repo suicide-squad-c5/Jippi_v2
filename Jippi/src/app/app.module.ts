@@ -50,6 +50,9 @@ import { UpdateItemComponent } from './user/company/company-home/company-items/u
 import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 import { LandingPageComponent } from './user/landing-page/landing-page.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommentsComponent } from './user/customer/home/items/comments/comments.component';
+import { GetYourItemsComponent } from './user/customer/basket/get-your-items/get-your-items.component';
+import { BarRatingModule } from 'ngx-bar-rating';
 
 @NgModule({
   declarations: [
@@ -94,6 +97,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ItemDetailsComponent,
     UpdateItemComponent,
     LandingPageComponent,
+    CommentsComponent,
+    GetYourItemsComponent,
 
     // CustomersUserComponent,
   ],
@@ -106,6 +111,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MDBBootstrapModule,
     PasswordStrengthMeterModule,
     FontAwesomeModule,
+    BarRatingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
