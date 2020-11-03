@@ -13,38 +13,49 @@ cloudinary.config({
   api_secret: "jwt587tJi2fPSuNYmcgq-w4svHU",
 });
 
-// that's a multer method that store the file in the upload folder
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, './upload');
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.originalname);
-//   }
-// });
+// // that's a multer method that store the file in the upload folder
+// // const storage = multer.diskStorage({
+// //   destination: function (req, file, cb) {
+// //     cb(null, './upload');
+// //   },
+// //   filename: function (req, file, cb) {
+// //     cb(null, file.originalname);
+// //   }
+// // });
 
 const uploads = multer({
   dest: "upload",
 });
 
-// that's to reject a none image  files
-// const fileFileter = (req, res, cb) => {
-//   if (file.mimetype !== "image/jpeg" || file.mimetype !== "image/png") {
-//     cb(null, false);
-//   } else {
-//     cb(null, true);
-//   }
-// };
-/* that contains everything from above funciton .it wil be invoked in the updating avatart function to ru every thing we seted up  */
-// const uploads = multer({
-//   storage: storage,
-//   limits: {
-//     fileSize: 1024 * 1024 * 10
-//   },
-//   fileFileter: fileFileter
-// });
+// // that's to reject a none image  files
+// // const fileFileter = (req, res, cb) => {
+// //   if (file.mimetype !== "image/jpeg" || file.mimetype !== "image/png") {
+// //     cb(null, false);
+// //   } else {
+// //     cb(null, true);
+// //   }
+// // };
+// /* that contains everything from above funciton .it wil be invoked in the updating avatart function to ru every thing we seted up  */
+// // const uploads = multer({
+// //   storage: storage,
+// //   limits: {
+// //     fileSize: 1024 * 1024 * 10
+// //   },
+// //   fileFileter: fileFileter
+// // });
 
-// updating company Data
+// // updating company Data
+
+// Company.findOne({
+//   where: {
+//     id: req.params.companyId,
+//   },
+// }).then((record) => {
+//   console.log("Company =====>", record);
+//   if (!record) {
+//     throw new Error("No Company found");
+//   }
+// });
 
 companyProfileRouter.put("/update", uploads.any(0), (req, res) => {
   console.log("req", req.files);
@@ -161,7 +172,16 @@ companyProfileRouter.get("/", async (req, res) => {
 
 // BAN COMPANY FUNCTION.
 companyProfileRouter.put("/:companyId", async (req, res) => {
-  Company.update({ baned: "true" }, { where: { id: req.params.companyId } })
+  Company.update(
+    {
+      baned: "true",
+    },
+    {
+      where: {
+        id: req.params.companyId,
+      },
+    }
+  )
     .then((company) => {
       res.json(company);
     })
@@ -172,7 +192,16 @@ companyProfileRouter.put("/:companyId", async (req, res) => {
 
 // UNBANED COMPANY FUNCTION.
 companyProfileRouter.put("/unbaned/:companyId", async (req, res) => {
-  Company.update({ baned: "false" }, { where: { id: req.params.companyId } })
+  Company.update(
+    {
+      baned: "false",
+    },
+    {
+      where: {
+        id: req.params.companyId,
+      },
+    }
+  )
     .then((company) => {
       res.json(company);
     })

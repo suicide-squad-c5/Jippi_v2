@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalService } from '../../../local.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-basket',
@@ -13,7 +13,9 @@ export class BasketComponent implements OnInit {
   tot: number = 0;
   quantity: any = [];
   companyNames: any = [];
-  constructor(private local: LocalService) {}
+  final_basket: any = {};
+
+  constructor(private local: LocalService, private router: Router) {}
 
   ngOnInit(): void {
     this.local.basktItems.subscribe(
@@ -25,9 +27,10 @@ export class BasketComponent implements OnInit {
     this.totFun(); 
   }
 
-  // ngDoCheck() {
-    
-  // }
+  ngDoCheck() {
+    this.addQnt();
+    console.log('======>', this.basket_item)
+  }
 
   totFun() {
     for (let i = 0; i < this.basket_item.length; i++) {
@@ -54,4 +57,16 @@ export class BasketComponent implements OnInit {
     this.tot -= this.basket_item[this.basket_item.indexOf(ite)].itemPrice;
   }
  
+addQnt(){
+  for (let i = 0; i < this.basket_item.length; i++){
+    this.basket_item[i].quantity = this.quantity[i];
+    this.basket_item[i].campanysName = this.campanysNames[i];
+  }
+}
+
+checkOut(){
+  this.router.navigateByUrl('/customer/getyouritems');
+}
+
+
 }

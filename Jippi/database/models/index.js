@@ -17,7 +17,8 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 });
 
 sequelize
-  .query(`CREATE DATABASE ${dbConfig.DB};`)
+  // const Sequelize = db.Sequelize;
+  .query(`CREATE DATABASE IF NOT EXIST ${dbConfig.DB};`)
   .then((data) => console.log("Dataase created successfully", data))
   .catch((err) => console.log(err));
 
@@ -30,4 +31,5 @@ db.customers = require("./customer.model.js")(sequelize, Sequelize);
 db.companies = require("../companySchema")(sequelize, Sequelize);
 db.items = require("../itemsSchema")(sequelize, Sequelize);
 db.admins = require("../adminSchema")(sequelize, Sequelize);
+db.comments = require("../commentsSchema")(sequelize, Sequelize)
 module.exports = db;

@@ -14,6 +14,14 @@ loginCompanyRouter.post("/company/login", (req, res) => {
       companyEmail: req.body.companyEmail,
     },
   }).then((company) => {
+    console.log(company);
+
+    if (company.verified !== true) {
+      res.json({
+        message: "You did not verify your email",
+      });
+    }
+
     // console.log("hey then", company);
     console.log("company.companyPassword", company.companyPassword);
 
@@ -25,7 +33,8 @@ loginCompanyRouter.post("/company/login", (req, res) => {
       });
     }
     if (!company) {
-      res.status(400).json({
+      res.send({
+        status: 401,
         title: "this company is not definened",
       });
     }
@@ -35,12 +44,12 @@ loginCompanyRouter.post("/company/login", (req, res) => {
       passwordHash.verify(req.body.companyPassword, company.companyPassword) !==
       true
     ) {
-      return res.status(401).json({
+      res.send({
+        status: 500,
         title: "log failed",
         error: "invalid password",
       });
     }
-
     if (company.baned === "true") {
       res.send({
         status: 800,
@@ -54,65 +63,45 @@ loginCompanyRouter.post("/company/login", (req, res) => {
       },
       "check"
     );
-    return res.status(200).json({
+
+    if (company.verified == true) {
+      return res.status(200).json({
+        title: "login successful",
+        token: token,
+        id: company.id,
+      });
+    }
+
+    res.status(200).json({
       title: "login successful",
       token: token,
       id: company.id,
     });
   });
 });
-// var code;
+var code;
 // sending an email to the company to verify
-// loginCompanyRouter.post('/sendmail/:id', (req, res) => {
-//   console.log("req.body", req.body)
-//   console.log("req.params", req.params)
-//   Company.findOne({
-//     where: {
-//       id: req.params.id,
-//     }
-//   }).then((company) => {
-
-//     let transporter = nodemailer.createTransport({
-//       service: 'Gmail',
-//       auth: {
-//         user: "jipp.pi.17@gmail.com",
-//         pass: "jippi1199"
-//       },
-//       tls: {
-//         rejectUnauthorized: false
-//       }
-//     });
-//     console.log("transporter.auth", transporter.options)
-
-//     const getRandomString = () => {
-//       var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-//       var result = '';
-//       for (var i = 0; i < 6; i++) {
-//         result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
-//       }
-//       return code = result;
-//     }
-//     getRandomString()
-
-//     let mailOptions = {
-//       form: 'jipp.pi.17@gmail.com',
-//       to: company.companyEmail,
-//       subject: "Test",
-//       text: code
-//     }
-//     transporter.sendMail(mailOptions).then(data => {
-//       res.json({
-//         data: data,
-//         email: company.companyEmail
-//       });
-//     }).catch(err => {
-//       res.send(err)
-//     })
-
-//   }).catch((err) => {
-//     res.status(500).send(err)
-//   })
-// });
+loginCompanyRouter.post("/sendmail/:id", (req, res) => {
+  console.log("req.body", req.body);
+  console.log("req.params", req.params);
+  Company.findOne({
+    where: {
+      id: req.params.id,
+    },
+  }).then((company) => {
+    let transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: "jipp.pi.17@gmail.com",
+        pass: "jippi1199",
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
+    console.log("transporter.auth", transporter.options);
+  });
+});
 
 loginCompanyRouter.post("/chekpoint/:id", (req, res) => {
   console.log("Get ready");
@@ -143,6 +132,9 @@ loginCompanyRouter.post("/chekpoint/:id", (req, res) => {
       }
       // ELSE
       if (company.verificationCode === userCode) {
+        company.update({
+          verified: true,
+        });
         res.status(200).json({
           result: "welcome to Jippi",
         });

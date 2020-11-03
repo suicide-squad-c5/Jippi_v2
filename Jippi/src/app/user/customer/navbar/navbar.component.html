@@ -26,7 +26,7 @@
   <!-- Breadcrumbs -->
   <ol class="navbar-nav ml-auto">
     <form>
-      <div class="input-group">
+      <div class="input-group" *ngIf="route === true">
         <input
           type="text"
           class="form-control outline-primary"
@@ -130,9 +130,9 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/contact']">Contact</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a href="#!" class="nav-link waves-effect"> Help </a>
-      </li>
+      </li> -->
       <li class="nav-item" [routerLink]="['/login']">
         <a class="nav-link waves-effect"> Login </a>
       </li>
@@ -217,6 +217,12 @@
     <!-- Right -->
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
+        <a href="#!" class="nav-link navbar-link-2 waves-effect">
+          <span class="badge badge-pill badge-danger align-top ml-2">0</span>
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      <li class="nav-item">
         <a
           class="nav-link navbar-link-2 waves-effect"
           [routerLink]="['/customer/basket']"
@@ -247,9 +253,9 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/contact']">Contact</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a href="#!" class="nav-link waves-effect"> Help </a>
-      </li>
+      </li> -->
       <li class="nav-item" [routerLink]="['/profile']">
         <a class="nav-link waves-effect"> Profile </a>
       </li>
@@ -322,9 +328,9 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/contact']">Contact</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a href="#!" class="nav-link waves-effect"> Help </a>
-      </li>
+      </li> -->
       <li class="nav-item" [routerLink]="['/login']">
         <a class="nav-link waves-effect" (click)="logout()"> Logout </a>
       </li>
@@ -384,6 +390,7 @@
           </svg>
         </a>
       </li> -->
+      </li>
 
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/admin/home']">Home</a>
