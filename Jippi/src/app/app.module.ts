@@ -53,6 +53,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommentsComponent } from './user/customer/home/items/comments/comments.component';
 import { GetYourItemsComponent } from './user/customer/basket/get-your-items/get-your-items.component';
 import { BarRatingModule } from 'ngx-bar-rating';
+import { SnippetComponent } from './user/customer/snippet/snippet.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +100,7 @@ import { BarRatingModule } from 'ngx-bar-rating';
     LandingPageComponent,
     CommentsComponent,
     GetYourItemsComponent,
+    SnippetComponent,
 
     // CustomersUserComponent,
   ],
