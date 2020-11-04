@@ -233,4 +233,25 @@ export class HttpService {
       this.ROOT_URL + `/companyName/companyName/${companyId}`
     );
   }
+
+
+  //new order
+  newOrderFunc(orderId, customerId, totalPrice, type, received) {
+    return this.http.post(this.ROOT_URL + `/new_order`, {
+      orderId,
+      customerId,
+      totalPrice,
+      type,
+      received
+    });
+  }
+  newOrderItemsFunc(orderId, itemId, unitPrice, amount, companyName){
+    return this.http.post(this.ROOT_URL + `/order/order_item`, {
+      orderId,
+      itemId,
+      unitPrice,
+      amount,
+      companyName
+    });
+  }
 }
