@@ -51,10 +51,9 @@ export class CompLoginComponent implements OnInit {
       if (res.status === 800) {
         this.alert = true;
 
-//       } else if (res === res['message']) {
-//         return;
-//       } else if (res['title'] === 'login successful') {
-
+        //       } else if (res === res['message']) {
+        //         return;
+        //       } else if (res['title'] === 'login successful') {
       } else if (res.status === 401) {
         Swal.fire({
           icon: 'error',

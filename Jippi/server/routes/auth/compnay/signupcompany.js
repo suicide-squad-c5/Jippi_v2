@@ -47,21 +47,38 @@ signupCompanyRouter.post("/comapny/signup", (req, res) => {
     subject: "Test",
     text: dcode,
   };
+
   transporter.sendMail(mailOptions).then((response) => {
     const company = {
       companyName: req.body.companyName,
       companyEmail: req.body.companyEmail,
       companyPassword: passwordHash.generate(req.body.companyPassword),
       avatar: req.body.avatar,
-      location: req.body.location,
-      phoneNumber: req.body.phoneNumber,
+      location: req.body.companyAddress,
+      phoneNumber: req.body.companyNumber,
       verificationCode: dcode,
       baned: "false",
     };
     // save the comapny data to the database.
-    companyLog.create(company).then((data) => {
-      res.send(data);
 
+    companyLog
+      .findOne({
+        where: {
+          companyEmail: req.body.companyEmail,
+        },
+      })
+      .then((company) => {
+        if (company.companyEmail === req.body.companyEmail) {
+          res.send({
+            status: 7000,
+          });
+        }
+      });
+
+    companyLog.create(company).then((data) => {
+      res.send({
+        status: data,
+      });
       console.log(response);
       res.json({
         response: response,
