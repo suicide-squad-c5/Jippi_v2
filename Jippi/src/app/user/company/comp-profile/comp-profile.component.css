@@ -1,7 +1,11 @@
-.main-container {
+/* .main-container {
   background-color: rgb(238, 238, 238);
   position: relative;
   padding-bottom: 10%;
+}
+
+.container{
+  background-color: red;
 }
 
 .form_test {
@@ -10,13 +14,9 @@
 }
 
 .emp-profile {
-  position: relative;
-  width: 100%;
-  text-align: center;
-  display: block;
   border: 1px solid;
   border-color: #D5DBDB;
-  background-color: white;
+  background-color: blue;
 }
 
 .profile-img {
@@ -121,4 +121,63 @@
 .profile-tab p {
   font-weight: 600;
   color: #0062cc;
+} */
+
+
+
+@import url("https://fonts.googleapis.com/css?family=Lato:400,400i,700");
+
+
+
+.edit-profile{
+  position: relative;
+  float: top;
+}
+
+.header {
+  min-height: 60vh;
+  background: #009FFF;
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  color: white;
+  clip-path: ellipse(100vw 60vh at 50% 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.details {
+  text-align: center;
+}
+
+.profile-pic {
+  height: 6rem;
+  width: 6rem;
+  object-fit: center;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.location p {
+  display: inline-block;
+}
+
+.location svg {
+  vertical-align: middle;
+}
+
+.stats {
+  display: flex;
+}
+
+.stats .col-4 {
+  width: 20rem;
+  text-align: center;
+}
+
+
+
+.heading {
+  font-weight: 400;
+  font-size: 1.3rem;
+  margin: 1rem 0;
 }
