@@ -27,6 +27,7 @@ import { ItemDetailsComponent } from './user/customer/home/items/item-details/it
 import { LandingPageComponent } from './user/landing-page/landing-page.component';
 import { CommentsComponent } from './user/customer/home/items/comments/comments.component';
 import { GetYourItemsComponent } from './user/customer/basket/get-your-items/get-your-items.component';
+import { SnippetComponent } from './user/customer/snippet/snippet.component';
 
 const routes: Routes = [
   // CUSTOEMR SIDE.
@@ -38,7 +39,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'profile/edit', component: EditProfileComponent },
   { path: 'customer/basket', component: BasketComponent },
-  { path: 'customer/getyouritems', component: GetYourItemsComponent},
+  { path: 'customer/getyouritems', component: GetYourItemsComponent },
   // COMPANY SIDE.
   // items
   { path: 'items/details/:id', component: ItemDetailsComponent },
@@ -59,6 +60,7 @@ const routes: Routes = [
   { path: 'admin/reports', component: ReportsComponent },
   { path: 'admin/users', component: UsersComponent },
   { path: 'shop/items', component: HomeComponent },
+  { path: 'snippet/items', component: SnippetComponent },
 ];
 
 @NgModule({

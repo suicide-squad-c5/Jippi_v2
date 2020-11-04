@@ -1,22 +1,42 @@
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+<link
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
 <div class="container bootdey">
   <div class="col-md-12 bootstrap snippets">
     <div class="panel">
       <div class="panel-body">
-        <textarea [(ngModel)]="comment" class="form-control" rows="2" placeholder="What are you thinking?"></textarea>
+        <textarea
+          [(ngModel)]="comment"
+          class="form-control"
+          rows="2"
+          placeholder="What are you thinking?"
+        ></textarea>
         <br />
 
         <div class="mar-btm">
           <a class="media-left">
-            <img class="rounded img-sm" alt="Profile Picture" [src]="avatarUrl ? avatarUrl :test" /></a>
-          <a href="#" class="btn-link text-semibold media-heading box-inline" style="padding-left:1%">{{name}}</a>
-          <button class="btn btn-sm btn-primary pull-right" type="submit" (click)="postaComment()">
+            <img
+              class="rounded img-sm"
+              alt="Profile Picture"
+              [src]="avatarUrl ? avatarUrl : test"
+          /></a>
+          <a
+            href="#"
+            class="btn-link text-semibold media-heading box-inline"
+            style="padding-left: 1%"
+            >{{ name }}</a
+          >
+          <button
+            class="btn btn-sm btn-primary pull-right"
+            type="submit"
+            (click)="postaComment()"
+          >
             <i class="fas fa-share"></i> Share
           </button>
         </div>
         <div class="media-body">
           <div class="mar-top clearfix">
-
             <!-- <a class="btn btn-trans btn-icon fa fa-video-camera add-tooltip" href="#"></a>
             <a class="btn btn-trans btn-icon fa fa-camera add-tooltip" href="#"></a>
             <a class="btn btn-trans btn-icon fa fa-file add-tooltip" href="#"></a> -->
@@ -32,24 +52,31 @@
               <hr />
 
               <div *ngFor="let po of postedData[0]" class="media-block pad-all">
-                <a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture"
-                    src="{{po.avatar}}" /></a>
+                <a class="media-left" href="#"
+                  ><img
+                    class="img-circle img-sm"
+                    alt="Profile Picture"
+                    src="{{ po.avatar }}"
+                /></a>
                 <div class="media-body">
                   <div class="mar-btm">
-                    <a href="#" class="btn-link text-semibold media-heading box-inline">{{po.first_name}}</a>
+                    <p style="margin-left: 1%">{{ po.first_name }}</p>
                   </div>
 
                   <div class="pad-ver">
-                    <p>{{po.comment}}</p>
-                    <span class="tag tag-sm"><i class="fa fa-heart text-danger"></i>
+                    <p>{{ po.comment }}</p>
+                    <!-- <span class="tag tag-sm"><i class="fa fa-heart text-danger"></i>
                       {{po.likes}}</span>
                     <div class="btn-group">
                       <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa fa-thumbs-up"></i></a>
                       <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
                     </div>
-                    <a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
-                    <button *ngIf="userId === po.userId" class="btn btn-sm btn-default btn-hover-primary"
-                      (click)="deleteYourComments(po.id,po.userId)">
+                    <a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a> -->
+                    <button
+                      *ngIf="userId === po.userId"
+                      class="btn btn-sm btn-default btn-hover-primary"
+                      (click)="deleteYourComments(po.id, po.userId)"
+                    >
                       Delete
                     </button>
                   </div>
