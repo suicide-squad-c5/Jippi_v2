@@ -17,6 +17,7 @@ export class SignupComponent implements OnInit {
   password: string = '';
   ConfirmePassword: string = '';
   phoneNumber: string = '';
+  address: string = '';
   newUser: any = [];
 
   constructor(private _http: HttpService, private router: Router) {}
@@ -54,7 +55,8 @@ export class SignupComponent implements OnInit {
           this.lastName,
           this.email,
           this.password,
-          this.phoneNumber
+          this.phoneNumber,
+          this.address
         )
         .subscribe((data) => {
           this.newUser = data;

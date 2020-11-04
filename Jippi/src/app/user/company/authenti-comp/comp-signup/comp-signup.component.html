@@ -1,4 +1,4 @@
-<div class="main-container">
+<!-- <div class="main-container">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-8 col-xl-6">
@@ -24,13 +24,11 @@
         <div class="row align-items-center mt-4">
           <div class="col">
             <input type="password" class="form-control" placeholder="Password" [(ngModel)]="companyPassword" />
-            <!-- <password-strength-meter [companyPassword]="password"></password-strength-meter> -->
 
           </div>
           <div class="col">
             <input type="password" class="form-control" placeholder="Confirm Password"
               [(ngModel)]="companyConfirmPassword" />
-            <!-- <password-strength-meter [password]="password"></password-strength-meter> -->
           </div>
         </div>
         <div class="row justify-content-start mt-4">
@@ -50,4 +48,70 @@
       </div>
     </div>
   </div>
+</div> -->
+
+
+
+
+
+
+
+<!-- Default form register -->
+<div class="main-container">
+  <div class="testWhidth">
+    <div class="text-center border border-light p-5">
+      <h4 class="h4 mb-4">Register</h4>
+      <p class="text-h3">
+        Join JIPPI now and create your own shop to start sell your items,
+        all JIPPI members hope for you success.
+      </p>
+      <div class="form-row mb-4">
+        <div class="col">
+          <!-- First name -->
+          <input type="text" class="form-control" placeholder="Company Name" [(ngModel)]="companyName" />
+        </div>
+        <!-- <div class="col">
+          <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name"
+            [(ngModel)]="lastName" />
+        </div> -->
+      </div>
+
+      <!-- E-mail -->
+      <input type="email" class="form-control" placeholder="Email" [(ngModel)]="companyEmail" />
+      <br />
+      <!-- Password -->
+
+      <input type="password" class="form-control" placeholder="Password" [(ngModel)]="companyPassword" />
+      <password-strength-meter [password]="companyPassword"></password-strength-meter>
+
+      <br />
+
+      <input type="password" class="form-control" placeholder="Confirm Password" [(ngModel)]="companyConfirmPassword" />
+      <br />
+      <!-- Phone number -->
+      <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number"
+        aria-describedby="defaultRegisterFormPhoneHelpBlock" [(ngModel)]="companyAddress" />
+      <br />
+      <!-- Phone number -->
+      <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Adress"
+        aria-describedby="defaultRegisterFormPhoneHelpBlock" [(ngModel)]="companyNumber" />
+      <br />
+      <br />
+      <button color="info" block="true" class="btn btn-lg btn-primary btn-block" type="submit" (click)="companyData()">
+        Sign up
+      </button>
+      <br />
+
+      <!-- Go to Log in-->
+      <p>
+        Have an account?
+        <a href="company/login">Log in</a>
+      </p>
+    </div>
+  </div>
 </div>
+<!-- Default form register -->
+
+
+
+<app-footer></app-footer>

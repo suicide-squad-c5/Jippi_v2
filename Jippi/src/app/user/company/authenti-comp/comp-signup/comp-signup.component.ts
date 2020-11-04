@@ -14,6 +14,8 @@ export class CompSignupComponent implements OnInit {
   companyEmail: string = '';
   companyPassword: string = '';
   companyConfirmPassword: string = '';
+  companyAddress: string = '';
+  companyNumber: number = null;
 
   constructor(private router: Router, private _http: HttpService) {}
 
@@ -55,17 +57,27 @@ export class CompSignupComponent implements OnInit {
         .postSignUpComapany(
           this.companyName,
           this.companyPassword,
-          this.companyEmail
+          this.companyEmail,
+          this.companyAddress,
+          this.companyNumber
         )
-        .subscribe((data) => {
-          localStorage.setItem('comapnyId', data['id']);
-          console.log('data=.......', data);
-          Swal.fire({
-            icon: 'success',
-            title: 'Done',
-            text: `signup sucssefuly we have sent you an email at ${this.companyEmail}`,
-          });
-          this.router.navigate(['company/check']);
+        .subscribe((res: any) => {
+          // localStorage.setItem('comapnyId', data['id']);
+          // console.log('data=.......', data);
+          if (res.status === 7000) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Something wrong',
+              text: `This email ${this.companyEmail} already exist`,
+            });
+          } else {
+            Swal.fire({
+              icon: 'success',
+              title: 'Done',
+              text: `signup sucssefuly we have sent you an email at ${this.companyEmail}`,
+            });
+            this.router.navigate(['company/check']);
+          }
         });
     }
   }
