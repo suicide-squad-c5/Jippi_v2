@@ -1,74 +1,85 @@
 <div class="main-container">
-    <div class="container">
-        <br />
-        <br />
+  <div class="container" id="contentToConvert">
+    <br />
+    <br />
 
-        <div class="two">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-4"> <img class="img" alt="Invoce Template"
-                            src="http://pngimg.com/uploads/shopping_cart/shopping_cart_PNG59.png" /> </div>
-                    <div class="col-md-8 text-right">
-                        <h4 style="color: #F81D2D;"><strong>JIPPI</strong></h4>
-                        <p>YOUR BEST WEBSITE FOR SHOPING ONLINE</p>
-                        <p>+216 90 441 567 / 90 255 853 / 23 472 929 </p>
-                        <p>JIPPI@gmail.com</p>
-                    </div>
-                </div> <br />
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2>YOUR SNIPPET KEY IS:</h2>
-                        <h5>{{key}}</h5>
-                    </div>
-                </div> <br />
-                <div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <h5>Your items</h5>
-                                </th>
-                                <th>
-                                    <h5>Company</h5>
-                                </th>
-                                <th>
-                                    <h5>Amount</h5>
-                                </th>
-                                <th>
-                                    <h5>Quantity</h5>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody *ngFor="let item of data">
-                            <tr>
-                                <td class="col-md-9">{{item.itemName}}</td>
-                                <td class="col-md-9">{{item.campanysName}}</td>
-                                <td class="col-md-3">{{item.itemPrice}} DT</td>
-                                <td class="col-md-3">{{item.quantity}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <br />
-                    <br />
-                </div>
-                <tr style="color: #F81D2D;">
-                    <td class="text-right">
-                        <h4><strong>Total: {{total}} DT</strong>
-                        </h4>
-                    </td>
-                </tr>
-                <br />
-                <br />
-                <div>
-                    <div class="col-md-12">
-                        <p><b>Date :</b>{{date}}</p> <br />
-                    </div>
-                    <button type="button" class="btn btn-info" style=" float: right ">confirm
-                        purchase</button>
-                    <br />
-                    <br />
-                </div>
-            </div>
+    <div class="two">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-4">
+            <img class="img" alt="Invoce Template" src="/assets/confirm.png" />
+          </div>
+          <div class="col-md-8 text-right">
+            <h4 style="color: #f81d2d"><strong>JIPPI</strong></h4>
+            <p>YOUR BEST WEBSITE FOR SHOPING ONLINE</p>
+            <p>+216 90 441 567 / 90 255 853 / 23 472 929</p>
+            <p>JIPPI@gmail.com</p>
+          </div>
         </div>
+        <br />
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h2>YOUR SNIPPET KEY IS:</h2>
+            <h5>{{ key }}</h5>
+          </div>
+        </div>
+        <br />
+        <div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>
+                  <h5>Your items</h5>
+                </th>
+                <th>
+                  <h5>Company</h5>
+                </th>
+                <th>
+                  <h5>Amount</h5>
+                </th>
+                <th>
+                  <h5>Quantity</h5>
+                </th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let item of data">
+              <tr>
+                <td class="col-md-9">{{ item.itemName }}</td>
+                <td class="col-md-9">{{ item.campanysName }}</td>
+                <td class="col-md-3">{{ item.itemPrice }} DT</td>
+                <td class="col-md-3">{{ item.quantity }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <br />
+        </div>
+        <tr style="color: #f81d2d">
+          <td class="text-right">
+            <h4>
+              <strong>Total: {{ total }} DT</strong>
+            </h4>
+          </td>
+        </tr>
+        <br />
+        <br />
+        <div>
+          <div class="col-md-12">
+            <p><b>Date :</b>{{ date }}</p>
+            <br />
+          </div>
+          <button
+            type="button"
+            class="btn btn-info"
+            style="float: right"
+            (click)="captureScreen()"
+          >
+            confirm purchase
+          </button>
+          <br />
+          <br />
+        </div>
+      </div>
     </div>
+  </div>
 </div>
