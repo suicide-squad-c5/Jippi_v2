@@ -32,6 +32,6 @@ db.companies = require("../companySchema")(sequelize, Sequelize);
 db.items = require("../itemsSchema")(sequelize, Sequelize);
 db.admins = require("../adminSchema")(sequelize, Sequelize);
 db.comments = require("../commentsSchema")(sequelize, Sequelize);
-db.order = require("../orderSchema")(sequelize, Sequelize);
+db.orders = require("../orderSchema")(sequelize, Sequelize);
 db.orderItems = require("../orderItemsSchema")(sequelize, Sequelize);
 module.exports = db;

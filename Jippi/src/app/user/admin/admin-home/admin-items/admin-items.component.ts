@@ -14,7 +14,7 @@ export class AdminItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getitems();
-    this.local.delete_item.subscribe(boo => this.delete_Item = boo)
+    this.local.delete_item.subscribe(boo => this.delete_Item = boo);
   }
 
   ngDoCheck() {
