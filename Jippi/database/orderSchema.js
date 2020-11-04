@@ -1,10 +1,11 @@
 const Sequelize = require("sequelize");
 module.exports = (sequelize, Sequelize) => {
   const Order = sequelize.define("order", {
-    order_id: Sequelize.INTEGER,
+    orderId: Sequelize.STRING,
     customerId: Sequelize.INTEGER,
-    date: Sequelize.STRING,
     totalPrice: Sequelize.INTEGER,
+    type: Sequelize.STRING,
+    received: Sequelize.STRING,
   });
   return Order;
 };
