@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./basket.component.css'],
 })
 export class BasketComponent implements OnInit {
- campanysNames: any = [];
+  campanysNames: any = [];
   basket_item: any = [];
   tot: number = 0;
   quantity: any = [];
@@ -24,12 +24,12 @@ export class BasketComponent implements OnInit {
     this.local.quantityItems.subscribe((qnt) => (this.quantity = qnt));
     console.log('basket', this.basket_item);
     this.local.companys_Names.subscribe((name) => (this.campanysNames = name));
-    this.totFun(); 
+    this.totFun();
   }
 
   ngDoCheck() {
     this.addQnt();
-    console.log('======>', this.basket_item)
+    console.log('======>', this.basket_item);
   }
 
   totFun() {
@@ -40,12 +40,10 @@ export class BasketComponent implements OnInit {
 
   deleteItem(ite) {
     let index = this.basket_item.indexOf(ite);
-    this.tot -=
-      this.basket_item[index].itemPrice *
-      this.quantity[index];
+    this.tot -= this.basket_item[index].itemPrice * this.quantity[index];
     this.basket_item.splice(index, 1);
-    this.quantity.splice(index,1);
-    this.campanysNames.splice(index,1);
+    this.quantity.splice(index, 1);
+    this.campanysNames.splice(index, 1);
   }
 
   addQunt(ite) {
@@ -53,22 +51,23 @@ export class BasketComponent implements OnInit {
     this.tot += this.basket_item[this.basket_item.indexOf(ite)].itemPrice;
   }
   subtractQunt(ite) {
-    if(this.quantity[this.basket_item.indexOf(ite)] > 0){ 
-    this.quantity[this.basket_item.indexOf(ite)]--;
-    this.tot -= this.basket_item[this.basket_item.indexOf(ite)].itemPrice;
+    if (this.quantity[this.basket_item.indexOf(ite)] > 0) {
+      this.quantity[this.basket_item.indexOf(ite)]--;
+      this.tot -= this.basket_item[this.basket_item.indexOf(ite)].itemPrice;
     }
   }
- 
-addQnt(){
-  for (let i = 0; i < this.basket_item.length; i++){
-    this.basket_item[i].quantity = this.quantity[i];
-    this.basket_item[i].campanysName = this.campanysNames[i];
+
+  addQnt() {
+    for (let i = 0; i < this.basket_item.length; i++) {
+      this.basket_item[i].quantity = this.quantity[i];
+      this.basket_item[i].campanysName = this.campanysNames[i];
+      this.basket_item[i].total = this.tot;
+    }
   }
-}
 
-checkOut(){
-  this.router.navigateByUrl('/customer/getyouritems');
-}
-
-
+  checkOut() {
+    this.router.navigateByUrl('/customer/getyouritems', {
+      state: { data: this.tot },
+    });
+  }
 }

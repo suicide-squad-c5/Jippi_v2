@@ -18,6 +18,14 @@ export class HttpService {
     });
   }
 
+  //confirm payment
+  confirmPayment(data) {
+    console.log('data in the service', data);
+    return this.http.post(this.ROOT_URL + '/companyName/payment', {
+      data: data,
+    });
+  }
+
   // create post request for the comapny signup.
   postSignUpComapany(companyName, companyPassword, companyEmail) {
     return this.http.post(
@@ -213,7 +221,8 @@ export class HttpService {
 
   // ==============customers/companay Relation ===============
   getCompanyName(companyId) {
-  return this.http.get(this.ROOT_URL + `/companyName/companyName/${companyId}`);
+    return this.http.get(
+      this.ROOT_URL + `/companyName/companyName/${companyId}`
+    );
+  }
 }
-}
-

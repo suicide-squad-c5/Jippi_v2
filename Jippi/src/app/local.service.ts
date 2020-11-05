@@ -47,6 +47,10 @@ export class LocalService {
   private itemId = new BehaviorSubject(null);
   item_id = this.itemId.asObservable();
 
+  //delete item for admin
+  private deleteItem = new BehaviorSubject(false);
+  delete_item = this.deleteItem.asObservable();
+
   constructor() {}
 
   changeType(type: string) {
@@ -67,14 +71,14 @@ export class LocalService {
   addToBasket(basket_item: any) {
     this.basket.next(basket_item);
   }
-//func for the quentity of one item in the basket 
+  //func for the quentity of one item in the basket
   addOne(qnt: any) {
     this.quantity.next(qnt);
   }
- //Name of each item company in the basket_item
- passCompanyName(name: any){
-   this.companysNames.next(name);
- } 
+  //Name of each item company in the basket_item
+  passCompanyName(name: any) {
+    this.companysNames.next(name);
+  }
 
   // function to pass and filter items
   passItems(items) {
@@ -98,5 +102,9 @@ export class LocalService {
   // FUNCTION FOR ITEMANEM.
   itemNameCheck(itemName) {
     this.getItemName.next(itemName);
+  }
+  //Function delete Item for admin
+  deleteItemFunc(boo){
+    this.deleteItem.next(boo);
   }
 }
