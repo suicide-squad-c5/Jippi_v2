@@ -2,7 +2,7 @@ const customer_companyRouter = require("express").Router();
 const db = require("../../database/models");
 const company = db.companies;
 var wkhtmltopdf = require("wkhtmltopdf");
-wkhtmltopdf.command = "C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe";
+wkhtmltopdf.command = "D:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe";
 const pdfTemplate = require("./receiptTemplate");
 var cloudinary = require("cloudinary").v2;
 cloudinary.config({
