@@ -43,7 +43,7 @@ export class SnippetComponent implements OnInit {
         array[i].id,
         array[i].itemPrice, 
         array[i].quantity,
-        array[i].campanysName, 
+        array[i].itemCompany, 
         )
         .subscribe((data) => {
           console.log('<====<>', data);
