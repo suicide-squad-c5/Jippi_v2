@@ -102,8 +102,13 @@
   <ol class="navbar-nav ml-auto">
     <form>
       <div class="input-group" *ngIf="route === true">
-        <input type="text" class="form-control outline-primary" name="itemName" placeholder="Search"
-          [(ngModel)]="itemName" />
+        <input
+          type="text"
+          class="form-control outline-primary"
+          name="itemName"
+          placeholder="Search"
+          [(ngModel)]="itemName"
+        />
         <div class="input-group-btn">
           <button class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light" type="submit">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor"

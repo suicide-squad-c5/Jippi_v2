@@ -1,4 +1,44 @@
-<div class="main-container">
+module.exports = (data) => {
+  var items = "";
+  for (var i = 0; i < data.data.length; i++) {
+    items += `<tr>
+          <td class="col-md-9">${data.data[i].itemName}</td>
+          <td class="col-md-9">${data.data[i].campanysName}</td>
+          <td class="col-md-3">${data.data[i].itemPrice} DT</td>
+          <td class="col-md-3">${data.data[i].quantity}</td>
+        </tr>`;
+  }
+  return `
+  <!DOCTYPE html>
+    <html>
+  <body>
+  <style>
+.container{
+  background-color: white;
+}
+
+.key{
+    text-align: center
+}
+
+.two {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main thead {
+  background: #1E1F23;
+  color: #fff
+}
+
+.img {
+  height: 100px
+}
+
+h1 {
+  text-align: center
+}
+  </style>
   <div class="container" id="contentToConvert">
     <br />
     <br />
@@ -6,9 +46,6 @@
     <div class="two">
       <div class="col-md-12">
         <div class="row">
-          <div class="col-md-4">
-            <img class="img" alt="Invoce Template" src="/assets/confirm.png" />
-          </div>
           <div class="col-md-8 text-right">
             <h4 style="color: #f81d2d"><strong>JIPPI</strong></h4>
             <p>YOUR BEST WEBSITE FOR SHOPING ONLINE</p>
@@ -18,9 +55,9 @@
         </div>
         <br />
         <div class="row">
-          <div class="col-md-12 text-center">
+          <div class="key">
             <h2>YOUR SNIPPET KEY IS:</h2>
-            <h5>{{ key }}</h5>
+            <h5> ${data.order} </h5>
           </div>
         </div>
         <br />
@@ -42,13 +79,8 @@
                 </th>
               </tr>
             </thead>
-            <tbody *ngFor="let item of data">
-              <tr>
-                <td class="col-md-9">{{ item.itemName }}</td>
-                <td class="col-md-9">{{ item.campanysName }}</td>
-                <td class="col-md-3">{{ item.itemPrice }} DT</td>
-                <td class="col-md-3">{{ item.quantity }}</td>
-              </tr>
+            <tbody >
+              ${items}
             </tbody>
           </table>
           <br />
@@ -57,7 +89,7 @@
         <tr style="color: #f81d2d">
           <td class="text-right">
             <h4>
-              <strong>Total: {{ total }} DT</strong>
+              <strong>Total: ${data.data[0].total} DT</strong>
             </h4>
           </td>
         </tr>
@@ -65,21 +97,16 @@
         <br />
         <div>
           <div class="col-md-12">
-            <p><b>Date :</b>{{ date }}</p>
+            <p><b>Date :</b>${data.date}</p>
             <br />
           </div>
-          <button
-            type="button"
-            class="btn btn-info"
-            style="float: right"
-            (click)="confirm()"
-          >
-            > confirm purchase
-          </button>
           <br />
           <br />
         </div>
       </div>
     </div>
   </div>
-</div>
+  </body>
+  </html>
+    `;
+};

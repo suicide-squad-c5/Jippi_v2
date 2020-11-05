@@ -26,6 +26,14 @@ export class HttpService {
     });
   }
 
+  //confirm payment
+  confirmPayment(data) {
+    console.log('data in the service', data);
+    return this.http.post(this.ROOT_URL + '/companyName/payment', {
+      data: data,
+    });
+  }
+
   // create post request for the comapny signup.
   postSignUpComapany(
     companyName,
