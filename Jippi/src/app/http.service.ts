@@ -262,4 +262,10 @@ export class HttpService {
       companyName
     });
   }
+
+//get company items order items
+companyItemsOrder(companyId){
+  return this.http.get(this.ROOT_URL + `/company_order/${companyId}` );
+}
+
 }
