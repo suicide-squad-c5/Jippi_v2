@@ -70,7 +70,7 @@ export class CompLoginComponent implements OnInit {
         localStorage.setItem('companyToken', res['token']);
         localStorage.setItem('comapnyId', res['id']);
         this.local.changeType('company');
-        this.router.navigateByUrl('/company/home');
+        this.router.navigateByUrl('/company/profile');
         // this.changeNav();
       }
     });

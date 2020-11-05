@@ -219,6 +219,7 @@ export class HttpService {
       user
     );
   }
+
   getTheUpdateCustomerImage(imageId) {
     return this.http.get(this.ROOT_URL + `/api/profile/customer/${imageId}`);
   }
@@ -233,6 +234,21 @@ export class HttpService {
       this.ROOT_URL + `/companyName/companyName/${companyId}`
     );
   }
+
+
+  // UPADATE COMPANY PASSWORD.
+  updateCompanyPassword(newPassword) {
+    return this.http.put(this.ROOT_URL + `/api/profile/company/`, {
+      companyPassword: newPassword.companyPassword,
+      companyId: newPassword.companyId,
+    });
+  }
+
+  // UPDATE CUSTOEMR PASSWORD.
+  updateCustomerPassword(newPassword) {
+    return this.http.put(this.ROOT_URL + `/api/profile/customer/`, {
+      customerPassword: newPassword.password,
+      customerId: newPassword.customerId,
 
 
   //new order
@@ -252,6 +268,7 @@ export class HttpService {
       unitPrice,
       amount,
       companyName
+
     });
   }
 }
