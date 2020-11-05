@@ -1,144 +1,240 @@
-<div class="container">
-  <h1>Edit Profile</h1>
-  <hr />
-  <div class="row">
-    <!-- left column -->
-    <div class="col-md-3">
-      <div class="text-center">
-        <img
-          id="avatar"
-          [src]="imgURL ? imgURL : url || '/assets/user-profile.png'"
-          class="avatar img-circle"
-          alt="avatar"
-          width="100%"
-        />
-        <h6>Upload a different photo...</h6>
+<!-- <div class="main-container">
+  <div class="container">
+    <h1>Edit Profile</h1>
+    <hr />
+    <div class="row">
+      <div class="col-md-3">
+        <div class="text-center">
+          <img id="avatar" [src]="imgURL ? imgURL : url || '/assets/user-profile.png'" class="avatar" alt="avatar"
+            width="100%" />
+          <br />
+          <br />
 
-        <input
-          type="file"
-          #file
-          class="form-control"
-          (change)="onSelectFile($event); preview(file.files)"
-        />
+          <h6>Upload a different photo...</h6>
+
+          <input type="file" #file class="form-control" (change)="onSelectFile($event); preview(file.files)" />
+        </div>
+      </div>
+
+      <div class="col-md-9 personal-info">
+        <div class="alert alert-info alert-dismissable" *ngIf="alertt === 'Success update'">
+          <a class="panel-close close" data-dismiss="alert">×</a>
+          <i class="fas fa-check"></i>
+          <strong> Success!</strong> {{ alertt }}
+        </div>
+        <div class="alert alert-danger alert-dismissible" *ngIf="alertt === 'Some think rong'">
+          <a class="panel-close close" data-dismiss="alert">×</a>
+          <i class="fas fa-times"></i>
+          <strong>Error!</strong> {{ alertt }}
+        </div>
+        <h3>Personal info</h3>
+
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">First name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="firstName" [(ngModel)]="firstName" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Last name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="lastName" [(ngModel)]="lastName" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Phone number:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="tel" name="phoneNumber" value="222399" [(ngModel)]="phoneNumber" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="email" name="email" [(ngModel)]="email" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Adress:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="adress" [(ngModel)]="adress" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" name="password" placeholder="New password"
+                [(ngModel)]="password" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Confirm password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" name="confirmPassword" placeholder="Confirm new password"
+                [(ngModel)]="confirmPassword" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="button" class="btn btn-primary" value="Save Changes"
+                (click)="check(); updateCustomerInfo()" />
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Cancel" />
+            </div>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
+</div> -->
 
-    <!-- edit form column -->
-    <div class="col-md-9 personal-info">
-      <div
-        class="alert alert-info alert-dismissable"
-        *ngIf="alertt === 'Success update'"
-      >
-        <a class="panel-close close" data-dismiss="alert">×</a>
-        <i class="fa fa-coffee"></i>
-        <strong>Success!</strong> {{ alertt }}
-      </div>
-      <div
-        class="alert alert-danger alert-dismissible"
-        *ngIf="alertt === 'Some think rong'"
-      >
-        <a class="panel-close close" data-dismiss="alert">×</a>
-        <i class="fa fa-coffee"></i>
-        <strong>Error!</strong> {{ alertt }}
-      </div>
-      <h3>Personal info</h3>
 
-      <form class="form-horizontal" role="form">
-        <div class="form-group">
-          <label class="col-lg-3 control-label">First name:</label>
-          <div class="col-lg-8">
-            <input
-              class="form-control"
-              type="text"
-              name="firstName"
-              [(ngModel)]="firstName"
-            />
+
+
+
+
+
+
+
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="main-container">
+  <div class="container">
+    <div class="row flex-lg-nowrap">
+      <div class="col">
+        <div class="row">
+          <div class="col mb-3">
+            <div class="card">
+
+              <div class="alert alert-info alert-dismissable" *ngIf="alertt === 'Success update'">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fas fa-check"></i>
+                <strong> Success!</strong> {{ alertt }}
+              </div>
+
+              <div class="alert alert-danger alert-dismissible" *ngIf="alertt === 'Some think rong'">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fas fa-times"></i>
+                <strong>Error!</strong> {{ alertt }}
+              </div>
+
+              <div class="card-body">
+                <div class="e-profile">
+                  <div class="row">
+                    <div class="col-12 col-sm-auto mb-3">
+                      <div class="mx-auto" style="width: 140px;">
+                        <img class="d-flex justify-content-center align-items-center rounded"
+                          style="height: 140px; width: 155px ; background-color: rgb(233, 236, 239);"
+                          [src]="imgURL ? imgURL : url || '/assets/user-profile.png'" />
+                      </div>
+                    </div>
+                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                      <div class="text-center text-sm-left mb-2 mb-sm-0">
+                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{firstName }} {{lastName}}</h4>
+                        <div class="text-muted"><small>Last seen 2 hours ago</small></div>
+                        <div class="mt-2">
+                          <span class="btn btn-primary btn-file">
+                            <i class="fas fa-camera"></i>
+                            Change Photo <input type="file" #file class="form-control"
+                              (change)="onSelectFile($event); preview(file.files)" />
+                          </span>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="nav nav-tabs">
+                    <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                  </ul>
+                  <div class="tab-content pt-3">
+                    <div class="tab-pane active">
+                      <div class="row">
+                        <div class="col">
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>First Name</label>
+                                <input class="form-control" type="text" name="firstName" placeholder="First Name"
+                                  value="{{firstName }}" [(ngModel)]="firstName">
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Last Name</label>
+                                <input class="form-control" type="text" name="lastName" placeholder="Last Name"
+                                  value="{{lastName}}">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Email</label>
+                                <input class="form-control" type="text" name="email" value="{{email}}"
+                                  placeholder="{{email}}" [(ngModel)]="email">
+                              </div>
+                              <div class="form-group">
+                                <label>Phone Number</label>
+                                <input class="form-control" type="text" name="email" value="{{phoneNumber}}"
+                                  placeholder="phone Number" [(ngModel)]="phoneNumber">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Adress</label>
+                                <input class="form-control" type="text" value="{{adress || 'Unknown'}}"
+                                  placeholder="Your location" name="adress" [(ngModel)]="adress">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="mb-2"><b>Change Password</b></div>
+                          <div class="row">
+                            <div class="col">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>New Password</label>
+                                <input class="form-control" type="password" placeholder="••••••" name="password"
+                                  [(ngModel)]="password">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
+                                <input class="form-control" type="confirmPassword" placeholder="••••••" name="password"
+                                  [(ngModel)]="confirmPassword"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col d-flex justify-content-end">
+                          <button class="btn btn-primary" type="submit" style="margin-left:1%;"
+                            (click)="check(); updateCustomerInfo()">Save Changes</button>
+                          <button class="btn btn-secondary" type="submit" style="margin-left:1%;"
+                            type="reset">Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Last name:</label>
-          <div class="col-lg-8">
-            <input
-              class="form-control"
-              type="text"
-              name="lastName"
-              [(ngModel)]="lastName"
-            />
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Phone number:</label>
-          <div class="col-lg-8">
-            <input
-              class="form-control"
-              type="tel"
-              name="phoneNumber"
-              value="222399"
-              [(ngModel)]="phoneNumber"
-            />
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Email:</label>
-          <div class="col-lg-8">
-            <input
-              class="form-control"
-              type="email"
-              name="email"
-              [(ngModel)]="email"
-            />
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Adress:</label>
-          <div class="col-lg-8">
-            <input
-              class="form-control"
-              type="text"
-              name="adress"
-              [(ngModel)]="adress"
-            />
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">Password:</label>
-          <div class="col-md-8">
-            <input
-              class="form-control"
-              type="password"
-              name="password"
-              placeholder="New password"
-              [(ngModel)]="password"
-            />
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">Confirm password:</label>
-          <div class="col-md-8">
-            <input
-              class="form-control"
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm new password"
-              [(ngModel)]="confirmPassword"
-            />
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label"></label>
-          <div class="col-md-8">
-            <input
-              type="button"
-              class="btn btn-primary"
-              value="Save Changes"
-              (click)="check(); updateCustomerInfo()"
-            />
-            <span></span>
-            <input type="reset" class="btn btn-default" value="Cancel" />
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
-<hr />

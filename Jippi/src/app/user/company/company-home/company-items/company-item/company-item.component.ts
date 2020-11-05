@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../../../../../http.service';
 import { LocalService } from '../../../../../local.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-company-item',
   templateUrl: './company-item.component.html',
@@ -25,7 +27,12 @@ export class CompanyItemComponent implements OnInit {
     console.log(itemId);
     this._http.deleteItem(itemId).subscribe((res) => {
       console.log(res);
-      alert('deleted !');
+      Swal.fire({
+        icon: 'success',
+        title: 'Item has deleted',
+        showConfirmButton: false,
+        timer: 1500,
+      });
       this.delete = true;
       this.local.deleteFun(this.delete);
     });

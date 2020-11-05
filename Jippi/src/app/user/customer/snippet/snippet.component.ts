@@ -12,6 +12,7 @@ export class SnippetComponent implements OnInit {
   date: any = new Date();
   data: any = [];
   total: number = 0;
+  order: any = [];
 
   constructor(private _http: HttpService) {}
 
@@ -19,6 +20,37 @@ export class SnippetComponent implements OnInit {
     this.total = history.state.data[0].total;
     this.data = history.state.data;
   }
+
+
+  postNewOrder(){
+    return this._http.newOrderFunc(
+      this.key,
+      parseInt(localStorage.Id),
+      this.total,
+      "On site",
+      false,
+      )
+    .subscribe((data) => {
+      this.order = data;
+      console.log('====>', data);
+    })
+  }
+  postNewOrderItems(){
+    let array = history.state.data;
+    for (let i = 0; i < array.length; i++) {
+      this._http.newOrderItemsFunc(
+        this.key,
+        array[i].id,
+        array[i].itemPrice, 
+        array[i].quantity,
+        array[i].campanysName, 
+        )
+        .subscribe((data) => {
+          console.log('<====<>', data);
+        })
+      }
+    }
+  
 
   confirm() {
     return this._http
