@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { HttpService } from '../../../http.service';
+
 @Component({
   selector: 'app-snippet',
   templateUrl: './snippet.component.html',
@@ -16,9 +17,6 @@ export class SnippetComponent implements OnInit {
   constructor(private _http: HttpService) {}
 
   ngOnInit(): void {
-    // console.log('numbersss', this.order);
-    console.log(history.state.data);
-    console.log(history.state.data[0].total);
     this.total = history.state.data[0].total;
     this.data = history.state.data;
   }
@@ -54,4 +52,11 @@ export class SnippetComponent implements OnInit {
     }
   
 
+  confirm() {
+    return this._http
+      .confirmPayment({ data: this.data, date: this.date, order: this.key })
+      .subscribe(() => {
+        console.log('success!');
+      });
+  }
 }

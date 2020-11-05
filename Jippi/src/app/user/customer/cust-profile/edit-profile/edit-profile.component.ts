@@ -37,7 +37,6 @@ export class EditProfileComponent implements OnInit {
     console.log('firstName', this.firstName);
   }
   ngDoCheck() {
-  
     console.log('URL', this.url);
   }
   //function to read avatar url
@@ -68,7 +67,7 @@ export class EditProfileComponent implements OnInit {
     // if (this.check() === true && this.password === this.confirmPassword) {
     const formData = new FormData();
     formData.append('userId', this.userId);
-    formData.append('customerImg', this.url ? this.url : this.user_Info.avatar );
+    formData.append('customerImg', this.url ? this.url : this.user_Info.avatar);
     formData.append('firstName', this.firstName);
     formData.append('lastName', this.lastName);
     formData.append('email', this.email);

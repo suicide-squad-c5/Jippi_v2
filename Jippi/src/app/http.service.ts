@@ -8,24 +8,48 @@ export class HttpService {
   constructor(private http: HttpClient) {}
   ROOT_URL = 'http://127.0.0.1:3008';
 
-  postSignupCustomer(first_name, last_name, email, password, phone_number) {
+  postSignupCustomer(
+    first_name,
+    last_name,
+    email,
+    password,
+    phone_number,
+    address
+  ) {
     return this.http.post(this.ROOT_URL + '/api/register/customer/signup', {
       first_name: first_name,
       last_name: last_name,
       email: email,
       password: password,
       phone_number: phone_number,
+      adress: address,
+    });
+  }
+
+  //confirm payment
+  confirmPayment(data) {
+    console.log('data in the service', data);
+    return this.http.post(this.ROOT_URL + '/companyName/payment', {
+      data: data,
     });
   }
 
   // create post request for the comapny signup.
-  postSignUpComapany(companyName, companyPassword, companyEmail) {
+  postSignUpComapany(
+    companyName,
+    companyPassword,
+    companyEmail,
+    companyAddress,
+    companyNumber
+  ) {
     return this.http.post(
       this.ROOT_URL + `/api/register/company/comapny/signup`,
       {
         companyName: companyName,
         companyPassword: companyPassword,
         companyEmail: companyEmail,
+        companyAddress: companyAddress,
+        companyNumber: companyNumber,
       }
     );
   }
@@ -217,6 +241,7 @@ export class HttpService {
       this.ROOT_URL + `/companyName/companyName/${companyId}`
     );
   }
+
 
   //new order
   newOrderFunc(orderId, customerId, totalPrice, type, received) {
