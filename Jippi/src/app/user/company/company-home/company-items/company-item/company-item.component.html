@@ -1,9 +1,8 @@
 <!-- Card -->
-<div class="achref">
-  <div class="view zoom overlay z-depth-2 rounded">
-    <img class="img-fluid w-100" src="{{ companyItems.itemImage }}" />
+<div class="product-grid6">
+  <div class="product-image6">
+    <img class="item-image" src="{{ companyItems.itemImage }}" />
   </div>
-
   <div class="text-center pt-4">
     <h5>{{ companyItems.itemName }}</h5>
     <p class="mb-2 text-muted text-uppercase small">
@@ -11,20 +10,34 @@
     </p>
     <hr style="width: 70%" />
     <h6 class="mb-3">{{ companyItems.itemPrice }} TD</h6>
-    <button
-      type="button"
-      class="btn btn-danger btn-sm mr-1 mb-2"
-      (click)="deleteItem(companyItems.id)"
-    >
+    <button type="button" class="btn btn-danger " style="margin : 6px" (click)="deleteItem(companyItems.id)">
       Delete
     </button>
-    <button
-      type="button"
-      class="btn btn-light btn-sm mr-1 mb-2"
-      (click)="update()"
-    >
+    <button type="button" class="btn btn-light " style="margin: 6px" (click)="update()">
       Update
     </button>
   </div>
 </div>
 <!-- Card -->
+
+
+<!-- 
+
+<div class="product-grid6">
+  <div class="product-image6">
+    <a (click)="getItemId(item); moreDetails(item);" data-tip="Quick View">
+      <img class="item-image" src="{{item.itemImage}}">
+    </a>
+  </div>
+  <div class="product-content">
+    <h3 class="title"><a href="#">{{ item.itemName }}</a></h3>
+    <span>{{ item.itemKind }}</span>
+    <div class="price">{{ item.itemPrice }} TD
+    </div>
+  </div>
+  <ul class="social">
+    <li><a (click)="getItemId(item); moreDetails(item);" data-tip="Quick View"><i class="fa fa-search"></i></a>
+    </li>
+    <li><a (click)="addFun()" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+  </ul>
+</div> -->

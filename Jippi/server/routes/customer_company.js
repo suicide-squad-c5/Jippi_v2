@@ -1,9 +1,11 @@
 const customer_companyRouter = require("express").Router();
 const db = require("../../database/models");
 const company = db.companies;
+const customerSearch = db.customers;
 var wkhtmltopdf = require("wkhtmltopdf");
 wkhtmltopdf.command = "C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe";
 const pdfTemplate = require("./receiptTemplate");
+const nodemailer = require("nodemailer");
 var cloudinary = require("cloudinary").v2;
 cloudinary.config({
   cloud_name: "jipi",
@@ -25,12 +27,39 @@ customer_companyRouter.get("/companyName/:companyID", (req, res) => {
 });
 
 customer_companyRouter.post("/payment", (req, res) => {
-  wkhtmltopdf(pdfTemplate(req.body.data), {
-    output: `${__dirname}/out/${req.body.data.order}.pdf`,
-    pageSize: "letter",
-  });
-  console.log(" __dirname ", __dirname);
-  res.send("!!!");
+  customerSearch
+    .findOne({
+      where: {
+        id: req.body.data.customerID,
+      },
+    })
+    .then((data) => {
+      console.log("data", data.email);
+      wkhtmltopdf(pdfTemplate(req.body.data), {
+        output: `${__dirname}/out/Order Num ${req.body.data.order}.pdf`,
+        pageSize: "letter",
+      });
+
+      let transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+          user: "jipp.pi.17@gmail.com",
+          pass: "jippi1199",
+        },
+        tls: {
+          rejectUnauthorized: false,
+        },
+      });
+      let mailOptions = {
+        form: "jipp.pi.17@gmail.com",
+        to: data.email,
+        subject: "order receipt",
+        html: pdfTemplate(req.body.data),
+      };
+      transporter.sendMail(mailOptions).then(() => {
+        res.send({ status: 200 });
+      });
+    });
 });
 
 module.exports = customer_companyRouter;

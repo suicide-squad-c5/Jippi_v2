@@ -40,28 +40,44 @@ signupCompanyRouter.post("/comapny/signup", (req, res) => {
   console.log("transporter.auth", transporter.options);
   // generate a random 6 digit code
   getRandomString();
-  console.log("47777777", dcode);
   let mailOptions = {
     form: "jipp.pi.17@gmail.com",
     to: req.body.companyEmail,
     subject: "Test",
     text: dcode,
   };
+
   transporter.sendMail(mailOptions).then((response) => {
     const company = {
       companyName: req.body.companyName,
       companyEmail: req.body.companyEmail,
       companyPassword: passwordHash.generate(req.body.companyPassword),
       avatar: req.body.avatar,
-      location: req.body.location,
-      phoneNumber: req.body.phoneNumber,
+      location: req.body.companyAddress,
+      phoneNumber: req.body.companyNumber,
       verificationCode: dcode,
       baned: "false",
     };
     // save the comapny data to the database.
-    companyLog.create(company).then((data) => {
-      res.send(data);
 
+    companyLog
+      .findOne({
+        where: {
+          companyEmail: req.body.companyEmail,
+        },
+      })
+      .then((company) => {
+        if (company.companyEmail === req.body.companyEmail) {
+          res.send({
+            status: 7000,
+          });
+        }
+      });
+
+    companyLog.create(company).then((data) => {
+      res.send({
+        status: data,
+      });
       console.log(response);
       res.json({
         response: response,
