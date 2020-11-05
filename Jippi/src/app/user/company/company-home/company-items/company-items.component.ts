@@ -9,6 +9,7 @@ import { LocalService } from '../../../../local.service';
 export class CompanyItemsComponent implements OnInit {
   companyItems: any = [];
   deleteAction: boolean = false;
+  companyItem: string = '';
 
   constructor(private _http: HttpService, private local: LocalService) {}
 
@@ -27,6 +28,14 @@ export class CompanyItemsComponent implements OnInit {
   getCompanyItems(id) {
     return this._http.getcompanyItems(id).subscribe((data) => {
       this.companyItems = data;
+    });
+  }
+
+  Search() {
+    this.companyItems = this.companyItems.filter((item) => {
+      return item.itemName
+        .toLowerCase()
+        .match(this.companyItem.toLocaleLowerCase());
     });
   }
 }

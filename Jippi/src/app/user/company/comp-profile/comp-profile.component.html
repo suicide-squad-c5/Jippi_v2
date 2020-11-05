@@ -232,8 +232,8 @@
 
     <div class="details" *ngFor="let elm of company_Data; index as i">
       <div class="text-right">
-        <button type=" button" class="btn btn-outline-light "> <i class="fas fa-edit"
-            [routerLink]="['/company/edit']"></i> Edit profile</button>
+        <button type=" button" class="btn btn-outline-light" [routerLink]="['/company/edit']"> <i
+            class="fas fa-edit"></i> Edit profile</button>
       </div>
       <img [src]="elm.avatar ? elm.avatar : '/assets/company.png'" alt="John Doe" class="profile-pic">
       <h1 class="heading">{{ elm.companyName }}</h1>
@@ -255,8 +255,8 @@
           <p>{{ elm.phoneNumber || 'unknown'}}</p>
         </div>
         <div class="col-4">
-          <h4>100</h4>
-          <p>Discussions</p>
+          <h4>Timing work :</h4>
+          <p>{{elm.timing || 'Dont have specified time'}}</p>
         </div>
       </div>
     </div>

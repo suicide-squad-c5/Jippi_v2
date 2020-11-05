@@ -4,6 +4,8 @@ const db = require("../../database/models");
 const multer = require("multer");
 const path = require("path");
 var cloudinary = require("cloudinary").v2;
+var passwordHash = require("password-hash");
+
 // companyProfileRouter.use(express.static(path.join(__dirname + './upload')));
 const Company = db.companies;
 
@@ -71,8 +73,11 @@ companyProfileRouter.put("/update", uploads.any(0), (req, res) => {
       companyEmail: req.body.companyEmail,
       location: req.body.location,
       phoneNumber: req.body.phoneNumber,
+      timing: req.body.timing,
     };
-    Company.update(newData, { where: { id: req.body.companyId } }).then(() => {
+    Company.update(newData, {
+      where: { id: req.body.companyId },
+    }).then(() => {
       res.send({ status: 200 });
     });
   } else {
@@ -86,14 +91,15 @@ companyProfileRouter.put("/update", uploads.any(0), (req, res) => {
         location: req.body.location,
         avatar: result.url,
         phoneNumber: req.body.phoneNumber,
+        timing: req.body.timing,
       };
 
       console.log("newData", newData);
-      Company.update(newData, { where: { id: req.body.companyId } }).then(
-        () => {
-          res.send({ status: 200 });
-        }
-      );
+      Company.update(newData, {
+        where: { id: req.body.companyId },
+      }).then(() => {
+        res.send({ status: 200 });
+      });
     });
   }
 });
@@ -204,6 +210,26 @@ companyProfileRouter.put("/unbaned/:companyId", async (req, res) => {
   )
     .then((company) => {
       res.json(company);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// UPDATE COMPANY PASSWORD.
+companyProfileRouter.put("/", async (req, res) => {
+  Company.update(
+    {
+      companyPassword: passwordHash.generate(req.body.companyPassword),
+    },
+    {
+      where: {
+        id: req.body.companyId,
+      },
+    }
+  )
+    .then((data) => {
+      res.send({ status: 101 });
     })
     .catch((err) => {
       console.log(err);

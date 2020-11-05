@@ -21,6 +21,7 @@ export class UsersComponent implements OnInit {
 
   ngDoCheck() {
     console.log('cllparent111', this.callDataCompany);
+    this.companiesList;
     if (this.callDataCompany) {
       this.getCompanies();
       this.callDataCompany = false;
@@ -30,8 +31,8 @@ export class UsersComponent implements OnInit {
 
   // BRING ALL THE COMPANIES TO ADMIN INTERFACE.
   getCompanies() {
-    this._http.getCompanies().subscribe((data) => {
-      this.companiesList = data;
+    this._http.getCompanies().subscribe((data: any) => {
+      this.companiesList = data.reverse();
       console.log('we have data', this.companiesList);
     });
   }

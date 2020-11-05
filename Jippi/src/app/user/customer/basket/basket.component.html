@@ -1,4 +1,4 @@
-<section class="pt-5 pb-5">
+<!-- <section class="pt-5 pb-5">
   <div class="container">
     <div class="row w-100">
       <div class="col-lg-12 col-md-12 col-12">
@@ -15,12 +15,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of basket_item"  >
+            <tr *ngFor="let item of basket_item">
               <td data-th="Product">
                 <div class="row">
                   <div class="col-md-3 text-left">
-                    <img src="{{item.itemImage}}" alt=""
-                      class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                    <img src="{{item.itemImage}}" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
                   </div>
                   <div class="col-md-9 text-left mt-sm-2">
                     <h4>{{item.itemName}}</h4>
@@ -30,11 +29,10 @@
               </td>
               <td data-th="Price">DT {{item.itemPrice}}</td>
               <td class="col col-qty  layout-inline" data-th="Quantity">
-                  <!-- <a  class="qty qty-minus" (click)="subtractQunt(item)">-</a> -->
-                  <span class="badge badge-pill badge-info" (click)="subtractQunt(item)">-</span>
-                  <input type="numeric" [(ngModel)]="quantity[basket_item.indexOf(item)]"/>
-                  <!-- <a  class="qty qty-plus" (click)="addQunt(item)">+</a> -->
-                  <span class="badge badge-pill badge-info" (click)="addQunt(item)">+</span>
+
+                <span class="badge badge-pill badge-info" (click)="subtractQunt(item)">-</span>
+                <input type="numeric" [(ngModel)]="quantity[basket_item.indexOf(item)]" />
+                <span class="badge badge-pill badge-info" (click)="addQunt(item)">+</span>
               </td>
               <td class="actions" data-th="">
                 <div class="text-right">
@@ -58,12 +56,123 @@
     </div>
     <div class="row mt-4 d-flex align-items-center">
       <div class="col-sm-6 order-md-2 text-right">
-        <a href="catalog.html" class="btn btn-primary mb-4 btn-lg pl-5 pr-5" [routerLink]="['/customer/getyouritems']">Checkout</a>
+        <a href="catalog.html" class="btn btn-primary mb-4 btn-lg pl-5 pr-5"
+          [routerLink]="['/customer/getyouritems']">Checkout</a>
       </div>
       <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
         <a [routerLink]="['/']">
-          <i class="fas fa-arrow-left mr-2"  ></i> Continue Shopping</a>
+          <i class="fas fa-arrow-left mr-2"></i> Continue Shopping</a>
       </div>
     </div>
   </div>
 </section>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="main-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="table-responsive">
+          <p class="mb-5 text-center"> <i class="text-info font-weight-bold">{{basket_item.length}}</i> items in your
+            cart
+          </p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">Product</th>
+                <th scope="col">Company</th>
+                <th scope="col" class="text-center">Quantity</th>
+                <th scope="col" class="text-right">Price</th>
+                <th> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of basket_item">
+                <td><img class="item-img" src="{{item.itemImage}}" /> </td>
+                <td>{{item.itemName}}</td>
+                <td>
+                  <p class="font-weight-light">{{campanysNames[basket_item.indexOf(item)]}}</p>
+                </td>
+                <td>
+                  <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <button class="input-group-text" (click)="subtractQunt(item)">-</button>
+                      </div>
+                      <input class="form-control" type="numeric" [(ngModel)]="quantity[basket_item.indexOf(item)]" />
+                      <div class="input-group-prepend">
+                        <button class="input-group-text" (click)="addQunt(item)">+</button>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">{{item.itemPrice}} TD</td>
+                <td class="text-right"><button class="btn btn-sm btn-danger" (click)="deleteItem(item)"><i
+                      class="fa fa-trash"></i> </button> </td>
+              </tr>
+
+              <!-- <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Sub-Total</td>
+              <td class="text-right">255,90 €</td>
+            </tr> -->
+              <!-- <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Shipping</td>
+              <td class="text-right">6,90 €</td>
+            </tr> -->
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><strong>Total</strong></td>
+                <td class="text-right" style="position:absolute"><strong>{{this.tot}} TD</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col mb-2">
+        <div class="row">
+          <div class="col-sm-12  col-md-6">
+            <button class="btn btn-block btn-light" [routerLink]="['/shop/items']">Continue Shopping</button>
+          </div>
+          <div class="col-sm-12 col-md-6 text-right">
+            <button class="btn btn-lg btn-block btn-primary text-uppercase"
+              [routerLink]="['/customer/getyouritems']">Checkout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
