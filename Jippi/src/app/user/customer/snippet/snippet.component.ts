@@ -54,7 +54,12 @@ export class SnippetComponent implements OnInit {
 
   confirm() {
     return this._http
-      .confirmPayment({ data: this.data, date: this.date, order: this.key })
+      .confirmPayment({
+        data: this.data,
+        date: this.date,
+        order: this.key,
+        customerID: localStorage.Id,
+      })
       .subscribe(() => {
         console.log('success!');
       });

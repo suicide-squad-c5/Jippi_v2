@@ -40,7 +40,6 @@ signupCompanyRouter.post("/comapny/signup", (req, res) => {
   console.log("transporter.auth", transporter.options);
   // generate a random 6 digit code
   getRandomString();
-  console.log("47777777", dcode);
   let mailOptions = {
     form: "jipp.pi.17@gmail.com",
     to: req.body.companyEmail,
