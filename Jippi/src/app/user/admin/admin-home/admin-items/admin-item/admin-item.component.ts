@@ -14,7 +14,11 @@ export class AdminItemComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('item', this.oneItem);
-  this.locale.delete_item.subscribe(boo => this.delete_Item = boo)
+    this.locale.delete_item.subscribe((boo) => (this.delete_Item = boo));
+  }
+
+  ngDoCheck() {
+    this.oneItem;
   }
 
   deleteItem(itemId) {
@@ -22,8 +26,7 @@ export class AdminItemComponent implements OnInit {
     this._http.deleteItem(itemId).subscribe((res) => {
       console.log(res);
       alert('deleted !');
-     
     });
-     this.locale.deleteItemFunc(true)    
+    this.locale.deleteItemFunc(true);
   }
 }

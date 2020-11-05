@@ -7,21 +7,21 @@ var passwordHash = require("password-hash");
 require("dotenv").config();
 
 // var exports = {
-//   decode
-// }
+//   decode,
+// };
 
-let dcode = "";
-const getRandomString = () => {
-  var randomChars =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  var res = "";
-  for (var i = 0; i < 6; i++) {
-    res += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
-  }
-  dcode = res;
-  exports.dcode = dcode;
-  return res;
-};
+let dcode = `${Math.floor(Math.random() * 1000000)}`;
+// const getRandomString = () => {
+//   var randomChars =
+//     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//   var res = "";
+//   for (var i = 0; i < 6; i++) {
+//     res += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+//   }
+//   dcode = res;
+// exports.dcode = dcode;
+//   return res;
+// };
 
 console.log("44", dcode);
 signupCompanyRouter.post("/comapny/signup", (req, res) => {
@@ -39,12 +39,11 @@ signupCompanyRouter.post("/comapny/signup", (req, res) => {
   });
   console.log("transporter.auth", transporter.options);
   // generate a random 6 digit code
-  getRandomString();
   console.log("47777777", dcode);
   let mailOptions = {
     form: "jipp.pi.17@gmail.com",
     to: req.body.companyEmail,
-    subject: "Test",
+    subject: "verfication code ",
     text: dcode,
   };
 
@@ -56,6 +55,7 @@ signupCompanyRouter.post("/comapny/signup", (req, res) => {
       avatar: req.body.avatar,
       location: req.body.companyAddress,
       phoneNumber: req.body.companyNumber,
+      timing: "dont have specified timing",
       verificationCode: dcode,
       baned: "false",
     };

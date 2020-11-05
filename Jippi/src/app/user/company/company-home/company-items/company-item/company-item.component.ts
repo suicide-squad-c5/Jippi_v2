@@ -22,6 +22,10 @@ export class CompanyItemComponent implements OnInit {
     this.local.deleted.subscribe((boolean) => (this.delete = boolean));
   }
 
+  ngDoCheck(): void {
+    console.log(this.companyItems);
+  }
+
   deleteItem(itemId) {
     // CHECK !
     console.log(itemId);

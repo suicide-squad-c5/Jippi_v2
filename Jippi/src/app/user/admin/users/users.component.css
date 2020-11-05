@@ -26,3 +26,10 @@
   pointer-events: none;
   color: #aaa;
 }
+
+.main-container {
+  background-color: rgb(238, 238, 238);
+  position: relative;
+  width: 100%;
+  padding: 70px
+}
