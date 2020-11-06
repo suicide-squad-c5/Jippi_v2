@@ -1,7 +1,14 @@
 const customer_companyRouter = require("express").Router();
 const db = require("../../database/models");
+
 const company = db.companies;
+
+const item = db.items;
+const user = db.customers;
+
+
 const customerSearch = db.customers;
+
 var wkhtmltopdf = require("wkhtmltopdf");
 wkhtmltopdf.command = "C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe";
 const pdfTemplate = require("./receiptTemplate");
@@ -23,6 +30,32 @@ customer_companyRouter.get("/companyName/:companyID", (req, res) => {
     .then((company) => {
       console.log("companyName", company);
       res.send({ companyName: company.companyName });
+    });
+});
+//items for order
+customer_companyRouter.get("/itemOrder/:itemId", (req, res) => {
+  item
+    .findOne({
+      where: {
+        id: req.params.itemId,
+      },
+    })
+    .then((item) => {
+      console.log("item", item);
+      res.send({ item: item });
+    });
+});
+//user for order
+customer_companyRouter.get("/userorder/:userId", (req, res) => {
+  user
+    .findOne({
+      where: {
+        id: req.params.userId,
+      },
+    })
+    .then((user) => {
+      console.log("user", user);
+      res.send({ user: user });
     });
 });
 

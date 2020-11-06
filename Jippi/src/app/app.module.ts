@@ -55,6 +55,7 @@ import { GetYourItemsComponent } from './user/customer/basket/get-your-items/get
 import { BarRatingModule } from 'ngx-bar-rating';
 import { SnippetComponent } from './user/customer/snippet/snippet.component';
 import { FooterComponent } from './user/footer/footer.component';
+import { CompanyOrdersComponent } from './user/company/company-orders/company-orders.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { FooterComponent } from './user/footer/footer.component';
     GetYourItemsComponent,
     SnippetComponent,
     FooterComponent,
+    CompanyOrdersComponent,
 
     // CustomersUserComponent,
   ],

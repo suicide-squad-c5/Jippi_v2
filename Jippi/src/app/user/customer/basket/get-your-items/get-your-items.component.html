@@ -1,34 +1,51 @@
 <div class="d-md-flex h-md-100 align-items-center">
+  <!-- First Half -->
 
-    <!-- First Half -->
-
-    <div class="col-md-6 p-0 bg-indigo h-md-100">
-
-        <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
-
-            <div class="logoarea pt-5 pb-5">
-
-                <img src="/assets/delivery-truck (1).png" />
-                <br />
-                <br />
-                <button type="button" class="btn btn-outline-light">Delivery</button>
-            </div>
-        </div>
+  <div class="col-md-6 p-0 bg-indigo h-md-100">
+    <div
+      class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center"
+    >
+      <div class="logoarea pt-5 pb-5">
+        <img src="/assets/delivery-truck (1).png" />
+        <br />
+        <br />
+        <p class="text-light">
+          Here you could just chill and the companies will take responsibility
+          to send you the order to your door steps it a few days
+        </p>
+        <button
+          type="button"
+          class="btn btn-outline-light"
+          (click)="onsite('Delivery')"
+        >
+          Delivery
+        </button>
+      </div>
     </div>
+  </div>
 
-    <!-- Second Half -->
+  <!-- Second Half -->
 
-    <div class="col-md-6 p-0 bg-white h-md-100">
-
-        <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
-
-            <div class="logoarea pt-5 pb-5">
-                <img src="/assets/take-away.png" />
-                <br />
-                <br />
-                <button type="button" class="btn btn-outline-primary" (click)="onsite()">On site</button>
-            </div>
-        </div>
+  <div class="col-md-6 p-0 bg-white h-md-100">
+    <div
+      class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center"
+    >
+      <div class="logoarea pt-5 pb-5">
+        <img src="/assets/take-away.png" />
+        <br />
+        <br />
+        <p class="text-primary">
+          Here you could grab your items directly from the shop but remember
+          that you have 4 days or the companies could terminate your order
+        </p>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="onsite('On site')"
+        >
+          On site
+        </button>
+      </div>
     </div>
-
+  </div>
 </div>

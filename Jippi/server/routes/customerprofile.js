@@ -75,6 +75,7 @@ customerProfileRouter.put(
         email: req.body.email,
         avatar: req.body.customerImg,
         address: req.body.address,
+
         phone_number: req.body.phoneNumber,
       };
       customer

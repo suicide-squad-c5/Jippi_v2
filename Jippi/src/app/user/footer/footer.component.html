@@ -36,30 +36,6 @@
             <!-- Grid row -->
             <div class="row mt-1 mt-md-0 mb-4 mb-md-0">
                 <!-- Grid column -->
-                <div class="col-md-3 mx-auto mt-3 mt-md-0 mb-0 mb-md-4 ">
-                    <!-- Links -->
-                    <h5>About us</h5>
-                    <hr class="color-light mb-4 mt-0 d-inline-block mx-auto w-60" />
-
-                    <ul class="list-unstyled foot-desc ">
-                        <li class="mb-2">
-                            <a class="text-light" href="#!">About us</a>
-                        </li>
-                        <li class="mb-2">
-                            <a class="text-light" href="#!">Terms of use</a>
-                        </li>
-                        <li class="mb-2">
-                            <a class="text-light" href="#!">Privacy policy</a>
-                        </li>
-                        <li class="mb-2">
-                            <a class="text-light" href="#!">Our brands</a>
-                        </li>
-                        <li class="mb-2">
-                            <a class="text-light" href="#!">Corporate social responsibility</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Grid column -->
 
                 <hr class="clearfix w-100 d-md-none" />
 
@@ -71,16 +47,16 @@
 
                     <ul class="list-unstyled foot-desc">
                         <li class="mb-2">
-                            <a class="text-light" href="#!">Sign in</a>
+                            <a class="text-light" [routerLink]="['/login']">Sign in</a>
                         </li>
                         <li class="mb-2">
-                            <a class="text-light" href="#!">Sign up</a>
+                            <a class="text-light" [routerLink]="['/signup']">Sign up</a>
                         </li>
                         <li class="mb-2">
-                            <a class="text-light" href="#!">Your orders</a>
+                            <a class="text-light" [routerLink]="['/company/login']">Sign in as a company</a>
                         </li>
                         <li class="mb-2">
-                            <a class="text-light" href="#!">Account settings</a>
+                            <a class="text-light" [routerLink]="['/comapny/signup']">Sign up as a company</a>
                         </li>
                     </ul>
                 </div>
@@ -91,21 +67,15 @@
                 <!-- Grid column -->
                 <div class="col-md-3 mx-auto mt-3 mt-md-0 mb-0 mb-md-4">
                     <!-- Links -->
-                    <h5>Payments and delivery</h5>
+                    <h5>Shoping and delivery</h5>
                     <hr class="color-primary mb-4 mt-0 d-inline-block mx-auto w-60" />
 
                     <ul class="list-unstyled foot-desc">
                         <li class="mb-2">
-                            <a class="text-light" href="#!">Free shipping</a>
+                            <a class="text-light" [routerLink]="['/shop/items']">Free shipping</a>
                         </li>
                         <li class="mb-2">
-                            <a class="text-light" href="#!">Zero waste shipments</a>
-                        </li>
-                        <li class="mb-2">
-                            <a class="text-light" href="#!">Payments</a>
-                        </li>
-                        <li class="mb-2">
-                            <a class="text-light" href="#!">Shipping and returns</a>
+                            <a class="text-light" [routerLink]="['/shop/items']">Zero waste shipments</a>
                         </li>
                     </ul>
                 </div>
@@ -121,15 +91,13 @@
 
                     <ul class="fa-ul foot-desc ml-4">
                         <li class="mb-2">
-                            <span class="fa-li"><i class="far fa-map"></i></span>New York,
-                            Avenue Street 10
+                            <span class="fa-li"><i class="far fa-map"></i></span>Tunisia, Tunis, Ariana, RBK
                         </li>
                         <li class="mb-2">
-                            <span class="fa-li"><i class="fas fa-phone-alt"></i></span>042 876
-                            836 908
+                            <span class="fa-li"><i class="fas fa-phone-alt"></i></span>+216 90 255 853
                         </li>
                         <li class="mb-2">
-                            <span class="fa-li"><i class="far fa-envelope"></i></span>company@example.com
+                            <span class="fa-li"><i class="far fa-envelope"></i></span>JIPPI@gmail.com
                         </li>
                         <li>
                             <span class="fa-li"><i class="far fa-clock"></i></span>Monday -
@@ -142,7 +110,7 @@
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3 text-white-50">
             © 2020 Copyright:
-            <a class="text-light" href="https://mdbootstrap.com/"> JIPPI</a>
+            <a class="text-light" [routerLink]="['/']"> JIPPI</a>
         </div>
     </footer>
 </div>
