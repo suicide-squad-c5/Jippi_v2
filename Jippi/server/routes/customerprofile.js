@@ -74,7 +74,7 @@ customerProfileRouter.put(
         email: req.body.email,
         password: passwordHash.generate(req.body.password),
         avatar: req.body.customerImg,
-        adress: req.body.adress,
+        address: req.body.adress,
         phone_number: req.body.phoneNumber,
       };
       customer

@@ -68,4 +68,6 @@ export class NavbarComponent implements OnInit {
     this.local.changeType('visiteur');
     this.router.navigateByUrl('/');
   }
+
+
 }

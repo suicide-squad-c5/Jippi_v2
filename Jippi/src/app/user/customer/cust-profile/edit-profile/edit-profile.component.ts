@@ -38,6 +38,7 @@ export class EditProfileComponent implements OnInit {
   }
   ngDoCheck() {
     console.log('URL', this.url);
+    console.log('adress:', this.adress)
   }
   //function to read avatar url
   onSelectFile(event) {
