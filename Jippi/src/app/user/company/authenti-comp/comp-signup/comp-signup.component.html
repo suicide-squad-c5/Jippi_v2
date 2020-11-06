@@ -1,103 +1,81 @@
-<!-- <div class="main-container">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-8 col-lg-8 col-xl-6">
-        <div class="row">
-          <div class="col text-center" style="margin-top:5%">
-            <h1>Register</h1>
-            <p class="text-h3">
-              Join JIPPI now and create your own shop to start sell your items,
-              all JIPPI members hope for you success.
-            </p>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col mt-4">
-            <input type="text" class="form-control" placeholder="Company Name" [(ngModel)]="companyName" />
-          </div>
-        </div>
-        <div class="row align-items-center mt-4">
-          <div class="col">
-            <input type="email" class="form-control" placeholder="Email" [(ngModel)]="companyEmail" />
-          </div>
-        </div>
-        <div class="row align-items-center mt-4">
-          <div class="col">
-            <input type="password" class="form-control" placeholder="Password" [(ngModel)]="companyPassword" />
-
-          </div>
-          <div class="col">
-            <input type="password" class="form-control" placeholder="Confirm Password"
-              [(ngModel)]="companyConfirmPassword" />
-          </div>
-        </div>
-        <div class="row justify-content-start mt-4">
-          <div class="col">
-            <button color="info" block="true" class="btn btn-lg btn-primary btn-block" type="submit"
-              (click)="companyData()">
-              Sign in
-            </button>
-            <br />
-            <div class="form-check" style="margin-bottom:5%;">
-              <label class="form-check-label">
-                you already have account? <a href="company/login">Log in</a>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
-
-
-
-
-
 <!-- Default form register -->
 <div class="main-container">
   <div class="testWhidth">
     <div class="text-center border border-light p-5">
       <h4 class="h4 mb-4">Register</h4>
       <p class="text-h3">
-        Join JIPPI now and create your own shop to start sell your items,
-        all JIPPI members hope for you success.
+        Join JIPPI now and create your own shop to start sell your items, all
+        JIPPI members hope for you success.
       </p>
       <div class="form-row mb-4">
         <div class="col">
           <!-- First name -->
-          <input type="text" class="form-control" placeholder="Company Name" [(ngModel)]="companyName" />
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Company Name"
+            [(ngModel)]="companyName"
+          />
         </div>
-        <!-- <div class="col">
-          <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name"
-            [(ngModel)]="lastName" />
-        </div> -->
       </div>
 
       <!-- E-mail -->
-      <input type="email" class="form-control" placeholder="Email" [(ngModel)]="companyEmail" />
+      <input
+        type="email"
+        class="form-control"
+        placeholder="Email"
+        [(ngModel)]="companyEmail"
+      />
       <br />
       <!-- Password -->
 
-      <input type="password" class="form-control" placeholder="Password" [(ngModel)]="companyPassword" />
-      <password-strength-meter [password]="companyPassword"></password-strength-meter>
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Password"
+        [(ngModel)]="companyPassword"
+      />
+      <password-strength-meter
+        [password]="companyPassword"
+      ></password-strength-meter>
 
       <br />
 
-      <input type="password" class="form-control" placeholder="Confirm Password" [(ngModel)]="companyConfirmPassword" />
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Confirm Password"
+        [(ngModel)]="companyConfirmPassword"
+      />
       <br />
       <!-- Phone number -->
-      <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number"
-        aria-describedby="defaultRegisterFormPhoneHelpBlock" [(ngModel)]="companyAddress" />
+      <input
+        type="text"
+        id="defaultRegisterPhonePassword"
+        class="form-control"
+        placeholder="Phone number"
+        aria-describedby="defaultRegisterFormPhoneHelpBlock"
+        [(ngModel)]="companyNumber"
+      />
       <br />
       <!-- Phone number -->
-      <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Adress"
-        aria-describedby="defaultRegisterFormPhoneHelpBlock" [(ngModel)]="companyNumber" />
+      <input
+        type="text"
+        id="defaultRegisterPhonePassword"
+        class="form-control"
+        placeholder="Adress"
+        aria-describedby="defaultRegisterFormPhoneHelpBlock"
+        [(ngModel)]="companyAddress"
+      />
       <br />
       <br />
-      <button color="info" block="true" class="btn btn-lg btn-primary btn-block" type="submit" (click)="companyData()">
+      <button
+        color="info"
+        block="true"
+        class="btn btn-lg btn-primary btn-block"
+        type="submit"
+        (click)="companyData()"
+      >
         Sign up
       </button>
       <br />
@@ -111,7 +89,5 @@
   </div>
 </div>
 <!-- Default form register -->
-
-
 
 <app-footer></app-footer>

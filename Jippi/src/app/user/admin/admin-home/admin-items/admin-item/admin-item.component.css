@@ -9,4 +9,11 @@ button{
     border-color: #D5DBDB;
     margin:5%;
     padding: 5%;
+    background-color: white;
+}
+
+.item-image {
+  object-fit: cover;
+  width: 100%;
+  height: 17em;
 }

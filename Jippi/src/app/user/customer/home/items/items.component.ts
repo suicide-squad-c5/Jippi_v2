@@ -13,7 +13,11 @@ export class ItemsComponent implements OnInit {
   allitems: boolean = false;
   basket: any = [];
   itemName: string = '';
-  // items: any = [];
+  backUpData: any;
+  start: number = 0;
+  end: number = 12;
+  loc: number = 0;
+
   constructor(private _http: HttpService, private local: LocalService) {}
 
   ngOnInit(): void {
@@ -26,25 +30,53 @@ export class ItemsComponent implements OnInit {
       this.getitems();
       this.allitems = false;
     }
-    // console.log('++++>>', this.itemsList, this.allitems);
     this.local.getitem_name.subscribe((itemName) => (this.itemName = itemName));
-    // console.log('itemname', this.itemName);
     this.SearchBar();
+    this.start;
+    this.end;
+    this.backUpData;
+    this.itemsList;
   }
+
   getitems() {
-    return this._http.getItems().subscribe((data) => {
-      this.itemsList = data;
-      this.itemsList = this.itemsList.reverse();
-      // let dtaa = this.itemsList
+    return this._http.getItems().subscribe((data: any) => {
+      this.itemsList = data.reverse();
+      this.backUpData = this.itemsList;
       this.local.passItems(data);
-      // this.local.passAllItems(data);
     });
   }
 
   // SEARCH BAR FOR ITEMS.
   SearchBar() {
-    this.itemsList = this.itemsList.filter((item) => {
-      return item?.itemName.toLowerCase().match(this?.itemName.toLowerCase());
-    });
+    if (this.itemName === '') {
+      this.itemsList = this.backUpData.slice(this.start, this.end);
+    } else {
+      this.itemsList = this.itemsList
+        .slice(this.start, this.end)
+        .filter((item) => {
+          return item?.itemName
+            .toLowerCase()
+            .match(this?.itemName.toLowerCase());
+        });
+    }
+  }
+
+  rightClick() {
+    this.start = this.start + 12;
+    this.end = this.end + 12;
+    this.loc = this.loc + 1;
+    console.log(this.start, this.end);
+  }
+
+  leftClick() {
+    if (this.start >= 0 && this.end > 12) {
+      this.start = this.start - 12;
+      this.end = this.end - 12;
+      this.loc = this.loc - 1;
+    } else {
+      this.start;
+      this.end;
+    }
+    console.log('left ', this.start, this.end);
   }
 }

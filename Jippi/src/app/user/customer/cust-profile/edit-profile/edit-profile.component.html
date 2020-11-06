@@ -146,18 +146,22 @@
                     </div>
                   </div>
                   <ul class="nav nav-tabs">
-                    <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                    <li class="nav-item {{desactivate}} nav-link" (click)="changeSettings()" style="cursor: pointer;">
+                      Settings
+                    </li>
+                    <li class="nav-item {{active}} nav-link" (click)="changePassword()" style="cursor: pointer;">Change
+                      password</li>
                   </ul>
                   <div class="tab-content pt-3">
                     <div class="tab-pane active">
-                      <div class="row">
+                      <div class="row" *ngIf="changePass === false">
                         <div class="col">
                           <div class="row">
                             <div class="col">
                               <div class="form-group">
                                 <label>First Name</label>
                                 <input class="form-control" type="text" name="firstName" placeholder="First Name"
-                                  value="{{firstName }}" [(ngModel)]="firstName">
+                                  value="{{firstName}}" [(ngModel)]="firstName">
                               </div>
                             </div>
                             <div class="col">
@@ -186,14 +190,14 @@
                             <div class="col">
                               <div class="form-group">
                                 <label>Adress</label>
-                                <input class="form-control" type="text" value="{{adress}}"
-                                  placeholder="Your location" name="adress" [(ngModel)]="adress">
+                                <input class="form-control" type="text" value="{{address}}" placeholder="Your location"
+                                  name="address" [(ngModel)]="address">
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div class="row">
+                      <div class="row" *ngIf="changePass === true">
                         <div class="col-12 col-sm-6 mb-3">
                           <div class="mb-2"><b>Change Password</b></div>
                           <div class="row">
@@ -213,16 +217,23 @@
                             <div class="col">
                               <div class="form-group">
                                 <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                                <input class="form-control" type="confirmPassword" placeholder="••••••" name="password"
+                                <input class="form-control" type="password" placeholder="••••••" name="password"
                                   [(ngModel)]="confirmPassword"></div>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col d-flex justify-content-end">
+                        <div class="col d-flex justify-content-end" *ngIf="changePass === false">
                           <button class="btn btn-primary" type="submit" style="margin-left:1%;"
-                            (click)="check(); updateCustomerInfo()">Save Changes</button>
+                            (click)="updateCustomerInfo()">Save Changes</button>
+                          <button class="btn btn-secondary" type="submit" style="margin-left:1%;"
+                            type="reset">Cancel</button>
+                        </div>
+                        <div class="col d-flex justify-content-end" *ngIf="changePass === true">
+                          <button class="btn btn-primary" type="submit" style="margin-left:1%;"
+                            (click)="updatPassword()">Save Changes
+                            dd</button>
                           <button class="btn btn-secondary" type="submit" style="margin-left:1%;"
                             type="reset">Cancel</button>
                         </div>

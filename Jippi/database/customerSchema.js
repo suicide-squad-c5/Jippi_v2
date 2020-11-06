@@ -11,7 +11,7 @@ const Customer = sequelize.define(
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     avatar: DataTypes.STRING,
-    adress: DataTypes.STRING,
+    address: DataTypes.STRING,
     phone_number: DataTypes.INTEGER,
   },
   {

@@ -11189,7 +11189,7 @@ header.masthead {
   background-attachment: scroll;
   background-position: center center;
   background-size: cover;
-  /* height: 50px; */
+  /* height: 100%; */
 }
 
 header.masthead .masthead-subheading {
