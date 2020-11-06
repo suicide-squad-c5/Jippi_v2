@@ -26,6 +26,14 @@ export class HttpService {
     });
   }
 
+  //confirm payment
+  confirmPayment(data) {
+    console.log('data in the service', data);
+    return this.http.post(this.ROOT_URL + '/companyName/payment', {
+      data: data,
+    });
+  }
+
   // create post request for the comapny signup.
   postSignUpComapany(
     companyName,
@@ -249,5 +257,29 @@ export class HttpService {
       customerPassword: newPassword.password,
       customerId: newPassword.customerId,
     });
+  }
+  //new order
+  newOrderFunc(orderId, customerId, totalPrice, type, received) {
+    return this.http.post(this.ROOT_URL + `/new_order`, {
+      orderId,
+      customerId,
+      totalPrice,
+      type,
+      received,
+    });
+  }
+  newOrderItemsFunc(orderId, itemId, unitPrice, amount, companyName) {
+    return this.http.post(this.ROOT_URL + `/order/order_item`, {
+      orderId,
+      itemId,
+      unitPrice,
+      amount,
+      companyName,
+    });
+  }
+
+  //get company items order items
+  companyItemsOrder(companyId) {
+    return this.http.get(this.ROOT_URL + `/company_order/${companyId}`);
   }
 }

@@ -39,7 +39,11 @@ signupCompanyRouter.post("/comapny/signup", (req, res) => {
   });
   console.log("transporter.auth", transporter.options);
   // generate a random 6 digit code
-  console.log("47777777", dcode);
+
+//   console.log("47777777", dcode);
+
+//   getRandomString(); //conflict with ghassen pull
+
   let mailOptions = {
     form: "jipp.pi.17@gmail.com",
     to: req.body.companyEmail,

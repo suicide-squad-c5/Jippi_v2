@@ -11,6 +11,7 @@ export class AdminItemsComponent implements OnInit {
   delete_Item: boolean = false;
   itemsList: any = [];
   itemName: string = '';
+  backUpData: any;
   constructor(private _http: HttpService, private local: LocalService) {}
 
   ngOnInit(): void {
@@ -19,7 +20,6 @@ export class AdminItemsComponent implements OnInit {
   }
 
   ngDoCheck() {
-    console.log('items+++>', this.delete_Item);
     if (this.delete_Item) {
       this.getitems();
       this.delete_Item = false;
@@ -29,16 +29,20 @@ export class AdminItemsComponent implements OnInit {
   getitems() {
     return this._http.getItems().subscribe((data: any) => {
       this.itemsList = data.reverse();
-      console.log(this.itemsList);
+      this.backUpData = this.itemsList;
     });
   }
 
   // SEARCH FOR ITEM BY NAME.
   Search() {
-    this.itemsList = this.itemsList.filter((item) => {
-      return item.itemName
-        .toLowerCase()
-        .match(this.itemName.toLocaleLowerCase());
-    });
+    if (this.itemName === '') {
+      this.itemsList = this.backUpData;
+    } else {
+      this.itemsList = this.itemsList.filter((item) => {
+        return item.itemName
+          .toLowerCase()
+          .match(this.itemName.toLocaleLowerCase());
+      });
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from 'src/app/http.service';
 
 @Component({
   selector: 'app-company-home',
@@ -6,7 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./company-home.component.css'],
 })
 export class CompanyHomeComponent implements OnInit {
-  constructor() {}
+  items_order: any = [];
 
-  ngOnInit(): void {}
+  constructor(private _http: HttpService) {}
+
+  ngOnInit(): void {
+    this.companyItemOrderFunc();
+  }
+  // ngDoCheck() {
+  //   console.log('=====>', this.items_order)
+  // }
+
+companyItemOrderFunc(){
+  if(localStorage.comapnyId){
+    return this._http.companyItemsOrder(localStorage.comapnyId)
+    .subscribe((data) => {
+    console.log('data order item', data);
+    this.items_order = data;
+    })
+  }
 }
+}
+

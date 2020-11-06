@@ -84,7 +84,7 @@ export class EditProfileComponent implements OnInit {
       .subscribe((data: any) => {
         this.newinfo = data;
         console.log('data custumer update====**-*//-*//-*-', data);
-        if (data.status === 201) {
+        if (data.status === 200) {
           Swal.fire({
             icon: 'success',
             title: 'Done',

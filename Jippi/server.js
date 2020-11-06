@@ -30,11 +30,14 @@ const adminCreateRouter = require("./server/routes/auth/admin/adminCreate");
 const contactRouter = require("./server/routes/contact");
 
 // comments
-const commentsRouter = require("./server/routes/commentsRouter")
+const commentsRouter = require("./server/routes/commentsRouter");
 
 //company Name "Numbers"
 const customer_companyRouter = require("./server/routes/customer_company");
 
+//post new order
+const ordersRouter = require("./server/routes/order");
+const orderItemsRouter = require("./server/routes/orderItems");
 
 const db = require("./database/models");
 db.sequelize
@@ -66,10 +69,14 @@ app.use("/contact", contactRouter);
 // comments
 app.use("/api/item/comments", commentsRouter);
 
-
 //company Name "Numbers"
 app.use("/companyName", customer_companyRouter);
 
+//post new order
+app.use("/", ordersRouter);
+app.use("/order", orderItemsRouter);
+//get the company items order
+app.use("", orderItemsRouter);
 app.listen(PORT, () => {
   console.log(`Main Server is listening on port ${PORT}...`);
 });

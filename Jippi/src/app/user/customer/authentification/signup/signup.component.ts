@@ -40,13 +40,13 @@ export class SignupComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'There is an issue with your password! please check again',
+        text: 'Please check your password',
       });
-    } else if (this.phoneNumber.length > 9) {
+    } else if (this.phoneNumber.length !== 8) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'your phone number is short than 8 characters',
+        text: 'Please fix your phone number',
       });
     } else {
       return this._http
