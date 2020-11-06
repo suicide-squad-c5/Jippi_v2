@@ -92,7 +92,7 @@ export class LocalService {
   companyData(boo) {
     this.getcompanyData.next(boo);
   }
-  ////
+  // CALL THE ITEM DATA AGAIN IN CASE THAT SOMTHING DELETED.
   deleteFun(boolean) {
     this.delete.next(boolean);
   }

@@ -4,6 +4,7 @@ const customer = db.customers;
 const multer = require("multer");
 var cloudinary = require("cloudinary").v2;
 var passwordHash = require("password-hash");
+
 cloudinary.config({
   cloud_name: "jipi",
   api_key: "895721462325433",
@@ -70,35 +71,33 @@ customerProfileRouter.put(
     if (isNewImg) {
       const values = {
         first_name: req.body.firstName,
-        last_name: req.body.lastname,
+        last_Name: req.body.lastName,
         email: req.body.email,
-        password: passwordHash.generate(req.body.password),
         avatar: req.body.customerImg,
-        adress: req.body.adress,
+        address: req.body.address,
         phone_number: req.body.phoneNumber,
       };
       customer
         .update(values, { where: { id: req.params.userid } })
         .then((updatedCustomer) => {
-          res.send(updatedCustomer);
+          res.send({ status: 200 });
         });
     } else {
-      const img = req.file.path;
+      const img = req.file.path || customer.avatar;
       cloudinary.uploader.upload(img, (error, result) => {
         error && console.log(error);
         let values = {
           first_name: req.body.firstName,
-          last_name: req.body.lastname,
+          last_Name: req.body.lastname,
           email: req.body.email,
-          password: passwordHash.generate(req.body.password),
           avatar: result.url,
-          adress: req.body.adress,
+          address: req.body.address,
           phone_number: req.body.phoneNumber,
         };
         customer
           .update(values, { where: { id: req.params.userid } })
           .then((updatedCustomer) => {
-            res.send(updatedCustomer);
+            res.send({ status: 200 });
           });
       });
     }
@@ -112,6 +111,27 @@ customerProfileRouter.get("/", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+// UPDATE CUSTOMER PASSWORD.
+customerProfileRouter.put("/", async (req, res) => {
+  customer
+    .update(
+      {
+        password: passwordHash.generate(req.body.customerPassword),
+      },
+      {
+        where: {
+          id: req.body.customerId,
+        },
+      }
+    )
+    .then((data) => {
+      res.send({ status: 101 });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 module.exports = customerProfileRouter;

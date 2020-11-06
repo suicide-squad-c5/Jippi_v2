@@ -38,13 +38,13 @@ export class LoginComponent implements OnInit {
         if (res.status === 404) {
           Swal.fire({
             icon: 'error',
-            title: 'Done',
+            title: 'Oops',
             text: `this user are not exist`,
           });
         } else if (res.status === 500) {
           Swal.fire({
             icon: 'error',
-            title: 'Done',
+            title: 'Oops',
             text: `password wrong`,
           });
         } else {

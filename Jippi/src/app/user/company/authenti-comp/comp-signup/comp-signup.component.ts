@@ -62,8 +62,6 @@ export class CompSignupComponent implements OnInit {
           this.companyNumber
         )
         .subscribe((res: any) => {
-          // localStorage.setItem('comapnyId', data['id']);
-          // console.log('data=.......', data);
           if (res.status === 7000) {
             Swal.fire({
               icon: 'error',
@@ -71,6 +69,7 @@ export class CompSignupComponent implements OnInit {
               text: `This email ${this.companyEmail} already exist`,
             });
           } else {
+            localStorage.setItem('comapnyId', res.status.id);
             Swal.fire({
               icon: 'success',
               title: 'Done',

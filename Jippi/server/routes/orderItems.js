@@ -23,4 +23,17 @@ orderItemsRouter.post("/order_item", (req, res) => {
     });
 });
 
+orderItemsRouter.get("/company_order/:companyID", (req, res) => {
+  orderItem
+    .findAll({
+      where: {
+        companyName: req.params.companyID,
+      },
+    })
+    .then((orderItem) => {
+      console.log("order", orderItem);
+      res.send({ orderItem });
+    });
+});
+
 module.exports = orderItemsRouter;

@@ -9,7 +9,8 @@ import { LocalService } from '../../../../local.service';
 export class CompanyItemsComponent implements OnInit {
   companyItems: any = [];
   deleteAction: boolean = false;
-
+  companyItem: string = '';
+  backUpData: any;
   constructor(private _http: HttpService, private local: LocalService) {}
 
   ngOnInit(): void {
@@ -27,6 +28,19 @@ export class CompanyItemsComponent implements OnInit {
   getCompanyItems(id) {
     return this._http.getcompanyItems(id).subscribe((data) => {
       this.companyItems = data;
+      this.backUpData = data;
     });
+  }
+
+  Search() {
+    if (this.companyItem === '') {
+      this.companyItems = this.backUpData;
+    } else {
+      this.companyItems = this.companyItems.filter((item) => {
+        return item.itemName
+          .toLowerCase()
+          .match(this.companyItem.toLocaleLowerCase());
+      });
+    }
   }
 }
