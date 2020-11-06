@@ -15,7 +15,8 @@ export class ItemsComponent implements OnInit {
   itemName: string = '';
   backUpData: any;
   start: number = 0;
-  end: number = 0;
+  end: number = 12;
+  loc: number = 0;
 
   constructor(private _http: HttpService, private local: LocalService) {}
 
@@ -31,11 +32,16 @@ export class ItemsComponent implements OnInit {
     }
     this.local.getitem_name.subscribe((itemName) => (this.itemName = itemName));
     this.SearchBar();
+    this.start;
+    this.end;
+    this.backUpData;
+    this.itemsList;
   }
+
   getitems() {
     return this._http.getItems().subscribe((data: any) => {
       this.itemsList = data.reverse();
-      // let dtaa = this.itemsList
+      this.backUpData = this.itemsList;
       this.local.passItems(data);
     });
   }
@@ -43,11 +49,34 @@ export class ItemsComponent implements OnInit {
   // SEARCH BAR FOR ITEMS.
   SearchBar() {
     if (this.itemName === '') {
-      this.itemsList = this.backUpData;
+      this.itemsList = this.backUpData.slice(this.start, this.end);
     } else {
-      this.itemsList = this.itemsList.filter((item) => {
-        return item?.itemName.toLowerCase().match(this?.itemName.toLowerCase());
-      });
+      this.itemsList = this.itemsList
+        .slice(this.start, this.end)
+        .filter((item) => {
+          return item?.itemName
+            .toLowerCase()
+            .match(this?.itemName.toLowerCase());
+        });
     }
+  }
+
+  rightClick() {
+    this.start = this.start + 12;
+    this.end = this.end + 12;
+    this.loc = this.loc + 1;
+    console.log(this.start, this.end);
+  }
+
+  leftClick() {
+    if (this.start >= 0 && this.end > 12) {
+      this.start = this.start - 12;
+      this.end = this.end - 12;
+      this.loc = this.loc - 1;
+    } else {
+      this.start;
+      this.end;
+    }
+    console.log('left ', this.start, this.end);
   }
 }
