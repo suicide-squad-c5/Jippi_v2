@@ -18,6 +18,8 @@ export class CompaniesUsersComponent implements OnInit {
     this.local.getcompany_Data.subscribe((boo) => (this.callDataCompany = boo));
   }
 
+  
+
   // THIS FUNCTION WILL SWITH THE BANNED ROW IN THE SCHEMA FROM FALSE TO TRUE.
   banCompany(companyId) {
     // CHECK ! (passed fine).
