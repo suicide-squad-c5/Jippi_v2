@@ -1,6 +1,7 @@
-const    itemsRouter = require("express").Router();
+const itemsRouter = require("express").Router();
 const db = require("../../database/models");
 const multer = require("multer");
+const { Op } = require("sequelize");
 
 var cloudinary = require("cloudinary").v2;
 
@@ -31,12 +32,12 @@ itemsRouter.put("/update", up.single("itemImage"), (req, res) => {
     newItem
       .update(item, {
         where: {
-          id: req.body.id
+          id: req.body.id,
         },
       })
       .then(() => {
         res.send({
-          status: 200
+          status: 200,
         });
       });
   } else {
@@ -57,13 +58,13 @@ itemsRouter.put("/update", up.single("itemImage"), (req, res) => {
         //update the item with item id down bellow!!!!
         newItem.update(item, {
           where: {
-            id: req.body.id
+            id: req.body.id,
           },
         });
       })
       .then(() => {
         res.send({
-          status: 200
+          status: 200,
         });
       });
   }
@@ -122,7 +123,19 @@ itemsRouter.post("/get/:id", (req, res) => {
 
 itemsRouter.get("/", async (req, res) => {
   try {
-    const items = await newItem.findAll();
+    const companies = await db.companies.findAll({
+      attributes: ["id"],
+      where: { baned: "false" },
+    });
+    var clearCompanies = [];
+    for (var i = 0; i < companies.length; i++) {
+      clearCompanies.push(companies[i].dataValues.id);
+    }
+    console.log("companies", clearCompanies);
+    const items = await newItem.findAll({
+      where: { itemCompany: clearCompanies },
+    });
+    console.log("items", items);
     res.send(items);
   } catch (e) {
     console.log(e);
@@ -137,7 +150,7 @@ itemsRouter.delete(`/:itemId`, async (req, res) => {
   });
   console.log("heyyyyyyy", req.params.itemId);
   res.send({
-    status: 200
+    status: 200,
   });
 });
 
