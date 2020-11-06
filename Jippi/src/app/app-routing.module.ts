@@ -28,7 +28,7 @@ import { LandingPageComponent } from './user/landing-page/landing-page.component
 import { CommentsComponent } from './user/customer/home/items/comments/comments.component';
 import { GetYourItemsComponent } from './user/customer/basket/get-your-items/get-your-items.component';
 import { SnippetComponent } from './user/customer/snippet/snippet.component';
-
+import { CompanyOrdersComponent } from './user/company/company-orders/company-orders.component';
 const routes: Routes = [
   // CUSTOEMR SIDE.
   { path: '', component: LandingPageComponent },
@@ -53,6 +53,7 @@ const routes: Routes = [
   { path: 'company/home', component: CompanyHomeComponent },
   { path: 'company/updateItem', component: UpdateItemComponent },
   { path: 'company/item/comments', component: CommentsComponent },
+  { path : 'company/ordersitem', component: CompanyOrdersComponent },
   // ADMIN SIDE.
   { path: 'admin/jippi', component: AdminComponent },
   { path: 'admin/home', component: AdminHomeComponent },

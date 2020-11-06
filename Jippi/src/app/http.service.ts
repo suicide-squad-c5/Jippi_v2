@@ -278,8 +278,26 @@ export class HttpService {
     });
   }
 
-  //get company items order items
-  companyItemsOrder(companyId) {
-    return this.http.get(this.ROOT_URL + `/company_order/${companyId}`);
-  }
+
+//get company items order items
+companyItemsOrder(companyId){
+  return this.http.get(this.ROOT_URL + `/order/company_order/${companyId}` );
+}
+
+//get company/user order
+companyUserOrder(orderId){
+  return this.http.get(this.ROOT_URL + `/orders/${orderId}` );
+}
+
+//get item in order
+itemOrder(itemId){
+  return this.http.get(this.ROOT_URL + `/companyName/itemOrder/${itemId}` );
+}
+
+//get user in order
+userOrder(userId){
+  return this.http.get(this.ROOT_URL + `/companyName/userorder/${userId}` );
+}
+
+
 }

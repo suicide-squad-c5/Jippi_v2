@@ -1,7 +1,9 @@
 const ordersRouter = require("express").Router();
 const db = require("../../database/models");
+// const sequelize = db.sequelize;
 
 const newOrder = db.orders;
+// const orderItem = db.orderItems;
 
 ordersRouter.post("/new_order", (req, res) => {
   //   console.log("req.body", req.body);
@@ -20,6 +22,26 @@ ordersRouter.post("/new_order", (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+    });
+});
+
+// ordersRouter.get("/orders/:orderId", async (req, res) => {
+//   console.log("Numbres", req.params.orderId);
+//   try {
+//     const orderr = await sequelize.query(`SELECT * FROM orders INNER JOIN orderitems ON orderitems.orderId = ${req.params.orderId} `)
+//   }
+// })
+
+ordersRouter.get("/orders/:orderId", (req, res) => {
+  newOrder
+    .findOne({
+      where: {
+        orderId: req.params.orderId,
+      },
+    })
+    .then((order) => {
+      console.log("orderr", order);
+      res.send({ order });
     });
 });
 
