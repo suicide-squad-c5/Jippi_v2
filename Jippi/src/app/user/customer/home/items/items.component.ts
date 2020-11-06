@@ -32,9 +32,8 @@ export class ItemsComponent implements OnInit {
     this.SearchBar();
   }
   getitems() {
-    return this._http.getItems().subscribe((data) => {
-      this.itemsList = data;
-      this.itemsList = this.itemsList.reverse();
+    return this._http.getItems().subscribe((data: any) => {
+      this.itemsList = data.reverse();
       // let dtaa = this.itemsList
       this.local.passItems(data);
       // this.local.passAllItems(data);
