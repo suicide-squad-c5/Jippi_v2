@@ -23,9 +23,9 @@ export class GetYourItemsComponent implements OnInit {
   }
 
   // DELEVERY SIDE GIVE YOU SNIPET.
-  onsite() {
+  onsite(type) {
     this.router.navigateByUrl('/snippet/items', {
-      state: { data: this.basket_item },
+      state: { data: this.basket_item, type: type },
     });
   }
 }
