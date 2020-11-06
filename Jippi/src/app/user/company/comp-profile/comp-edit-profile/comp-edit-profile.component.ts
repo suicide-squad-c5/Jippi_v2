@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../http.service';
 import { LocalService } from '../../../../local.service';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -9,7 +10,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./comp-edit-profile.component.css'],
 })
 export class CompEditProfileComponent implements OnInit {
-  constructor(private _http: HttpService, private local: LocalService) {}
+  constructor(
+    private _http: HttpService,
+    private local: LocalService,
+    private router: Router
+  ) {}
   alert: string = '';
   companyInfo: any = {};
   /** image preview **/
@@ -66,6 +71,7 @@ export class CompEditProfileComponent implements OnInit {
           title: 'Done',
           text: 'Your account has been updated',
         });
+        this.router.navigateByUrl('/company/profile');
       } else {
         Swal.fire({
           icon: 'error',

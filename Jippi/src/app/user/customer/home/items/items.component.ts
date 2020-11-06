@@ -13,7 +13,8 @@ export class ItemsComponent implements OnInit {
   allitems: boolean = false;
   basket: any = [];
   itemName: string = '';
-  // items: any = [];
+  backUpData: any;
+
   constructor(private _http: HttpService, private local: LocalService) {}
 
   ngOnInit(): void {
@@ -26,25 +27,25 @@ export class ItemsComponent implements OnInit {
       this.getitems();
       this.allitems = false;
     }
-    // console.log('++++>>', this.itemsList, this.allitems);
     this.local.getitem_name.subscribe((itemName) => (this.itemName = itemName));
-    // console.log('itemname', this.itemName);
     this.SearchBar();
   }
   getitems() {
-    return this._http.getItems().subscribe((data) => {
-      this.itemsList = data;
-      this.itemsList = this.itemsList.reverse();
-      // let dtaa = this.itemsList
+    return this._http.getItems().subscribe((data: any) => {
+      this.itemsList = data.reverse();
+      this.backUpData = this.itemsList;
       this.local.passItems(data);
-      // this.local.passAllItems(data);
     });
   }
 
   // SEARCH BAR FOR ITEMS.
   SearchBar() {
-    this.itemsList = this.itemsList.filter((item) => {
-      return item?.itemName.toLowerCase().match(this?.itemName.toLowerCase());
-    });
+    if (this.itemName === '') {
+      this.itemsList = this.backUpData;
+    } else {
+      this.itemsList = this.itemsList.filter((item) => {
+        return item?.itemName.toLowerCase().match(this?.itemName.toLowerCase());
+      });
+    }
   }
 }

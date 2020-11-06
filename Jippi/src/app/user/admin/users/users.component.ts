@@ -11,7 +11,7 @@ export class UsersComponent implements OnInit {
   companiesList: any = [];
   companyName: string = '';
   callDataCompany: any = false;
-
+  backUpData: any;
   constructor(private _http: HttpService, private local: LocalService) {}
 
   ngOnInit(): void {
@@ -33,16 +33,20 @@ export class UsersComponent implements OnInit {
   getCompanies() {
     this._http.getCompanies().subscribe((data: any) => {
       this.companiesList = data.reverse();
-      console.log('we have data', this.companiesList);
+      this.backUpData = this.companiesList;
     });
   }
 
   // SEARCH FOR A COMPANY BY NAME.
   Search() {
-    this.companiesList = this.companiesList.filter((company) => {
-      return company.companyName
-        .toLowerCase()
-        .match(this.companyName.toLocaleLowerCase());
-    });
+    if (this.companyName === '') {
+      this.companiesList = this.backUpData;
+    } else {
+      this.companiesList = this.companiesList.filter((company) => {
+        return company.companyName
+          .toLowerCase()
+          .match(this.companyName.toLocaleLowerCase());
+      });
+    }
   }
 }
