@@ -243,7 +243,6 @@ export class HttpService {
     );
   }
 
-
   // UPADATE COMPANY PASSWORD.
   updateCompanyPassword(newPassword) {
     return this.http.put(this.ROOT_URL + `/api/profile/company/`, {
@@ -257,8 +256,8 @@ export class HttpService {
     return this.http.put(this.ROOT_URL + `/api/profile/customer/`, {
       customerPassword: newPassword.password,
       customerId: newPassword.customerId,
-
-
+    });
+  }
   //new order
   newOrderFunc(orderId, customerId, totalPrice, type, received) {
     return this.http.post(this.ROOT_URL + `/new_order`, {
@@ -266,23 +265,21 @@ export class HttpService {
       customerId,
       totalPrice,
       type,
-      received
+      received,
     });
   }
-  newOrderItemsFunc(orderId, itemId, unitPrice, amount, companyName){
+  newOrderItemsFunc(orderId, itemId, unitPrice, amount, companyName) {
     return this.http.post(this.ROOT_URL + `/order/order_item`, {
       orderId,
       itemId,
       unitPrice,
       amount,
-      companyName
-
+      companyName,
     });
   }
 
-//get company items order items
-companyItemsOrder(companyId){
-  return this.http.get(this.ROOT_URL + `/company_order/${companyId}` );
-}
-
+  //get company items order items
+  companyItemsOrder(companyId) {
+    return this.http.get(this.ROOT_URL + `/company_order/${companyId}`);
+  }
 }

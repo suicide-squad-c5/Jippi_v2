@@ -47,40 +47,30 @@ export class CompLoginComponent implements OnInit {
 
     // send request to check if this user exist in the database.
     this._http.postLoginCompany(LogCdata).subscribe((res: any) => {
-      console.log('yo', res);
       if (res.status === 800) {
         this.alert = true;
-
-        //       } else if (res === res['message']) {
-        //         return;
-        //       } else if (res['title'] === 'login successful') {
       } else if (res.status === 401) {
         Swal.fire({
           icon: 'error',
-          title: 'Done',
-          text: `this company are not exist`,
+          title: 'Oops',
+          text: `this company does not exist`,
         });
       } else if (res.status === 500) {
         Swal.fire({
           icon: 'error',
-          title: 'Done',
-          text: `password wrong`,
+          title: 'Oops',
+          text: `wrong password `,
         });
       } else {
         localStorage.setItem('companyToken', res['token']);
         localStorage.setItem('comapnyId', res['id']);
         this.local.changeType('company');
         this.router.navigateByUrl('/company/profile');
-        // this.changeNav();
       }
     });
   }
 
   changeNav() {
-    // if (this.verified === false) {
-    //   this.router.navigateByUrl('/company/login');
-    // } else {
     this.companyDataLog();
   }
-  // }
 }

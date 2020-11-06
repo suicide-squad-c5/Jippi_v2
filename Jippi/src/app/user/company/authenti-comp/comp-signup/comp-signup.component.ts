@@ -62,9 +62,6 @@ export class CompSignupComponent implements OnInit {
           this.companyNumber
         )
         .subscribe((res: any) => {
-          console.log(res);
-          // localStorage.setItem('comapnyId', data['id']);
-          // console.log('data=.......', data);
           if (res.status === 7000) {
             Swal.fire({
               icon: 'error',

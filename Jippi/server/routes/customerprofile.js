@@ -80,11 +80,10 @@ customerProfileRouter.put(
       customer
         .update(values, { where: { id: req.params.userid } })
         .then((updatedCustomer) => {
-          res.send({ status: 201 });
+          res.send({ status: 200 });
         });
     } else {
-      const img =
-        req.file.path || customer.avatar || "/assets/user-profile.png";
+      const img = req.file.path || customer.avatar;
       cloudinary.uploader.upload(img, (error, result) => {
         error && console.log(error);
         let values = {
