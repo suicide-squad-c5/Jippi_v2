@@ -5,5 +5,10 @@
         <app-item class="grid-item " [item]="item" [basket]="basket" [quantity]="quantity"></app-item>
       </div>
     </div>
+    <div class="input-group mb-2 mr-sm-2" style="position: relative; margin-left:auto; margin-right:auto">
+      <button class="input-group-text" (click)="leftClick()"><i class="fas fa-chevron-left"></i> </button>
+      <button class="btn btn-secondary btn-sm disabled" role="button" aria-disabled="true">{{loc}}</button>
+      <button class="input-group-text" (click)="rightClick()"> <i class="fas fa-chevron-right"></i> </button>
+    </div>
   </div>
 </div>
