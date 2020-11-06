@@ -51,6 +51,16 @@ export class LocalService {
   private deleteItem = new BehaviorSubject(false);
   delete_item = this.deleteItem.asObservable();
 
+  //orderItems
+  private orderItems = new BehaviorSubject([]);
+  order_items = this.orderItems.asObservable();
+  //orders
+  private orders = new BehaviorSubject([]);
+  ordErs = this.orders.asObservable();
+  //Items of company
+  private items = new BehaviorSubject([]);
+  itEms = this.items.asObservable();
+
   constructor() {}
 
   changeType(type: string) {
@@ -107,4 +117,19 @@ export class LocalService {
   deleteItemFunc(boo){
     this.deleteItem.next(boo);
   }
+
+//Function to send order item 
+orderItemFunc(orderitem){
+  this.orderItems.next(orderitem);
+}
+//Fanction to send orders
+ordersFunc(order){
+  this.orders.next(order);
+}
+
+//Function to send items to notfication
+itemsOrder(item){
+  this.items.next(item);
+  }
+
 }

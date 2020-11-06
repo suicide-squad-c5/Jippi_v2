@@ -76,7 +76,8 @@ app.use("/companyName", customer_companyRouter);
 app.use("/", ordersRouter);
 app.use("/order", orderItemsRouter);
 //get the company items order
-app.use("", orderItemsRouter);
+// app.use("", orderItemsRouter);
+
 app.listen(PORT, () => {
   console.log(`Main Server is listening on port ${PORT}...`);
 });

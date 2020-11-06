@@ -15,6 +15,7 @@ export class CompanyItemsComponent implements OnInit {
   ngOnInit(): void {
     this.getCompanyItems(localStorage.comapnyId);
     this.local.deleted.subscribe((boolean) => (this.deleteAction = boolean));
+    this.local.itEms.subscribe(item => this.companyItems = item);
   }
 
   ngDoCheck() {
@@ -22,11 +23,13 @@ export class CompanyItemsComponent implements OnInit {
       this.getCompanyItems(localStorage.comapnyId);
       this.deleteAction = false;
     }
+    console.log("Achref",this.companyItems)
   }
 
   getCompanyItems(id) {
-    return this._http.getcompanyItems(id).subscribe((data) => {
+     this._http.getcompanyItems(id).subscribe((data) => {
       this.companyItems = data;
+       this.local.itemsOrder(this.companyItems);
     });
   }
 }
