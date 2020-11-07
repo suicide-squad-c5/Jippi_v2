@@ -299,6 +299,9 @@ itemOrder(itemId){
 userOrder(userId){
   return this.http.get(this.ROOT_URL + `/companyName/userorder/${userId}` );
 }
-
+// update order received 
+orderReceived(orderId, companyName){
+  return this.http.put(this.ROOT_URL + `/order/order_items/${orderId}/${companyName}`,{ received: true})
+}
 
 }

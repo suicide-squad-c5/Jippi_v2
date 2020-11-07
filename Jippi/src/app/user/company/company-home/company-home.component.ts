@@ -9,7 +9,7 @@ import { LocalService } from '../../../local.service';
 export class CompanyHomeComponent implements OnInit {
   items_order: any = [];
   ordersId: any = [];
-  orders: any = [];
+  orders: any;
   check: boolean = false;
 
   constructor(private _http: HttpService, private local: LocalService) {}
@@ -40,10 +40,12 @@ export class CompanyHomeComponent implements OnInit {
           console.log('data order item', data);
           this.items_order = data;
           this.check = true;
+          this.orders = [];
+          this.local.ordersFunc(this.orders);
           this.local.orderItemFunc(this.items_order.orderItem)
         });
     }
-    this.ordersIdFunc();
+    // this.ordersIdFunc();
   }
   //get an array of orderId
   ordersIdFunc() {   //to transfert to  the order list componets;
