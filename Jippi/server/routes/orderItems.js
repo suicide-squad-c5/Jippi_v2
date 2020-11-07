@@ -11,6 +11,7 @@ orderItemsRouter.post("/order_item", (req, res) => {
     unitPrice: req.body.unitPrice,
     amount: req.body.amount,
     companyName: req.body.companyName,
+    received: req.body.received,
   };
 
   orderItem

@@ -6,6 +6,7 @@ module.exports = (sequelize, Sequelize) => {
     unitPrice: Sequelize.INTEGER,
     amount: Sequelize.STRING,
     companyName: Sequelize.INTEGER,
+    received: Sequelize.STRING,
   });
   return OrderItems;
 };

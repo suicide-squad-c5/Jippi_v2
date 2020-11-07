@@ -16,6 +16,8 @@ export class NavbarComponent implements OnInit {
   itemList: any = [];
   itemName: string = '';
   route: boolean = false;
+  orders: any = [];
+  orderNum: number = 0;
 
   constructor(
     location: Location,
@@ -37,6 +39,7 @@ export class NavbarComponent implements OnInit {
     this.local.basktItems.subscribe(
       (basket_item) => (this.basket_item = basket_item)
     );
+    this.local.ordErs.subscribe(order => this.orders = order);
     this.local.userTy.subscribe((type) => (this.userType = type));
     this.local.getitem_name.subscribe((itemName) => (this.itemName = itemName));
     if (localStorage.Id) {
@@ -52,6 +55,7 @@ export class NavbarComponent implements OnInit {
 
   ngDoCheck() {
     this.itemNum = this.basket_item.length;
+    this.orderNum = this.orders.length
     this.local.itemNameCheck(this.itemName);
     // console.log('itemname navbar', this.itemName);
     this.local.getitem_name.subscribe((itemName) => (this.itemName = itemName));
