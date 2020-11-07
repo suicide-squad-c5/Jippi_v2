@@ -1,34 +1,60 @@
 <div class="container">
-    <article class="card">
-        <header class="card-header"> My Orders / Tracking </header>
-        <div class="card-body" *ngFor="let order of orders">
-            <h6>Order ID: {{order?.order.orderId}}</h6>
-            <article class="card">
-                <div class="card-body row">
-                    <div class="col"> <strong>Estimated Delivery time:</strong> <br>{{order?.order.createdAt}}</div>
-                    <div class="col"> <strong>Shipping BY:</strong> <br> {{this.customers[this.orders.indexOf(order)]?.first_name}}, | <i class="fa fa-phone"></i>
-                    {{this.customers[this.orders.indexOf(order)]?.phone_number}}   </div>
-                    <div class="col"> <strong>Adress:</strong> <br> {{this.customers[this.orders.indexOf(order)]?.address}} </div>
-                    <div class="col"> <strong>Email:</strong> <br> {{this.customers[this.orders.indexOf(order)]?.email}} </div>
-                    <div class="col"> <strong>Type:</strong> <br> {{order?.order.type}} </div>
-                </div>
-            </article>
-            <hr>
-            <ul class="row" *ngFor="let item of items_order" style="display: inline;">
-                <li class="col-md-4" *ngIf="item.orderId === order.order.orderId" style="display: inline-block;" >
-                    <figure class="itemside mb-3" >
-                        <div class="aside"><img
-                                src={{item.item.itemImage}}
-                                class="img-sm border"></div>
-                        <figcaption class="info align-self-center">
-                            <p class="title">{{item.item.itemName}}<br> {{item.item.itemDescription}}</p> <span class="text-muted">{{item.item.itemPrice}} x {{item.amount}}
-                            </span>
-                        </figcaption>
-                    </figure>
-                </li>
-            </ul>
-            <hr>
-            <a href="#" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i> Back to orders</a>
+  <article class="card">
+    <header class="card-header">My Orders / Tracking</header>
+    <div class="card-body" *ngFor="let order of orders">
+      <h6>Order ID: {{ order?.order.orderId }}</h6>
+      <article class="card">
+        <div class="card-body row">
+          <div class="col">
+            <strong>Ordered in:</strong> <br />{{ order?.order.createdAt }}
+          </div>
+          <div class="col">
+            <strong>Shipping BY:</strong> <br />
+            {{ this.customers[this.orders.indexOf(order)]?.first_name }}, |
+            <i class="fa fa-phone"></i>
+            {{ this.customers[this.orders.indexOf(order)]?.phone_number }}
+          </div>
+          <div class="col">
+            <strong>Adress:</strong> <br />
+            {{ this.customers[this.orders.indexOf(order)]?.address }}
+          </div>
+          <div class="col">
+            <strong>Email:</strong> <br />
+            {{ this.customers[this.orders.indexOf(order)]?.email }}
+          </div>
+          <div class="col">
+            <strong>Type:</strong> <br />
+            {{ order?.order.type }}
+          </div>
         </div>
-    </article>
+      </article>
+      <hr />
+      <ul class="row" *ngFor="let item of items_order" style="display: inline">
+        <li
+          class="col-md-4"
+          *ngIf="item.orderId === order.order.orderId"
+          style="display: inline-block"
+        >
+          <figure class="itemside mb-3">
+            <div class="aside">
+              <img src="{{ item.item.itemImage }}" class="img-sm border" />
+            </div>
+            <figcaption class="info align-self-center">
+              <p class="title">
+                {{ item.item.itemName }}<br />
+                {{ item.item.itemDescription }}
+              </p>
+              <span class="text-muted"
+                >{{ item.item.itemPrice }} x {{ item.amount }}
+              </span>
+            </figcaption>
+          </figure>
+        </li>
+      </ul>
+      <hr />
+      <a class="btn btn-warning" data-abc="true" (click)="updateOrderReceived(order.order.orderId, orders.indexOf(order))">
+        <i class="fa fa-chevron-left"></i> Order sent</a
+      >
+    </div>
+  </article>
 </div>

@@ -29,12 +29,31 @@ orderItemsRouter.get("/company_order/:companyID", (req, res) => {
     .findAll({
       where: {
         companyName: req.params.companyID,
+        received: false,
       },
     })
     .then((orderItem) => {
       console.log("order", orderItem);
       res.send({ orderItem });
     });
+});
+
+//receved update
+orderItemsRouter.put("/order_items/:orderId/:companyName", async (req, res) => {
+  try {
+    const orders = await orderItem.update(
+      { received: true },
+      {
+        where: {
+          companyName: req.params.companyName,
+          orderId: req.params.orderId,
+        },
+      }
+    );
+    console.log("orders==>", orders);
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 module.exports = orderItemsRouter;

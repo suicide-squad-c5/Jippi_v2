@@ -62,10 +62,11 @@ export class ItemsComponent implements OnInit {
   }
 
   rightClick() {
-    this.start = this.start + 12;
-    this.end = this.end + 12;
-    this.loc = this.loc + 1;
-    console.log(this.start, this.end);
+    if (this.end + 12 <= this.itemsList.length) {
+      this.start = this.start + 12;
+      this.end = this.end + 12;
+      this.loc = this.loc + 1;
+    }
   }
 
   leftClick() {
@@ -73,10 +74,6 @@ export class ItemsComponent implements OnInit {
       this.start = this.start - 12;
       this.end = this.end - 12;
       this.loc = this.loc - 1;
-    } else {
-      this.start;
-      this.end;
     }
-    console.log('left ', this.start, this.end);
   }
 }
