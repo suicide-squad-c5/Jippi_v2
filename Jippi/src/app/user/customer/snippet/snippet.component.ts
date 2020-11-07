@@ -18,17 +18,19 @@ export class SnippetComponent implements OnInit {
   constructor(private _http: HttpService, private router: Router) {}
 
   ngOnInit(): void {
+    console.log('SnippetComponent -> ngOnInit -> history.state', history.state);
     this.total = history.state.data[0].total;
     this.data = history.state.data;
   }
 
   postNewOrder() {
+    var type = history.state.type;
     return this._http
       .newOrderFunc(
         this.key,
         parseInt(localStorage.Id),
         this.total,
-        'On site',
+        type,
         false
       )
       .subscribe((data) => {

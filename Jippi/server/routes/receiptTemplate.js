@@ -11,17 +11,58 @@ module.exports = (data) => {
   return `
   <!DOCTYPE html>
     <html>
+    <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@800&family=Syne&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Staatliches&family=Syne&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+  </head>
   <body>
   <style>
-.container{
-  background-color: white;
-}
+
 .key{
   text-align: center;
 }
 .total{
   float : right;
 }
+
+.container{
+  background-color: white;
+}
+
+.two {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main thead {
+  background: #1E1F23;
+  color: #fff
+}
+
+
+h1 {
+  text-align: center
+}
+
   </style>
   <div class="container" id="contentToConvert">
     <br />
