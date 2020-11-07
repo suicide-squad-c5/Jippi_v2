@@ -6,11 +6,10 @@ const company = db.companies;
 const item = db.items;
 const user = db.customers;
 
-
 const customerSearch = db.customers;
 
 var wkhtmltopdf = require("wkhtmltopdf");
-wkhtmltopdf.command = "C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe";
+wkhtmltopdf.command = "D:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe";
 const pdfTemplate = require("./receiptTemplate");
 const nodemailer = require("nodemailer");
 var cloudinary = require("cloudinary").v2;

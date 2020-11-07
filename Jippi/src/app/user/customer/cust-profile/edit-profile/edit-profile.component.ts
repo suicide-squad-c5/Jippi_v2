@@ -43,7 +43,6 @@ export class EditProfileComponent implements OnInit {
     console.log('++++>', this.user_Info);
     console.log('firstName', this.firstName);
   }
-
   //function to read avatar url
   onSelectFile(event) {
     console.log('evvnet', event.target.files[0]);
