@@ -268,13 +268,14 @@ export class HttpService {
       received,
     });
   }
-  newOrderItemsFunc(orderId, itemId, unitPrice, amount, companyName) {
+  newOrderItemsFunc(orderId, itemId, unitPrice, amount, companyName, received) {
     return this.http.post(this.ROOT_URL + `/order/order_item`, {
       orderId,
       itemId,
       unitPrice,
       amount,
       companyName,
+      received,
     });
   }
 
